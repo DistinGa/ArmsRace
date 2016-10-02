@@ -61,7 +61,7 @@ public class GameManagerScript : MonoBehaviour
     public float INSTALL_PUPPER_REVOL = 80;
     [Tooltip("стоимость увеличения влияния")]
     public int INFLU_COST = 2;
-    [Tooltip("стоимость добавления вооруженных сил")]
+    [Tooltip("стоимость вооруженных сил")]
     public int MILITARY_COST = 3;
     [Tooltip("стоимость добавления шпиона")]
     public int SPY_COST = 1;
@@ -69,7 +69,11 @@ public class GameManagerScript : MonoBehaviour
     public int PARADE_COST = 1;
     [Tooltip("стоимость организации восстания")]
     public int RIOT_COST = 1;
-
+    ////////////
+    //новые параметры
+    [Tooltip("количество изменений трат в год")]
+    public int OutlayChangesPerYear;
+    
     public void Awake()
     {
         GM = this;
@@ -199,25 +203,25 @@ public class GameManagerScript : MonoBehaviour
                 break;
         }
         DownMenu.Find("CountryState").GetComponent<Text>().text = Country.Name + ": GOVERNMENT - PRO " + CountryState;
-        DownMenu.Find("Support").GetComponent<Text>().text = Country.Support.ToString("g3");
-        DownMenu.Find("Riots").GetComponent<Text>().text = (100 - Country.Support).ToString("g3");
-        DownMenu.Find("Budget").GetComponent<Text>().text = Player.Budget.ToString("f0");
-        DownMenu.Find("InfAmer").GetComponent<Text>().text = Country.AmInf.ToString("f0");
-        DownMenu.Find("InfNeutral").GetComponent<Text>().text = Country.NInf.ToString("f0");
-        DownMenu.Find("InfSoviet").GetComponent<Text>().text = Country.SovInf.ToString("f0");
+        DownMenu.Find("Page1/Support").GetComponent<Text>().text = Country.Support.ToString("g3");
+        DownMenu.Find("Page1/Riots").GetComponent<Text>().text = (100 - Country.Support).ToString("g3");
+        DownMenu.Find("Page1/Budget").GetComponent<Text>().text = Player.Budget.ToString("f0");
+        DownMenu.Find("Page1/InfAmer").GetComponent<Text>().text = Country.AmInf.ToString("f0");
+        DownMenu.Find("Page1/InfNeutral").GetComponent<Text>().text = Country.NInf.ToString("f0");
+        DownMenu.Find("Page1/InfSoviet").GetComponent<Text>().text = Country.SovInf.ToString("f0");
 
-        DownMenu.Find("SpyLeft").GetComponent<Image>().fillAmount = Country.CIA * 0.2f;
-        DownMenu.Find("SpyRight").GetComponent<Image>().fillAmount = Country.KGB * 0.2f;
+        DownMenu.Find("Page1/SpyLeft").GetComponent<Image>().fillAmount = Country.CIA * 0.2f;
+        DownMenu.Find("Page1/SpyRight").GetComponent<Image>().fillAmount = Country.KGB * 0.2f;
 
         ShowMilitary();
 
         //Доступность кнопок
         //Влияние
-        DownMenu.Find("AddInfButton").GetComponent<Button>().interactable = Country.CanAddInf(Player.Authority);
+        DownMenu.Find("Page1/AddInfButton").GetComponent<Button>().interactable = Country.CanAddInf(Player.Authority);
         //Войска
-        DownMenu.Find("AddMilButton").GetComponent<Button>().interactable = Country.CanAddMil(Player.Authority);
+        DownMenu.Find("Page1/AddMilButton").GetComponent<Button>().interactable = Country.CanAddMil(Player.Authority);
         //Шпионы
-        DownMenu.Find("AddSpyButton").GetComponent<Button>().interactable = Country.CanAddSpy(Player.Authority);
+        DownMenu.Find("Page1/AddSpyButton").GetComponent<Button>().interactable = Country.CanAddSpy(Player.Authority);
         //Организация парада
         DownMenu.Find("SupParadeButton").GetComponent<Button>().interactable = Country.CanOrgParade(Player.Authority);
         //Организация восстания
@@ -228,53 +232,53 @@ public class GameManagerScript : MonoBehaviour
 
     public void ShowMilitary()
     {
-        DownMenu.Find("MilitaryLeft").GetComponent<Image>().fillAmount = 0;
-        DownMenu.Find("MilitaryLeft_n").GetComponent<Image>().fillAmount = 0;
-        DownMenu.Find("MilitaryRight_n").GetComponent<Image>().fillAmount = 0;
-        DownMenu.Find("MilitaryRight").GetComponent<Image>().fillAmount = 0;
+        DownMenu.Find("Page1/MilitaryLeft").GetComponent<Image>().fillAmount = 0;
+        DownMenu.Find("Page1/MilitaryLeft_n").GetComponent<Image>().fillAmount = 0;
+        DownMenu.Find("Page1/MilitaryRight_n").GetComponent<Image>().fillAmount = 0;
+        DownMenu.Find("Page1/MilitaryRight").GetComponent<Image>().fillAmount = 0;
 
         switch (Country.Authority)
         {
             case Authority.Neutral:
                 if (Country.SovInf > Country.AmInf)
                 {
-                    DownMenu.Find("MilitaryRight_n").GetComponent<Image>().fillAmount = Country.GovForce * 0.1f;
+                    DownMenu.Find("Page1/MilitaryRight_n").GetComponent<Image>().fillAmount = Country.GovForce * 0.1f;
                     //Силы оппозиции видны если есть шпионы либо если оппозиция - своя (в данном случае - американская).
                     if (Player.Authority == Authority.Amer || Country.KGB > 0)
-                        DownMenu.Find("MilitaryLeft").GetComponent<Image>().fillAmount = Country.OppForce * 0.1f;
+                        DownMenu.Find("Page1/MilitaryLeft").GetComponent<Image>().fillAmount = Country.OppForce * 0.1f;
                 }
                 else
                 {
-                    DownMenu.Find("MilitaryLeft_n").GetComponent<Image>().fillAmount = Country.GovForce * 0.1f;
+                    DownMenu.Find("Page1/MilitaryLeft_n").GetComponent<Image>().fillAmount = Country.GovForce * 0.1f;
                     //Силы оппозиции видны если есть шпионы либо если оппозиция - своя (в данном случае - советсткая).
                     if (Player.Authority == Authority.Soviet || Country.CIA > 0)
-                        DownMenu.Find("MilitaryRight").GetComponent<Image>().fillAmount = Country.OppForce * 0.1f;
+                        DownMenu.Find("Page1/MilitaryRight").GetComponent<Image>().fillAmount = Country.OppForce * 0.1f;
                 }
                 break;
             case Authority.Amer:
-                DownMenu.Find("MilitaryLeft").GetComponent<Image>().fillAmount = Country.GovForce * 0.1f;
+                DownMenu.Find("Page1/MilitaryLeft").GetComponent<Image>().fillAmount = Country.GovForce * 0.1f;
                 if (Player.Authority == Authority.Amer)
                 {
                     //Если нет шпионов, то силы противника не видны
                     if (Country.CIA > 0)
-                        DownMenu.Find("MilitaryRight").GetComponent<Image>().fillAmount = Country.OppForce * 0.1f;
+                        DownMenu.Find("Page1/MilitaryRight").GetComponent<Image>().fillAmount = Country.OppForce * 0.1f;
                 }
                 else
                 {
-                    DownMenu.Find("MilitaryRight").GetComponent<Image>().fillAmount = Country.OppForce * 0.1f;
+                    DownMenu.Find("Page1/MilitaryRight").GetComponent<Image>().fillAmount = Country.OppForce * 0.1f;
                 }
                 break;
             case Authority.Soviet:
-                DownMenu.Find("MilitaryRight").GetComponent<Image>().fillAmount = Country.GovForce * 0.1f;
+                DownMenu.Find("Page1/MilitaryRight").GetComponent<Image>().fillAmount = Country.GovForce * 0.1f;
                 if (Player.Authority == Authority.Soviet)
                 {
                     //Если нет шпионов, то силы противника не видны
                     if (Country.KGB > 0)
-                        DownMenu.Find("MilitaryLeft").GetComponent<Image>().fillAmount = Country.OppForce * 0.1f;
+                        DownMenu.Find("Page1/MilitaryLeft").GetComponent<Image>().fillAmount = Country.OppForce * 0.1f;
                 }
                 else
                 {
-                    DownMenu.Find("MilitaryLeft").GetComponent<Image>().fillAmount = Country.OppForce * 0.1f;
+                    DownMenu.Find("Page1/MilitaryLeft").GetComponent<Image>().fillAmount = Country.OppForce * 0.1f;
                 }
                 break;
         }
@@ -903,6 +907,7 @@ public class GameManagerScript : MonoBehaviour
             }
         }
     }
+
 }
 
 public enum Region
