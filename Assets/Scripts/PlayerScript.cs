@@ -12,8 +12,9 @@ public class PlayerScript : MonoBehaviour {
     bool[] TechStatus = new bool[41]; //true - технология исследована (технологий 40, в оригинале они нумеровались с единицы, чтобы не путаться и в массиве будем их хранить начиная с первого элемента, поэтому 41 элемент в массиве)
 
     public bool[] MilAirTechStatus = new bool[11];
-    public bool[] MilGroundTechStatus = new bool[11];
+    public bool[] MilGndTechStatus = new bool[11];
     public bool[] MilSeaTechStatus = new bool[11];
+    public bool[] MilRocketTechStatus = new bool[11];
 
     public List<int> History = new List<int>();
 
@@ -23,19 +24,30 @@ public class PlayerScript : MonoBehaviour {
     int diplomatAmount = 0;
     //траты на открытие теххнологий, военныхх, дипломатов и шпионов
     Dictionary<OutlayField, UniOutlay> outlays;
+    int outlayChangeDiscounter;
 
     // Use this for initialization
     void Start ()
     {
+        GameManagerScript GM = GameManagerScript.GM;
+
         TechStatus[0] = true;   //Для доступности первой технологии
 
         outlays = new Dictionary<OutlayField, UniOutlay>();
-        outlays.Add(OutlayField.air, new UniOutlay(GameManagerScript.GM.OutlayChangesPerYear));
-        outlays.Add(OutlayField.ground, new UniOutlay(GameManagerScript.GM.OutlayChangesPerYear));
-        outlays.Add(OutlayField.sea, new UniOutlay(GameManagerScript.GM.OutlayChangesPerYear));
-        outlays.Add(OutlayField.military, new UniOutlay(GameManagerScript.GM.OutlayChangesPerYear));
-        outlays.Add(OutlayField.spy, new UniOutlay(GameManagerScript.GM.OutlayChangesPerYear));
-        outlays.Add(OutlayField.diplomat, new UniOutlay(GameManagerScript.GM.OutlayChangesPerYear));
+        outlays.Add(OutlayField.air, new UniOutlay(this, GM.AirMilitaryCost));
+        outlays.Add(OutlayField.ground, new UniOutlay(this, GM.GroundMilitaryCost));
+        outlays.Add(OutlayField.sea, new UniOutlay(this, GM.SeaMilitaryCost));
+        outlays.Add(OutlayField.military, new UniOutlay(this, GM.MILITARY_COST));
+        outlays.Add(OutlayField.spy, new UniOutlay(this, GM.SPY_COST));
+        outlays.Add(OutlayField.diplomat, new UniOutlay(this, GM.DiplomatCost));
+
+        outlayChangeDiscounter = GameManagerScript.GM.OutlayChangesPerYear;
+    }
+
+    public int OutlayChangeDiscounter
+    {
+        get{ return outlayChangeDiscounter;}
+        set { outlayChangeDiscounter = value; }
     }
 
     public Dictionary<OutlayField, UniOutlay> Outlays
@@ -105,47 +117,68 @@ public class PlayerScript : MonoBehaviour {
         return TechStatus[idx];
     }
 
-    public void SetMilAirTechStatus(int idx)
+    public void SetMilTechStatus(OutlayField field, int idx)
     {
-        MilAirTechStatus[idx] = true;
+        switch (field)
+        {
+            case OutlayField.air:
+                MilAirTechStatus[idx] = true;
+                break;
+            case OutlayField.ground:
+                MilGndTechStatus[idx] = true;
+                break;
+            case OutlayField.sea:
+                MilSeaTechStatus[idx] = true;
+                break;
+            case OutlayField.rocket:
+                MilRocketTechStatus[idx] = true;
+                break;
+            default:
+                break;
+        }
     }
 
-    public bool GetMilAirTechStatus(int idx)
+    public bool GetMilTechStatus(OutlayField field, int idx)
     {
-        return MilAirTechStatus[idx];
-    }
-    public void SetMilGroundTechStatus(int idx)
-    {
-        MilGroundTechStatus[idx] = true;
+        bool status = false;
+
+        switch (field)
+        {
+            case OutlayField.air:
+                status = MilAirTechStatus[idx];
+                break;
+            case OutlayField.ground:
+                status = MilGndTechStatus[idx];
+                break;
+            case OutlayField.sea:
+                status = MilSeaTechStatus[idx];
+                break;
+            case OutlayField.rocket:
+                status = MilRocketTechStatus[idx];
+                break;
+            default:
+                break;
+        }
+
+        return status;
     }
 
-    public bool GetMilGroundTechStatus(int idx)
-    {
-        return MilGroundTechStatus[idx];
-    }
-    public void SetMilSeaTechStatus(int idx)
-    {
-        MilSeaTechStatus[idx] = true;
-    }
-
-    public bool GetMilSeaTechStatus(int idx)
-    {
-        return MilSeaTechStatus[idx];
-    }
 
 }
 
 public class UniOutlay
 {
+    int cost;   //стоимость объекта трат
     int budget; //накопленные средства
     int outlay; //траты
-    int changeDiscounter; //счетчик количества изменений трат в год
+    PlayerScript player;
 
-    public UniOutlay(int discounter)
+    public UniOutlay(PlayerScript _player, int objectCost)
     {
         budget = 0;
         outlay = 0;
-        changeDiscounter = discounter;
+        player = _player;
+        cost = objectCost;
     }
 
     public int Budget
@@ -158,20 +191,20 @@ public class UniOutlay
         get { return outlay; }
     }
 
-    public int ChangeDiscounter
+    public int Cost
     {
-        get { return changeDiscounter; }
+        get { return cost; }
     }
 
     public void ChangeOutlet(int amount)
     {
-        if (changeDiscounter > 0)
+        if (player.OutlayChangeDiscounter > 0)
         {
             outlay += amount;
             if (outlay < 0)
                 outlay = 0;
-
-            changeDiscounter -= 1;
+            else
+                player.OutlayChangeDiscounter -= 1;
         }
     }
 }
@@ -183,5 +216,6 @@ public enum OutlayField
     sea,
     military,
     spy,
-    diplomat
+    diplomat,
+    rocket
 }

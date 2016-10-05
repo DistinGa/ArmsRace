@@ -71,6 +71,14 @@ public class GameManagerScript : MonoBehaviour
     public int RIOT_COST = 1;
     ////////////
     //новые параметры
+    [Tooltip("стоимость обучения дипломата")]
+    public int DiplomatCost = 25;
+    [Tooltip("стоимость исследования технологии Air")]
+    public int AirMilitaryCost = 25;
+    [Tooltip("стоимость исследования технологии Ground")]
+    public int GroundMilitaryCost = 25;
+    [Tooltip("стоимость исследования технологии Sea")]
+    public int SeaMilitaryCost = 25;
     [Tooltip("количество изменений трат в год")]
     public int OutlayChangesPerYear;
     
@@ -595,7 +603,7 @@ public class GameManagerScript : MonoBehaviour
             //Игра за СССР
             if (Player.Authority == Authority.Soviet)
             {
-                //Проверка победы в косической гонке
+                //Проверка победы в космической гонке
                 if (!SavedSettings.Mission1SU)
                 {
                     bool WinSR = true;
@@ -630,7 +638,7 @@ public class GameManagerScript : MonoBehaviour
             //Игра за США
             if (Player.Authority == Authority.Amer)
             {
-                //Проверка победы в косической гонке
+                //Проверка победы в космической гонке
                 if (!SavedSettings.Mission1USA)
                 {
                     bool WinSR = true;

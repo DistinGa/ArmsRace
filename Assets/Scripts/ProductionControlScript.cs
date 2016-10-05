@@ -1,12 +1,14 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-public class MilitaryProductionScript : MonoBehaviour
+public class ProductionControlScript : MonoBehaviour
 {
     [SerializeField]
     OutlayField field;
     [SerializeField]
     Text production;
+    [SerializeField]
+    Text Outlay;
     [SerializeField]
     Text pool;
 
@@ -23,8 +25,10 @@ public class MilitaryProductionScript : MonoBehaviour
 
     void UpdateProduction()
     {
-        GameManagerScript GM = GameManagerScript.GM;
-        production.text = "$" + GM.Player.Outlays[field].Outlay + "/" + GM.MILITARY_COST;
-        pool.text = GM.Player.MilitaryPool.ToString();
+        PlayerScript Player = GameManagerScript.GM.Player;
+        Outlay.text = "$" + Player.Outlays[field].Outlay;
+        production.text = "$" + Player.Outlays[field].Budget + "/" + Player.Outlays[field].Cost;
+        if(pool != null)
+            pool.text = Player.MilitaryPool.ToString();
     }
 }

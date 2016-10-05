@@ -194,6 +194,7 @@ public class SpaceRace : MonoBehaviour
     {
         return Techs[ind].mPrevTechNumber;
     }
+}
 
     [System.Serializable]
     class Technology
@@ -205,4 +206,3 @@ public class SpaceRace : MonoBehaviour
         public int mCost; // стоимость технологии
         public int mLocalInfl, mGlobalInfl, mLocalInfl_1, mGlobalInfl_1; // % прироста лок-глоб infl, и если открыли первыми
     }
-}
