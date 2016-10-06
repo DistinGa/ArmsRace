@@ -71,6 +71,8 @@ public class GameManagerScript : MonoBehaviour
     public int RIOT_COST = 1;
     ////////////
     //новые параметры
+    [Tooltip("прирост firepower за одну открытую технологию")]
+    public int FirePowerPerTech = 10;
     [Tooltip("стоимость обучения дипломата")]
     public int DiplomatCost = 25;
     [Tooltip("стоимость исследования технологии Air")]
@@ -217,6 +219,33 @@ public class GameManagerScript : MonoBehaviour
         DownMenu.Find("Page1/InfAmer").GetComponent<Text>().text = Country.AmInf.ToString("f0");
         DownMenu.Find("Page1/InfNeutral").GetComponent<Text>().text = Country.NInf.ToString("f0");
         DownMenu.Find("Page1/InfSoviet").GetComponent<Text>().text = Country.SovInf.ToString("f0");
+        //пулы
+        GameManagerScript GM = GameManagerScript.GM;
+        DownMenu.Find("Page1/DipPool").GetComponent<Text>().text = GM.Player.DiplomatPool.ToString();
+        DownMenu.Find("Page1/MilPool").GetComponent<Text>().text = GM.Player.MilitaryPool.ToString();
+        DownMenu.Find("Page1/SpyPool").GetComponent<Text>().text = GM.Player.SpyPool.ToString();
+        //особенности территории
+        DownMenu.Find("Page2/Air2").GetComponent<Text>().text = Country.Air.ToString();
+        DownMenu.Find("Page2/Gnd2").GetComponent<Text>().text = Country.Ground.ToString();
+        DownMenu.Find("Page2/Sea2").GetComponent<Text>().text = Country.Sea.ToString();
+        DownMenu.Find("Air1").GetComponent<Text>().text = Country.Air.ToString();
+        DownMenu.Find("Gnd1").GetComponent<Text>().text = Country.Ground.ToString();
+        DownMenu.Find("Sea1").GetComponent<Text>().text = Country.Sea.ToString();
+        //firepower
+        PlayerScript usaPlayer = GetPlayerByAuthority(Authority.Amer);
+        PlayerScript suPlayer = GetPlayerByAuthority(Authority.Soviet);
+        DownMenu.Find("Page2/USAAirFP").GetComponent<Text>().text = "(" + Country.Air.ToString() + ") " + (Country.Air * usaPlayer.FirePower(OutlayField.air)).ToString();
+        DownMenu.Find("Page2/USAGndFP").GetComponent<Text>().text = "(" + Country.Ground.ToString() + ") " + (Country.Ground * usaPlayer.FirePower(OutlayField.ground)).ToString();
+        DownMenu.Find("Page2/USASeaFP").GetComponent<Text>().text = "(" + Country.Sea.ToString() + ") " + (Country.Sea * usaPlayer.FirePower(OutlayField.sea)).ToString();
+        DownMenu.Find("Page2/SUAirFP").GetComponent<Text>().text = "(" + Country.Air.ToString() + ") " + (Country.Air * suPlayer.FirePower(OutlayField.air)).ToString();
+        DownMenu.Find("Page2/SUGndFP").GetComponent<Text>().text = "(" + Country.Ground.ToString() + ") " + (Country.Ground * suPlayer.FirePower(OutlayField.ground)).ToString();
+        DownMenu.Find("Page2/SUSeaFP").GetComponent<Text>().text = "(" + Country.Sea.ToString() + ") " + (Country.Sea * suPlayer.FirePower(OutlayField.sea)).ToString();
+        //проценты на победу
+        int usaFP = Country.Air * usaPlayer.FirePower(OutlayField.air) + Country.Ground * usaPlayer.FirePower(OutlayField.ground) + Country.Sea * usaPlayer.FirePower(OutlayField.sea);
+        int suFP = Country.Air * suPlayer.FirePower(OutlayField.air) + Country.Ground * suPlayer.FirePower(OutlayField.ground) + Country.Sea * suPlayer.FirePower(OutlayField.sea);
+
+        DownMenu.Find("Page2/USA%").GetComponent<Text>().text = Mathf.RoundToInt(100f * usaFP / (usaFP + suFP)).ToString();
+        DownMenu.Find("Page2/SU%").GetComponent<Text>().text = (100 - Mathf.RoundToInt(100f * usaFP / (usaFP + suFP))).ToString();
 
         DownMenu.Find("Page1/SpyLeft").GetComponent<Image>().fillAmount = Country.CIA * 0.2f;
         DownMenu.Find("Page1/SpyRight").GetComponent<Image>().fillAmount = Country.KGB * 0.2f;
@@ -294,8 +323,8 @@ public class GameManagerScript : MonoBehaviour
 
     public void AddInfluence()
     {
-        if (!PayCost(Player.Authority, INFLU_COST))
-            return; //Не хватило денег
+        if (Player.DiplomatPool == 0)
+            return;
 
         Country.AddInfluence(Player.Authority, 1, false);
         // если увеличивается оппозиция, видео показать:
@@ -307,8 +336,8 @@ public class GameManagerScript : MonoBehaviour
 
     public void AddSpy()
     {
-        if (!PayCost(Player.Authority, SPY_COST))
-            return; //Не хватило денег
+        if (Player.SpyPool == 0)
+            return;
 
         Country.AddSpy(Player.Authority, 1);
         SnapToCountry();
@@ -316,8 +345,8 @@ public class GameManagerScript : MonoBehaviour
 
     public void AddMilitary()
     {
-        if (!PayCost(Player.Authority, MILITARY_COST))
-            return; //Не хватило денег
+        if (Player.MilitaryPool == 0)
+            return;
 
         bool mil = Country.AddMilitary(Player.Authority, 1);
         SnapToCountry();
@@ -891,6 +920,21 @@ public class GameManagerScript : MonoBehaviour
             retValue = SovP;
         if (pl == SovP)
             retValue = AmP;
+
+        return retValue;
+    }
+
+    //Получить игрока по Authority
+    public PlayerScript GetPlayerByAuthority(Authority aut)
+    {
+        PlayerScript AmP = transform.Find("AmerPlayer").GetComponent<PlayerScript>();
+        PlayerScript SovP = transform.Find("SovPlayer").GetComponent<PlayerScript>();
+        PlayerScript retValue = null;
+
+        if (aut == AmP.Authority)
+            retValue = AmP;
+        if (aut == SovP.Authority)
+            retValue = SovP;
 
         return retValue;
     }

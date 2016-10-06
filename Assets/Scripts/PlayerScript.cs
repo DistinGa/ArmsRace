@@ -19,8 +19,11 @@ public class PlayerScript : MonoBehaviour {
     public List<int> History = new List<int>();
 
     //количества военных, шпионов, дипломатов
+    [SerializeField]
     int militaryAmount = 0;
+    [SerializeField]
     int spyAmount = 0;
+    [SerializeField]
     int diplomatAmount = 0;
     //траты на открытие теххнологий, военныхх, дипломатов и шпионов
     Dictionary<OutlayField, UniOutlay> outlays;
@@ -58,16 +61,19 @@ public class PlayerScript : MonoBehaviour {
     public int MilitaryPool
     {
         get { return militaryAmount; }
+        set { militaryAmount = value; }
     }
 
     public int SpyPool
     {
         get { return spyAmount; }
+        set { spyAmount = value; }
     }
 
     public int DiplomatPool
     {
         get { return diplomatAmount; }
+        set { diplomatAmount = value; }
     }
 
     public int Score
@@ -163,7 +169,35 @@ public class PlayerScript : MonoBehaviour {
         return status;
     }
 
+    public int FirePower(OutlayField field)
+    {
+        if (field != OutlayField.air && field != OutlayField.ground && field != OutlayField.sea)
+            return 0;
 
+        int fp = 0;
+        bool[] TechStatus = null;
+
+        switch (field)
+        {
+            case OutlayField.air:
+                TechStatus = MilAirTechStatus;
+                break;
+            case OutlayField.ground:
+                TechStatus = MilGndTechStatus;
+                break;
+            case OutlayField.sea:
+                TechStatus = MilSeaTechStatus;
+                break;
+        }
+
+        foreach (var item in TechStatus)
+        {
+            if (item)
+                fp += GameManagerScript.GM.FirePowerPerTech;
+        }
+
+        return fp;
+    }
 }
 
 public class UniOutlay
