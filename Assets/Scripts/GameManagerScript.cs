@@ -2,6 +2,8 @@
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+public delegate void dlgtMonthTick();
+
 [RequireComponent(typeof(VideoQueue))]
 public class GameManagerScript : MonoBehaviour
 {
@@ -83,6 +85,8 @@ public class GameManagerScript : MonoBehaviour
     public int SeaMilitaryCost = 25;
     [Tooltip("количество изменений трат в год")]
     public int OutlayChangesPerYear;
+    //События конца месяца
+    dlgtMonthTick monthSubscribers;
     
     public void Awake()
     {
@@ -599,8 +603,14 @@ public class GameManagerScript : MonoBehaviour
         //Ход AI
         AI.AIturn();
 
+        Player.NewMonth();
+
         //Случайные события
         TestRandomEvent();
+        
+        //события по подписке
+        if (monthSubscribers != null)
+            monthSubscribers();
     }
 
     //Ежегодное обновление информации
@@ -958,6 +968,16 @@ public class GameManagerScript : MonoBehaviour
                     SnapToCountry();
             }
         }
+    }
+
+    public void SubscribeMonth(dlgtMonthTick mt)
+    {
+        monthSubscribers += mt;
+    }
+
+    public void UnsubscribeMonth(dlgtMonthTick mt)
+    {
+        monthSubscribers -= mt;
     }
 
 }

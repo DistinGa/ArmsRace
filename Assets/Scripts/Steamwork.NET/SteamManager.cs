@@ -4,7 +4,10 @@ using Steamworks;
 
 [DisallowMultipleComponent]
 class SteamManager : MonoBehaviour {
-	private static SteamManager s_instance;
+    [SerializeField]
+    const uint AppID = 54208;
+
+    private static SteamManager s_instance;
 	private static SteamManager Instance {
 		get {
 			return s_instance ?? new GameObject("SteamManager").AddComponent<SteamManager>();
@@ -57,7 +60,7 @@ class SteamManager : MonoBehaviour {
 			// Once you get a Steam AppID assigned by Valve, you need to replace AppId_t.Invalid with it and
 			// remove steam_appid.txt from the game depot. eg: "(AppId_t)480" or "new AppId_t(480)".
 			// See the Valve documentation for more information: https://partner.steamgames.com/documentation/drm#FAQ
-			if (SteamAPI.RestartAppIfNecessary((AppId_t)504280)) {
+			if (SteamAPI.RestartAppIfNecessary((AppId_t)AppID)) {
 				Application.Quit();
 				return;
 			}

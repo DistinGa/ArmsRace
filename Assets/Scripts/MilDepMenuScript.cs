@@ -2,7 +2,10 @@
 using UnityEngine.UI;
 using System.Collections;
 
-public class MilDepMenuScript : MonoBehaviour {
+public class MilDepMenuScript : MonoBehaviour
+{
+    public static MilDepMenuScript MTInstance;
+
     public Image Image;
     public Text Description;
     public Text FirePower;
@@ -43,21 +46,58 @@ public class MilDepMenuScript : MonoBehaviour {
     [SerializeField]
     MilTechnology[] rocketTechs = new MilTechnology[TechCount];
 
+    public void Awake()
+    {
+        MTInstance = this;
+    }
+
     public void OnEnable()
+    {
+        GameManagerScript.GM.SubscribeMonth(new dlgtMonthTick(UpdateView));
+        UpdateView();
+
+        transform.Find("Panel/Raw1/ToggleGroup/Toggle0").GetComponent<Toggle>().isOn = true;
+        transform.Find("Panel/Raw2/ToggleGroup/Toggle0").GetComponent<Toggle>().isOn = true;
+        transform.Find("Panel/Raw3/ToggleGroup/Toggle0").GetComponent<Toggle>().isOn = true;
+        //transform.Find("Panel/Raw4/ToggleGroup/Toggle0").GetComponent<Toggle>().isOn = true;
+    }
+
+    public void OnDisable()
+    {
+        GameManagerScript.GM.UnsubscribeMonth(new dlgtMonthTick(UpdateView));
+    }
+
+    void UpdateView()
     {
         PaintTechButtons(OutlayField.air);
         PaintTechButtons(OutlayField.ground);
         PaintTechButtons(OutlayField.sea);
         //PaintTechButtons(OutlayField.rocket);
+    }
 
-        transform.Find("Panel/Raw1/ToggleGroup/Toggle1").GetComponent<Toggle>().isOn = true;
-        transform.Find("Panel/Raw2/ToggleGroup/Toggle1").GetComponent<Toggle>().isOn = true;
-        transform.Find("Panel/Raw3/ToggleGroup/Toggle1").GetComponent<Toggle>().isOn = true;
-        //transform.Find("Panel/Raw4/ToggleGroup/Toggle1").GetComponent<Toggle>().isOn = true;
+    public int GetTechCost(OutlayField field, int indx)
+    {
+        int res = 0;
 
-        //ShowAirTechInfo(0);
-        //ShowGndTechInfo(0);
-        //ShowSeaTechInfo(0);
+        switch (field)
+        {
+            case OutlayField.air:
+                res = airTechs[indx].mCost;
+                break;
+            case OutlayField.ground:
+                res = gndTechs[indx].mCost;
+                break;
+            case OutlayField.sea:
+                res = seaTechs[indx].mCost;
+                break;
+            case OutlayField.rocket:
+                res = rocketTechs[indx].mCost;
+                break;
+            default:
+                break;
+        }
+
+        return res;
     }
 
     //Установка соответствующих спрайтов на кнопки технологий
@@ -124,7 +164,7 @@ public class MilDepMenuScript : MonoBehaviour {
 
         for (int i = 0; i < TechCount; i++)
         {
-            BackImage = transform.Find(initPath + (i+1).ToString() + "/Background").GetComponent<Image>();
+            BackImage = transform.Find(initPath + i.ToString() + "/Background").GetComponent<Image>();
             if (GM.Player.GetMilTechStatus(field, i))
             {//технология открыта
                 if (GM.GetOpponentTo(GM.Player).GetMilTechStatus(field, i))
@@ -155,7 +195,6 @@ public class MilDepMenuScript : MonoBehaviour {
     //Заполнение отображаемых полей при нажатии кнопки технологии
     public void ShowAirTechInfo(int ind)
     {
-        --ind;  //индексы с нуля
         GameManagerScript GM = GameManagerScript.GM;
 
         if (GM.Player.Authority == Authority.Amer)
@@ -172,7 +211,6 @@ public class MilDepMenuScript : MonoBehaviour {
 
     public void ShowGndTechInfo(int ind)
     {
-        --ind;  //индексы с нуля
         GameManagerScript GM = GameManagerScript.GM;
 
         if (GM.Player.Authority == Authority.Amer)
@@ -189,7 +227,6 @@ public class MilDepMenuScript : MonoBehaviour {
 
     public void ShowSeaTechInfo(int ind)
     {
-        --ind;  //индексы с нуля
         GameManagerScript GM = GameManagerScript.GM;
 
         if (GM.Player.Authority == Authority.Amer)
@@ -206,7 +243,6 @@ public class MilDepMenuScript : MonoBehaviour {
 
     public void ShowRocketTechInfo(int ind)
     {
-        --ind;  //индексы с нуля
         GameManagerScript GM = GameManagerScript.GM;
 
         if (GM.Player.Authority == Authority.Amer)
@@ -238,8 +274,8 @@ class MilTechnology
 {
     public Sprite mUsaSprite = null, mRusSprite = null;
     [TextArea(2, 5)]
-    public string mUsaDescr, mRusDescr; // текстовое описание
-    public int mCost; // стоимость технологии
+    public string mUsaDescr = "", mRusDescr = ""; // текстовое описание
+    public int mCost = 0; // стоимость технологии
     public int mFirePower = 10; // множитель огневой мощи
 }
 

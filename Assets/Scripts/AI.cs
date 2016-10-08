@@ -19,6 +19,7 @@ public class AI : MonoBehaviour {
     // ход AI
     public void AIturn()
     {
+        AIPlayer.NewMonth();
     }
 
 }

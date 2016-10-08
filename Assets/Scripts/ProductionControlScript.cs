@@ -4,17 +4,27 @@ using UnityEngine.UI;
 public class ProductionControlScript : MonoBehaviour
 {
     [SerializeField]
-    OutlayField field;
+    OutlayField field;  //тип расходов
     [SerializeField]
-    Text production;
+    Text production;    //поле прогресса производства юнита или изучения технологии
     [SerializeField]
-    Text Outlay;
+    Text Outlay;        //поле трат
     [SerializeField]
-    Text pool;
+    Text pool;          //количество юнитов для air, ground и sea
 
     public void Start()
     {
         UpdateProduction();
+    }
+
+    public void OnEnable()
+    {
+        GameManagerScript.GM.SubscribeMonth(new dlgtMonthTick(UpdateProduction));
+    }
+
+    public void OnDisable()
+    {
+        GameManagerScript.GM.UnsubscribeMonth(new dlgtMonthTick(UpdateProduction));
     }
 
     public void ChangeOutlet(int amount)
@@ -28,7 +38,8 @@ public class ProductionControlScript : MonoBehaviour
         PlayerScript Player = GameManagerScript.GM.Player;
         Outlay.text = "$" + Player.Outlays[field].Outlay;
         production.text = "$" + Player.Outlays[field].Budget + "/" + Player.Outlays[field].Cost;
-        if(pool != null)
+        if (pool != null)
             pool.text = Player.MilitaryPool.ToString();
     }
+
 }
