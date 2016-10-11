@@ -4,8 +4,6 @@ using System.Collections;
 
 public class MilDepMenuScript : MonoBehaviour
 {
-    public static MilDepMenuScript MTInstance;
-
     public Image Image;
     public Text Description;
     public Text FirePower;
@@ -45,11 +43,6 @@ public class MilDepMenuScript : MonoBehaviour
     MilTechnology[] seaTechs = new MilTechnology[TechCount];
     [SerializeField]
     MilTechnology[] rocketTechs = new MilTechnology[TechCount];
-
-    public void Awake()
-    {
-        MTInstance = this;
-    }
 
     public void OnEnable()
     {

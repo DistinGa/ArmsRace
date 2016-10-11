@@ -194,9 +194,29 @@ public class SpaceRace : MonoBehaviour
     {
         return Techs[ind].mPrevTechNumber;
     }
+
+    //стоимость изучения технологии
+    public int GetTechCost(OutlayField field, int indx)
+    {
+        int res = 0;
+
+        switch (field)
+        {
+            case OutlayField.spaceLaunches:
+                res = Techs[indx].mCost;
+                break;
+            case OutlayField.spaceGround:
+                res = Techs[indx].mCost;
+                break;
+            default:
+                break;
+        }
+
+        return res;
+    }
 }
 
-    [System.Serializable]
+[System.Serializable]
     class Technology
     {
         public int mPrevTechNumber = 0; // предыдущая технология

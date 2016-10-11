@@ -2,13 +2,57 @@
 using System.Collections;
 using UnityEngine.UI;
 
-public class BudgetMenuScript : MonoBehaviour {
+public class BudgetMenuScript : MonoBehaviour
+{
     public RectTransform ChartPanel;
     public RectTransform LinePrefab;
     public RectTransform YearTick;
+    public Text Value0;
+    public Text Value1;
+    public Text Value2;
+    public Text Budget;
+    public Text Revenue;
+    public Text Expenditure;
+    public Text MilitaryOutlay;
+    public Text DiplomacyOutlay;
+    public Text SpaceOutlay;
 
     void OnEnable()
     {
+        GameManagerScript.GM.SubscribeMonth(UpdateView);
+        UpdateView();
+    }
+
+    public void OnDisable()
+    {
+        GameManagerScript.GM.UnsubscribeMonth(UpdateView);
+    }
+
+    void UpdateView()
+    {
+        PlayerScript pl = GameManagerScript.GM.Player;
+        int milOutlay = pl.Outlays[OutlayField.air].Outlay + pl.Outlays[OutlayField.ground].Outlay + pl.Outlays[OutlayField.sea].Outlay + pl.Outlays[OutlayField.rocket].Outlay + pl.Outlays[OutlayField.military].Outlay;
+        int dipOutlay = pl.Outlays[OutlayField.diplomat].Outlay + pl.Outlays[OutlayField.spy].Outlay;
+        int spaceOutlay = 0;
+        int expenditure;
+
+        expenditure = pl.TotalYearSpendings();
+
+        if (pl.History.Count > 0)
+        {
+            Revenue.text = pl.History2[pl.History2.Count - 1].ToString() + " (" + pl.History[pl.History.Count - 1].ToString() + "%)";
+            Budget.text = pl.Budget.ToString("f0") + " (" + (pl.History2[pl.History2.Count - 1] - expenditure).ToString() +")";
+        }
+        else
+            Revenue.text = "";
+
+        Expenditure.text = expenditure.ToString();
+
+
+        MilitaryOutlay.text = milOutlay.ToString();
+        DiplomacyOutlay.text = dipOutlay.ToString();
+        SpaceOutlay.text = spaceOutlay.ToString();
+
         DrawChart();
     }
 
@@ -54,8 +98,14 @@ public class BudgetMenuScript : MonoBehaviour {
         int[] AmHist = AmPlayer.History.GetRange(FirstInd, Mathf.Min(YearsAmount, AmPlayer.History.Count)).ToArray();
         int[] SovHist = SovPlayer.History.GetRange(FirstInd, Mathf.Min(YearsAmount, SovPlayer.History.Count)).ToArray();
 
-        yScale = ChartPanel.rect.height / (Mathf.Max(Mathf.Max(AmHist), Mathf.Max(SovHist)) - Mathf.Min(Mathf.Min(AmHist), Mathf.Min(SovHist)));
-        yOffset = Mathf.Min(Mathf.Min(AmHist), Mathf.Min(SovHist));
+        int maxY = Mathf.Max(Mathf.Max(AmHist), Mathf.Max(SovHist));
+        int minY = Mathf.Min(Mathf.Min(AmHist), Mathf.Min(SovHist));
+        yScale = ChartPanel.rect.height / (maxY - minY);
+        yOffset = minY;
+
+        Value0.text = minY.ToString();
+        Value1.text = ((maxY + minY) / 2f).ToString();
+        Value2.text = maxY.ToString();
 
         //Вывод графиков
         Vector2 p1, p2;

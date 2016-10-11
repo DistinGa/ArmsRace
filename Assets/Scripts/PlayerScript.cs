@@ -17,7 +17,8 @@ public class PlayerScript : MonoBehaviour {
     public bool[] MilSeaTechStatus = new bool[milTechCount];
     public bool[] MilRocketTechStatus = new bool[milTechCount];
 
-    public List<int> History = new List<int>();
+    public List<int> History = new List<int>(); //история процентов прироста бюджета
+    public List<int> History2 = new List<int>();//история прироста бюджета
 
     //количества военных, шпионов, дипломатов
     [SerializeField]
@@ -38,12 +39,15 @@ public class PlayerScript : MonoBehaviour {
         TechStatus[0] = true;   //Для доступности первой технологии
 
         outlays = new Dictionary<OutlayField, UniOutlay>();
-        outlays.Add(OutlayField.air, new UniOutlay(this, OutlayField.air, GM.AirMilitaryCost));
-        outlays.Add(OutlayField.ground, new UniOutlay(this, OutlayField.ground, GM.GroundMilitaryCost));
-        outlays.Add(OutlayField.sea, new UniOutlay(this, OutlayField.sea, GM.SeaMilitaryCost));
+        outlays.Add(OutlayField.air, new UniOutlay(this, OutlayField.air, GM.MDInstance.GetTechCost(OutlayField.air, 1)));
+        outlays.Add(OutlayField.ground, new UniOutlay(this, OutlayField.ground, GM.MDInstance.GetTechCost(OutlayField.ground, 1)));
+        outlays.Add(OutlayField.sea, new UniOutlay(this, OutlayField.sea, GM.MDInstance.GetTechCost(OutlayField.sea, 1)));
+        outlays.Add(OutlayField.rocket, new UniOutlay(this, OutlayField.rocket, GM.MDInstance.GetTechCost(OutlayField.rocket, 1)));
         outlays.Add(OutlayField.military, new UniOutlay(this, OutlayField.military, GM.MILITARY_COST));
         outlays.Add(OutlayField.spy, new UniOutlay(this, OutlayField.spy, GM.SPY_COST));
         outlays.Add(OutlayField.diplomat, new UniOutlay(this, OutlayField.diplomat, GM.DiplomatCost));
+        outlays.Add(OutlayField.spaceLaunches, new UniOutlay(this, OutlayField.spaceLaunches, GM.SRInstance.GetTechCost(OutlayField.spaceLaunches, 1)));
+        outlays.Add(OutlayField.spaceGround, new UniOutlay(this, OutlayField.spaceGround, GM.SRInstance.GetTechCost(OutlayField.spaceGround, 1)));
 
         outlayChangeDiscounter = GameManagerScript.GM.OutlayChangesPerYear;
     }
@@ -104,13 +108,13 @@ public class PlayerScript : MonoBehaviour {
         if (Budget > 700) AddProcent = Random.Range(2, 5 + 1);
 
         double add = 1 + AddProcent / 100.0;
-        Budget = ((Budget + _Score) * add);
-        Budget = Mathf.RoundToInt((float)Budget);
-
-        SoundManager.SM.PlaySound("sound/moneyin");
-
+        double newB = ((Budget + _Score) * add);
         //Сохранение истории показателей роста
         History.Add(AddProcent);
+        History2.Add(Mathf.RoundToInt((float)(newB - Budget)));
+
+        Budget = Mathf.RoundToInt((float)newB);
+        SoundManager.SM.PlaySound("sound/moneyin");
     }
 
     //
@@ -221,12 +225,21 @@ public class PlayerScript : MonoBehaviour {
 
     public void NewMonth()
     {
-        outlayChangeDiscounter = GameManagerScript.GM.OutlayChangesPerYear;
-
         foreach (var item in outlays)
         {
             item.Value.MakeOutlet();
         }
+    }
+
+    public void NewYear()
+    {
+        outlayChangeDiscounter = GameManagerScript.GM.OutlayChangesPerYear;
+        AnnualGrowthBudget();
+    }
+
+    public int TotalYearSpendings()
+    {
+        return Outlays[OutlayField.air].YearSpendings() + Outlays[OutlayField.diplomat].YearSpendings() + Outlays[OutlayField.ground].YearSpendings() + Outlays[OutlayField.military].YearSpendings() + Outlays[OutlayField.rocket].YearSpendings() + Outlays[OutlayField.sea].YearSpendings() + Outlays[OutlayField.spy].YearSpendings() + Outlays[OutlayField.spaceLaunches].YearSpendings() + Outlays[OutlayField.spaceGround].YearSpendings();
     }
 }
 
@@ -237,6 +250,8 @@ public class UniOutlay
     int outlay; //траты
     PlayerScript player;
     OutlayField field;  //вид трат
+
+    int[] outlayHistory = new int[GameManagerScript.GM.MAX_MONTHS_NUM]; //история трат (1 based)
 
     public UniOutlay(PlayerScript _player, OutlayField fld, int objectCost)
     {
@@ -274,10 +289,14 @@ public class UniOutlay
         }
     }
 
+    //ежемесячные отчисления
     public void MakeOutlet()
     {
         budget += outlay;
         player.Budget -= outlay;
+
+        //запоминаем историю расходов
+        outlayHistory[GameManagerScript.GM.CurrentMonth()] = outlay;
 
         if (budget >= cost) //накопили нужное количество денег, добавляем юнит/технологию
         {
@@ -307,13 +326,14 @@ public class UniOutlay
                 case OutlayField.rocket:
                     TakeNextTech(field);
                     break;
-                default:
+                default:    //остались космические технологии
+                    TakeNextSpaceTech(field);
                     break;
             }
         }
     }
 
-    //переход к изучению следующей теххнологии
+    //переход к изучению следующей технологии
     void TakeNextTech(OutlayField field)
     {
         int curTech = player.GetCurMilTech(field);      //изучаемая в данный момент технология
@@ -325,8 +345,29 @@ public class UniOutlay
             player.SetMilTechStatus(field, curTech);
             //если не последняя технология, берём стоимость следующей
             if (curTech < tCount - 1)
-                MilDepMenuScript.MTInstance.GetTechCost(field, curTech + 1);
+                cost = GameManagerScript.GM.MDInstance.GetTechCost(field, curTech + 1);
         }
+    }
+
+    //переход к изучению следующей космической технологии
+    void TakeNextSpaceTech(OutlayField field)
+    {
+    }
+
+    public int YearSpendings()
+    {
+        int res = 0;
+        int curMonth = GameManagerScript.GM.CurrentMonth(); //(0 based)
+        int yearMonth = curMonth%12;    //(0 based)
+
+        for (int i = curMonth; i > curMonth - yearMonth; i--)   //цикл по месяцам этого года
+        {
+            res += outlayHistory[i];
+        }
+
+        res += outlay * (12 - yearMonth);   //оставшиеся месяца года дополняем текущиим значением трат
+
+        return res;
     }
 }
 
@@ -338,5 +379,7 @@ public enum OutlayField
     military,
     spy,
     diplomat,
-    rocket
+    rocket,
+    spaceLaunches,
+    spaceGround
 }

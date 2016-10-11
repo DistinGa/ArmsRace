@@ -28,6 +28,7 @@ public class GameManagerScript : MonoBehaviour
     public Sprite SignUSA;
     public Sprite SignSU;
 
+    [SerializeField]
     int mMonthCount = -1;     // счетчик месяцев с нуля (-1 потому что в первом кадре значение уже увеличивается)
     float TickCount;
     bool IsPoused;  //игра на паузе
@@ -73,19 +74,23 @@ public class GameManagerScript : MonoBehaviour
     public int RIOT_COST = 1;
     ////////////
     //новые параметры
+    public MilDepMenuScript MDInstance;
+    public SpaceRace SRInstance;
     [Tooltip("прирост firepower за одну открытую технологию")]
     public int FirePowerPerTech = 10;
     [Tooltip("стоимость обучения дипломата")]
     public int DiplomatCost = 25;
-    [Tooltip("стоимость исследования технологии Air")]
-    public int AirMilitaryCost = 25;
-    [Tooltip("стоимость исследования технологии Ground")]
-    public int GroundMilitaryCost = 25;
-    [Tooltip("стоимость исследования технологии Sea")]
-    public int SeaMilitaryCost = 25;
+    //[Tooltip("стоимость исследования технологии Air")]
+    //public int AirMilitaryCost = 25;
+    //[Tooltip("стоимость исследования технологии Ground")]
+    //public int GroundMilitaryCost = 25;
+    //[Tooltip("стоимость исследования технологии Sea")]
+    //public int SeaMilitaryCost = 25;
+    //[Tooltip("стоимость исследования технологии Rocket")]
+    //public int RocketMilitaryCost = 25;
     [Tooltip("количество изменений трат в год")]
     public int OutlayChangesPerYear;
-    //События конца месяца
+    //делегат для запуска событий конца месяца
     dlgtMonthTick monthSubscribers;
     
     public void Awake()
@@ -616,8 +621,8 @@ public class GameManagerScript : MonoBehaviour
     //Ежегодное обновление информации
     void NewYear()
     {
-        GameObject.Find("AmerPlayer").GetComponent<PlayerScript>().AnnualGrowthBudget();
-        GameObject.Find("SovPlayer").GetComponent<PlayerScript>().AnnualGrowthBudget();
+        GameObject.Find("AmerPlayer").GetComponent<PlayerScript>().NewYear();
+        GameObject.Find("SovPlayer").GetComponent<PlayerScript>().NewYear();
     }
 
     //Окончание игры и показ окна, говорящего об этом.
