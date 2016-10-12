@@ -1,15 +1,13 @@
 ﻿using UnityEngine;
-using System.Collections;
+using System.Collections.Generic;
 using UnityEngine.UI;
 
 public class BudgetMenuScript : MonoBehaviour
 {
-    public RectTransform ChartPanel;
+    public RectTransform ChartPanel1;
+    public RectTransform ChartPanel2;
     public RectTransform LinePrefab;
     public RectTransform YearTick;
-    public Text Value0;
-    public Text Value1;
-    public Text Value2;
     public Text Budget;
     public Text Revenue;
     public Text Expenditure;
@@ -53,10 +51,11 @@ public class BudgetMenuScript : MonoBehaviour
         DiplomacyOutlay.text = dipOutlay.ToString();
         SpaceOutlay.text = spaceOutlay.ToString();
 
-        DrawChart();
+        DrawChart(1);
+        DrawChart(2);
     }
 
-    void DrawChart()
+    void DrawChart(int variant)
     {
         int YearsAmount = 10;   //количество лет на графике
         Color redBrush = new Color(1, 0, 0);
@@ -64,16 +63,36 @@ public class BudgetMenuScript : MonoBehaviour
 
         float xScale, yScale, yOffset;
 
-        //Сначала удалим предыдущие графики
-        while (ChartPanel.childCount > 0)
-            DestroyImmediate(ChartPanel.GetChild(0).gameObject);
-
-        xScale = ChartPanel.rect.width / (YearsAmount - 1);
+        int[] AmHist = null;
+        int[] SovHist = null;
+        RectTransform chartPanel = null;
 
         //Определяем начальный элемент истории
         int FirstInd = GameManagerScript.GM.Player.History.Count - YearsAmount;
         if (FirstInd < 0)
             FirstInd = 0;
+
+        PlayerScript AmPlayer = GameManagerScript.GM.GetPlayerByAuthority(Authority.Amer);
+        PlayerScript SovPlayer = GameManagerScript.GM.GetPlayerByAuthority(Authority.Soviet);
+        switch (variant)
+        {
+            case 1:
+                AmHist = AmPlayer.History.GetRange(FirstInd, Mathf.Min(YearsAmount, AmPlayer.History.Count)).ToArray();
+                SovHist = SovPlayer.History.GetRange(FirstInd, Mathf.Min(YearsAmount, SovPlayer.History.Count)).ToArray();
+                chartPanel = ChartPanel1;
+                break;
+            case 2:
+                AmHist = AmPlayer.History2.GetRange(FirstInd, Mathf.Min(YearsAmount, AmPlayer.History2.Count)).ToArray();
+                SovHist = SovPlayer.History2.GetRange(FirstInd, Mathf.Min(YearsAmount, SovPlayer.History2.Count)).ToArray();
+                chartPanel = ChartPanel2;
+                break;
+        }
+
+        //Сначала удалим предыдущие графики
+        while (chartPanel.childCount > 0)
+            DestroyImmediate(chartPanel.GetChild(0).gameObject);
+
+        xScale = chartPanel.rect.width / (YearsAmount - 1);
 
         //Рисуем годы на графике
         int InitYear = 51 + FirstInd;   //51-й год - первый, где есть статистика
@@ -81,8 +100,8 @@ public class BudgetMenuScript : MonoBehaviour
         for (int i = 0; i < YearsAmount; i++)
         {
             RectTransform Year = Instantiate(YearTick);
-            Year.SetParent(ChartPanel);
-            Year.localPosition = new Vector3(xScale * i, 0, 0);
+            Year.SetParent(chartPanel);
+            Year.localPosition = new Vector3(xScale * i, -3, 0);
             int tmpYear = InitYear + i;
             if (tmpYear >= 100)
                 tmpYear -= 100;
@@ -93,19 +112,15 @@ public class BudgetMenuScript : MonoBehaviour
         if (GameManagerScript.GM.Player.History.Count < 2)
             return;
 
-        PlayerScript AmPlayer = GameObject.Find("GameManager/AmerPlayer").GetComponent<PlayerScript>();
-        PlayerScript SovPlayer = GameObject.Find("GameManager/SovPlayer").GetComponent<PlayerScript>();
-        int[] AmHist = AmPlayer.History.GetRange(FirstInd, Mathf.Min(YearsAmount, AmPlayer.History.Count)).ToArray();
-        int[] SovHist = SovPlayer.History.GetRange(FirstInd, Mathf.Min(YearsAmount, SovPlayer.History.Count)).ToArray();
-
         int maxY = Mathf.Max(Mathf.Max(AmHist), Mathf.Max(SovHist));
         int minY = Mathf.Min(Mathf.Min(AmHist), Mathf.Min(SovHist));
-        yScale = ChartPanel.rect.height / (maxY - minY);
+        yScale = chartPanel.rect.height / (maxY - minY);
         yOffset = minY;
 
-        Value0.text = minY.ToString();
-        Value1.text = ((maxY + minY) / 2f).ToString();
-        Value2.text = maxY.ToString();
+        //значения горизонтальных линий
+        chartPanel.parent.Find("Value0").GetComponent<Text>().text = minY.ToString();
+        chartPanel.parent.Find("Value1").GetComponent<Text>().text = ((maxY + minY) / 2f).ToString();
+        chartPanel.parent.Find("Value2").GetComponent<Text>().text = minY.ToString();
 
         //Вывод графиков
         Vector2 p1, p2;
@@ -120,7 +135,7 @@ public class BudgetMenuScript : MonoBehaviour
 
             Line = Instantiate(LinePrefab);
             Line.GetComponent<Image>().color = blueBrush;
-            Line.SetParent(ChartPanel);
+            Line.SetParent(chartPanel);
             Line.localPosition = p1;
 
             p2.x = (ind + 1) * xScale;
@@ -139,7 +154,7 @@ public class BudgetMenuScript : MonoBehaviour
 
             Line = Instantiate(LinePrefab);
             Line.GetComponent<Image>().color = redBrush;
-            Line.SetParent(ChartPanel);
+            Line.SetParent(chartPanel);
             Line.localPosition = p1;
 
             p2.x = (ind + 1) * xScale;

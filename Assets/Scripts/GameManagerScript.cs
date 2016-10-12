@@ -252,7 +252,6 @@ public class GameManagerScript : MonoBehaviour
         //проценты на победу
         int usaFP = Country.Air * usaPlayer.FirePower(OutlayField.air) + Country.Ground * usaPlayer.FirePower(OutlayField.ground) + Country.Sea * usaPlayer.FirePower(OutlayField.sea);
         int suFP = Country.Air * suPlayer.FirePower(OutlayField.air) + Country.Ground * suPlayer.FirePower(OutlayField.ground) + Country.Sea * suPlayer.FirePower(OutlayField.sea);
-
         DownMenu.Find("Page2/USA%").GetComponent<Text>().text = Mathf.RoundToInt(100f * usaFP / (usaFP + suFP)).ToString();
         DownMenu.Find("Page2/SU%").GetComponent<Text>().text = (100 - Mathf.RoundToInt(100f * usaFP / (usaFP + suFP))).ToString();
 
@@ -576,13 +575,23 @@ public class GameManagerScript : MonoBehaviour
             //Боевые действия
             if (Country.OppForce > 0)
             {
-                int r = Random.Range(0, 100);
+                //проценты на победу
+                PlayerScript usaPlayer = GetPlayerByAuthority(Authority.Amer);
+                PlayerScript suPlayer = GetPlayerByAuthority(Authority.Soviet);
+                int usaFP = Country.Air * usaPlayer.FirePower(OutlayField.air) + Country.Ground * usaPlayer.FirePower(OutlayField.ground) + Country.Sea * usaPlayer.FirePower(OutlayField.sea);
+                int suFP = Country.Air * suPlayer.FirePower(OutlayField.air) + Country.Ground * suPlayer.FirePower(OutlayField.ground) + Country.Sea * suPlayer.FirePower(OutlayField.sea);
+                int usaPercent = Mathf.RoundToInt(100f * usaFP / (usaFP + suFP));
+                int suPercent = 100 - Mathf.RoundToInt(100f * usaFP / (usaFP + suFP));
+                int usaScore = Random.Range(0, usaPercent);
+                int suScore = Random.Range(0, suPercent);
 
-                if (r > 33) //r <= 33 - никто не погиб
+                if (usaScore == suScore) //никто не погиб
                 {
                     if (Country.GovForce > 0)
                     {
-                        if (r > 33 && r < 66)
+                        if ((Country.Authority == Authority.Amer && usaScore > suScore) 
+                        || (Country.Authority == Authority.Soviet && usaScore < suScore) 
+                        || (Country.Authority == Authority.Neutral && ((Country.SovInf > Country.AmInf && suScore > usaScore) || (Country.SovInf <= Country.AmInf && suScore < usaScore))))
                             Country.GovForce--;
                         else
                             Country.OppForce--;
