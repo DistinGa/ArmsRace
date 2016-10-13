@@ -585,16 +585,16 @@ public class GameManagerScript : MonoBehaviour
                 int usaScore = Random.Range(0, usaPercent);
                 int suScore = Random.Range(0, suPercent);
 
-                if (usaScore == suScore) //никто не погиб
+                if (usaScore != suScore) //если равны - никто не погиб
                 {
                     if (Country.GovForce > 0)
                     {
                         if ((Country.Authority == Authority.Amer && usaScore > suScore) 
                         || (Country.Authority == Authority.Soviet && usaScore < suScore) 
                         || (Country.Authority == Authority.Neutral && ((Country.SovInf > Country.AmInf && suScore > usaScore) || (Country.SovInf <= Country.AmInf && suScore < usaScore))))
-                            Country.GovForce--;
-                        else
                             Country.OppForce--;
+                        else
+                            Country.GovForce--;
                     }
 
                     if (Country.GovForce == 0)  //революция

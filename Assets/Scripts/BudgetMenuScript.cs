@@ -120,7 +120,7 @@ public class BudgetMenuScript : MonoBehaviour
         //значения горизонтальных линий
         chartPanel.parent.Find("Value0").GetComponent<Text>().text = minY.ToString();
         chartPanel.parent.Find("Value1").GetComponent<Text>().text = ((maxY + minY) / 2f).ToString();
-        chartPanel.parent.Find("Value2").GetComponent<Text>().text = minY.ToString();
+        chartPanel.parent.Find("Value2").GetComponent<Text>().text = maxY.ToString();
 
         //Вывод графиков
         Vector2 p1, p2;

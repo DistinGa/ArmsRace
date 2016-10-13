@@ -4,7 +4,6 @@ using System.Collections.Generic;
 public class PlayerScript : MonoBehaviour {
     public const int spaceTechCount = 41, milTechCount = 11;
     public double Budget;
-    private int _Score;
     public Authority Authority;
     public CountryScript MyCountry;
     public CountryScript OppCountry;
@@ -63,6 +62,44 @@ public class PlayerScript : MonoBehaviour {
         get { return outlays; }
     }
 
+    public int GetPool(OutlayField field)
+    {
+        int amount = 0;
+        switch (field)
+        {
+            case OutlayField.military:
+                amount = militaryAmount;
+                break;
+            case OutlayField.spy:
+                amount = spyAmount;
+                break;
+            case OutlayField.diplomat:
+                amount = diplomatAmount;
+                break;
+            default:
+                break;
+        }
+        return amount;
+    }
+
+    public void SetPool(OutlayField field, int amount)
+    {
+        switch (field)
+        {
+            case OutlayField.military:
+                militaryAmount = amount;
+                break;
+            case OutlayField.spy:
+                 spyAmount = amount;
+                break;
+            case OutlayField.diplomat:
+                diplomatAmount = amount;
+                break;
+            default:
+                break;
+        }
+    }
+
     public int MilitaryPool
     {
         get { return militaryAmount; }
@@ -94,7 +131,6 @@ public class PlayerScript : MonoBehaviour {
                 if(Country.Authority == Authority)
                     s += Country.Score;
             }
-            _Score = s;
             return s;
         }
     }
@@ -108,7 +144,7 @@ public class PlayerScript : MonoBehaviour {
         if (Budget > 700) AddProcent = Random.Range(2, 5 + 1);
 
         double add = 1 + AddProcent / 100.0;
-        double newB = ((Budget + _Score) * add);
+        double newB = ((Budget + Score) * add);
         //Сохранение истории показателей роста
         History.Add(AddProcent);
         History2.Add(Mathf.RoundToInt((float)(newB - Budget)));
@@ -298,7 +334,7 @@ public class UniOutlay
         //запоминаем историю расходов
         outlayHistory[GameManagerScript.GM.CurrentMonth()] = outlay;
 
-        if (budget >= cost) //накопили нужное количество денег, добавляем юнит/технологию
+        while (budget >= cost) //накопили нужное количество денег, добавляем юнит/технологию
         {
             switch (field)
             {

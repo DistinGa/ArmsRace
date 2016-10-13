@@ -12,14 +12,10 @@ public class ProductionControlScript : MonoBehaviour
     [SerializeField]
     Text pool;          //количество юнитов для air, ground и sea
 
-    public void Start()
-    {
-        UpdateProduction();
-    }
-
     public void OnEnable()
     {
         GameManagerScript.GM.SubscribeMonth(new dlgtMonthTick(UpdateProduction));
+        UpdateProduction();
     }
 
     public void OnDisable()
@@ -39,7 +35,7 @@ public class ProductionControlScript : MonoBehaviour
         Outlay.text = "$" + Player.Outlays[field].Outlay;
         production.text = "$" + Player.Outlays[field].Budget + "/" + Player.Outlays[field].Cost;
         if (pool != null)
-            pool.text = Player.MilitaryPool.ToString();
+            pool.text = Player.GetPool(field).ToString();
     }
 
 }
