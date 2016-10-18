@@ -16,6 +16,9 @@ public class PlayerScript : MonoBehaviour
     public bool[] MilGndTechStatus = new bool[milTechCount];
     public bool[] MilSeaTechStatus = new bool[milTechCount];
     public bool[] MilRocketTechStatus = new bool[milTechCount];
+    //Данные по космической гонке
+    public int CurGndTechIndex;    //изучаемая в данный момент наземная технология
+    public int CurLnchTechIndex;   //изучаемая в данный момент технология запусков
 
     public List<int> History = new List<int>(); //история процентов прироста бюджета
     public List<int> History2 = new List<int>();//история прироста бюджета
@@ -393,7 +396,7 @@ public class UniOutlay
         //запоминаем историю расходов
         outlayHistory[GameManagerScript.GM.CurrentMonth] = outlay;
 
-        while (budget >= cost) //накопили нужное количество денег, добавляем юнит/технологию
+        while (budget > 0 && budget >= cost) //накопили нужное количество денег, добавляем юнит/технологию
         {
             switch (field)
             {
@@ -443,7 +446,7 @@ public class UniOutlay
             //если не последняя технология, берём стоимость следующей
             if (curTech < tCount - 1)
                 cost = GameManagerScript.GM.MDInstance.GetTechCost(field, curTech + 1);
-            else//если последняя, прекращаем инвестиции в технологию
+            else//если последняя, прекращаем инвестиции в технологии
                 outlay = 0;
         }
     }
@@ -451,6 +454,23 @@ public class UniOutlay
     //переход к изучению следующей космической технологии
     void TakeNextSpaceTech(OutlayField field)
     {
+        PlayerScript player = GameManagerScript.GM.GetPlayerByAuthority(authority);
+
+        budget -= cost;
+        //Наземные технологии
+        if (field == OutlayField.spaceGround)
+        {
+            cost = GameManagerScript.GM.SRInstance.LaunchTech(player, player.CurGndTechIndex);
+        }
+        //Технологии запусков
+        if (field == OutlayField.spaceLaunches)
+        {
+            cost = GameManagerScript.GM.SRInstance.LaunchTech(player, player.CurLnchTechIndex);
+        }
+
+        //Если изучили все технологии в линии, прекращаем инвестиции.
+        if (cost == 0)
+            outlay = 0;
     }
 
     public int YearSpendings()
@@ -464,7 +484,7 @@ public class UniOutlay
             res += outlayHistory[i];
         }
 
-        res += outlay * (12 - yearMonth);   //оставшиеся месяца года дополняем текущиим значением трат
+        res += outlay * (12 - yearMonth);   //оставшиеся месяцы года дополняем текущим значением трат
 
         return res;
     }

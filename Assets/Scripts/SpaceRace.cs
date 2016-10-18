@@ -22,7 +22,7 @@ public class SpaceRace : MonoBehaviour
     public Sprite GreenIconOp;
 
     public const int TechCount = 41;
-    int CurTechIndex;
+    public const int GndTechCount = 15; //количество наземных технологий
 
     [SerializeField]
     Technology[] Techs = new Technology[TechCount]; //элементов в массиве на 1 больше, чем технологий, чтобы была возможность нумеровать их с единицы (чтобы использовать исходный код с минимальными изменениями)
@@ -74,11 +74,7 @@ public class SpaceRace : MonoBehaviour
     public void ShowTechInfo(int ind)
     {
         GameManagerScript GM = GameManagerScript.GM;
-        CurTechIndex = ind;
         SoundManager.SM.PlaySound("sound/click2");
-
-        //Кнопка запуска доступна, если выбранная технология ещё не открыта и доступна
-        LaunchButton.interactable = (!GM.Player.GetTechStatus(CurTechIndex) && GM.Player.GetTechStatus(Techs[CurTechIndex].mPrevTechNumber));
 
         if (GM.Player.Authority == Authority.Amer)
         {
@@ -127,32 +123,30 @@ public class SpaceRace : MonoBehaviour
         Techs[TechInd].mGlobalInfl_1 = mGlobalInfl_1;
     }
 
-    //Запуск технологии по кнопке
-    public void Launch()
-    {
-        GameManagerScript GM = GameManagerScript.GM;
-        if (LaunchTech(GM.Player, CurTechIndex))
-        {
-            SoundManager.SM.PlaySound("sound/launch");
-            PaintTechButtons();
-            //Кнопка запуска доступна, если выбранная технология ещё не открыта и доступна
-            LaunchButton.interactable = (!GM.Player.GetTechStatus(CurTechIndex) && GM.Player.GetTechStatus(Techs[CurTechIndex].mPrevTechNumber));
-        }
-    }
-
     //Запуск технологии
     //Player - игрок, запускающий технологию
     //TechInd - индекс технологии
-    public bool LaunchTech(PlayerScript Player, int TechInd)
+    //Возвращаем стоимость следующей технологии или ноль, если в этой линии всё изучено.
+    public int LaunchTech(PlayerScript Player, int TechInd)
     {
         GameManagerScript GM = GameManagerScript.GM;
-        //Если технология недоступна, запрещаем её запуск
-        if (!Player.GetTechStatus(Techs[TechInd].mPrevTechNumber))
-            return false;
 
-        //Если не хватает денег, запрет
-        if (!GM.PayCost(Player, Techs[TechInd].mCost))
-            return false;
+        if (TechInd <= GndTechCount)
+        {
+            //Уменьшение стоимости технологий запуска на 2%
+            for (int i = GndTechCount + 1; i < TechCount; i++)
+            {
+                Techs[i].mCost -= Mathf.RoundToInt(Techs[i].mCost * 0.02f);
+            }
+
+            if (TechInd < GndTechCount) //Увеличиваем счётчик, если изучили не последнюю наземную технологию.
+                Player.CurGndTechIndex++;
+        }
+        else
+        {
+            //Здесь будет хитрый способ выбора следующей технологии.
+            Player.CurLnchTechIndex++;
+        }
 
         int InfAmount = 0;
         //Если игрок первый, кто открывает данную технологию, бонус к влиянию повышенный
@@ -186,7 +180,17 @@ public class SpaceRace : MonoBehaviour
                                          VideoQueue.V_PUPPER_TECHNOLOW_START + TechInd - 1,
                                          Player.MyCountry);
 
-        return true;
+        int nextCost = 0;
+        if (TechInd < GndTechCount)
+            nextCost = Techs[Player.CurGndTechIndex].mCost;
+        if (TechInd == GndTechCount)    //была запущена последняя тенология в линии
+            nextCost = 0;
+        if (TechInd > GndTechCount && TechInd < TechCount)
+            nextCost = Techs[Player.CurLnchTechIndex].mCost;
+        if (TechInd == TechCount)    //была запущена последняя тенология в линии
+            nextCost = 0;
+
+        return nextCost;
     }
 
     //Возвращает номер предыдущей технологии

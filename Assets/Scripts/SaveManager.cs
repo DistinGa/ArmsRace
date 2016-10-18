@@ -22,6 +22,7 @@ public static class SaveManager
         gameData.playerData[1] = GM.GetPlayerByAuthority(Authority.Soviet).GetSavedData();
 
         gameData.month = GM.CurrentMonth;
+        gameData.SpeedIndx = GM.curSpeedIndex;
 
         //сериализация и запись
         string initPath = Application.streamingAssetsPath + "/Saves/";
@@ -62,6 +63,9 @@ public static class SaveManager
 
         //установка значений объектов
         GameManagerScript.GM.CurrentMonth = gameData.month;
+        GameManagerScript.GM.curSpeedIndex = gameData.SpeedIndx;
+        GameManagerScript.GM.Tick = GameManagerScript.GM.GameSpeedPrefs[gameData.SpeedIndx];
+
         foreach (SavedCountryData item in gameData.countryData)
         {
             CountryScript country = GameObject.Find(item.Name).GetComponent<CountryScript>();
@@ -124,6 +128,7 @@ public struct SavedPlayerData
 public class SavedGame
 {
     public int month;
+    public int SpeedIndx;
     public SavedCountryData[] countryData;
     public SavedPlayerData[] playerData;
 }
