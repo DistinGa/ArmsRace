@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 
-public class PlayerScript : MonoBehaviour {
+public class PlayerScript : MonoBehaviour
+{
     public const int spaceTechCount = 41, milTechCount = 11;
     public double Budget;
     public Authority Authority;
@@ -31,7 +32,7 @@ public class PlayerScript : MonoBehaviour {
     int outlayChangeDiscounter;
 
     // Use this for initialization
-    void Start ()
+    void Start()
     {
         GameManagerScript GM = GameManagerScript.GM;
 
@@ -53,7 +54,7 @@ public class PlayerScript : MonoBehaviour {
 
     public int OutlayChangeDiscounter
     {
-        get{ return outlayChangeDiscounter;}
+        get { return outlayChangeDiscounter; }
         set { outlayChangeDiscounter = value; }
     }
 
@@ -90,7 +91,7 @@ public class PlayerScript : MonoBehaviour {
                 militaryAmount = amount;
                 break;
             case OutlayField.spy:
-                 spyAmount = amount;
+                spyAmount = amount;
                 break;
             case OutlayField.diplomat:
                 diplomatAmount = amount;
@@ -120,7 +121,8 @@ public class PlayerScript : MonoBehaviour {
 
     public int Score
     {
-        get {
+        get
+        {
             GameObject Countries = GameObject.Find("Countries");
             CountryScript Country;
             int s = 0;
@@ -128,7 +130,7 @@ public class PlayerScript : MonoBehaviour {
             for (int idx = 0; idx < Countries.transform.childCount; idx++)
             {
                 Country = Countries.transform.GetChild(idx).GetComponent<CountryScript>();
-                if(Country.Authority == Authority)
+                if (Country.Authority == Authority)
                     s += Country.Score;
             }
             return s;
@@ -277,14 +279,66 @@ public class PlayerScript : MonoBehaviour {
     {
         return Outlays[OutlayField.air].YearSpendings() + Outlays[OutlayField.diplomat].YearSpendings() + Outlays[OutlayField.ground].YearSpendings() + Outlays[OutlayField.military].YearSpendings() + Outlays[OutlayField.rocket].YearSpendings() + Outlays[OutlayField.sea].YearSpendings() + Outlays[OutlayField.spy].YearSpendings() + Outlays[OutlayField.spaceLaunches].YearSpendings() + Outlays[OutlayField.spaceGround].YearSpendings();
     }
+
+    //Сохранение/загрузка
+    public SavedPlayerData GetSavedData()
+    {
+        SavedPlayerData res = new SavedPlayerData();
+
+        res.aut = Authority;
+        res.Budget = Budget;
+        res.TechStatus = TechStatus;
+        res.MilAirTechStatus = MilAirTechStatus;
+        res.MilGndTechStatus = MilGndTechStatus;
+        res.MilSeaTechStatus = MilSeaTechStatus;
+        res.MilRocketTechStatus = MilRocketTechStatus;
+
+        res.History = History;
+        res.History2 = History2;
+        res.militaryAmount = militaryAmount;
+        res.spyAmount = spyAmount;
+        res.diplomatAmount = diplomatAmount;
+        res.outlayChangeDiscounter = outlayChangeDiscounter;
+
+        res.outlays = outlays;
+        //res.outlays = new Dictionary<OutlayField, UniOutlay>();
+        //foreach (var item in outlays)
+        //{
+        //    res.outlays.Add(item.Key, new UniOutlay(this, item.Key, item.Value.Cost));
+        //}
+
+        return res;
+    }
+
+    public void SetSavedData(SavedPlayerData sd)
+    {
+        Budget = sd.Budget;
+        TechStatus = sd.TechStatus;
+        MilAirTechStatus = sd.MilAirTechStatus;
+        MilGndTechStatus = sd.MilGndTechStatus;
+        MilSeaTechStatus = sd.MilSeaTechStatus;
+        MilRocketTechStatus = sd.MilRocketTechStatus;
+
+        History = sd.History;
+        History2 = sd.History2;
+        militaryAmount = sd.militaryAmount;
+        spyAmount = sd.spyAmount;
+        diplomatAmount = sd.diplomatAmount;
+
+        outlays = sd.outlays;
+        outlayChangeDiscounter = sd.outlayChangeDiscounter;
+    }
 }
 
+//класс для работы с расходами
+[System.Serializable]
 public class UniOutlay
 {
     int cost;   //стоимость объекта трат
     int budget; //накопленные средства
     int outlay; //траты
-    PlayerScript player;
+    Authority authority;
+    //PlayerScript player;
     OutlayField field;  //вид трат
 
     int[] outlayHistory = new int[GameManagerScript.GM.MAX_MONTHS_NUM]; //история трат (1 based)
@@ -293,7 +347,8 @@ public class UniOutlay
     {
         budget = 0;
         outlay = 0;
-        player = _player;
+        //player = _player;
+        authority = _player.Authority;
         cost = objectCost;
         field = fld;
     }
@@ -315,6 +370,8 @@ public class UniOutlay
 
     public void ChangeOutlet(int amount)
     {
+        PlayerScript player = GameManagerScript.GM.GetPlayerByAuthority(authority);
+
         if (player.OutlayChangeDiscounter > 0)
         {
             outlay += amount;
@@ -328,11 +385,13 @@ public class UniOutlay
     //ежемесячные отчисления
     public void MakeOutlet()
     {
+        PlayerScript player = GameManagerScript.GM.GetPlayerByAuthority(authority);
+
         budget += outlay;
         player.Budget -= outlay;
 
         //запоминаем историю расходов
-        outlayHistory[GameManagerScript.GM.CurrentMonth()] = outlay;
+        outlayHistory[GameManagerScript.GM.CurrentMonth] = outlay;
 
         while (budget >= cost) //накопили нужное количество денег, добавляем юнит/технологию
         {
@@ -372,6 +431,8 @@ public class UniOutlay
     //переход к изучению следующей технологии
     void TakeNextTech(OutlayField field)
     {
+        PlayerScript player = GameManagerScript.GM.GetPlayerByAuthority(authority);
+
         int curTech = player.GetCurMilTech(field);      //изучаемая в данный момент технология
         int tCount = player.MilAirTechStatus.Length;    //костыль, чтобы не плодить константу
 
@@ -382,6 +443,8 @@ public class UniOutlay
             //если не последняя технология, берём стоимость следующей
             if (curTech < tCount - 1)
                 cost = GameManagerScript.GM.MDInstance.GetTechCost(field, curTech + 1);
+            else//если последняя, прекращаем инвестиции в технологию
+                outlay = 0;
         }
     }
 
@@ -393,8 +456,8 @@ public class UniOutlay
     public int YearSpendings()
     {
         int res = 0;
-        int curMonth = GameManagerScript.GM.CurrentMonth(); //(0 based)
-        int yearMonth = curMonth%12;    //(0 based)
+        int curMonth = GameManagerScript.GM.CurrentMonth; //(0 based)
+        int yearMonth = curMonth % 12;    //(0 based)
 
         for (int i = curMonth; i > curMonth - yearMonth; i--)   //цикл по месяцам этого года
         {
@@ -407,6 +470,7 @@ public class UniOutlay
     }
 }
 
+[System.Serializable]
 public enum OutlayField
 {
     air,

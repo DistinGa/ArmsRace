@@ -50,7 +50,7 @@ public class CountryScript : MonoBehaviour
         StatePanel = transform.Find("Capital/Canvas/Panel");
     }
 
-    //Возвращает список всех стран или отпределённой принадлежности
+    //Возвращает список всех стран или определённой принадлежности
     public static List<CountryScript> Countries()
     {
         List<CountryScript> result = new List<CountryScript>();
@@ -565,6 +565,58 @@ public class CountryScript : MonoBehaviour
         return result;
     }
 
+    //Сохранение/загрузка
+    public SavedCountryData GetSavedData()
+    {
+        SavedCountryData res = new SavedCountryData();
+
+        res.Name = name;
+        res.support = support;
+        res.SovInf = SovInf;
+        res.AmInf = AmInf;
+        res.NInf = NInf;
+        res.LastAut = LastAut;
+        res.GovForce = GovForce;
+        res.OppForce = OppForce;
+        res.KGB = KGB;
+        res.CIA = CIA;
+        //res.Symbols = Symbols;
+        res.DiscounterUsaMeeting = DiscounterUsaMeeting;
+        res.DiscounterRusMeeting = DiscounterRusMeeting;
+        res.DiscounterUsaParade = DiscounterUsaParade;
+        res.DiscounterRusParade = DiscounterRusParade;
+        res.DiscounterUsaSpy = DiscounterUsaSpy;
+        res.DiscounterRusSpy = DiscounterRusSpy;
+        res.DiscounterUsaInfl = DiscounterUsaInfl;
+        res.DiscounterRusInfl = DiscounterRusInfl;
+
+        return res;
+    }
+
+    public void SetSavedData(SavedCountryData sd)
+    {
+        support = sd.support;
+        SovInf = sd.SovInf;
+        AmInf = sd.AmInf;
+        NInf = sd.NInf;
+        LastAut = sd.LastAut;
+        GovForce = sd.GovForce;
+        OppForce = sd.OppForce;
+        KGB = sd.KGB;
+        CIA = sd.CIA;
+        //Symbols = sd.Symbols;
+        DiscounterUsaMeeting = sd.DiscounterUsaMeeting;
+        DiscounterRusMeeting = sd.DiscounterRusMeeting;
+        DiscounterUsaParade = sd.DiscounterUsaParade;
+        DiscounterRusParade = sd.DiscounterRusParade;
+        DiscounterUsaSpy = sd.DiscounterUsaSpy;
+        DiscounterRusSpy = sd.DiscounterRusSpy;
+        DiscounterUsaInfl = sd.DiscounterUsaInfl;
+        DiscounterRusInfl = sd.DiscounterRusInfl;
+
+        TestStates();
+    }
+
     //перечисление состояний страны
     public enum States
     {
@@ -577,12 +629,12 @@ public class CountryScript : MonoBehaviour
     }
 
     // описание значка для состояния страны
+    [System.Serializable]
     public class StateSymbol
     {
         public States State;    //Состояние
         public Authority Authority; // за какую сторону
         public int MonthsToShow; //сколько месяцев показывать (discaunter)
-
         public RectTransform Symbol; // сам значок
 
         // конструктор

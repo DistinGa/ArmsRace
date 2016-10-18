@@ -92,6 +92,12 @@ public class GameManagerScript : MonoBehaviour
     public int OutlayChangesPerYear;
     //делегат для запуска событий конца месяца
     dlgtMonthTick monthSubscribers;
+    //Массив с продолжительностями тиков основного цикла
+    [Tooltip("Массив с продолжительностями тиков основного цикла")]
+    public int[] GameSpeedPrefs = new int[3];
+    //Индекс текущей скорости. По умолчанию 1 - средняя скорость.
+    [Tooltip("Индекс текущей скорости")]
+    public int curSpeedIndex = 1;
     
     public void Awake()
     {
@@ -115,12 +121,20 @@ public class GameManagerScript : MonoBehaviour
         MainCamera.GetComponent<CameraScript>().SetNewPosition(Player.MyCountry.Capital);
         VQueue = FindObjectOfType<VideoQueue>();
 
+        Tick = GameSpeedPrefs[curSpeedIndex];
+
 
         //GameObject.Find("VideoLoader").GetComponent<LoadVideoInfo>().LoadInfo();
     }
 
     void Update()
     {
+        //регулирование скорости игры: "+" - увеличение, "-" - уменьшение.
+        if (Input.GetKeyUp(KeyCode.KeypadPlus) || Input.GetKeyUp(KeyCode.Equals) || Input.GetKeyUp(KeyCode.UpArrow))
+            ChangeSpeed(1);
+        if (Input.GetKeyUp(KeyCode.Minus) || Input.GetKeyUp(KeyCode.KeypadMinus) || Input.GetKeyUp(KeyCode.DownArrow))
+            ChangeSpeed(-1);
+
         //Пауза
         if (Input.GetKeyDown(KeyCode.P))
         {
@@ -887,9 +901,10 @@ public class GameManagerScript : MonoBehaviour
             return null;
     }
 
-    public int CurrentMonth()
+    public int CurrentMonth
     {
-        return mMonthCount;
+        get { return mMonthCount; }
+        set { mMonthCount = value; }
     }
 
     //Установка текста новости и страны в нижнем меню.
@@ -994,6 +1009,25 @@ public class GameManagerScript : MonoBehaviour
         monthSubscribers -= mt;
     }
 
+    public void Load()
+    {
+        SaveManager.LoadGame();
+        ShowHighWinInfo();
+        SnapToCountry();
+    }
+
+    public void Save()
+    {
+        SaveManager.SaveGame();
+    }
+
+    public void ChangeSpeed(int dir)
+    {
+        curSpeedIndex += dir;
+        curSpeedIndex = Mathf.Clamp(curSpeedIndex, 0, GameSpeedPrefs.Length - 1);
+        
+        Tick = GameSpeedPrefs[curSpeedIndex];
+    }
 }
 
 public enum Region

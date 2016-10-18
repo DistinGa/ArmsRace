@@ -84,7 +84,7 @@ public class VideoQueue : MonoBehaviour {
     {
         GameManagerScript GM = GameManagerScript.GM;
 
-        VideoRealPlayRolex vrr = SearchRolex(type, tempo, info, c.Region, GM.GetCurrentEpoch(), c, GM.CurrentMonth());
+        VideoRealPlayRolex vrr = SearchRolex(type, tempo, info, c.Region, GM.GetCurrentEpoch(), c, GM.CurrentMonth);
         if (vrr == null) return;
 
         // звуковое сопровождение по группе ролика: всегда голосом фактически
@@ -258,7 +258,7 @@ public class VideoQueue : MonoBehaviour {
 
 
                 // удалить рол, если он старый:
-                if (mVideoQueue[1].mSetMonth < GameManagerScript.GM.CurrentMonth() - 12 * 2)
+                if (mVideoQueue[1].mSetMonth < GameManagerScript.GM.CurrentMonth - 12 * 2)
                 {
                     mVideoQueue.RemoveAt(1);
                     goto A;
@@ -503,7 +503,7 @@ public class VideoRealPlayRolex // реальный видео-"ролик" дл
         mVideoRolexPattern = videoRolexPattern;
         mWavFile = "";
         mIsVoice = false;
-        mSetMonth = GameManagerScript.GM.CurrentMonth();
+        mSetMonth = GameManagerScript.GM.CurrentMonth;
     }
 
     // имя файла ролика без расширения и без пути
