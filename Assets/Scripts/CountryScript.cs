@@ -50,7 +50,7 @@ public class CountryScript : MonoBehaviour
         StatePanel = transform.Find("Capital/Canvas/Panel");
     }
 
-    //Возвращает список всех стран или определённой принадлежности
+    //Возвращает список всех стран
     public static List<CountryScript> Countries()
     {
         List<CountryScript> result = new List<CountryScript>();
@@ -64,6 +64,7 @@ public class CountryScript : MonoBehaviour
         return result;
     }
 
+    //Возвращает список всех стран определённой принадлежности
     public static List<CountryScript> Countries(Authority aut)
     {
         List<CountryScript> result = new List<CountryScript>();

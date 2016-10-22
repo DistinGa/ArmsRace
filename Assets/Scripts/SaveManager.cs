@@ -23,6 +23,7 @@ public static class SaveManager
 
         gameData.month = GM.CurrentMonth;
         gameData.SpeedIndx = GM.curSpeedIndex;
+        gameData.RandomEvent = RandomEventManager.REMInstance.GetSavedData();
 
         //сериализация и запись
         string initPath = Application.streamingAssetsPath + "/Saves/";
@@ -77,6 +78,8 @@ public static class SaveManager
             PlayerScript player = GameManagerScript.GM.GetPlayerByAuthority(item.aut).GetComponent<PlayerScript>();
             player.SetSavedData(item);
         }
+
+        RandomEventManager.REMInstance.SetSavedData(gameData.RandomEvent);
     }
 }
 
@@ -131,4 +134,5 @@ public class SavedGame
     public int SpeedIndx;
     public SavedCountryData[] countryData;
     public SavedPlayerData[] playerData;
+    public RandomEvent RandomEvent;
 }
