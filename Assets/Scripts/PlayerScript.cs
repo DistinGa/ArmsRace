@@ -447,7 +447,11 @@ public class UniOutlay
             if (curTech < tCount - 1)
                 cost = GameManagerScript.GM.MDInstance.GetTechCost(field, curTech + 1);
             else//если последняя, прекращаем инвестиции в технологии
+            {
                 outlay = 0;
+                if (budget > 0)
+                    player.Budget += budget;
+            }
         }
     }
 
@@ -470,7 +474,11 @@ public class UniOutlay
 
         //Если изучили все технологии в линии, прекращаем инвестиции.
         if (cost == 0)
+        {
             outlay = 0;
+            if (budget > 0)
+                player.Budget += budget;
+        }
     }
 
     public int YearSpendings()
