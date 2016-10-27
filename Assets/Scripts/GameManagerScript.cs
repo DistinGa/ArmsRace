@@ -1014,6 +1014,7 @@ public class GameManagerScript : MonoBehaviour
         SaveManager.LoadGame();
         ShowHighWinInfo();
         SnapToCountry();
+        SRInstance.UpdateView();
     }
 
     public void Save()

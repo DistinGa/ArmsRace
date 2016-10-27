@@ -19,6 +19,8 @@ public class PlayerScript : MonoBehaviour
     //Данные по космической гонке
     public int CurGndTechIndex;    //изучаемая в данный момент наземная технология
     public int CurLnchTechIndex;   //изучаемая в данный момент технология запусков
+    public bool MoonSwitchState;   //состояние лунного переключателя
+
 
     public List<int> History = new List<int>(); //история процентов прироста бюджета
     public List<int> History2 = new List<int>();//история прироста бюджета
@@ -40,6 +42,9 @@ public class PlayerScript : MonoBehaviour
         GameManagerScript GM = GameManagerScript.GM;
 
         TechStatus[0] = true;   //Для доступности первой технологии
+        CurGndTechIndex = 1;
+        CurLnchTechIndex = 16;
+        MoonSwitchState = true;
 
         outlays = new Dictionary<OutlayField, UniOutlay>();
         outlays.Add(OutlayField.air, new UniOutlay(this, OutlayField.air, GM.MDInstance.GetTechCost(OutlayField.air, 1)));
@@ -49,8 +54,8 @@ public class PlayerScript : MonoBehaviour
         outlays.Add(OutlayField.military, new UniOutlay(this, OutlayField.military, GM.MILITARY_COST));
         outlays.Add(OutlayField.spy, new UniOutlay(this, OutlayField.spy, GM.SPY_COST));
         outlays.Add(OutlayField.diplomat, new UniOutlay(this, OutlayField.diplomat, GM.DiplomatCost));
-        outlays.Add(OutlayField.spaceLaunches, new UniOutlay(this, OutlayField.spaceLaunches, GM.SRInstance.GetTechCost(OutlayField.spaceLaunches, 1)));
-        outlays.Add(OutlayField.spaceGround, new UniOutlay(this, OutlayField.spaceGround, GM.SRInstance.GetTechCost(OutlayField.spaceGround, 1)));
+        outlays.Add(OutlayField.spaceGround, new UniOutlay(this, OutlayField.spaceGround, GM.SRInstance.GetTechCost(OutlayField.spaceGround, CurGndTechIndex)));
+        outlays.Add(OutlayField.spaceLaunches, new UniOutlay(this, OutlayField.spaceLaunches, GM.SRInstance.GetTechCost(OutlayField.spaceLaunches, CurLnchTechIndex)));
 
         outlayChangeDiscounter = GameManagerScript.GM.OutlayChangesPerYear;
     }
@@ -223,7 +228,7 @@ public class PlayerScript : MonoBehaviour
         int i = 0;
         while (i < milTechCount)
         {
-            if (!GetMilTechStatus(field, i))
+            if (!GetMilTechStatus(field, i))    //первая неизученная технология
             {
                 res = i;
                 break;
@@ -295,6 +300,9 @@ public class PlayerScript : MonoBehaviour
         res.MilGndTechStatus = MilGndTechStatus;
         res.MilSeaTechStatus = MilSeaTechStatus;
         res.MilRocketTechStatus = MilRocketTechStatus;
+        res.CurGndTechIndex = CurGndTechIndex;
+        res.CurLnchTechIndex = CurLnchTechIndex;
+        res.MoonSwitchState = MoonSwitchState;
 
         res.History = History;
         res.History2 = History2;
@@ -304,11 +312,6 @@ public class PlayerScript : MonoBehaviour
         res.outlayChangeDiscounter = outlayChangeDiscounter;
 
         res.outlays = outlays;
-        //res.outlays = new Dictionary<OutlayField, UniOutlay>();
-        //foreach (var item in outlays)
-        //{
-        //    res.outlays.Add(item.Key, new UniOutlay(this, item.Key, item.Value.Cost));
-        //}
 
         return res;
     }
@@ -321,6 +324,9 @@ public class PlayerScript : MonoBehaviour
         MilGndTechStatus = sd.MilGndTechStatus;
         MilSeaTechStatus = sd.MilSeaTechStatus;
         MilRocketTechStatus = sd.MilRocketTechStatus;
+        CurGndTechIndex = sd.CurGndTechIndex;
+        CurLnchTechIndex = sd.CurLnchTechIndex;
+        MoonSwitchState = sd.MoonSwitchState;
 
         History = sd.History;
         History2 = sd.History2;
@@ -371,6 +377,11 @@ public class UniOutlay
         get { return cost; }
     }
 
+    public void SetNewCost(int nc)
+    {
+        cost = nc;
+    }
+
     public void ChangeOutlet(int amount)
     {
         PlayerScript player = GameManagerScript.GM.GetPlayerByAuthority(authority);
@@ -388,6 +399,9 @@ public class UniOutlay
     //ежемесячные отчисления
     public void MakeOutlet()
     {
+        if (outlay == 0)
+            return;
+
         PlayerScript player = GameManagerScript.GM.GetPlayerByAuthority(authority);
 
         budget += outlay;
@@ -396,7 +410,8 @@ public class UniOutlay
         //запоминаем историю расходов
         outlayHistory[GameManagerScript.GM.CurrentMonth] = outlay;
 
-        while (budget > 0 && budget >= cost) //накопили нужное количество денег, добавляем юнит/технологию
+        bool firsttime = true; //первый раз нужно вызвать TakeNextSpaceTech, чтобы переключиться на новую технологию
+        while ((firsttime && budget >= cost) || (budget * cost > 0 && budget >= cost)) //накопили нужное количество денег, добавляем юнит/технологию
         {
             switch (field)
             {
@@ -428,6 +443,7 @@ public class UniOutlay
                     TakeNextSpaceTech(field);
                     break;
             }
+            firsttime = false;
         }
     }
 
@@ -450,7 +466,10 @@ public class UniOutlay
             {
                 outlay = 0;
                 if (budget > 0)
+                {
                     player.Budget += budget;
+                    budget = 0;
+                }
             }
         }
     }
@@ -473,14 +492,25 @@ public class UniOutlay
         }
 
         //Если изучили все технологии в линии, прекращаем инвестиции.
-        if (cost == 0)
+        if ((field == OutlayField.spaceGround && player.CurGndTechIndex == -1) || (field == OutlayField.spaceLaunches && player.CurLnchTechIndex == -1))
         {
             outlay = 0;
             if (budget > 0)
+            {
                 player.Budget += budget;
+                budget = 0;
+            }
         }
+
+        //if (cost == 0)
+        //{
+        //    outlay = 0;
+        //    if (budget > 0)
+        //        player.Budget += budget;
+        //}
     }
 
+    //Прогноз годовых трат с учётом истории уже потраченного в текущем году.
     public int YearSpendings()
     {
         int res = 0;

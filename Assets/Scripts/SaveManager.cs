@@ -79,7 +79,8 @@ public static class SaveManager
             player.SetSavedData(item);
         }
 
-        RandomEventManager.REMInstance.SetSavedData(gameData.RandomEvent);
+        if(gameData.RandomEvent != null)
+            RandomEventManager.REMInstance.SetSavedData(gameData.RandomEvent);
     }
 }
 
@@ -125,6 +126,9 @@ public struct SavedPlayerData
 
     public Dictionary<OutlayField, UniOutlay> outlays;
     public int outlayChangeDiscounter;
+    public int CurGndTechIndex;
+    public int CurLnchTechIndex;
+    public bool MoonSwitchState;
 }
 
 [System.Serializable]
