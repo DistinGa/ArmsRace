@@ -107,6 +107,9 @@ public class GameManagerScript : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        if (SettingsScript.Settings.NeedLoad)
+            Load();
+
         if(SettingsScript.Settings.playerSelected == Authority.Amer)
             Player = transform.Find("AmerPlayer").GetComponent<PlayerScript>();
         else
@@ -1011,7 +1014,7 @@ public class GameManagerScript : MonoBehaviour
 
     public void Load()
     {
-        SaveManager.LoadGame();
+        SaveManager.LoadGame(Player.Authority == Authority.Amer?"Amer":"Sov");
         ShowHighWinInfo();
         SnapToCountry();
         SRInstance.UpdateView();
