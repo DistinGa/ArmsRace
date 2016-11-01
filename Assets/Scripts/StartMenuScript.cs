@@ -8,7 +8,6 @@ public class StartMenuScript : MonoBehaviour
     public Animator Animator;
     [Space(10)]
     public Toggle VideoNews;
-    public Toggle Voice;
     public Toggle Music;
     public Slider MusicVolume;
     public Toggle Sound;
@@ -30,6 +29,8 @@ public class StartMenuScript : MonoBehaviour
     [TextArea(2, 5)]
     [SerializeField]
     string[] Sentences;
+    [SerializeField]
+    Sprite[] sprSuiteArray = new Sprite[3];
 
     private AudioSource AS;
 
@@ -37,20 +38,25 @@ public class StartMenuScript : MonoBehaviour
     {
         AS = GetComponent<AudioSource>();
 
-        if (SteamApps.BIsDlcInstalled((AppId_t)508430))
-        {
-            VideoNews.interactable = true;
-            Voice.interactable = true;
-            VideoNews.isOn = SettingsScript.Settings.mVideo;
-            Voice.isOn = SettingsScript.Settings.mVoiceOn;
-        }
-        else
-        {
-            VideoNews.interactable = false;
-            Voice.interactable = false;
-            VideoNews.isOn = false;
-            Voice.isOn = false;
-        }
+        //if (SteamApps.BIsDlcInstalled((AppId_t)508430))
+        //{
+        //    VideoNews.interactable = true;
+        //    Voice.interactable = true;
+        //    VideoNews.isOn = SettingsScript.Settings.mVideo;
+        //    Voice.isOn = SettingsScript.Settings.mVoiceOn;
+        //}
+        //else
+        //{
+        //    VideoNews.interactable = false;
+        //    Voice.interactable = false;
+        //    VideoNews.isOn = false;
+        //    Voice.isOn = false;
+        //}
+
+
+        GameObject.Find("ToggleUSA").GetComponent<Toggle>().isOn = true;
+        GameObject.Find("Historic").GetComponent<Toggle>().isOn = true;
+        GameObject.Find("Leader1").GetComponent<Toggle>().isOn = true;
 
         Music.isOn = SettingsScript.Settings.mMusicOn;
         Sound.isOn = SettingsScript.Settings.mSoundOn;
@@ -134,7 +140,54 @@ public class StartMenuScript : MonoBehaviour
 
     public void PlaySound(AudioClip ac)
     {
-        if(SettingsScript.Settings.mSoundOn)
+        if (SettingsScript.Settings.mSoundOn)
+        {
             AS.PlayOneShot(ac, SettingsScript.Settings.mSoundVol);
+        }
+    }
+
+    public void SetGameMode(int lt)
+    {
+        SettingsScript.Settings.PlayerLeader.LeaderType = (LeaderType)lt;
+        SetSuite(SettingsScript.Settings.PlayerLeader.LeaderID);
+    }
+
+    public void SetSuite(int LID)
+    {
+        Sprite sprSuite = null;
+
+        SettingsScript.Settings.PlayerLeader.LeaderID = LID;
+
+        if (SettingsScript.Settings.PlayerLeader.LeaderType == LeaderType.Historic)
+        {
+            if (SettingsScript.Settings.playerSelected == Authority.Amer)
+            {
+                if (LID == 1 || LID == 3)
+                    sprSuite = sprSuiteArray[1];    //светлый
+                else
+                    sprSuite = sprSuiteArray[0];    //тёмный
+            }
+            else //СССР
+            {
+                if(LID == 1)
+                    sprSuite = sprSuiteArray[2];    //китель
+                else if(LID == 2)
+                    sprSuite = sprSuiteArray[1];    //светлый
+                else
+                    sprSuite = sprSuiteArray[0];    //тёмный
+            }
+        }
+        else //не исторический
+        {
+            if(SettingsScript.Settings.PlayerLeader.LeaderType == LeaderType.Economic)
+                sprSuite = sprSuiteArray[1];    //светлый
+            else
+                sprSuite = sprSuiteArray[0];    //тёмный
+        }
+
+        GameObject.Find("Suite").GetComponent<Image>().sprite = sprSuite;
+        GameObject.Find("BonusLeft").GetComponent<Text>().text = SettingsScript.Settings.PlayerLeader.GetBonuses(1);
+        GameObject.Find("BonusRight").GetComponent<Text>().text = SettingsScript.Settings.PlayerLeader.GetBonuses(2);
     }
 }
+
