@@ -80,14 +80,6 @@ public class GameManagerScript : MonoBehaviour
     public int FirePowerPerTech = 10;
     [Tooltip("стоимость обучения дипломата")]
     public int DiplomatCost = 25;
-    //[Tooltip("стоимость исследования технологии Air")]
-    //public int AirMilitaryCost = 25;
-    //[Tooltip("стоимость исследования технологии Ground")]
-    //public int GroundMilitaryCost = 25;
-    //[Tooltip("стоимость исследования технологии Sea")]
-    //public int SeaMilitaryCost = 25;
-    //[Tooltip("стоимость исследования технологии Rocket")]
-    //public int RocketMilitaryCost = 25;
     [Tooltip("количество изменений трат в год")]
     public int OutlayChangesPerYear;
     //делегат для запуска событий конца месяца
@@ -98,7 +90,10 @@ public class GameManagerScript : MonoBehaviour
     //Индекс текущей скорости. По умолчанию 1 - средняя скорость.
     [Tooltip("Индекс текущей скорости")]
     public int curSpeedIndex = 1;
-    
+    public double CrisisBudget = 500;
+    //Дискаунтер для кризиса при опускании бюджета до CrisisBudget. Кризис не чаще раза в год.
+    int CrisisDiscounter = 0;
+
     public void Awake()
     {
         GM = this;
@@ -403,8 +398,13 @@ public class GameManagerScript : MonoBehaviour
     //parade: true - парад, false - восстание
     public bool CallMeeting(CountryScript c, PlayerScript p, bool parade)
     {
-        if (!PayCost(p, parade? PARADE_COST: RIOT_COST))
-            return false; //Не хватило денег
+        if (p.SpyPool > 0)
+            p.SpyPool--;
+        else
+            return false;
+
+        //if (!PayCost(p, parade? PARADE_COST: RIOT_COST))
+        //    return false; //Не хватило денег
 
         if (p.Authority == Authority.Amer)
         {
@@ -642,6 +642,16 @@ public class GameManagerScript : MonoBehaviour
         //события по подписке
         if (monthSubscribers != null)
             monthSubscribers();
+
+        //Финансовый кризис при опускании бюджета до значения CrisisBudget
+        CrisisDiscounter -= 1;
+        if (Player.Budget <= CrisisBudget && CrisisDiscounter <= 0)
+        {
+            CountryScript c = Player.MyCountry;
+            c.Support -= 50f;
+            CrisisDiscounter = 12;
+            VQueue.AddRolex(VideoQueue.V_TYPE_GLOB, VideoQueue.V_PRIO_PRESSING, VideoQueue.V_PUPPER_EVENT_FINANCE, c);
+        }
     }
 
     //Ежегодное обновление информации
