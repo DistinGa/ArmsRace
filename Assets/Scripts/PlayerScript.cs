@@ -154,7 +154,13 @@ public class PlayerScript : MonoBehaviour
         if (Budget > 700) AddProcent = Random.Range(2, 5 + 1);
 
         double add = 1 + AddProcent / 100.0;
-        double newB = ((Budget + Score) * add);
+        double newB = 0;
+        if (GameManagerScript.GM.AI != null && GameManagerScript.GM.AI.AIPlayer == this)
+        {
+            newB = GameManagerScript.GM.AI.NewYearBonus();
+        }
+
+        newB = ((Budget + newB + Score) * add);
         //Сохранение истории показателей роста
         History.Add(AddProcent);
         History2.Add(Mathf.RoundToInt((float)(newB - Budget)));
@@ -220,7 +226,8 @@ public class PlayerScript : MonoBehaviour
         return status;
     }
 
-    //Получить изучаемую в данный момент технологию
+    //Получить изучаемую в данный момент технологию.
+    //Если все изучены, возвращаем 0.
     public int GetCurMilTech(OutlayField field)
     {
         int res = 0;
@@ -267,6 +274,15 @@ public class PlayerScript : MonoBehaviour
         }
 
         return fp;
+    }
+
+    public int WinPercentForCountry(CountryScript country)
+    {
+        PlayerScript oppPlayer = GameManagerScript.GM.GetOpponentTo(this);
+        int thisFP = country.Air * this.FirePower(OutlayField.air) + country.Ground * this.FirePower(OutlayField.ground) + country.Sea * this.FirePower(OutlayField.sea);
+        int oppFP = country.Air * oppPlayer.FirePower(OutlayField.air) + country.Ground * oppPlayer.FirePower(OutlayField.ground) + country.Sea * oppPlayer.FirePower(OutlayField.sea);
+
+        return Mathf.RoundToInt(100f * thisFP / (thisFP + oppFP));
     }
 
     public void NewMonth()
@@ -410,8 +426,8 @@ public class UniOutlay
         //запоминаем историю расходов
         outlayHistory[GameManagerScript.GM.CurrentMonth] = outlay;
 
-        bool firsttime = true; //первый раз нужно вызвать TakeNextSpaceTech, чтобы переключиться на новую технологию
-        while ((firsttime && budget >= cost) || (budget * cost > 0 && budget >= cost)) //накопили нужное количество денег, добавляем юнит/технологию
+        bool firsttime = true; //первый раз нужно вызвать TakeNextSpaceTech, чтобы переключиться на новую технологию и проверить на предмет изучения всех технологий в ветке (нулевая цена может быть при ожидании)
+        while ((firsttime && budget >= cost) || (budget * cost > 0 && budget >= cost)) //накопили нужное количество денег, добавляем юнит/технологию (в цикле на случай, если накопили больше, чем на один переход)
         {
             switch (field)
             {
@@ -465,6 +481,7 @@ public class UniOutlay
             else//если последняя, прекращаем инвестиции в технологии
             {
                 outlay = 0;
+                cost = 0;
                 if (budget > 0)
                 {
                     player.Budget += budget;

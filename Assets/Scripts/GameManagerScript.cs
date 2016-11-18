@@ -347,9 +347,6 @@ public class GameManagerScript : MonoBehaviour
             return;
 
         Country.AddInfluence(Player.Authority, 1, false);
-        // если увеличивается оппозиция, видео показать:
-        if (Country.Authority != Player.Authority)
-            VQueue.AddRolex(Player.Authority == Authority.Amer?VideoQueue.V_TYPE_USA: VideoQueue.V_TYPE_USSR, VideoQueue.V_PRIO_NULL, VideoQueue.V_PUPPER_OPPO_INFLU, Country);
 
         SnapToCountry();
     }

@@ -369,6 +369,25 @@ public class CountryScript : MonoBehaviour
         return (Aut == Authority.Amer && CIA > 0) || (Aut == Authority.Soviet && KGB > 0);
     }
 
+    //Возвращает количество шпионов заданной стороны
+    public int SpyCount(Authority Aut)
+    {
+        int res = 0;
+
+        switch (Aut)
+        {
+            case Authority.Amer:
+                res = CIA;
+                break;
+            case Authority.Soviet:
+                res = KGB;
+                break;
+            default:
+                break;
+        }
+        return res;
+    }
+
     //Смена правительства
     public void ChangeGov(Authority NewAut)
     {

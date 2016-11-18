@@ -24,6 +24,7 @@ public static class SaveManager
         gameData.month = GM.CurrentMonth;
         gameData.SpeedIndx = GM.curSpeedIndex;
         gameData.RandomEvent = RandomEventManager.REMInstance.GetSavedData();
+        gameData.AIPower = SettingsScript.Settings.AIPower;
 
         //сериализация и запись
         string initPath = Application.streamingAssetsPath + "/Saves/";
@@ -66,6 +67,7 @@ public static class SaveManager
         GameManagerScript.GM.CurrentMonth = gameData.month;
         GameManagerScript.GM.curSpeedIndex = gameData.SpeedIndx;
         GameManagerScript.GM.Tick = GameManagerScript.GM.GameSpeedPrefs[gameData.SpeedIndx];
+        SettingsScript.Settings.AIPower = gameData.AIPower;
 
         foreach (SavedCountryData item in gameData.countryData)
         {
@@ -139,4 +141,5 @@ public class SavedGame
     public SavedCountryData[] countryData;
     public SavedPlayerData[] playerData;
     public RandomEvent RandomEvent;
+    public int AIPower;
 }

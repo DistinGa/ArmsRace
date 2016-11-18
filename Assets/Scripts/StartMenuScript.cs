@@ -177,13 +177,12 @@ public class StartMenuScript : MonoBehaviour
                     sprSuite = sprSuiteArray[0];    //тёмный
             }
         }
-        else //не исторический
-        {
-            if(SettingsScript.Settings.PlayerLeader.LeaderType == LeaderType.Economic)
-                sprSuite = sprSuiteArray[1];    //светлый
-            else
-                sprSuite = sprSuiteArray[0];    //тёмный
-        }
+        else if (SettingsScript.Settings.PlayerLeader.LeaderType == LeaderType.Economic)
+            sprSuite = sprSuiteArray[1];    //светлый
+        else if (SettingsScript.Settings.PlayerLeader.LeaderType == LeaderType.Diplomatic)
+            sprSuite = sprSuiteArray[0];    //тёмный
+        else if (SettingsScript.Settings.PlayerLeader.LeaderType == LeaderType.Militaristic)
+            sprSuite = sprSuiteArray[2];    //китель
 
         GameObject.Find("Suite").GetComponent<Image>().sprite = sprSuite;
         GameObject.Find("BonusLeft").GetComponent<Text>().text = SettingsScript.Settings.PlayerLeader.GetBonuses(1);
