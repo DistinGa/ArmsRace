@@ -9,6 +9,8 @@ public class AI : MonoBehaviour {
     public InvCommon[] AIInvestSettings = new InvCommon[8];
     public ActCommon[] AIActSettings = new ActCommon[8];
     [Space(10)]
+    [Tooltip("Стартовый бюджет")]
+    public int[] StartBudget;
     //Настройки читтерсва AI
     [Tooltip("Ежегодная прибавка к бюджету")]
     public int[] YearCheat;
@@ -30,6 +32,7 @@ public class AI : MonoBehaviour {
             AIPlayer = GameObject.Find("AmerPlayer").GetComponent<PlayerScript>();
 
         AIPlayer.MoonSwitchState = false;
+        AIPlayer.Budget = StartBudget[SettingsScript.Settings.AIPower];
     }
 
     // ход AI
