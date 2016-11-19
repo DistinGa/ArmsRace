@@ -269,6 +269,5 @@ class MilTechnology
     [TextArea(2, 5)]
     public string mUsaDescr = "", mRusDescr = ""; // текстовое описание
     public int mCost = 0; // стоимость технологии
-    public int mFirePower = 10; // множитель огневой мощи
 }
 

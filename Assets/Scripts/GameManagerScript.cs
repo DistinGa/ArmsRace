@@ -62,16 +62,10 @@ public class GameManagerScript : MonoBehaviour
     public float INSTALL_PUPPER_OPPO = 80;
     [Tooltip("необходимый % оппозиции для ввода революционеров")]
     public float INSTALL_PUPPER_REVOL = 80;
-    [Tooltip("стоимость увеличения влияния")]
-    public int INFLU_COST = 2;
     [Tooltip("стоимость вооруженных сил")]
     public int MILITARY_COST = 3;
     [Tooltip("стоимость добавления шпиона")]
     public int SPY_COST = 1;
-    [Tooltip("стоимость организации парада")]
-    public int PARADE_COST = 1;
-    [Tooltip("стоимость организации восстания")]
-    public int RIOT_COST = 1;
     ////////////
     //новые параметры
     public MilDepMenuScript MDInstance;
@@ -90,6 +84,7 @@ public class GameManagerScript : MonoBehaviour
     //Индекс текущей скорости. По умолчанию 1 - средняя скорость.
     [Tooltip("Индекс текущей скорости")]
     public int curSpeedIndex = 1;
+    [Tooltip("Бюджет, при достижении которого наступает финансовый кризис")]
     public double CrisisBudget = 500;
     //Дискаунтер для кризиса при опускании бюджета до CrisisBudget. Кризис не чаще раза в год.
     int CrisisDiscounter = 0;
