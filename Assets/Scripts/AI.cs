@@ -43,8 +43,21 @@ public class AI : MonoBehaviour {
         AIPlayer.NewMonth();
 
         //каждые 10 лет случайным образом мменяем лидера
-        //Ищем страны, где можно установить своё правительство.
+        if (GM.CurrentMonth % 120 == 0)
+        {
+            AILeader.LeaderID = Random.Range(1, 5);
+            AILeader.LeaderType = (LeaderType)Random.Range(0, 4);
+        }
 
+        //Ищем страны, где можно установить своё правительство и устанавливаем.
+        foreach (var c in CountryScript.Countries())
+        {
+            if (c.Authority != AIPlayer.Authority)
+            {
+                if (c.CanChangeGov(AIPlayer.Authority))
+                    c.ChangeGov(AIPlayer.Authority);
+            }
+        }
 
         bool BudgetPlus;
         bool war1 = false;  //для инвестиций
