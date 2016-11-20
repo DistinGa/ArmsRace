@@ -23,7 +23,10 @@ public class AI : MonoBehaviour {
     void Start ()
     {
         if (GameManagerScript.GM.AI == null)
+        {
             Destroy(gameObject);    //Играем против другого игрока, АИ не нужен
+            return;
+        }
 
         //Назначаем сторону AI в зависимости от выбранной стороны игрока
         if (SettingsScript.Settings.playerSelected == Authority.Amer)

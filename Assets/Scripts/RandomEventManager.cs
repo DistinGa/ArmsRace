@@ -97,7 +97,7 @@ public class RandomEventManager : MonoBehaviour
                     rEvent.Description = "Would you like to support local nationalists";
                     rEvent.Description2 = "+20 neutral influence";
                     rEvent.Authority = Authority.Neutral;
-                    rEvent.Amount = -20;
+                    rEvent.Amount = 20;
                     rEvent.Action = new dlgtEventAction(rEvent.AddInfluence);
                     break;
                 case 3:

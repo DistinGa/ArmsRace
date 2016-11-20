@@ -115,7 +115,7 @@ public class GameManagerScript : MonoBehaviour
         VQueue = FindObjectOfType<VideoQueue>();
 
         Tick = GameSpeedPrefs[curSpeedIndex];
-
+        Player.Budget = START_BUDGET;
 
         //GameObject.Find("VideoLoader").GetComponent<LoadVideoInfo>().LoadInfo();
     }
@@ -624,7 +624,8 @@ public class GameManagerScript : MonoBehaviour
             Country.TestStates();
         }
         //Ход AI
-        AI.AIturn();
+        if(AI != null)
+            AI.AIturn();
 
         Player.NewMonth();
 

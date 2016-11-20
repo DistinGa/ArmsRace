@@ -10,6 +10,8 @@ public class SOMApData : ScriptableObject
 [System.Serializable]
 public class MapData
 {
+    [SerializeField]
+    [HideInInspector]
     string objName;
     public string name;
     public int air;

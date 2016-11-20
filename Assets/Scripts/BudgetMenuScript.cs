@@ -31,7 +31,7 @@ public class BudgetMenuScript : MonoBehaviour
         PlayerScript pl = GameManagerScript.GM.Player;
         int milOutlay = pl.Outlays[OutlayField.air].Outlay + pl.Outlays[OutlayField.ground].Outlay + pl.Outlays[OutlayField.sea].Outlay + pl.Outlays[OutlayField.rocket].Outlay + pl.Outlays[OutlayField.military].Outlay;
         int dipOutlay = pl.Outlays[OutlayField.diplomat].Outlay + pl.Outlays[OutlayField.spy].Outlay;
-        int spaceOutlay = 0;
+        int spaceOutlay = pl.Outlays[OutlayField.spaceGround].Outlay + pl.Outlays[OutlayField.spaceLaunches].Outlay;
         int expenditure;
 
         expenditure = pl.TotalYearSpendings();
