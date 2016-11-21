@@ -429,6 +429,8 @@ public class CountryScript : MonoBehaviour
     //Обработка начала месяца
     public void NextMonth()
     {
+        GameManagerScript GM = GameManagerScript.GM;
+
         //Уменьшаем дискаунтеры
         if (DiscounterRusInfl > 0) DiscounterRusInfl--;
         if (DiscounterRusMeeting > 0) DiscounterRusMeeting--;
@@ -449,6 +451,22 @@ public class CountryScript : MonoBehaviour
                 Destroy(item.Symbol.gameObject);
                 Symbols.Remove(item);
             }
+        }
+
+        //Если влияние соответствует правительству, поддержка увеличивается.
+        if ((Authority == Authority.Amer && AmInf > 50) || (Authority == Authority.Soviet && SovInf > 50))
+        {
+            Support += GM.SUPPORT_GROW;
+            if (Support > 100) Support = 100;
+        }
+
+        //Если влияние не соответствует правительству, растёт оппозиция.
+        if ((Authority == Authority.Amer && SovInf > 50) ||
+            (Authority == Authority.Soviet && AmInf > 50) ||
+            (Authority == Authority.Neutral && (SovInf + AmInf) > 50))
+        {
+            Support -= GM.OPPO_GROW;
+            if (Support < 0) Support = 0;
         }
     }
 

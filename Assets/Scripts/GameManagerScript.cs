@@ -565,22 +565,6 @@ public class GameManagerScript : MonoBehaviour
 
             Country.NextMonth();
 
-            //Если влияние соответствует правительству, поддержка увеличивается.
-            if ((Country.Authority == Authority.Amer && Country.AmInf > 50) || (Country.Authority == Authority.Soviet && Country.SovInf > 50))
-            {
-                Country.Support += SUPPORT_GROW;
-                if (Country.Support > 100) Country.Support = 100;
-            }
-
-            //Если влияние не соответствует правительству, растёт оппозиция.
-            if ((Country.Authority == Authority.Amer && Country.SovInf > 50) ||
-                (Country.Authority == Authority.Soviet && Country.AmInf > 50) ||
-                (Country.Authority == Authority.Neutral && (Country.SovInf + Country.AmInf) > 50))
-            {
-                Country.Support -= OPPO_GROW;
-                if (Country.Support < 0) Country.Support = 0;
-            }
-
             //Боевые действия
             if (Country.OppForce > 0)
             {
@@ -831,7 +815,7 @@ public class GameManagerScript : MonoBehaviour
     }
     
     //Обновление информации в верхнем меню
-    void ShowHighWinInfo()
+    public void ShowHighWinInfo()
     {
         string[] months = { "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" };
         int m = mMonthCount % 12;
@@ -843,6 +827,8 @@ public class GameManagerScript : MonoBehaviour
         UpMenu.Find("USBudget").GetComponent<Text>().text = GameObject.Find("AmerPlayer").GetComponent<PlayerScript>().Budget.ToString("f0");
         UpMenu.Find("SovScore").GetComponent<Text>().text = GameObject.Find("SovPlayer").GetComponent<PlayerScript>().Score.ToString("f0");
         UpMenu.Find("SovBudget").GetComponent<Text>().text = GameObject.Find("SovPlayer").GetComponent<PlayerScript>().Budget.ToString("f0");
+        UpMenu.Find("AmPP").GetComponent<Text>().text = GameObject.Find("AmerPlayer").GetComponent<PlayerScript>().OutlayChangeDiscounter.ToString("f0");
+        UpMenu.Find("SovPP").GetComponent<Text>().text = GameObject.Find("SovPlayer").GetComponent<PlayerScript>().OutlayChangeDiscounter.ToString("f0");
     }
 
     public bool PayCost(Authority Aut, int Money)

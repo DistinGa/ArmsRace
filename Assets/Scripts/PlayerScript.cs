@@ -63,7 +63,11 @@ public class PlayerScript : MonoBehaviour
     public int OutlayChangeDiscounter
     {
         get { return outlayChangeDiscounter; }
-        set { outlayChangeDiscounter = value; }
+        set
+        {
+            outlayChangeDiscounter = value;
+            GameManagerScript.GM.ShowHighWinInfo();
+        }
     }
 
     public Dictionary<OutlayField, UniOutlay> Outlays
@@ -291,7 +295,7 @@ public class PlayerScript : MonoBehaviour
 
     public void NewYear()
     {
-        outlayChangeDiscounter = GameManagerScript.GM.OutlayChangesPerYear;
+        OutlayChangeDiscounter = GameManagerScript.GM.OutlayChangesPerYear;
         AnnualGrowthBudget();
     }
 
@@ -321,7 +325,7 @@ public class PlayerScript : MonoBehaviour
         res.militaryAmount = militaryAmount;
         res.spyAmount = spyAmount;
         res.diplomatAmount = diplomatAmount;
-        res.outlayChangeDiscounter = outlayChangeDiscounter;
+        res.outlayChangeDiscounter = OutlayChangeDiscounter;
 
         res.outlays = outlays;
 
@@ -347,7 +351,7 @@ public class PlayerScript : MonoBehaviour
         diplomatAmount = sd.diplomatAmount;
 
         outlays = sd.outlays;
-        outlayChangeDiscounter = sd.outlayChangeDiscounter;
+        OutlayChangeDiscounter = sd.outlayChangeDiscounter;
     }
 }
 

@@ -33,7 +33,7 @@ public class ProductionControlScript : MonoBehaviour
     {
         PlayerScript Player = GameManagerScript.GM.Player;
         Outlay.text = "$" + Player.Outlays[field].Outlay;
-        production.text = "$" + Player.Outlays[field].Budget + "/" + Player.Outlays[field].Cost;
+        production.text = Player.Outlays[field].Budget + "/" + Player.Outlays[field].Cost;
         if (pool != null)
             pool.text = Player.GetPool(field).ToString();
     }
