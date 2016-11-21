@@ -149,10 +149,6 @@ public class PlayerScript : MonoBehaviour
     {
         int AddProcent = Random.Range(5, 10 + 1); // с 5% до 10%
 
-        // если у игрока больше 700 ( бюджет ) то 
-        // ежегодной прирост для этого игрока не от 5 до 10% а от 2% до 5%
-        if (Budget > 700) AddProcent = Random.Range(2, 5 + 1);
-
         double add = 1 + AddProcent / 100.0;
         double newB = 0;
         if (GameManagerScript.GM.AI != null && GameManagerScript.GM.AI.AIPlayer == this)
