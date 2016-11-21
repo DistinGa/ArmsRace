@@ -407,7 +407,7 @@ public class CountryScript : MonoBehaviour
             AddSpy(NewAut, 1);
         }
 
-        Support = 100 - Support;    // оппозиция стала поддержкой
+        Support = 50;    // оппозиция стала поддержкой
         SetAuthority(); //Смена цвета границ
 
         ////Steam achievments
