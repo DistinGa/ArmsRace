@@ -9,7 +9,7 @@ public class SpaceRace : MonoBehaviour
     public Text txtInf;
     public Text Price;
     public Image InfluencePlate;
-    public Button LaunchButton;
+    public GameObject LaunchesPanel;
 
     public Sprite sprLocInf;    //Плашка с надписью "increase alliance influence"
     public Sprite sprGlobInf;   //Плашка с надписью "increase global influence"
@@ -53,6 +53,7 @@ public class SpaceRace : MonoBehaviour
     public void UpdateView()
     {
         PaintTechButtons();
+        LaunchesPanel.SetActive(GameManagerScript.GM.Player.GetTechStatus(1));
     }
 
     //Установка соответствующих спрайтов на кнопки технологий
