@@ -36,6 +36,8 @@ public class AI : MonoBehaviour {
 
         AIPlayer.MoonSwitchState = false;
         AIPlayer.Budget = StartBudget[SettingsScript.Settings.AIPower];
+        AIPlayer.History2.Add(StartBudget[SettingsScript.Settings.AIPower]);
+        AIPlayer.History.Add(0);
     }
 
     // ход AI

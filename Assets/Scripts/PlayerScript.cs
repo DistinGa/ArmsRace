@@ -160,12 +160,12 @@ public class PlayerScript : MonoBehaviour
             newB = GameManagerScript.GM.AI.NewYearBonus();
         }
 
-        newB = ((Budget + newB + Score) * add);
+        newB = Mathf.RoundToInt((float)((Budget + newB + Score) * add));
         //Сохранение истории показателей роста
         History.Add(AddProcent);
-        History2.Add(Mathf.RoundToInt((float)(newB - Budget)));
+        History2.Add((int)newB);
 
-        Budget = Mathf.RoundToInt((float)newB);
+        Budget = newB;
         SoundManager.SM.PlaySound("sound/moneyin");
     }
 

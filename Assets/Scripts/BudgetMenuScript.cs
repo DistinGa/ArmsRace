@@ -28,24 +28,19 @@ public class BudgetMenuScript : MonoBehaviour
 
     void UpdateView()
     {
-        PlayerScript AmericanPlaer = GameObject.FindGameObjectWithTag("American").GetComponent<PlayerScript>();
-        PlayerScript SovietPlaer = GameObject.FindGameObjectWithTag("Soviet").GetComponent<PlayerScript>();
-
-        transform.Find("USGNP").GetComponent<Text>().text = "GNP " + AmericanPlaer.Budget + "+" + AmericanPlaer.Score + " scores";
-        transform.Find("SUGNP").GetComponent<Text>().text = "GNP " + SovietPlaer.Budget + "+" + SovietPlaer.Score + " scores";
-
         PlayerScript pl = GameManagerScript.GM.Player;
         int milOutlay = pl.Outlays[OutlayField.air].Outlay + pl.Outlays[OutlayField.ground].Outlay + pl.Outlays[OutlayField.sea].Outlay + pl.Outlays[OutlayField.rocket].Outlay + pl.Outlays[OutlayField.military].Outlay;
         int dipOutlay = pl.Outlays[OutlayField.diplomat].Outlay + pl.Outlays[OutlayField.spy].Outlay;
         int spaceOutlay = pl.Outlays[OutlayField.spaceGround].Outlay + pl.Outlays[OutlayField.spaceLaunches].Outlay;
-        int expenditure;
+        int revenue, expenditure;
 
         expenditure = pl.TotalYearSpendings();
 
-        if (pl.History.Count > 0)
+        if (pl.History.Count > 1)
         {
-            Revenue.text = pl.History2[pl.History2.Count - 1].ToString() + " (" + pl.History[pl.History.Count - 1].ToString() + "%)";
-            Budget.text = pl.Budget.ToString("f0") + " (" + (pl.History2[pl.History2.Count - 1] - expenditure).ToString() + ")";
+            revenue = pl.History2[pl.History2.Count - 1] - pl.History2[pl.History2.Count - 2];
+            Revenue.text = revenue.ToString() + " (" + pl.History[pl.History.Count - 1].ToString() + "%)";
+            Budget.text = pl.Budget.ToString("f0") + " (" + (revenue - expenditure).ToString() + ")";
         }
         else
         {
