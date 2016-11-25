@@ -105,8 +105,8 @@ public class AI : MonoBehaviour {
         }
 
         //Если последний прирост бюджета минус предполагаемые траты за этот год > 1, считаем бюджет положительным.
-        if (AIPlayer.History2.Count > 0)
-            BudgetPlus = (AIPlayer.History2[AIPlayer.History2.Count - 1] - AIPlayer.TotalYearSpendings()) > 1;
+        if (AIPlayer.History2.Count > 1)
+            BudgetPlus = (AIPlayer.History2[AIPlayer.History2.Count - 1] - AIPlayer.History2[AIPlayer.History2.Count - 2] - AIPlayer.TotalYearSpendings()) > 1;
         else
             BudgetPlus = (0 - AIPlayer.TotalYearSpendings()) > 1;
 

@@ -99,7 +99,7 @@ public class BudgetMenuScript : MonoBehaviour
         xScale = chartPanel.rect.width / (YearsAmount - 1);
 
         //Рисуем годы на графике
-        int InitYear = 51 + FirstInd;   //51-й год - первый, где есть статистика
+        int InitYear = 50 + FirstInd;   //51-й год - первый, где есть статистика
 
         for (int i = 0; i < YearsAmount; i++)
         {
