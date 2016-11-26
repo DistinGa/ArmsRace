@@ -37,7 +37,7 @@ public class AI : MonoBehaviour {
         AIPlayer.MoonSwitchState = false;
         AIPlayer.Budget = StartBudget[SettingsScript.Settings.AIPower];
         AIPlayer.History2.Add(StartBudget[SettingsScript.Settings.AIPower]);
-        AIPlayer.History.Add(0);
+        AIPlayer.History.Add(5);
     }
 
     // ход AI
@@ -105,10 +105,7 @@ public class AI : MonoBehaviour {
         }
 
         //Если последний прирост бюджета минус предполагаемые траты за этот год > 1, считаем бюджет положительным.
-        if (AIPlayer.History2.Count > 1)
-            BudgetPlus = (AIPlayer.History2[AIPlayer.History2.Count - 1] - AIPlayer.History2[AIPlayer.History2.Count - 2] - AIPlayer.TotalYearSpendings()) > 1;
-        else
-            BudgetPlus = (0 - AIPlayer.TotalYearSpendings()) > 1;
+        BudgetPlus = (AIPlayer.LastRevenue - AIPlayer.TotalYearSpendings()) > 1;
 
         //Определение колонки таблицы
         int column;
@@ -138,10 +135,7 @@ public class AI : MonoBehaviour {
 
         //Повторный пересчёт бюджета (он мог измениться в результате предыдущего шага).
         //Если последний прирост бюджета минус предполагаемые траты за этот год > 1, считаем бюджет положительным.
-        if (AIPlayer.History2.Count > 0)
-            BudgetPlus = (AIPlayer.History2[AIPlayer.History2.Count - 1] - AIPlayer.TotalYearSpendings()) > 1;
-        else
-            BudgetPlus = (0 - AIPlayer.TotalYearSpendings()) > 1;
+        BudgetPlus = (AIPlayer.LastRevenue - AIPlayer.TotalYearSpendings()) > 1;
 
         //Определение колонки таблицы
         if (BudgetPlus)
@@ -489,7 +483,7 @@ public class AI : MonoBehaviour {
         }
     }
 
-    public double NewYearBonus()
+    public int NewYearBonus()
     {
         return YearCheat[SettingsScript.Settings.AIPower];
     }

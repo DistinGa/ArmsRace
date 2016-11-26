@@ -120,6 +120,7 @@ public struct SavedPlayerData
     public bool[] MilSeaTechStatus;
     public bool[] MilRocketTechStatus;
 
+    public int LastRevenue;
     public List<int> History;
     public List<int> History2;
     public int militaryAmount;

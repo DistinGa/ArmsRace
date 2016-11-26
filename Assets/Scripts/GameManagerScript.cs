@@ -117,7 +117,7 @@ public class GameManagerScript : MonoBehaviour
         Tick = GameSpeedPrefs[curSpeedIndex];
         Player.Budget = START_BUDGET;
         Player.History2.Add(START_BUDGET);
-        Player.History.Add(0);
+        Player.History.Add(5);
 
         //GameObject.Find("VideoLoader").GetComponent<LoadVideoInfo>().LoadInfo();
     }

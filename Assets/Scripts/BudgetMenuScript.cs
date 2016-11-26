@@ -38,7 +38,7 @@ public class BudgetMenuScript : MonoBehaviour
 
         if (pl.History.Count > 1)
         {
-            revenue = pl.History2[pl.History2.Count - 1] - pl.History2[pl.History2.Count - 2];
+            revenue = pl.LastRevenue;
             Revenue.text = revenue.ToString() + " (" + pl.History[pl.History.Count - 1].ToString() + "%)";
             Budget.text = pl.Budget.ToString("f0") + " (" + (revenue - expenditure).ToString() + ")";
         }
@@ -59,6 +59,7 @@ public class BudgetMenuScript : MonoBehaviour
         DrawChart(2);
     }
 
+    //variant: 1 - проценты роста; 2 - величина бюджета
     void DrawChart(int variant)
     {
         int YearsAmount = 10;   //количество лет на графике

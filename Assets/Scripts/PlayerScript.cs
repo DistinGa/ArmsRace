@@ -21,7 +21,8 @@ public class PlayerScript : MonoBehaviour
     public int CurLnchTechIndex;   //изучаемая в данный момент технология запусков
     public bool MoonSwitchState;   //состояние лунного переключателя
 
-
+    [HideInInspector]
+    public int LastRevenue = 0; //прирост бюджета в начале года
     public List<int> History = new List<int>(); //история процентов прироста бюджета
     public List<int> History2 = new List<int>();//история прироста бюджета
 
@@ -164,6 +165,7 @@ public class PlayerScript : MonoBehaviour
         //Сохранение истории показателей роста
         History.Add(AddProcent);
         History2.Add((int)newB);
+        LastRevenue = Mathf.RoundToInt((float)(newB - Budget));
 
         Budget = newB;
         SoundManager.SM.PlaySound("sound/moneyin");
@@ -320,6 +322,7 @@ public class PlayerScript : MonoBehaviour
         res.CurLnchTechIndex = CurLnchTechIndex;
         res.MoonSwitchState = MoonSwitchState;
 
+        res.LastRevenue = LastRevenue;
         res.History = History;
         res.History2 = History2;
         res.militaryAmount = militaryAmount;
@@ -344,6 +347,7 @@ public class PlayerScript : MonoBehaviour
         CurLnchTechIndex = sd.CurLnchTechIndex;
         MoonSwitchState = sd.MoonSwitchState;
 
+        LastRevenue = sd.LastRevenue;
         History = sd.History;
         History2 = sd.History2;
         militaryAmount = sd.militaryAmount;
