@@ -33,6 +33,6 @@ public class RandomEventQuestion : MonoBehaviour
         GameManagerScript.GM.ToggleTechMenu(gameObject);
         rEvent.eventDurationDiscounter = 0;
         rEvent = null;
-        Camera.main.GetComponent<CameraScript>().setOverMenu = false;
+        FindObjectOfType<CameraScriptXZ>().setOverMenu = false;
     }
 }
