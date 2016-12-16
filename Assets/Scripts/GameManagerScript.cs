@@ -739,7 +739,7 @@ public class GameManagerScript : MonoBehaviour
     // эмуляция схватки шпионов в стране раз в год.
     public void TestSpyCombat(CountryScript c)
     {
-        if (Random.Range(1, 12) != 12) return;
+        if (Random.Range(0, 12) != 0) return;
 
         // случайно раз в год схватки шпионов:
         int r = Random.Range(1, 100);
