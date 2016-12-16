@@ -262,7 +262,7 @@ public class AI : MonoBehaviour {
                 selectedCountries.Clear();
                 foreach (CountryScript c in countries)
                 {
-                    if (c.CanAddInf(AIPlayer.Authority) && c.Authority != AIPlayer.Authority && c.OppForce == 0 && c.GetInfluense(AIPlayer.Authority) <= borderInf && c.GetInfluense(AIPlayer.Authority) > c.GetInfluense(GM.GetOpponentTo(AIPlayer).Authority))
+                    if (c.CanAddInf(AIPlayer.Authority) && c.Authority != AIPlayer.Authority && c.OppForce == 0 && c.GetInfluense(AIPlayer.Authority) <= borderInf && c.GetInfluense(AIPlayer.Authority) > 50)
                         selectedCountries.Add(c);
                 }
 
@@ -293,7 +293,7 @@ public class AI : MonoBehaviour {
                     selectedCountries.Sort((x1, x2) => x1.Support < x2.Support ? -1 : 1);
                     actCountry = selectedCountries[0];
 
-                    actCountry.AddMilitary(AIPlayer.Authority, 1);
+                    AddMilitary(actCountry, 1);
                 }
 
                 //В страну своего альянса
@@ -313,11 +313,16 @@ public class AI : MonoBehaviour {
                     selectedCountries.Sort((x1, x2) => x1.Support < x2.Support ? -1 : 1);
                     actCountry = selectedCountries[0];
 
-                    actCountry.AddMilitary(AIPlayer.Authority, 1);
+                    AddMilitary(actCountry, 1);
                 }
                 break;
             case 2:
             //Ввод войск в военное время
+                if (AIPlayer.MilitaryPool == 0)
+                    return;
+
+                selectedCountries.Clear();
+
                 //Защита своих
                 foreach (CountryScript c in countries)
                 {
@@ -333,10 +338,6 @@ public class AI : MonoBehaviour {
                 }
 
                 //Нападение
-                if (AIPlayer.MilitaryPool == 0)
-                    return;
-
-                selectedCountries.Clear();
                 foreach (CountryScript c in countries)
                 {
                     if (c.Authority != AIPlayer.Authority && AIPlayer.WinPercentForCountry(c) >= 50 && c.Support < borderSupport && c.CanAddMil(AIPlayer.Authority))
@@ -352,9 +353,9 @@ public class AI : MonoBehaviour {
                             break;
                             
                         if (c.Authority == AIPlayer.Authority)
-                            c.AddMilitary(AIPlayer.Authority, 3);
+                            AddMilitary(c, 2);
                         else
-                            c.AddMilitary(AIPlayer.Authority, 2);
+                            AddMilitary(c, 2);
                     }
                 }
                 break;
@@ -447,7 +448,7 @@ public class AI : MonoBehaviour {
                 selectedCountries.Clear();
                 foreach (CountryScript c in countries)
                 {
-                    if (c.Authority != AIPlayer.Authority && c.GetInfluense(AIPlayer.Authority) > c.GetInfluense(GM.GetOpponentTo(AIPlayer).Authority) && c.GetInfluense(AIPlayer.Authority) <= 90 && c.SpyCount(AIPlayer.Authority) > 3 && c.CanOrgMeeting(AIPlayer.Authority))
+                    if (c.Authority != AIPlayer.Authority && c.GetInfluense(AIPlayer.Authority) > 50 && c.GetInfluense(AIPlayer.Authority) <= 90 && c.SpyCount(AIPlayer.Authority) > 3 && c.CanOrgMeeting(AIPlayer.Authority) && c.Support > 5)
                         selectedCountries.Add(c);
                 }
 
@@ -465,7 +466,7 @@ public class AI : MonoBehaviour {
                 selectedCountries.Clear();
                 foreach (CountryScript c in countries)
                 {
-                    if (c.Authority != GM.GetOpponentTo(AIPlayer).Authority && c.GetInfluense(AIPlayer.Authority) < c.GetInfluense(GM.GetOpponentTo(AIPlayer).Authority) && c.SpyCount(AIPlayer.Authority) > 3 && c.CanOrgParade(AIPlayer.Authority))
+                    if (c.Authority != GM.GetOpponentTo(AIPlayer).Authority && c.GetInfluense(AIPlayer.Authority) < c.GetInfluense(GM.GetOpponentTo(AIPlayer).Authority) && c.SpyCount(AIPlayer.Authority) > 3 && c.CanOrgParade(AIPlayer.Authority) && c.Support < 60)
                         selectedCountries.Add(c);
                 }
 
@@ -482,6 +483,22 @@ public class AI : MonoBehaviour {
                 break;
         }
     }
+
+    public void AddMilitary(CountryScript Country, int Amount)
+    {
+        if (AIPlayer.MilitaryPool == 0)
+            return;
+
+        GameManagerScript GM = GameManagerScript.GM;
+        bool milType = false;
+
+        Amount = Mathf.Min(Amount, AIPlayer.MilitaryPool);  //Если, вдруг, пытаемся ввести больше, чем есть в пуле.
+        milType = Country.AddMilitary(AIPlayer.Authority, Amount);
+
+        //Видео
+        GM.VQueue.AddRolex(GM.GetMySideVideoType(AIPlayer.Authority), VideoQueue.V_PRIO_NULL, milType ? VideoQueue.V_PUPPER_MIL_ADDED : VideoQueue.V_PUPPER_REV_ADDED, Country);
+    }
+
 
     public int NewYearBonus()
     {
