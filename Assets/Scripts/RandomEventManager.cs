@@ -150,7 +150,7 @@ public class RandomEventManager : MonoBehaviour
 
     public void OpenEvent()
     {
-        GameManagerScript.GM.SnapToCountry(rEvent.Country.Capital.position);
+        GameManagerScript.GM.SnapToCountry(rEvent.Country);
         if (!EventMenu.activeSelf)
             GameManagerScript.GM.ToggleTechMenu(EventMenu);
         EventMenu.GetComponent<RandomEventQuestion>().Init(rEvent);

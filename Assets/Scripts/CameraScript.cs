@@ -80,7 +80,7 @@ public class CameraScript : MonoBehaviour
 
     public void SetNewPosition(Transform NewTransform)
     {
-        SetNewPosition(new Vector3(NewTransform.position.x, NewTransform.position.y, transform.position.z));
-        GameManagerScript.GM.SnapToCountry(NewTransform.position);
+        SetNewPosition(new Vector3(NewTransform.position.x, transform.position.y, NewTransform.position.z));
+        //GameManagerScript.GM.SnapToCountry(NewTransform.position);
     }
 }

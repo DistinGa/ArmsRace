@@ -3,9 +3,10 @@ using System.Collections.Generic;
 
 public class CountryScript : MonoBehaviour
 {
-    public Sprite SprAmerican;
-    public Sprite SprSoviet;
-    public Sprite SprNeutral;
+    static Color amColor = new Color(0, 0, 1);
+    static Color sovColor = new Color(1, 0, 0);
+    static Color neuColor = new Color(1, 1, 0);
+
     public Sprite FlagS;
     public Sprite FlagNs;
 
@@ -84,17 +85,18 @@ public class CountryScript : MonoBehaviour
     //Установка цвета границы.
     public void SetAuthority()
     {
-        SpriteRenderer Spr = GetComponent<SpriteRenderer>();
+        Material mat = GetComponent<Renderer>().material;
+
         switch (Authority)
         {
             case Authority.Neutral:
-                Spr.sprite = SprNeutral;
+                mat.SetColor("_TintColor", new Color(neuColor.r, neuColor.g, neuColor.b, mat.GetColor("_TintColor").a));
                 break;
             case Authority.Amer:
-                Spr.sprite = SprAmerican;
+                mat.SetColor("_TintColor", new Color(amColor.r, amColor.g, amColor.b, mat.GetColor("_TintColor").a));
                 break;
             case Authority.Soviet:
-                Spr.sprite = SprSoviet;
+                mat.SetColor("_TintColor", new Color(sovColor.r, sovColor.g, sovColor.b, mat.GetColor("_TintColor").a));
                 break;
             default:
                 break;
@@ -103,8 +105,9 @@ public class CountryScript : MonoBehaviour
 
     public void OnMouseUpAsButton()
     {
-        if (!FindObjectOfType<CameraScript>().setOverMenu)
-            GameManagerScript.GM.SnapToCountry((Vector2)Input.mousePosition);
+        CameraScriptXZ cam = FindObjectOfType<CameraScriptXZ>();
+        if (!cam.setOverMenu)
+            GameManagerScript.GM.SnapToCountry(Camera.main.ScreenToWorldPoint(Input.mousePosition), this);
     }
 
     //Добавление влияния.

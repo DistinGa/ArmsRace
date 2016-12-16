@@ -12,6 +12,8 @@ public class GameManagerScript : MonoBehaviour
     public AI AI;
 
     private Camera MainCamera;
+    private CameraScriptXZ CameraRig;
+
     private RectTransform DownMenu;
     private RectTransform UpMenu;
     private RectTransform WarFlagsPanel;
@@ -105,21 +107,21 @@ public class GameManagerScript : MonoBehaviour
         else
             Player = transform.Find("SovPlayer").GetComponent<PlayerScript>();
 
+        //MainCamera = FindObjectOfType<Camera>();
         MainCamera = FindObjectOfType<Camera>();
+        CameraRig = FindObjectOfType<CameraScriptXZ>();
         DownMenu = GameObject.Find("DownMenu").GetComponent<RectTransform>();
         UpMenu = GameObject.Find("UpMenu").GetComponent<RectTransform>();
         WarFlagsPanel = GameObject.Find("WarFlagsPanel/Panel/Flags").GetComponent<RectTransform>();
-        Marker.GetComponent<SpriteRenderer>().sprite = Player.GetComponent<PlayerScript>().SprMarker;
+        Marker.GetComponent<Image>().sprite = Player.GetComponent<PlayerScript>().SprMarker;
 
-        MainCamera.GetComponent<CameraScript>().SetNewPosition(Player.MyCountry.Capital);
+        SnapToCountry(Player.MyCountry);
         VQueue = FindObjectOfType<VideoQueue>();
 
         Tick = GameSpeedPrefs[curSpeedIndex];
         Player.Budget = START_BUDGET;
         Player.History2.Add(START_BUDGET);
         Player.History.Add(5);
-
-        //GameObject.Find("VideoLoader").GetComponent<LoadVideoInfo>().LoadInfo();
     }
 
     void Update()
@@ -194,17 +196,18 @@ public class GameManagerScript : MonoBehaviour
         SceneManager.LoadScene(SceneName);
     }
 
-    //Переход к карте под курсором
-    public void SnapToCountry(Vector2 PointerPosition)
+    //Переход к карте страны (в столицу)
+    public void SnapToCountry(CountryScript c)
     {
-        SnapToCountry(MainCamera.ScreenToWorldPoint(PointerPosition) - new Vector3(0, 0, MainCamera.transform.position.z));
+        CameraRig.SetNewPosition(c.Capital);
+        SnapToCountry(c.Capital.position, c);
     }
 
-    //Переход к карте под маркером
-    public void SnapToCountry(Vector3 MarkerPosition)
+    //Переход к карте под курсором
+    public void SnapToCountry(Vector3 MarkerPosition, CountryScript c)
     {
-        Marker.transform.position = MarkerPosition;
-        Country = Physics2D.OverlapPoint(MarkerPosition).GetComponent<CountryScript>();
+        Marker.transform.position = new Vector3(MarkerPosition.x, Marker.transform.position.y, MarkerPosition.z);
+        Country = c;
         SnapToCountry();
     }
 

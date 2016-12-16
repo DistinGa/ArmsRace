@@ -22,7 +22,7 @@ public class RandomEventQuestion : MonoBehaviour
         if(GameManagerScript.GM.PayCost(GameManagerScript.GM.Player, rEvent.Cost))
             rEvent.Action();
 
-        GameManagerScript.GM.SnapToCountry(rEvent.Country.Capital.position);
+        GameManagerScript.GM.SnapToCountry(rEvent.Country);
 
         SelectNo();
     }

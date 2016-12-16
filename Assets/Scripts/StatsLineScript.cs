@@ -66,6 +66,6 @@ public class StatsLineScript : MonoBehaviour {
     //Позиционирование на страну, выбранную в списке
     public void ToCountry()
     {
-        Camera.main.GetComponent<CameraScript>().SetNewPosition(Country.Capital);
+        GameManagerScript.GM.SnapToCountry(Country);
     }
 }
