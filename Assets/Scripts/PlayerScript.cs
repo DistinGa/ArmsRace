@@ -52,8 +52,8 @@ public class PlayerScript : MonoBehaviour
         outlays.Add(OutlayField.ground, new UniOutlay(this, OutlayField.ground, GM.MDInstance.GetTechCost(OutlayField.ground, 1)));
         outlays.Add(OutlayField.sea, new UniOutlay(this, OutlayField.sea, GM.MDInstance.GetTechCost(OutlayField.sea, 1)));
         outlays.Add(OutlayField.rocket, new UniOutlay(this, OutlayField.rocket, GM.MDInstance.GetTechCost(OutlayField.rocket, 1)));
-        outlays.Add(OutlayField.military, new UniOutlay(this, OutlayField.military, GM.MILITARY_COST));
-        outlays.Add(OutlayField.spy, new UniOutlay(this, OutlayField.spy, GM.SPY_COST));
+        outlays.Add(OutlayField.military, new UniOutlay(this, OutlayField.military, GM.MILITARY_COST, 1));
+        outlays.Add(OutlayField.spy, new UniOutlay(this, OutlayField.spy, GM.SPY_COST, 1));
         outlays.Add(OutlayField.diplomat, new UniOutlay(this, OutlayField.diplomat, GM.DiplomatCost));
         outlays.Add(OutlayField.spaceGround, new UniOutlay(this, OutlayField.spaceGround, GM.SRInstance.GetTechCost(OutlayField.spaceGround, CurGndTechIndex)));
         outlays.Add(OutlayField.spaceLaunches, new UniOutlay(this, OutlayField.spaceLaunches, GM.SRInstance.GetTechCost(OutlayField.spaceLaunches, CurLnchTechIndex)));
@@ -372,10 +372,10 @@ public class UniOutlay
 
     int[] outlayHistory = new int[GameManagerScript.GM.MAX_MONTHS_NUM]; //история трат (1 based)
 
-    public UniOutlay(PlayerScript _player, OutlayField fld, int objectCost)
+    public UniOutlay(PlayerScript _player, OutlayField fld, int objectCost, int _outlay = 0)
     {
         budget = 0;
-        outlay = 0;
+        outlay = _outlay;
         //player = _player;
         authority = _player.Authority;
         cost = objectCost;
