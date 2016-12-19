@@ -430,7 +430,7 @@ public class VideoQueue : MonoBehaviour {
 
         CountryScript c = mVideoQueue[0].mCountry;
         if(c != null)
-            FindObjectOfType<CameraScript>().SetNewPosition(c.Capital);
+            GameManagerScript.GM.SnapToCountry(c);
     }
 
     //Проверка того, что ролик проигрывается или картинка новости показывается меньше пяти секунд.

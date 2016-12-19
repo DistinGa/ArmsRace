@@ -90,7 +90,7 @@ public class CountryScript : MonoBehaviour
         switch (Authority)
         {
             case Authority.Neutral:
-                mat.SetColor("_TintColor", new Color(neuColor.r, neuColor.g, neuColor.b, mat.GetColor("_TintColor").a));
+                mat.SetColor("_TintColor", new Color());
                 break;
             case Authority.Amer:
                 mat.SetColor("_TintColor", new Color(amColor.r, amColor.g, amColor.b, mat.GetColor("_TintColor").a));
