@@ -182,10 +182,16 @@ public class SpaceRace : MonoBehaviour
             {
                 Player.CurLnchTechIndex = 35;
             }
-            else if (!Player.GetTechStatus(40) && Player.GetTechStatus(35) && (Player.MoonSwitchState || !GM.GetOpponentTo(Player).GetTechStatus(40) || Player.GetTechStatus(39))) //высадка на Луну
+            else if (!Player.GetTechStatus(40) && Player.GetTechStatus(35) && (Player.MoonSwitchState || Player.GetTechStatus(39))) //высадка на Луну
             {
-                //переключатель включен - сразу изучаем высадку
-                //переключатель выключен - изучаем высадку, если оппонент её ещё не изучил или, если это последняя неизученная технология в линии запусков.
+                //переключатель включен или это последняя неизученная технология в линии запусков.
+                Player.CurLnchTechIndex = 40;
+            }
+            else if (!Player.GetTechStatus(40) && Player.GetTechStatus(35) && (!Player.MoonSwitchState && Player == GM.AI.AIPlayer && !GM.GetOpponentTo(Player).GetTechStatus(40))) //высадка на Луну
+            {
+                //переключатель выключен...
+                //Для ИИ - изучаем высадку, если оппонент её ещё не изучил
+                //Для игрока - не изучаем, пока не изучим все остальные технологии
                 Player.CurLnchTechIndex = 40;
             }
             else if (!Player.GetTechStatus(36) && Player.GetTechStatus(10) && Player.GetTechStatus(28))
