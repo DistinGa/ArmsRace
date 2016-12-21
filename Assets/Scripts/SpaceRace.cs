@@ -148,6 +148,24 @@ public class SpaceRace : MonoBehaviour
         Techs[TechInd].mGlobalInfl_1 = mGlobalInfl_1;
     }
 
+    public void SetTechno(int TechInd, string mUsaDescr, string mRusDescr, int mCost, int mLocalInfl, int mGlobalInfl, int mLocalInfl_1, int mGlobalInfl_1, Sprite mUsaSprite, Sprite mRusSprite)
+    {
+        Techs[TechInd].mUsaDescr = mUsaDescr;
+        Techs[TechInd].mRusDescr = mRusDescr;
+        Techs[TechInd].mCost = mCost;
+        Techs[TechInd].mLocalInfl = mLocalInfl;
+        Techs[TechInd].mGlobalInfl = mGlobalInfl;
+        Techs[TechInd].mLocalInfl_1 = mLocalInfl_1;
+        Techs[TechInd].mGlobalInfl_1 = mGlobalInfl_1;
+        Techs[TechInd].mUsaSprite = mUsaSprite;
+        Techs[TechInd].mRusSprite = mRusSprite;
+    }
+
+    public Technology GetTechno(int TechInd)
+    {
+        return (Techs[TechInd]);
+    }
+
     //Запуск технологии
     //Player - игрок, запускающий технологию
     //TechInd - индекс технологии
@@ -298,7 +316,7 @@ public class SpaceRace : MonoBehaviour
 }
 
 [System.Serializable]
-class Technology
+public class Technology
 {
     public int mPrevTechNumber = 0; // предыдущая технология
     public Sprite mUsaSprite = null, mRusSprite = null;
