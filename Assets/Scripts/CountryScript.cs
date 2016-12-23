@@ -394,23 +394,32 @@ public class CountryScript : MonoBehaviour
     //Смена правительства
     public void ChangeGov(Authority NewAut)
     {
-        Authority = NewAut;
-
-        //меняем местами войска
-        int mil = GovForce;
-        GovForce = OppForce;
-        OppForce = mil;
-
-        //Читтинг. Добавляем 3 военных и 1 шпиона. (Чтобы не возникало ситуации, когда после смены власти сразу происходит революция, т.к. нет правительственных сил)
-        if(GovForce < 3)
-            GovForce = 3;
-        if (!HaveSpy(NewAut))
+        if (Authority == Authority.Neutral && GovForce >= 8)
         {
-            GameManagerScript.GM.GetPlayerByAuthority(NewAut).SpyPool += 1;
-            AddSpy(NewAut, 1);
+            //Если в нейтральной стране на момент 80 оппозиция и 80 инфлуенс еще есть 8 или более нейтральных милитари то переворот-революция происходит без войны
+            Authority = NewAut;
+        }
+        else
+        {
+            Authority = NewAut;
+
+            //меняем местами войска
+            int mil = GovForce;
+            GovForce = OppForce;
+            OppForce = mil;
+
+            //Читтинг. Добавляем 3 военных и 1 шпиона. (Чтобы не возникало ситуации, когда после смены власти сразу происходит революция, т.к. нет правительственных сил)
+            if (GovForce < 3)
+                GovForce = 3;
+            if (!HaveSpy(NewAut))
+            {
+                GameManagerScript.GM.GetPlayerByAuthority(NewAut).SpyPool += 1;
+                AddSpy(NewAut, 1);
+            }
+
+            Support = 50;    // оппозиция стала поддержкой
         }
 
-        Support = 50;    // оппозиция стала поддержкой
         SetAuthority(); //Смена цвета границ
 
         ////Steam achievments
