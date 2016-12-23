@@ -629,6 +629,11 @@ public class GameManagerScript : MonoBehaviour
         CrisisDiscounter -= 1;
         if (Player.Budget <= CrisisBudget && CrisisDiscounter <= 0)
         {
+            foreach (var item in Player.Outlays)
+            {
+                item.Value.ResetBudget();
+            }
+
             CountryScript c = Player.MyCountry;
             c.Support -= 50f;
             CrisisDiscounter = 12;

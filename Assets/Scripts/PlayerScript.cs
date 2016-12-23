@@ -402,6 +402,13 @@ public class UniOutlay
         cost = nc;
     }
 
+    //Сброс бюджета. 
+    //Происходит при кризисе.
+    public void ResetBudget()
+    {
+        budget = 0;
+    }
+
     public void ChangeOutlet(int amount)
     {
         PlayerScript player = GameManagerScript.GM.GetPlayerByAuthority(authority);
