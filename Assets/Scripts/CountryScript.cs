@@ -86,16 +86,20 @@ public class CountryScript : MonoBehaviour
     public void SetAuthority()
     {
         Material mat = GetComponent<Renderer>().material;
+        Renderer rend = GetComponent<Renderer>();
 
         switch (Authority)
         {
             case Authority.Neutral:
-                mat.SetColor("_TintColor", new Color());
+                rend.enabled = false;
+                //mat.SetColor("_TintColor", new Color());
                 break;
             case Authority.Amer:
+                rend.enabled = true;
                 mat.SetColor("_TintColor", new Color(amColor.r, amColor.g, amColor.b, mat.GetColor("_TintColor").a));
                 break;
             case Authority.Soviet:
+                rend.enabled = true;
                 mat.SetColor("_TintColor", new Color(sovColor.r, sovColor.g, sovColor.b, mat.GetColor("_TintColor").a));
                 break;
             default:
@@ -394,6 +398,8 @@ public class CountryScript : MonoBehaviour
     //Смена правительства
     public void ChangeGov(Authority NewAut)
     {
+        Support = 50;    // оппозиция стала поддержкой
+
         if (Authority == Authority.Neutral && GovForce >= 8)
         {
             //Если в нейтральной стране на момент 80 оппозиция и 80 инфлуенс еще есть 8 или более нейтральных милитари то переворот-революция происходит без войны
@@ -416,8 +422,6 @@ public class CountryScript : MonoBehaviour
                 GameManagerScript.GM.GetPlayerByAuthority(NewAut).SpyPool += 1;
                 AddSpy(NewAut, 1);
             }
-
-            Support = 50;    // оппозиция стала поддержкой
         }
 
         SetAuthority(); //Смена цвета границ
