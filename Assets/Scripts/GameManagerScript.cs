@@ -79,6 +79,7 @@ public class GameManagerScript : MonoBehaviour
     [Tooltip("количество изменений трат в год")]
     public int OutlayChangesPerYear;
     //делегат для запуска событий конца месяца
+    //(только обновление выводимой информации, не нужно сюда добавлять действия)
     dlgtMonthTick monthSubscribers;
     //Массив с продолжительностями тиков основного цикла
     [Tooltip("Массив с продолжительностями тиков основного цикла")]
@@ -620,10 +621,6 @@ public class GameManagerScript : MonoBehaviour
 
         //Случайные события
         TestRandomEvent();
-        
-        //события по подписке
-        if (monthSubscribers != null)
-            monthSubscribers();
 
         //Финансовый кризис при опускании бюджета до значения CrisisBudget
         CrisisDiscounter -= 1;
@@ -639,6 +636,10 @@ public class GameManagerScript : MonoBehaviour
             CrisisDiscounter = 12;
             VQueue.AddRolex(VideoQueue.V_TYPE_GLOB, VideoQueue.V_PRIO_PRESSING, VideoQueue.V_PUPPER_EVENT_FINANCE, c);
         }
+        
+        //события по подписке (обновление выводимой информации)
+        if (monthSubscribers != null)
+            monthSubscribers();
     }
 
     //Ежегодное обновление информации
