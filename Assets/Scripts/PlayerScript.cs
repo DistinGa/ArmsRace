@@ -36,6 +36,8 @@ public class PlayerScript : MonoBehaviour
     //траты на открытие теххнологий, военныхх, дипломатов и шпионов
     Dictionary<OutlayField, UniOutlay> outlays;
     int outlayChangeDiscounter;
+    //Дискаунтер для кризиса при опускании бюджета до CrisisBudget. Кризис не чаще раза в год.
+    int crisisDiscounter = 0;
 
     // Use this for initialization
     void Start()
@@ -289,6 +291,23 @@ public class PlayerScript : MonoBehaviour
 
     public void NewMonth()
     {
+        GameManagerScript GM = GameManagerScript.GM;
+        //Финансовый кризис при опускании бюджета до значения CrisisBudget
+        crisisDiscounter -= 1;
+        if (Budget <= GM.CrisisBudget && crisisDiscounter <= 0)
+        {
+            foreach (var item in Outlays)
+            {
+                item.Value.ResetOutlay();
+            }
+
+            CountryScript c = MyCountry;
+            c.Support -= 50f;
+            crisisDiscounter = 12;
+            GM.VQueue.AddRolex(VideoQueue.V_TYPE_GLOB, VideoQueue.V_PRIO_PRESSING, VideoQueue.V_PUPPER_EVENT_FINANCE, c);
+        }
+
+        //Ежемесячные инвестиции
         foreach (var item in outlays)
         {
             item.Value.MakeOutlet();
@@ -404,9 +423,9 @@ public class UniOutlay
 
     //Сброс бюджета. 
     //Происходит при кризисе.
-    public void ResetBudget()
+    public void ResetOutlay()
     {
-        budget = 0;
+        outlay = 0;
     }
 
     public void ChangeOutlet(int amount)

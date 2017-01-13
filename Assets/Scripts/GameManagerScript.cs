@@ -89,8 +89,6 @@ public class GameManagerScript : MonoBehaviour
     public int curSpeedIndex = 1;
     [Tooltip("Бюджет, при достижении которого наступает финансовый кризис")]
     public double CrisisBudget = 500;
-    //Дискаунтер для кризиса при опускании бюджета до CrisisBudget. Кризис не чаще раза в год.
-    int CrisisDiscounter = 0;
 
     public void Awake()
     {
@@ -621,21 +619,6 @@ public class GameManagerScript : MonoBehaviour
 
         //Случайные события
         TestRandomEvent();
-
-        //Финансовый кризис при опускании бюджета до значения CrisisBudget
-        CrisisDiscounter -= 1;
-        if (Player.Budget <= CrisisBudget && CrisisDiscounter <= 0)
-        {
-            foreach (var item in Player.Outlays)
-            {
-                item.Value.ResetBudget();
-            }
-
-            CountryScript c = Player.MyCountry;
-            c.Support -= 50f;
-            CrisisDiscounter = 12;
-            VQueue.AddRolex(VideoQueue.V_TYPE_GLOB, VideoQueue.V_PRIO_PRESSING, VideoQueue.V_PUPPER_EVENT_FINANCE, c);
-        }
         
         //события по подписке (обновление выводимой информации)
         if (monthSubscribers != null)
