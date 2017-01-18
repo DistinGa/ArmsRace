@@ -105,7 +105,8 @@ public class AI : MonoBehaviour {
         }
 
         //Если последний прирост бюджета минус предполагаемые траты за этот год > 1, считаем бюджет положительным.
-        BudgetPlus = (AIPlayer.LastRevenue - AIPlayer.TotalYearSpendings()) > 1;
+        int balance = AIPlayer.LastRevenue - AIPlayer.TotalYearSpendings();
+        BudgetPlus = balance > 1;
 
         //Определение колонки таблицы
         int column;
@@ -127,7 +128,11 @@ public class AI : MonoBehaviour {
                 eventProc -= investing.GetValue(i, column);
                 if (eventProc < 0)
                 {
-                    DoInvest(i);
+                    //Если бюджет положительный и будущая инвестиция не выведет его в минус, выполняем эту инвестицию
+                    //Если бюджет отрицательный, уменьшаем инвестицию
+                    if(!BudgetPlus || (balance - 1 * (12 - GM.CurrentMonth % 12) > 1))
+                        DoInvest(i, BudgetPlus);
+
                     break;
                 }
             }
@@ -161,13 +166,20 @@ public class AI : MonoBehaviour {
     }
 
     //Выполнение выбранной инвестиции
-    private void DoInvest(int i)
+    private void DoInvest(int i, bool BudgetPlus)
     {
+        int amount = 0;
+
+        if (BudgetPlus)
+            amount = 1;
+        else
+            amount = -1;
+
         switch (i)
         {
             case 0:
                 //diplomat
-                AIPlayer.Outlays[OutlayField.diplomat].ChangeOutlet(1);
+                AIPlayer.Outlays[OutlayField.diplomat].ChangeOutlet(amount);
                 break;
             case 1:
                 //military
@@ -177,45 +189,45 @@ public class AI : MonoBehaviour {
                 switch (way)
                 {
                     case 0:
-                        AIPlayer.Outlays[OutlayField.military].ChangeOutlet(1);
+                        AIPlayer.Outlays[OutlayField.military].ChangeOutlet(amount);
                         break;
                     case 1:
                         if(AIPlayer.GetCurMilTech(OutlayField.air) > 0) //если изучены все технологии в линии, не добавляем инвестиций
-                            AIPlayer.Outlays[OutlayField.air].ChangeOutlet(1);
+                            AIPlayer.Outlays[OutlayField.air].ChangeOutlet(amount);
                         else if (AIPlayer.GetCurMilTech(OutlayField.ground) > 0)    //если все технологии в линии изучены, пробуем изучить другую технологию
-                            AIPlayer.Outlays[OutlayField.ground].ChangeOutlet(1);
+                            AIPlayer.Outlays[OutlayField.ground].ChangeOutlet(amount);
                         else if (AIPlayer.GetCurMilTech(OutlayField.sea) > 0)
-                            AIPlayer.Outlays[OutlayField.sea].ChangeOutlet(1);
+                            AIPlayer.Outlays[OutlayField.sea].ChangeOutlet(amount);
                         else if (AIPlayer.GetCurMilTech(OutlayField.military) > 0)  //если все линии изучены полностью, вкладываем в войска
-                            AIPlayer.Outlays[OutlayField.military].ChangeOutlet(1);
+                            AIPlayer.Outlays[OutlayField.military].ChangeOutlet(amount);
 
                         break;
                     case 2:
                         if (AIPlayer.GetCurMilTech(OutlayField.ground) > 0)
-                            AIPlayer.Outlays[OutlayField.ground].ChangeOutlet(1);
+                            AIPlayer.Outlays[OutlayField.ground].ChangeOutlet(amount);
                         else if (AIPlayer.GetCurMilTech(OutlayField.sea) > 0)
-                            AIPlayer.Outlays[OutlayField.sea].ChangeOutlet(1);
+                            AIPlayer.Outlays[OutlayField.sea].ChangeOutlet(amount);
                         else if (AIPlayer.GetCurMilTech(OutlayField.air) > 0)
-                            AIPlayer.Outlays[OutlayField.air].ChangeOutlet(1);
+                            AIPlayer.Outlays[OutlayField.air].ChangeOutlet(amount);
                         else if (AIPlayer.GetCurMilTech(OutlayField.military) > 0)
-                            AIPlayer.Outlays[OutlayField.military].ChangeOutlet(1);
+                            AIPlayer.Outlays[OutlayField.military].ChangeOutlet(amount);
 
                         break;
                     case 3:
                         if (AIPlayer.GetCurMilTech(OutlayField.sea) > 0)
-                            AIPlayer.Outlays[OutlayField.sea].ChangeOutlet(1);
+                            AIPlayer.Outlays[OutlayField.sea].ChangeOutlet(amount);
                         else if (AIPlayer.GetCurMilTech(OutlayField.air) > 0)
-                            AIPlayer.Outlays[OutlayField.air].ChangeOutlet(1);
+                            AIPlayer.Outlays[OutlayField.air].ChangeOutlet(amount);
                         else if (AIPlayer.GetCurMilTech(OutlayField.ground) > 0)    //если все технологии в линии изучены, пробуем изучить другую технологию
-                            AIPlayer.Outlays[OutlayField.ground].ChangeOutlet(1);
+                            AIPlayer.Outlays[OutlayField.ground].ChangeOutlet(amount);
                         else if (AIPlayer.GetCurMilTech(OutlayField.military) > 0)
-                            AIPlayer.Outlays[OutlayField.military].ChangeOutlet(1);
+                            AIPlayer.Outlays[OutlayField.military].ChangeOutlet(amount);
 
                         break;
                 }
                 break;
             case 2:
-                AIPlayer.Outlays[OutlayField.spy].ChangeOutlet(1);
+                AIPlayer.Outlays[OutlayField.spy].ChangeOutlet(amount);
                 //spy
                 break;
             case 3:
@@ -223,16 +235,16 @@ public class AI : MonoBehaviour {
                 if (gndSpaceTech)
                 {
                     if(AIPlayer.CurGndTechIndex != -1)  //добавляем инвестиции, если изучены не все технологии в линии
-                        AIPlayer.Outlays[OutlayField.spaceGround].ChangeOutlet(1);
+                        AIPlayer.Outlays[OutlayField.spaceGround].ChangeOutlet(amount);
                     else if (AIPlayer.CurLnchTechIndex != -1 && AIPlayer.CurGndTechIndex > 1)   //иначе изучаем технологию другой линии
-                        AIPlayer.Outlays[OutlayField.spaceLaunches].ChangeOutlet(1);
+                        AIPlayer.Outlays[OutlayField.spaceLaunches].ChangeOutlet(amount);
                 }
                 else
                 {
                     if(AIPlayer.CurLnchTechIndex != -1 && AIPlayer.CurGndTechIndex > 1)
-                        AIPlayer.Outlays[OutlayField.spaceLaunches].ChangeOutlet(1);
+                        AIPlayer.Outlays[OutlayField.spaceLaunches].ChangeOutlet(amount);
                     else if (AIPlayer.CurGndTechIndex != -1)
-                        AIPlayer.Outlays[OutlayField.spaceGround].ChangeOutlet(1);
+                        AIPlayer.Outlays[OutlayField.spaceGround].ChangeOutlet(amount);
                 }
 
                 gndSpaceTech = !gndSpaceTech;   //в следующий раз будем инвестировать в другую линию
