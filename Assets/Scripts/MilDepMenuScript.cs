@@ -7,6 +7,7 @@ public class MilDepMenuScript : MonoBehaviour
     public Image Image;
     public Text Description;
     public Text FirePower;
+    public Text Price;
 
     public Sprite BlueAirIcon;
     public Sprite RedAirIcon;
@@ -188,66 +189,40 @@ public class MilDepMenuScript : MonoBehaviour
     //Заполнение отображаемых полей при нажатии кнопки технологии
     public void ShowAirTechInfo(int ind)
     {
-        GameManagerScript GM = GameManagerScript.GM;
-
-        if (GM.Player.Authority == Authority.Amer)
-        {
-            Description.text = airTechs[ind].mUsaDescr;
-            Image.sprite = airTechs[ind].mUsaSprite;
-        }
-        else
-        {
-            Description.text = airTechs[ind].mRusDescr;
-            Image.sprite = airTechs[ind].mRusSprite;
-        }
+        ShowTechInfo(airTechs, ind);
     }
 
     public void ShowGndTechInfo(int ind)
     {
-        GameManagerScript GM = GameManagerScript.GM;
-
-        if (GM.Player.Authority == Authority.Amer)
-        {
-            Description.text = gndTechs[ind].mUsaDescr;
-            Image.sprite = gndTechs[ind].mUsaSprite;
-        }
-        else
-        {
-            Description.text = gndTechs[ind].mRusDescr;
-            Image.sprite = gndTechs[ind].mRusSprite;
-        }
+        ShowTechInfo(gndTechs, ind);
     }
 
     public void ShowSeaTechInfo(int ind)
     {
-        GameManagerScript GM = GameManagerScript.GM;
-
-        if (GM.Player.Authority == Authority.Amer)
-        {
-            Description.text = seaTechs[ind].mUsaDescr;
-            Image.sprite = seaTechs[ind].mUsaSprite;
-        }
-        else
-        {
-            Description.text = seaTechs[ind].mRusDescr;
-            Image.sprite = seaTechs[ind].mRusSprite;
-        }
+        ShowTechInfo(seaTechs, ind);
     }
 
     public void ShowRocketTechInfo(int ind)
+    {
+        ShowTechInfo(rocketTechs, ind);
+    }
+
+    void ShowTechInfo(MilTechnology[] milTech, int ind)
     {
         GameManagerScript GM = GameManagerScript.GM;
 
         if (GM.Player.Authority == Authority.Amer)
         {
-            Description.text = rocketTechs[ind].mUsaDescr;
-            Image.sprite = rocketTechs[ind].mUsaSprite;
+            Description.text = milTech[ind].mUsaDescr;
+            Image.sprite = milTech[ind].mUsaSprite;
         }
         else
         {
-            Description.text = rocketTechs[ind].mRusDescr;
-            Image.sprite = rocketTechs[ind].mRusSprite;
+            Description.text = milTech[ind].mRusDescr;
+            Image.sprite = milTech[ind].mRusSprite;
         }
+
+        Price.text = "$" + milTech[ind].mCost.ToString();
     }
 
     //Возвращает номер предыдущей технологии
