@@ -38,6 +38,7 @@ public class AI : MonoBehaviour {
         AIPlayer.Budget = StartBudget[SettingsScript.Settings.AIPower];
         AIPlayer.History2.Add(StartBudget[SettingsScript.Settings.AIPower]);
         AIPlayer.History.Add(5);
+        AIPlayer.LastRevenue = (int)(AIPlayer.Budget - GameManagerScript.GM.CrisisBudget);
     }
 
     // ход AI
