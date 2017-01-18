@@ -260,9 +260,13 @@ public class GameManagerScript : MonoBehaviour
         DownMenu.Find("Page2/SUAirFP").GetComponent<Text>().text = "(" + Country.Air.ToString() + ") " + (Country.Air * suPlayer.FirePower(OutlayField.air)).ToString();
         DownMenu.Find("Page2/SUGndFP").GetComponent<Text>().text = "(" + Country.Ground.ToString() + ") " + (Country.Ground * suPlayer.FirePower(OutlayField.ground)).ToString();
         DownMenu.Find("Page2/SUSeaFP").GetComponent<Text>().text = "(" + Country.Sea.ToString() + ") " + (Country.Sea * suPlayer.FirePower(OutlayField.sea)).ToString();
-        //проценты на победу
+
         int usaFP = Country.Air * usaPlayer.FirePower(OutlayField.air) + Country.Ground * usaPlayer.FirePower(OutlayField.ground) + Country.Sea * usaPlayer.FirePower(OutlayField.sea);
         int suFP = Country.Air * suPlayer.FirePower(OutlayField.air) + Country.Ground * suPlayer.FirePower(OutlayField.ground) + Country.Sea * suPlayer.FirePower(OutlayField.sea);
+        DownMenu.Find("Page2/USA_FP").GetComponent<Text>().text = usaFP.ToString();
+        DownMenu.Find("Page2/SU_FP").GetComponent<Text>().text = suFP.ToString();
+
+        //проценты на победу
         DownMenu.Find("Page2/USA%").GetComponent<Text>().text = Mathf.RoundToInt(100f * usaFP / (usaFP + suFP)).ToString();
         DownMenu.Find("Page2/SU%").GetComponent<Text>().text = (100 - Mathf.RoundToInt(100f * usaFP / (usaFP + suFP))).ToString();
 
