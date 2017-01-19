@@ -41,8 +41,6 @@ public class SpaceRace : MonoBehaviour
     {
         GameManagerScript.GM.SubscribeMonth(new dlgtMonthTick(UpdateView));
         UpdateView();
-        transform.Find("Toggles/Toggle1").GetComponent<Toggle>().isOn = true;
-        ShowTechInfo(1);
     }
 
     public void OnDisable()
@@ -54,6 +52,19 @@ public class SpaceRace : MonoBehaviour
     {
         PaintTechButtons();
         LaunchesPanel.SetActive(GameManagerScript.GM.Player.GetTechStatus(1));
+        //Обновление информации о "нажатом" элементе
+        Transform tgr = transform.Find("Toggles");
+        int i = 0;
+        while (i < tgr.childCount)
+        {
+            if (tgr.GetChild(i).GetComponent<Toggle>().isOn)
+                break;
+
+            i++;
+        }
+
+        if (i < tgr.childCount)
+            ShowTechInfo(i + 1);
     }
 
     //Установка соответствующих спрайтов на кнопки технологий
@@ -112,7 +123,7 @@ public class SpaceRace : MonoBehaviour
             Image.sprite = Techs[ind].mRusSprite;
         }
 
-        Price.text = "$" + Techs[ind].mCost.ToString();
+        Price.text = "$" + GetTechCost(ind, GM.Player).ToString();
 
         //Технологии из нижнего ряда добавляют влияние только в союзных странах, технологии из вертикальных веток - во всех странах.
         if (ind < 16)
@@ -179,15 +190,8 @@ public class SpaceRace : MonoBehaviour
 
         if (TechInd <= GndTechCount)
         {
-            //Уменьшение стоимости технологий запуска на 2%
-            for (int i = GndTechCount + 1; i < TechCount; i++)
-            {
-                Techs[i].mCost = Mathf.RoundToInt(Techs[i].mCost * 0.98f);
-            }
-            Player.Outlays[OutlayField.spaceLaunches].SetNewCost(Mathf.RoundToInt(Player.Outlays[OutlayField.spaceLaunches].Cost *  0.98f)); //уменьшение стоимости изучаемой в данный момент технологии
-
-            if (TechInd < GndTechCount) //Увеличиваем счётчик, если изучили не последнюю наземную технологию.
-                Player.CurGndTechIndex++;
+            Player.CurGndTechIndex++;
+            Player.Outlays[OutlayField.spaceLaunches].SetNewCost(GetTechCost(Player.CurLnchTechIndex, Player)); //уменьшение стоимости изучаемой в данный момент технологии запусков
         }
         else
         {
@@ -273,7 +277,7 @@ public class SpaceRace : MonoBehaviour
 
         int nextCost = 0;
         if (TechInd < GndTechCount)
-            nextCost = Techs[Player.CurGndTechIndex].mCost;
+            nextCost = GetTechCost(Player.CurGndTechIndex, Player);
         if (Player.GetTechStatus(GndTechCount))    //была запущена последняя технология в линии
         {
             nextCost = 0;
@@ -282,7 +286,7 @@ public class SpaceRace : MonoBehaviour
         if (TechInd != Player.CurLnchTechIndex) //если они равны, значит не было переключения на новую технологию (переключаются только технологии запусков)
         {
             if (TechInd > GndTechCount && TechInd < TechCount)
-                nextCost = Techs[Player.CurLnchTechIndex].mCost;
+                nextCost = GetTechCost(Player.CurLnchTechIndex, Player);
         }
         else
         {
@@ -303,9 +307,24 @@ public class SpaceRace : MonoBehaviour
     //}
 
     //стоимость изучения технологии
-    public int GetTechCost(OutlayField field, int indx)
+    public int GetTechCost(int indx, PlayerScript pl)
     {
-        return Techs[indx].mCost;
+        int cost = cost = Techs[indx].mCost;
+        int dscMulty = 0;
+
+        if (indx > GndTechCount)
+        {
+            //технологии запусков
+            //учитываем скидки от изученных наземных технологий
+            if (pl.CurGndTechIndex == -1)   //изучили все наземные технологии
+                dscMulty = GndTechCount;
+            else
+                dscMulty = pl.CurGndTechIndex - 1;
+
+            cost = Mathf.RoundToInt(Techs[indx].mCost * (1 - dscMulty * 0.02f));
+        }
+
+        return cost;
     }
 
     public void MoonSwitchSet()
