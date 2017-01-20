@@ -63,8 +63,7 @@ public class AI : MonoBehaviour {
         {
             if (c.Authority != AIPlayer.Authority)
             {
-                if (c.CanChangeGov(AIPlayer.Authority))
-                    c.ChangeGov(AIPlayer.Authority);
+                GM.ChangeGovernment(c, AIPlayer.Authority);
             }
         }
 
