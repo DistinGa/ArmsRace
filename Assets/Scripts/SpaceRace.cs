@@ -64,7 +64,7 @@ public class SpaceRace : MonoBehaviour
         }
 
         if (i < tgr.childCount)
-            ShowTechInfo(i + 1);
+            showTechInfo(i + 1);
     }
 
     //Установка соответствующих спрайтов на кнопки технологий
@@ -109,8 +109,14 @@ public class SpaceRace : MonoBehaviour
     //Заполнение отображаемых полей при нажатии кнопки технологии
     public void ShowTechInfo(int ind)
     {
-        GameManagerScript GM = GameManagerScript.GM;
         SoundManager.SM.PlaySound("sound/click2");
+        showTechInfo(ind);
+    }
+
+    //Заполнение отображаемых полей (реальные действия)
+    void showTechInfo(int ind)
+    {
+        GameManagerScript GM = GameManagerScript.GM;
 
         if (GM.Player.Authority == Authority.Amer)
         {
