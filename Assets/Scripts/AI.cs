@@ -16,6 +16,7 @@ public class AI : MonoBehaviour {
     public int[] YearCheat;
     [Tooltip("Прибавка к бюджету в начале месяца, если AI проигрывает по очкам")]
     public int[] MonthCheat;
+    public int[] addBudgetGrowths;
 
 
     bool gndSpaceTech = true;   //В космические технологии АИ вкладывается поочередно (ground/launches). Флаг хранит направление вложения.
@@ -39,6 +40,7 @@ public class AI : MonoBehaviour {
         AIPlayer.History2.Add(StartBudget[SettingsScript.Settings.AIPower]);
         AIPlayer.History.Add(5);
         AIPlayer.LastRevenue = (int)(AIPlayer.Budget - GameManagerScript.GM.CrisisBudget);
+        AIPlayer.growPPercentPerPP = addBudgetGrowths[SettingsScript.Settings.AIPower];
     }
 
     // ход AI

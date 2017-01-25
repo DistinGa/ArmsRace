@@ -40,7 +40,7 @@ public class PlayerScript : MonoBehaviour
     int crisisDiscounter = 0;
     //Процент дополнительного прироста бюджета в начале следующего года (если эта опция "куплена" за political points)
     public int addBudgetGrowPercent = 0;
-    int growPPercentPerPP = 1;  //процент доп. прироста за 1 political point
+    public int growPPercentPerPP = 1;  //процент доп. прироста за 1 political point
 
     // Use this for initialization
     void Start()
