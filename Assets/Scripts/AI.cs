@@ -119,7 +119,7 @@ public class AI : MonoBehaviour {
             column += 1;
 
         //Выбор инвестиций
-        if (AIPlayer.OutlayChangeDiscounter > 0)
+        if (AIPlayer.PoliticalPoints > 0)
         {
             eventProc = Random.Range(0, 100);
 
@@ -249,6 +249,10 @@ public class AI : MonoBehaviour {
                 }
 
                 gndSpaceTech = !gndSpaceTech;   //в следующий раз будем инвестировать в другую линию
+                break;
+            case 5:
+                //инвестирование в дополнительный прирост бюджета в начале следующего года
+                AIPlayer.AddBudgetGrow();
                 break;
             default:
                 //ничего не делаем

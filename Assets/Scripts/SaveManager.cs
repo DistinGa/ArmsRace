@@ -132,6 +132,7 @@ public struct SavedPlayerData
     public int CurGndTechIndex;
     public int CurLnchTechIndex;
     public bool MoonSwitchState;
+    public int addBudgetGrowPercent;
 }
 
 [System.Serializable]

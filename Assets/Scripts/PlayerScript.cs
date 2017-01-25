@@ -35,9 +35,12 @@ public class PlayerScript : MonoBehaviour
     int diplomatAmount = 0;
     //траты на открытие теххнологий, военныхх, дипломатов и шпионов
     Dictionary<OutlayField, UniOutlay> outlays;
-    int outlayChangeDiscounter;
+    int politicalPoints;
     //Дискаунтер для кризиса при опускании бюджета до CrisisBudget. Кризис не чаще раза в год.
     int crisisDiscounter = 0;
+    //Процент дополнительного прироста бюджета в начале следующего года (если эта опция "куплена" за political points)
+    public int addBudgetGrowPercent = 0;
+    int growPPercentPerPP = 1;  //процент доп. прироста за 1 political point
 
     // Use this for initialization
     void Start()
@@ -60,15 +63,15 @@ public class PlayerScript : MonoBehaviour
         outlays.Add(OutlayField.spaceGround, new UniOutlay(this, OutlayField.spaceGround, GM.SRInstance.GetTechCost(CurGndTechIndex, this)));
         outlays.Add(OutlayField.spaceLaunches, new UniOutlay(this, OutlayField.spaceLaunches, GM.SRInstance.GetTechCost(CurLnchTechIndex, this)));
 
-        outlayChangeDiscounter = GameManagerScript.GM.OutlayChangesPerYear;
+        politicalPoints = GameManagerScript.GM.OutlayChangesPerYear;
     }
 
-    public int OutlayChangeDiscounter
+    public int PoliticalPoints
     {
-        get { return outlayChangeDiscounter; }
+        get { return politicalPoints; }
         set
         {
-            outlayChangeDiscounter = value;
+            politicalPoints = value;
             GameManagerScript.GM.ShowHighWinInfo();
         }
     }
@@ -156,7 +159,7 @@ public class PlayerScript : MonoBehaviour
     {
         int AddProcent = Random.Range(5, 10 + 1); // с 5% до 10%
 
-        double add = 1 + AddProcent / 100.0;
+        double add = 1 + (AddProcent + addBudgetGrowPercent) / 100.0;
         double newB = 0;
         if (GameManagerScript.GM.AI != null && GameManagerScript.GM.AI.AIPlayer == this)
         {
@@ -316,13 +319,22 @@ public class PlayerScript : MonoBehaviour
 
     public void NewYear()
     {
-        OutlayChangeDiscounter = GameManagerScript.GM.OutlayChangesPerYear;
+        PoliticalPoints = GameManagerScript.GM.OutlayChangesPerYear;
         AnnualGrowthBudget();
     }
 
     public int TotalYearSpendings()
     {
         return Outlays[OutlayField.air].YearSpendings() + Outlays[OutlayField.diplomat].YearSpendings() + Outlays[OutlayField.ground].YearSpendings() + Outlays[OutlayField.military].YearSpendings() + Outlays[OutlayField.rocket].YearSpendings() + Outlays[OutlayField.sea].YearSpendings() + Outlays[OutlayField.spy].YearSpendings() + Outlays[OutlayField.spaceLaunches].YearSpendings() + Outlays[OutlayField.spaceGround].YearSpendings();
+    }
+
+    public void AddBudgetGrow()
+    {
+        if (politicalPoints > 0)
+        {
+            addBudgetGrowPercent += growPPercentPerPP;
+            PoliticalPoints--;
+        }
     }
 
     //Сохранение/загрузка
@@ -340,6 +352,7 @@ public class PlayerScript : MonoBehaviour
         res.CurGndTechIndex = CurGndTechIndex;
         res.CurLnchTechIndex = CurLnchTechIndex;
         res.MoonSwitchState = MoonSwitchState;
+        res.addBudgetGrowPercent = addBudgetGrowPercent;
 
         res.LastRevenue = LastRevenue;
         res.History = History;
@@ -347,7 +360,7 @@ public class PlayerScript : MonoBehaviour
         res.militaryAmount = militaryAmount;
         res.spyAmount = spyAmount;
         res.diplomatAmount = diplomatAmount;
-        res.outlayChangeDiscounter = OutlayChangeDiscounter;
+        res.outlayChangeDiscounter = PoliticalPoints;
 
         res.outlays = outlays;
 
@@ -365,6 +378,7 @@ public class PlayerScript : MonoBehaviour
         CurGndTechIndex = sd.CurGndTechIndex;
         CurLnchTechIndex = sd.CurLnchTechIndex;
         MoonSwitchState = sd.MoonSwitchState;
+        addBudgetGrowPercent = sd.addBudgetGrowPercent;
 
         LastRevenue = sd.LastRevenue;
         History = sd.History;
@@ -374,7 +388,7 @@ public class PlayerScript : MonoBehaviour
         diplomatAmount = sd.diplomatAmount;
 
         outlays = sd.outlays;
-        OutlayChangeDiscounter = sd.outlayChangeDiscounter;
+        PoliticalPoints = sd.outlayChangeDiscounter;
     }
 }
 
@@ -432,13 +446,13 @@ public class UniOutlay
     {
         PlayerScript player = GameManagerScript.GM.GetPlayerByAuthority(authority);
 
-        if (player.OutlayChangeDiscounter > 0)
+        if (player.PoliticalPoints > 0)
         {
             outlay += amount;
             if (outlay < 0)
                 outlay = 0;
             else
-                player.OutlayChangeDiscounter -= 1;
+                player.PoliticalPoints -= 1;
         }
     }
 

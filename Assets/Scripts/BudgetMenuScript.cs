@@ -28,7 +28,8 @@ public class BudgetMenuScript : MonoBehaviour
 
     void UpdateView()
     {
-        PlayerScript pl = GameManagerScript.GM.Player;
+        GameManagerScript GM = GameManagerScript.GM;
+        PlayerScript pl = GM.Player;
         int milOutlay = pl.Outlays[OutlayField.air].Outlay + pl.Outlays[OutlayField.ground].Outlay + pl.Outlays[OutlayField.sea].Outlay + pl.Outlays[OutlayField.rocket].Outlay + pl.Outlays[OutlayField.military].Outlay;
         int dipOutlay = pl.Outlays[OutlayField.diplomat].Outlay + pl.Outlays[OutlayField.spy].Outlay;
         int spaceOutlay = pl.Outlays[OutlayField.spaceGround].Outlay + pl.Outlays[OutlayField.spaceLaunches].Outlay;
@@ -57,6 +58,15 @@ public class BudgetMenuScript : MonoBehaviour
 
         DrawChart(1);
         DrawChart(2);
+
+        //Отображение процента доп. прироста бюджета (покупаемого за political points)
+        if (GM.Player.addBudgetGrowPercent > 0)
+            ChartPanel1.parent.Find("Text").GetComponent<Text>().text = "GNP GROW % (+" + GM.Player.addBudgetGrowPercent.ToString() + "%)";
+        else
+            ChartPanel1.parent.Find("Text").GetComponent<Text>().text = "GNP GROW %";
+
+        //Активность кнопки доп. прироста бюджета
+        ChartPanel1.parent.Find("btAddBudgetGrow").GetComponent<Button>().interactable = (GM.Player.PoliticalPoints > 0);
     }
 
     //variant: 1 - проценты роста; 2 - величина бюджета
@@ -71,14 +81,15 @@ public class BudgetMenuScript : MonoBehaviour
         int[] AmHist = null;
         int[] SovHist = null;
         RectTransform chartPanel = null;
+        GameManagerScript GM = GameManagerScript.GM;
 
         //Определяем начальный элемент истории
-        int FirstInd = GameManagerScript.GM.Player.History.Count - YearsAmount;
+        int FirstInd = GM.Player.History.Count - YearsAmount;
         if (FirstInd < 0)
             FirstInd = 0;
 
-        PlayerScript AmPlayer = GameManagerScript.GM.GetPlayerByAuthority(Authority.Amer);
-        PlayerScript SovPlayer = GameManagerScript.GM.GetPlayerByAuthority(Authority.Soviet);
+        PlayerScript AmPlayer = GM.GetPlayerByAuthority(Authority.Amer);
+        PlayerScript SovPlayer = GM.GetPlayerByAuthority(Authority.Soviet);
         switch (variant)
         {
             case 1:
@@ -114,7 +125,7 @@ public class BudgetMenuScript : MonoBehaviour
         }
 
         //Если в истории меньше двух значений, нечего рисовать
-        if (GameManagerScript.GM.Player.History.Count < 2)
+        if (GM.Player.History.Count < 2)
             return;
 
         int maxY = Mathf.Max(Mathf.Max(AmHist), Mathf.Max(SovHist));
@@ -170,4 +181,11 @@ public class BudgetMenuScript : MonoBehaviour
             Line.rotation = Quaternion.FromToRotation(Vector3.right, p1);
         }
     }
+
+    public void AddBudgetGrow()
+    {
+        GameManagerScript.GM.Player.AddBudgetGrow();
+        UpdateView();
+    }
+
 }

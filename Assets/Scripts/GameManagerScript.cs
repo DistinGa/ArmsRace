@@ -825,8 +825,8 @@ public class GameManagerScript : MonoBehaviour
         UpMenu.Find("USBudget").GetComponent<Text>().text = GameObject.Find("AmerPlayer").GetComponent<PlayerScript>().Budget.ToString("f0");
         UpMenu.Find("SovScore").GetComponent<Text>().text = GameObject.Find("SovPlayer").GetComponent<PlayerScript>().Score.ToString("f0");
         UpMenu.Find("SovBudget").GetComponent<Text>().text = GameObject.Find("SovPlayer").GetComponent<PlayerScript>().Budget.ToString("f0");
-        UpMenu.Find("AmPP").GetComponent<Text>().text = GameObject.Find("AmerPlayer").GetComponent<PlayerScript>().OutlayChangeDiscounter.ToString("f0");
-        UpMenu.Find("SovPP").GetComponent<Text>().text = GameObject.Find("SovPlayer").GetComponent<PlayerScript>().OutlayChangeDiscounter.ToString("f0");
+        UpMenu.Find("AmPP").GetComponent<Text>().text = GameObject.Find("AmerPlayer").GetComponent<PlayerScript>().PoliticalPoints.ToString("f0");
+        UpMenu.Find("SovPP").GetComponent<Text>().text = GameObject.Find("SovPlayer").GetComponent<PlayerScript>().PoliticalPoints.ToString("f0");
     }
 
     public bool PayCost(Authority Aut, int Money)
