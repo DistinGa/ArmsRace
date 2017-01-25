@@ -128,10 +128,11 @@ public class AI : MonoBehaviour {
                 eventProc -= investing.GetValue(i, column);
                 if (eventProc < 0)
                 {
-                    //Если бюджет положительный и будущая инвестиция не выведет его в минус, выполняем эту инвестицию
-                    //Если бюджет отрицательный, уменьшаем инвестицию
-                    if(!BudgetPlus || (balance - 1 * (12 - GM.CurrentMonth % 12) > 1))
-                        DoInvest(i, BudgetPlus);
+                    DoInvest(i);
+                    ////Если бюджет положительный и будущая инвестиция не выведет его в минус, выполняем эту инвестицию
+                    ////Если бюджет отрицательный, уменьшаем инвестицию
+                    //if (!BudgetPlus || (balance - 1 * (12 - GM.CurrentMonth % 12) > 1))
+                    //    DoInvest(i, BudgetPlus);
 
                     break;
                 }
@@ -166,14 +167,14 @@ public class AI : MonoBehaviour {
     }
 
     //Выполнение выбранной инвестиции
-    private void DoInvest(int i, bool BudgetPlus)
+    private void DoInvest(int i)
     {
-        int amount = 0;
+        int amount = 1;
 
-        if (BudgetPlus)
-            amount = 1;
-        else
-            amount = -1;
+        //if (BudgetPlus)
+        //    amount = 1;
+        //else
+        //    amount = -1;
 
         switch (i)
         {
