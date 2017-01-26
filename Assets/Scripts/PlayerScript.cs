@@ -160,6 +160,8 @@ public class PlayerScript : MonoBehaviour
         int AddProcent = Random.Range(5, 10 + 1); // с 5% до 10%
 
         double add = 1 + (AddProcent + addBudgetGrowPercent) / 100.0;
+        addBudgetGrowPercent = 0;
+
         double newB = 0;
         if (GameManagerScript.GM.AI != null && GameManagerScript.GM.AI.AIPlayer == this)
         {
