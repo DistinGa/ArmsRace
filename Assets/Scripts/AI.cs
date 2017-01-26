@@ -60,15 +60,54 @@ public class AI : MonoBehaviour {
             AILeader.LeaderType = (LeaderType)Random.Range(0, 4);
         }
 
+        List<CountryScript> countries = CountryScript.Countries();
+        List<CountryScript> myCountries = CountryScript.Countries(AIPlayer.Authority);
+
         //Ищем страны, где можно установить своё правительство и устанавливаем.
-        foreach (var c in CountryScript.Countries())
+        foreach (var c in myCountries)
         {
-            if (c.Authority != AIPlayer.Authority)
+            GM.ChangeGovernment(c, AIPlayer.Authority);
+        }
+
+        List<CountryScript> selectedCountries = new List<CountryScript>();
+
+        //Добавление шпионов в страны альянса, где шпионов противника больше, чем своих
+        foreach (var c in myCountries)
+        {
+            if (c.SpyCount(AIPlayer.Authority) < c.SpyCount(GM.Player.Authority))
             {
-                GM.ChangeGovernment(c, AIPlayer.Authority);
+                selectedCountries.Add(c);
             }
         }
 
+        //сортируем список по возрастанию Support
+        selectedCountries.Sort((x1, x2) => x1.Support < x2.Support ? -1 : 1);
+        foreach (CountryScript item in selectedCountries)
+        {
+            if (AIPlayer.SpyPool == 0)
+                break;
+
+            item.AddSpy(AIPlayer.Authority, 1);
+        }
+
+        //Парад в странах своего альянса, где оппозиция выше 70
+        selectedCountries.Clear();
+        foreach (var c in myCountries)
+        {
+            if (c.Support < 30)
+            {
+                selectedCountries.Add(c);
+            }
+        }
+
+        if (selectedCountries.Count > 0)
+        {
+            //сортируем список стран по возрастанию Support и берём первую
+            selectedCountries.Sort((x1, x2) => x1.Support < x2.Support ? -1 : 1);
+            GM.CallMeeting(selectedCountries[0], AIPlayer, true);
+        }
+
+        //Действия по таблице настроек ИИ
         bool BudgetPlus;
         bool war1 = false;  //для инвестиций
         bool war2 = false;  //для действий
@@ -79,8 +118,6 @@ public class AI : MonoBehaviour {
 
         investing = AIInvestSettings[(AIPlayer.Authority == Authority.Amer ? -1 : 3) + AILeader.LeaderID];
         acting = AIActSettings[(AIPlayer.Authority == Authority.Amer ? -1 : 3) + AILeader.LeaderID];
-
-        List<CountryScript> countries = CountryScript.Countries();
 
         foreach (CountryScript country in countries)
         {
@@ -495,7 +532,7 @@ public class AI : MonoBehaviour {
                     selectedCountries.Sort((x1, x2) => x1.Support < x2.Support ? -1 : 1);
                     actCountry = selectedCountries[0];
 
-                    actCountry.AddSpy(AIPlayer.Authority, 1);
+                    GM.CallMeeting(actCountry, AIPlayer, true);
                 }
                 break;
             default:
