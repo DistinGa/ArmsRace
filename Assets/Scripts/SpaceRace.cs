@@ -10,6 +10,7 @@ public class SpaceRace : MonoBehaviour
     public Text Price;
     public Image InfluencePlate;
     public GameObject LaunchesPanel;
+    public GameObject GroundPanel;
 
     public Sprite sprLocInf;    //Плашка с надписью "increase alliance influence"
     public Sprite sprGlobInf;   //Плашка с надписью "increase global influence"
@@ -51,7 +52,8 @@ public class SpaceRace : MonoBehaviour
     public void UpdateView()
     {
         PaintTechButtons();
-        LaunchesPanel.SetActive(GameManagerScript.GM.Player.GetTechStatus(1));
+        LaunchesPanel.SetActive(GameManagerScript.GM.Player.GetTechStatus(1) && GameManagerScript.GM.Player.Outlays[OutlayField.spaceLaunches].Cost != 0);
+        GroundPanel.SetActive(GameManagerScript.GM.Player.Outlays[OutlayField.spaceGround].Cost != 0);
         //Обновление информации о "нажатом" элементе
         Transform tgr = transform.Find("Toggles");
         int i = 0;
@@ -189,6 +191,9 @@ public class SpaceRace : MonoBehaviour
     //Возвращаем стоимость следующей технологии или ноль, если в этой линии всё изучено.
     public int LaunchTech(PlayerScript Player, int TechInd)
     {
+        if (TechInd == -1)
+            return 0;
+
         GameManagerScript GM = GameManagerScript.GM;
 
         //Отметка открытой технологии
@@ -252,51 +257,55 @@ public class SpaceRace : MonoBehaviour
             }
         }
 
-        int InfAmount = 0;
-        //Если игрок первый, кто открывает данную технологию, бонус к влиянию повышенный
-        if (GM.GetOpponentTo(Player).GetTechStatus(TechInd))
-            InfAmount = Mathf.Max(Techs[TechInd].mLocalInfl, Techs[TechInd].mGlobalInfl);
-        else
-            InfAmount = Mathf.Max(Techs[TechInd].mLocalInfl_1, Techs[TechInd].mGlobalInfl_1);
-
-        //Увеличение влияния в странах
-        if (TechInd < 16)
-            GM.AddInfluenceInCountries(Player.Authority, Player.Authority, InfAmount);  //увеличение в союзных странах
-        else
-            GM.AddInfluenceInCountries(Authority.Neutral, Player.Authority, InfAmount); //Во всех нейтральных странах
-
-        ////Steam achievments
-        //if (GM.Player == Player)
-        //{
-        //    if (TechInd == 19)
-        //        SteamManager.UnLockAchievment("NEW_ACHIEVEMENT_1_0");
-        //    if (TechInd == 25)
-        //        SteamManager.UnLockAchievment("NEW_ACHIEVEMENT_1_1");
-        //    if (TechInd == 39)
-        //        SteamManager.UnLockAchievment("NEW_ACHIEVEMENT_1_4");
-        //}
-
-        // показать видео
-        GM.VQueue.AddRolex(VideoQueue.V_TYPE_GLOB, VideoQueue.V_PRIO_NULL,
-                                         VideoQueue.V_PUPPER_TECHNOLOW_START + TechInd - 1,
-                                         Player.MyCountry);
-
         int nextCost = 0;
-        if (TechInd < GndTechCount)
-            nextCost = GetTechCost(Player.CurGndTechIndex, Player);
-        if (Player.GetTechStatus(GndTechCount))    //была запущена последняя технология в линии
+        if (TechInd != Player.CurLnchTechIndex) //если они равны, значит не было переключения на новую технологию (внимание на технологии запусков, наземные технологии переключаются просто линейно)
         {
-            nextCost = 0;
-            Player.CurGndTechIndex = -1;    //сигнал о том, что все технологии в линии изучены
-        }
-        if (TechInd != Player.CurLnchTechIndex) //если они равны, значит не было переключения на новую технологию (переключаются только технологии запусков)
-        {
+            int InfAmount = 0;
+            //Если игрок первый, кто открывает данную технологию, бонус к влиянию повышенный
+            if (GM.GetOpponentTo(Player).GetTechStatus(TechInd))
+                InfAmount = Mathf.Max(Techs[TechInd].mLocalInfl, Techs[TechInd].mGlobalInfl);
+            else
+                InfAmount = Mathf.Max(Techs[TechInd].mLocalInfl_1, Techs[TechInd].mGlobalInfl_1);
+
+            //Увеличение влияния в странах
+            if (TechInd < 16)
+                GM.AddInfluenceInCountries(Player.Authority, Player.Authority, InfAmount);  //увеличение в союзных странах
+            else
+                GM.AddInfluenceInCountries(Authority.Neutral, Player.Authority, InfAmount); //Во всех нейтральных странах
+
+            ////Steam achievments
+            //if (GM.Player == Player)
+            //{
+            //    if (TechInd == 19)
+            //        SteamManager.UnLockAchievment("NEW_ACHIEVEMENT_1_0");
+            //    if (TechInd == 25)
+            //        SteamManager.UnLockAchievment("NEW_ACHIEVEMENT_1_1");
+            //    if (TechInd == 39)
+            //        SteamManager.UnLockAchievment("NEW_ACHIEVEMENT_1_4");
+            //}
+
+            // показать видео
+            GM.VQueue.AddRolex(VideoQueue.V_TYPE_GLOB, VideoQueue.V_PRIO_NULL,
+                                             VideoQueue.V_PUPPER_TECHNOLOW_START + TechInd - 1,
+                                             Player.MyCountry);
+
+            if (TechInd < GndTechCount)
+                nextCost = GetTechCost(Player.CurGndTechIndex, Player);
+
+            if (Player.GetTechStatus(GndTechCount))    //была изучена последняя технология в линии
+            {
+                nextCost = 0;
+                Player.CurGndTechIndex = -1;    //сигнал о том, что все технологии в линии изучены
+            }
+
             if (TechInd > GndTechCount && TechInd < TechCount)
                 nextCost = GetTechCost(Player.CurLnchTechIndex, Player);
         }
-        else
+        else //технология не была изучена (изучили уже всё или технология 33 - ожидание изучения технологий запусков)
         {
             nextCost = 0;
+            Player.Outlays[OutlayField.spaceLaunches].ResetOutlay();
+
             if (Player.GetTechStatus(TechCount - 1) && Player.GetTechStatus(TechCount - 2))    //все технологии запусков изучены
             {
                 Player.CurLnchTechIndex = -1;    //сигнал о том, что все технологии в линии изучены
