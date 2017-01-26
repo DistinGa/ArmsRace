@@ -64,9 +64,10 @@ public class AI : MonoBehaviour {
         List<CountryScript> myCountries = CountryScript.Countries(AIPlayer.Authority);
 
         //Ищем страны, где можно установить своё правительство и устанавливаем.
-        foreach (var c in myCountries)
+        foreach (var c in countries)
         {
-            GM.ChangeGovernment(c, AIPlayer.Authority);
+            if(c.Authority != AIPlayer.Authority)
+                GM.ChangeGovernment(c, AIPlayer.Authority);
         }
 
         List<CountryScript> selectedCountries = new List<CountryScript>();
