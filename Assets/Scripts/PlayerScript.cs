@@ -59,7 +59,7 @@ public class PlayerScript : MonoBehaviour
         outlays.Add(OutlayField.rocket, new UniOutlay(this, OutlayField.rocket, GM.MDInstance.GetTechCost(OutlayField.rocket, 1)));
         outlays.Add(OutlayField.military, new UniOutlay(this, OutlayField.military, GM.MILITARY_COST, 1));
         outlays.Add(OutlayField.spy, new UniOutlay(this, OutlayField.spy, GM.SPY_COST, 1));
-        outlays.Add(OutlayField.diplomat, new UniOutlay(this, OutlayField.diplomat, GM.DiplomatCost));
+        outlays.Add(OutlayField.diplomat, new UniOutlay(this, OutlayField.diplomat, GM.DiplomatCost, 1));
         outlays.Add(OutlayField.spaceGround, new UniOutlay(this, OutlayField.spaceGround, GM.SRInstance.GetTechCost(CurGndTechIndex, this)));
         outlays.Add(OutlayField.spaceLaunches, new UniOutlay(this, OutlayField.spaceLaunches, GM.SRInstance.GetTechCost(CurLnchTechIndex, this)));
 
