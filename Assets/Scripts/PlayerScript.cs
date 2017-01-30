@@ -461,10 +461,10 @@ public class UniOutlay
     //ежемесячные отчисления
     public void MakeOutlet()
     {
-        if (outlay == 0)
-            return;
-
         PlayerScript player = GameManagerScript.GM.GetPlayerByAuthority(authority);
+
+        if ((field == OutlayField.spaceGround && player.CurGndTechIndex == -1) || (field == OutlayField.spaceLaunches && player.CurLnchTechIndex == -1))
+            return; //все технологии в линии изучены, не надо ни производить инвестиции, ни проверять доступность технологий
 
         budget += outlay;
         player.Budget -= outlay;
@@ -542,16 +542,22 @@ public class UniOutlay
     {
         PlayerScript player = GameManagerScript.GM.GetPlayerByAuthority(authority);
 
-        budget -= cost;
+        int tmpCurTech = 0, oldCost = cost;
         //Наземные технологии
         if (field == OutlayField.spaceGround)
         {
+            tmpCurTech = player.CurGndTechIndex;
             cost = GameManagerScript.GM.SRInstance.LaunchTech(player, player.CurGndTechIndex);
+            if(tmpCurTech != player.CurGndTechIndex)    //было переключение
+                budget -= oldCost;
         }
         //Технологии запусков
         if (field == OutlayField.spaceLaunches)
         {
+            tmpCurTech = player.CurLnchTechIndex;
             cost = GameManagerScript.GM.SRInstance.LaunchTech(player, player.CurLnchTechIndex);
+            if (tmpCurTech != player.CurLnchTechIndex)    //было переключение
+                budget -= oldCost;
         }
 
         //Если изучили все технологии в линии, прекращаем инвестиции.

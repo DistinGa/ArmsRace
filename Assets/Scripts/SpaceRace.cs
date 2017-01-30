@@ -202,7 +202,8 @@ public class SpaceRace : MonoBehaviour
         if (TechInd <= GndTechCount)
         {
             Player.CurGndTechIndex++;
-            Player.Outlays[OutlayField.spaceLaunches].SetNewCost(GetTechCost(Player.CurLnchTechIndex, Player)); //уменьшение стоимости изучаемой в данный момент технологии запусков
+            if(Player.Outlays[OutlayField.spaceLaunches].Cost != 0)
+                Player.Outlays[OutlayField.spaceLaunches].SetNewCost(GetTechCost(Player.CurLnchTechIndex, Player)); //пересчёт стоимости изучаемой в данный момент технологии запусков с учётом скидки
         }
         else
         {
@@ -290,7 +291,9 @@ public class SpaceRace : MonoBehaviour
                                              Player.MyCountry);
 
             if (TechInd < GndTechCount)
+            {
                 nextCost = GetTechCost(Player.CurGndTechIndex, Player);
+            }
 
             if (Player.GetTechStatus(GndTechCount))    //была изучена последняя технология в линии
             {

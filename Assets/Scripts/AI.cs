@@ -277,12 +277,12 @@ public class AI : MonoBehaviour {
                 {
                     if(AIPlayer.CurGndTechIndex != -1)  //добавляем инвестиции, если изучены не все технологии в линии
                         AIPlayer.Outlays[OutlayField.spaceGround].ChangeOutlet(amount);
-                    else if (AIPlayer.CurLnchTechIndex != -1 && AIPlayer.CurGndTechIndex > 1)   //иначе изучаем технологию другой линии
+                    else if (AIPlayer.Outlays[OutlayField.spaceLaunches].Cost != 0 && AIPlayer.CurGndTechIndex > 1)   //иначе изучаем технологию другой линии
                         AIPlayer.Outlays[OutlayField.spaceLaunches].ChangeOutlet(amount);
                 }
                 else
                 {
-                    if(AIPlayer.CurLnchTechIndex != -1 && AIPlayer.CurGndTechIndex > 1)
+                    if(AIPlayer.Outlays[OutlayField.spaceLaunches].Cost != 0 && AIPlayer.CurGndTechIndex > 1)
                         AIPlayer.Outlays[OutlayField.spaceLaunches].ChangeOutlet(amount);
                     else if (AIPlayer.CurGndTechIndex != -1)
                         AIPlayer.Outlays[OutlayField.spaceGround].ChangeOutlet(amount);
