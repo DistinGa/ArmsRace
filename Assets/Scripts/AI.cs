@@ -81,14 +81,17 @@ public class AI : MonoBehaviour {
             }
         }
 
-        //сортируем список по возрастанию Support
-        selectedCountries.Sort((x1, x2) => x1.Support < x2.Support ? -1 : 1);
-        foreach (CountryScript item in selectedCountries)
+        if (selectedCountries.Count > 0)
         {
-            if (AIPlayer.SpyPool == 0)
-                break;
+            //сортируем список по возрастанию Support
+            selectedCountries.Sort((x1, x2) => x1.Support < x2.Support ? -1 : 1);
+            foreach (CountryScript item in selectedCountries)
+            {
+                if (AIPlayer.SpyPool == 0)
+                    break;
 
-            item.AddSpy(AIPlayer.Authority, 1);
+                item.AddSpy(AIPlayer.Authority, 1);
+            }
         }
 
         //Парад в странах своего альянса, где оппозиция выше 70
@@ -107,6 +110,22 @@ public class AI : MonoBehaviour {
             selectedCountries.Sort((x1, x2) => x1.Support < x2.Support ? -1 : 1);
             GM.CallMeeting(selectedCountries[0], AIPlayer, true);
         }
+
+        //Increase influence 2
+        selectedCountries.Clear();
+        foreach (var c in countries)
+        {
+            if (c.Authority != AIPlayer.Authority && c.GetInfluense(AIPlayer.Authority) > 70 && c.GetInfluense(AIPlayer.Authority) < 83 && c.Support < 30)
+                selectedCountries.Add(c);
+        }
+
+        if (selectedCountries.Count > 0)
+        {
+            //сортируем список стран по убыванию Influense и берём первую
+            selectedCountries.Sort((x1, x2) => x1.GetInfluense(AIPlayer.Authority) > x2.GetInfluense(AIPlayer.Authority) ? -1 : 1);
+            selectedCountries[0].AddInfluence(AIPlayer.Authority, 1, false);
+        }
+
 
         //Действия по таблице настроек ИИ
         bool BudgetPlus;
