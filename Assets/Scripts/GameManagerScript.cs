@@ -1009,7 +1009,7 @@ public class GameManagerScript : MonoBehaviour
 
     public void Save()
     {
-        SaveManager.SaveGame();
+        SaveManager.SaveGame(Player.Authority == Authority.Amer ? "Amer" : "Sov");
     }
 
     public void ChangeSpeed(int dir)

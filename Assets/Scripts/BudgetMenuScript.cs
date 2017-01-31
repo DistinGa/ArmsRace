@@ -40,7 +40,13 @@ public class BudgetMenuScript : MonoBehaviour
         if (pl.History.Count > 1)
         {
             revenue = pl.LastRevenue;
-            Revenue.text = revenue.ToString() + " (" + pl.History[pl.History.Count - 1].ToString() + "%)";
+            string tmpstr;
+            if (pl.LastAddBudgetGrow != 0)
+                tmpstr = " (" + (pl.History[pl.History.Count - 1] - pl.LastAddBudgetGrow).ToString() + "% +" + pl.LastAddBudgetGrow.ToString() + "%)";
+            else
+                tmpstr = " (" + pl.History[pl.History.Count - 1].ToString() + "%)";
+
+            Revenue.text = revenue.ToString() + tmpstr;
             Budget.text = pl.Budget.ToString("f0") + " (" + (revenue - expenditure).ToString() + ")";
         }
         else

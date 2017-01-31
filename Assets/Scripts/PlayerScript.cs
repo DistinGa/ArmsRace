@@ -23,6 +23,7 @@ public class PlayerScript : MonoBehaviour
 
     [HideInInspector]
     public int LastRevenue = 0; //прирост бюджета в начале года
+    public int LastAddBudgetGrow = 0;   //доп прирост бюджета (от инвестиций)
     public List<int> History = new List<int>(); //история процентов прироста бюджета
     public List<int> History2 = new List<int>();//история прироста бюджета
 
@@ -164,6 +165,7 @@ public class PlayerScript : MonoBehaviour
         int AddProcent = Random.Range(5, 10 + 1); // с 5% до 10%
 
         double add = 1 + (AddProcent + addBudgetGrowPercent) / 100.0;
+        LastAddBudgetGrow = addBudgetGrowPercent;
         addBudgetGrowPercent = 0;
 
         double newB = 0;
@@ -174,7 +176,7 @@ public class PlayerScript : MonoBehaviour
 
         newB = Mathf.RoundToInt((float)((Budget + newB + Score) * add));
         //Сохранение истории показателей роста
-        History.Add(AddProcent);
+        History.Add(AddProcent + addBudgetGrowPercent);
         History2.Add((int)newB);
         LastRevenue = Mathf.RoundToInt((float)(newB - Budget));
 
@@ -359,6 +361,7 @@ public class PlayerScript : MonoBehaviour
         res.CurLnchTechIndex = CurLnchTechIndex;
         res.MoonSwitchState = MoonSwitchState;
         res.addBudgetGrowPercent = addBudgetGrowPercent;
+        res.LastAddBudgetGrow = LastAddBudgetGrow;
 
         res.LastRevenue = LastRevenue;
         res.History = History;
@@ -385,6 +388,7 @@ public class PlayerScript : MonoBehaviour
         CurLnchTechIndex = sd.CurLnchTechIndex;
         MoonSwitchState = sd.MoonSwitchState;
         addBudgetGrowPercent = sd.addBudgetGrowPercent;
+        LastAddBudgetGrow = sd.LastAddBudgetGrow;
 
         LastRevenue = sd.LastRevenue;
         History = sd.History;
