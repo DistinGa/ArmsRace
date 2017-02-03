@@ -165,8 +165,6 @@ public class PlayerScript : MonoBehaviour
         int AddProcent = Random.Range(5, 10 + 1); // с 5% до 10%
 
         double add = 1 + (AddProcent + addBudgetGrowPercent) / 100.0;
-        LastAddBudgetGrow = addBudgetGrowPercent;
-        addBudgetGrowPercent = 0;
 
         double newB = 0;
         if (GameManagerScript.GM.AI != null && GameManagerScript.GM.AI.AIPlayer == this)
@@ -179,6 +177,8 @@ public class PlayerScript : MonoBehaviour
         History.Add(AddProcent + addBudgetGrowPercent);
         History2.Add((int)newB);
         LastRevenue = Mathf.RoundToInt((float)(newB - Budget));
+        LastAddBudgetGrow = addBudgetGrowPercent;
+        addBudgetGrowPercent = 0;
 
         Budget = newB;
         SoundManager.SM.PlaySound("sound/moneyin");
