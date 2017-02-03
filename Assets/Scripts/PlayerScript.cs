@@ -549,24 +549,21 @@ public class UniOutlay
     void TakeNextSpaceTech(OutlayField field)
     {
         PlayerScript player = GameManagerScript.GM.GetPlayerByAuthority(authority);
+        budget -= Cost;
 
-        int tmpCurTech = 0, oldCost = cost;
         //Наземные технологии
         if (field == OutlayField.spaceGround)
         {
-            tmpCurTech = player.CurGndTechIndex;
             cost = GameManagerScript.GM.SRInstance.LaunchTech(player, player.CurGndTechIndex);
-            if(tmpCurTech != player.CurGndTechIndex)    //было переключение
-                budget -= oldCost;
         }
         //Технологии запусков
         if (field == OutlayField.spaceLaunches)
         {
-            tmpCurTech = player.CurLnchTechIndex;
             cost = GameManagerScript.GM.SRInstance.LaunchTech(player, player.CurLnchTechIndex);
-            if (tmpCurTech != player.CurLnchTechIndex)    //было переключение
-                budget -= oldCost;
         }
+
+        if(cost == 0)
+            outlay = 0;
 
         //Если изучили все технологии в линии, прекращаем инвестиции.
         if ((field == OutlayField.spaceGround && player.CurGndTechIndex == -1) || (field == OutlayField.spaceLaunches && player.CurLnchTechIndex == -1))
@@ -578,13 +575,6 @@ public class UniOutlay
                 budget = 0;
             }
         }
-
-        //if (cost == 0)
-        //{
-        //    outlay = 0;
-        //    if (budget > 0)
-        //        player.Budget += budget;
-        //}
     }
 
     //Прогноз годовых трат с учётом истории уже потраченного в текущем году.

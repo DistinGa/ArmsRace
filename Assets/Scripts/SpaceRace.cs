@@ -199,7 +199,7 @@ public class SpaceRace : MonoBehaviour
         //Отметка открытой технологии
         Player.SetTechStatus(TechInd);
 
-        if (TechInd <= GndTechCount)
+        if (TechInd > 0 && TechInd <= GndTechCount)
         {
             Player.CurGndTechIndex++;
             if(Player.Outlays[OutlayField.spaceLaunches].Cost != 0)
@@ -244,8 +244,14 @@ public class SpaceRace : MonoBehaviour
             {
                 Player.CurLnchTechIndex = 39;
             }
+            else if (Player.GetTechStatus(39) && Player.GetTechStatus(40))
+            {
+                //изучены все технологии
+                Player.CurLnchTechIndex = -1;
+            }
             else //Во всех остальных случаях изучаем следующую технологию. Если это 33-я, то ждём благоприятных условий.
             {
+                Player.CurLnchTechIndex = 0;    //нулевая - технология ожидания, когда 33-я технология изучена, то для изучения "внутренних" технологий нужно дождаться изучения земных технологий
                 //Находим первую неизученную тенологию на линии 22-33.
                 for (int i = 16; i <= 33; i++)
                 {
@@ -259,7 +265,7 @@ public class SpaceRace : MonoBehaviour
         }
 
         int nextCost = 0;
-        if (TechInd != Player.CurLnchTechIndex) //если они равны, значит не было переключения на новую технологию (внимание на технологии запусков, наземные технологии переключаются просто линейно)
+        if (TechInd != Player.CurLnchTechIndex && TechInd != 0) //если они равны, значит не было переключения на новую технологию (внимание на технологии запусков, наземные технологии переключаются просто линейно)
         {
             int InfAmount = 0;
             //Если игрок первый, кто открывает данную технологию, бонус к влиянию повышенный
@@ -290,29 +296,29 @@ public class SpaceRace : MonoBehaviour
                                              VideoQueue.V_PUPPER_TECHNOLOW_START + TechInd - 1,
                                              Player.MyCountry);
 
-            if (TechInd < GndTechCount)
+            if (TechInd <= GndTechCount)
             {
-                nextCost = GetTechCost(Player.CurGndTechIndex, Player);
-            }
-
-            if (Player.GetTechStatus(GndTechCount))    //была изучена последняя технология в линии
-            {
-                nextCost = 0;
-                Player.CurGndTechIndex = -1;    //сигнал о том, что все технологии в линии изучены
+                if (Player.GetTechStatus(GndTechCount))    //была изучена последняя технология в линии
+                {
+                    nextCost = 0;
+                    Player.CurGndTechIndex = -1;    //сигнал о том, что все технологии в линии изучены
+                }
+                else
+                    nextCost = GetTechCost(Player.CurGndTechIndex, Player);
             }
 
             if (TechInd > GndTechCount && TechInd < TechCount)
-                nextCost = GetTechCost(Player.CurLnchTechIndex, Player);
-        }
-        else //технология не была изучена (изучили уже всё или технология 33 - ожидание изучения технологий запусков)
-        {
-            nextCost = 0;
-            Player.Outlays[OutlayField.spaceLaunches].ResetOutlay();
-
-            if (Player.GetTechStatus(TechCount - 1) && Player.GetTechStatus(TechCount - 2))    //все технологии запусков изучены
             {
-                Player.CurLnchTechIndex = -1;    //сигнал о том, что все технологии в линии изучены
+                if (Player.CurLnchTechIndex <= 0)
+                    nextCost = 0;
+                else
+                    nextCost = GetTechCost(Player.CurLnchTechIndex, Player);
             }
+        }
+        else //ожидание изучения технологий запусков или выход из этого ожидания (имеем дело только с технологиями запусков)
+        {
+            if(Player.CurLnchTechIndex > 0)
+                nextCost = GetTechCost(Player.CurLnchTechIndex, Player);
         }
 
         return nextCost;
@@ -327,7 +333,7 @@ public class SpaceRace : MonoBehaviour
     //стоимость изучения технологии
     public int GetTechCost(int indx, PlayerScript pl)
     {
-        int cost = cost = Techs[indx].mCost;
+        int cost = Techs[indx].mCost;
         int dscMulty = 0;
 
         if (indx > GndTechCount)
