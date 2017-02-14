@@ -120,6 +120,9 @@ public class CountryScript : MonoBehaviour
     //      false: явное добавление
     public void AddInfluence(Authority Inf, int Amount, bool Auto = true)
     {
+        int diplomatsDecrease = 1;
+        PlayerScript pl = GameManagerScript.GM.GetPlayerByAuthority(Inf);
+
         switch (Inf)
         {
             case Authority.Neutral:
@@ -128,6 +131,13 @@ public class CountryScript : MonoBehaviour
                     Amount = Mathf.Min(Amount, 100 - NInf);
                 else
                     Amount = -Mathf.Min(-Amount, NInf);
+
+                if (!Auto)
+                {
+                    diplomatsDecrease = Amount;
+                    //бонус лидера
+                    Amount *= pl.PlayerLeader.GetInfluenceBoost();
+                }
 
                 NInf += Amount;
 
@@ -155,6 +165,13 @@ public class CountryScript : MonoBehaviour
                 else
                     Amount = -Mathf.Min(-Amount, AmInf);
 
+                if (!Auto)
+                {
+                    diplomatsDecrease = Amount;
+                    //бонус лидера
+                    Amount *= pl.PlayerLeader.GetInfluenceBoost();
+                }
+
                 AmInf += Amount;
                 DiscounterUsaInfl = GameManagerScript.GM.MAX_INFLU_CLICK;
 
@@ -177,6 +194,13 @@ public class CountryScript : MonoBehaviour
                     Amount = Mathf.Min(Amount, 100 - SovInf);
                 else
                     Amount = -Mathf.Min(-Amount, SovInf);
+
+                if (!Auto)
+                {
+                    diplomatsDecrease = Amount;
+                    //бонус лидера
+                    Amount *= pl.PlayerLeader.GetInfluenceBoost();
+                }
 
                 SovInf += Amount;
                 DiscounterRusInfl = GameManagerScript.GM.MAX_INFLU_CLICK;
@@ -203,7 +227,7 @@ public class CountryScript : MonoBehaviour
         {
             LastAut = Inf;
             if(Amount > 0)
-                GameManagerScript.GM.GetPlayerByAuthority(Inf).DiplomatPool -= Amount;
+                pl.DiplomatPool -= diplomatsDecrease;
         }
     }
 

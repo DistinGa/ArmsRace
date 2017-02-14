@@ -31,6 +31,8 @@ public class StartMenuScript : MonoBehaviour
     string[] Sentences;
     [SerializeField]
     Sprite[] sprSuiteArray = new Sprite[3];
+    [SerializeField]
+    SOLP soLeaderProperties;
 
     private AudioSource AS;
 
@@ -185,8 +187,8 @@ public class StartMenuScript : MonoBehaviour
             sprSuite = sprSuiteArray[2];    //китель
 
         GameObject.Find("Suite").GetComponent<Image>().sprite = sprSuite;
-        GameObject.Find("BonusLeft").GetComponent<Text>().text = SettingsScript.Settings.PlayerLeader.GetBonuses(1);
-        GameObject.Find("BonusRight").GetComponent<Text>().text = SettingsScript.Settings.PlayerLeader.GetBonuses(2);
+        GameObject.Find("BonusLeft").GetComponent<Text>().text = SettingsScript.Settings.PlayerLeader.GetBonuses(1, soLeaderProperties);
+        GameObject.Find("BonusRight").GetComponent<Text>().text = SettingsScript.Settings.PlayerLeader.GetBonuses(2, soLeaderProperties);
     }
 }
 

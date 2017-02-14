@@ -333,8 +333,9 @@ public class SpaceRace : MonoBehaviour
     //стоимость изучения технологии
     public int GetTechCost(int indx, PlayerScript pl)
     {
-        int cost = Techs[indx].mCost;
+        int initCost = Techs[indx].mCost;
         int dscMulty = 0;
+        float res = initCost;
 
         if (indx > GndTechCount)
         {
@@ -345,10 +346,13 @@ public class SpaceRace : MonoBehaviour
             else
                 dscMulty = pl.CurGndTechIndex - 1;
 
-            cost = Mathf.RoundToInt(Techs[indx].mCost * (1 - dscMulty * 0.02f));
+            res -= initCost * (dscMulty * 0.02f);
         }
 
-        return cost;
+        //бонус лидера
+        res -= initCost * pl.PlayerLeader.GetSpaceDiscount();
+
+        return Mathf.RoundToInt(res);
     }
 
     public void MoonSwitchSet()

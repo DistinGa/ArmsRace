@@ -40,8 +40,12 @@ public class PlayerScript : MonoBehaviour
     //Дискаунтер для кризиса при опускании бюджета до CrisisBudget. Кризис не чаще раза в год.
     int crisisDiscounter = 0;
     //Процент дополнительного прироста бюджета в начале следующего года (если эта опция "куплена" за political points)
+    [HideInInspector]
     public int addBudgetGrowPercent = 0;
     public int growPPercentPerPP = 1;  //процент доп. прироста за 1 political point
+    [HideInInspector]
+    //Ссылка на лидера игрока
+    public LeaderScript PlayerLeader;
 
     // Use this for initialization
     void Start()
@@ -54,16 +58,16 @@ public class PlayerScript : MonoBehaviour
         MoonSwitchState = true;
 
         outlays = new Dictionary<OutlayField, UniOutlay>();
-        outlays.Add(OutlayField.air, new UniOutlay(this, OutlayField.air, GM.MDInstance.GetTechCost(OutlayField.air, 1)));
-        outlays.Add(OutlayField.ground, new UniOutlay(this, OutlayField.ground, GM.MDInstance.GetTechCost(OutlayField.ground, 1)));
-        outlays.Add(OutlayField.sea, new UniOutlay(this, OutlayField.sea, GM.MDInstance.GetTechCost(OutlayField.sea, 1)));
-        outlays.Add(OutlayField.rocket, new UniOutlay(this, OutlayField.rocket, GM.MDInstance.GetTechCost(OutlayField.rocket, 1)));
-        outlays.Add(OutlayField.military, new UniOutlay(this, OutlayField.military, GM.MILITARY_COST, 1));
-        outlays.Add(OutlayField.spy, new UniOutlay(this, OutlayField.spy, GM.SPY_COST, 1));
+        outlays.Add(OutlayField.air, new UniOutlay(this, OutlayField.air, GM.MDInstance.GetTechCost(OutlayField.air, 1, this)));
+        outlays.Add(OutlayField.ground, new UniOutlay(this, OutlayField.ground, GM.MDInstance.GetTechCost(OutlayField.ground, 1, this)));
+        outlays.Add(OutlayField.sea, new UniOutlay(this, OutlayField.sea, GM.MDInstance.GetTechCost(OutlayField.sea, 1, this)));
+        outlays.Add(OutlayField.rocket, new UniOutlay(this, OutlayField.rocket, GM.MDInstance.GetTechCost(OutlayField.rocket, 1, this)));
+        outlays.Add(OutlayField.military, new UniOutlay(this, OutlayField.military, GM.GetMilitaryCost(this), 1));
+        outlays.Add(OutlayField.spy, new UniOutlay(this, OutlayField.spy, GM.GetSpyCost(this), 1));
         if(GM.AI.AIPlayer == this)
-            outlays.Add(OutlayField.diplomat, new UniOutlay(this, OutlayField.diplomat, GM.DiplomatCost, 1));
+            outlays.Add(OutlayField.diplomat, new UniOutlay(this, OutlayField.diplomat, GM.GetDiplomatCost(this), 1));
         else
-            outlays.Add(OutlayField.diplomat, new UniOutlay(this, OutlayField.diplomat, GM.DiplomatCost));
+            outlays.Add(OutlayField.diplomat, new UniOutlay(this, OutlayField.diplomat, GM.GetDiplomatCost(this)));
 
         outlays.Add(OutlayField.spaceGround, new UniOutlay(this, OutlayField.spaceGround, GM.SRInstance.GetTechCost(CurGndTechIndex, this)));
         outlays.Add(OutlayField.spaceLaunches, new UniOutlay(this, OutlayField.spaceLaunches, GM.SRInstance.GetTechCost(CurLnchTechIndex, this)));
@@ -288,6 +292,9 @@ public class PlayerScript : MonoBehaviour
                 fp += GameManagerScript.GM.FirePowerPerTech;
         }
 
+        //бонус лидера
+        fp += PlayerLeader.GetFPBonus();
+
         return fp;
     }
 
@@ -329,6 +336,12 @@ public class PlayerScript : MonoBehaviour
     {
         PoliticalPoints = GameManagerScript.GM.OutlayChangesPerYear;
         AnnualGrowthBudget();
+
+        //бонусы лидера
+        spyAmount += PlayerLeader.GetAnnualFreeDipSpy();
+        diplomatAmount += PlayerLeader.GetAnnualFreeDipSpy();
+        //бонусы типа лидера (пиджак)
+        militaryAmount += PlayerLeader.GetAnnualFreeMil();
     }
 
     public int TotalYearSpendings()
@@ -373,6 +386,9 @@ public class PlayerScript : MonoBehaviour
 
         res.outlays = outlays;
 
+        res.LeaderID = PlayerLeader.LeaderID;
+        res.LeaderType = PlayerLeader.LeaderType;
+
         return res;
     }
 
@@ -396,9 +412,12 @@ public class PlayerScript : MonoBehaviour
         militaryAmount = sd.militaryAmount;
         spyAmount = sd.spyAmount;
         diplomatAmount = sd.diplomatAmount;
+        PoliticalPoints = sd.outlayChangeDiscounter;
 
         outlays = sd.outlays;
-        PoliticalPoints = sd.outlayChangeDiscounter;
+
+        PlayerLeader.LeaderID = sd.LeaderID;
+        PlayerLeader.LeaderType = sd.LeaderType;
     }
 }
 
@@ -497,14 +516,20 @@ public class UniOutlay
                 case OutlayField.military:
                     budget -= cost;
                     player.MilitaryPool++;
+                    //если цена изменилась в результате смены лидера
+                    cost = GameManagerScript.GM.GetMilitaryCost(player);
                     break;
                 case OutlayField.spy:
                     budget -= cost;
                     player.SpyPool++;
+                    //если цена изменилась в результате смены лидера
+                    cost = GameManagerScript.GM.GetSpyCost(player);
                     break;
                 case OutlayField.diplomat:
                     budget -= cost;
                     player.DiplomatPool++;
+                    //если цена изменилась в результате смены лидера
+                    cost = GameManagerScript.GM.GetDiplomatCost(player);
                     break;
                 case OutlayField.rocket:
                     TakeNextTech(field);
@@ -531,7 +556,7 @@ public class UniOutlay
             player.SetMilTechStatus(field, curTech);
             //если не последняя технология, берём стоимость следующей
             if (curTech < tCount - 1)
-                cost = GameManagerScript.GM.MDInstance.GetTechCost(field, curTech + 1);
+                cost = GameManagerScript.GM.MDInstance.GetTechCost(field, curTech + 1, player);
             else//если последняя, прекращаем инвестиции в технологии
             {
                 outlay = 0;

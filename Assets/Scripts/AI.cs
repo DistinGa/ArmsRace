@@ -3,7 +3,6 @@ using System.Collections.Generic;
 
 public class AI : MonoBehaviour {
     public PlayerScript AIPlayer;
-    public LeaderScript AILeader;
     public int WinPercent;  //процент победы в войне, учитывающийся при присвоении режима war
     [Space(10)]
     public InvCommon[] AIInvestSettings = new InvCommon[8];
@@ -35,6 +34,20 @@ public class AI : MonoBehaviour {
         else
             AIPlayer = GameObject.Find("AmerPlayer").GetComponent<PlayerScript>();
 
+        AIPlayer.PlayerLeader = new LeaderScript();
+        if (GameManagerScript.GM.Player.PlayerLeader.LeaderType == LeaderType.Historic)
+        {
+            //Игрок выбрал исторический вариант - лидеры ИИ сменяютя в заданном историческом порядке
+            AIPlayer.PlayerLeader.LeaderID = 1;
+            AIPlayer.PlayerLeader.LeaderType = LeaderType.Militaristic;
+        }
+        else
+        {
+            //Случайный лидер
+            AIPlayer.PlayerLeader.LeaderID = Random.Range(1, 5);
+            AIPlayer.PlayerLeader.LeaderType = (LeaderType)Random.Range(1, 4);
+        }
+
         AIPlayer.MoonSwitchState = false;
         AIPlayer.Budget = StartBudget[SettingsScript.Settings.AIPower];
         AIPlayer.History2.Add(StartBudget[SettingsScript.Settings.AIPower]);
@@ -53,11 +66,40 @@ public class AI : MonoBehaviour {
 
         AIPlayer.NewMonth();
 
-        //каждые 10 лет случайным образом мменяем лидера
-        if (GM.CurrentMonth % 120 == 0)
+        if (GM.CurrentMonth % 12 == 0)  //делаем проверку каждый год
         {
-            AILeader.LeaderID = Random.Range(1, 5);
-            AILeader.LeaderType = (LeaderType)Random.Range(0, 4);
+            if (GM.Player.PlayerLeader.LeaderType == LeaderType.Historic)
+            {
+                //Игрок выбрал исторический вариант - лидеры ИИ сменяютя в заданном историческом порядке
+                if (GM.CurrentMonth > (85 - 50) * 12)
+                {
+                    AIPlayer.PlayerLeader.LeaderID = 4;
+                    AIPlayer.PlayerLeader.LeaderType = LeaderType.Diplomatic;
+                }
+                else if (GM.CurrentMonth > (70 - 50) * 12)
+                {
+                    AIPlayer.PlayerLeader.LeaderID = 3;
+                    AIPlayer.PlayerLeader.LeaderType = LeaderType.Diplomatic;
+                }
+                else if (GM.CurrentMonth > (60 - 50) * 12)
+                {
+                    AIPlayer.PlayerLeader.LeaderID = 2;
+                    AIPlayer.PlayerLeader.LeaderType = LeaderType.Economic;
+                }
+            }
+            else if (GM.CurrentMonth % 120 == 0)
+            {
+                //каждые 10 лет случайным образом меняем лидера
+                //(новый лидер или его тип не должны совпадать с текущими)
+                int oldID = AIPlayer.PlayerLeader.LeaderID;
+                int oldType = (int)AIPlayer.PlayerLeader.LeaderType;
+
+                while (oldID == AIPlayer.PlayerLeader.LeaderID)
+                    AIPlayer.PlayerLeader.LeaderID = Random.Range(1, 5);    //(1-4)
+
+                while (oldType == (int)AIPlayer.PlayerLeader.LeaderType)
+                    AIPlayer.PlayerLeader.LeaderType = (LeaderType)Random.Range(1, 4);  //(1-3) 0 - historical
+            }
         }
 
         List<CountryScript> countries = CountryScript.Countries();
@@ -136,8 +178,8 @@ public class AI : MonoBehaviour {
         InvCommon investing = null;
         ActCommon acting = null;
 
-        investing = AIInvestSettings[(AIPlayer.Authority == Authority.Amer ? -1 : 3) + AILeader.LeaderID];
-        acting = AIActSettings[(AIPlayer.Authority == Authority.Amer ? -1 : 3) + AILeader.LeaderID];
+        investing = AIInvestSettings[(AIPlayer.Authority == Authority.Amer ? -1 : 3) + AIPlayer.PlayerLeader.LeaderID];
+        acting = AIActSettings[(AIPlayer.Authority == Authority.Amer ? -1 : 3) + AIPlayer.PlayerLeader.LeaderID];
 
         foreach (CountryScript country in countries)
         {

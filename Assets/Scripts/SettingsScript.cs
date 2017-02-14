@@ -11,6 +11,7 @@ public class SettingsScript : MonoBehaviour
     public bool mVoiceOn { get; set; }   //вкл/выкл голосовых сообщений
     public float mMusicVol { get; set; }
     public float mSoundVol { get; set; }
+
     public int AIPower { get; set; }
     public Authority playerSelected { get; set; }
     public bool NeedLoad = false;

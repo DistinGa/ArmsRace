@@ -134,6 +134,9 @@ public struct SavedPlayerData
     public bool MoonSwitchState;
     public int addBudgetGrowPercent;
     public int LastAddBudgetGrow;
+
+    public int LeaderID;
+    public LeaderType LeaderType;
 }
 
 [System.Serializable]

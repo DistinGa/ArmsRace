@@ -69,9 +69,9 @@ public class MilDepMenuScript : MonoBehaviour
         //PaintTechButtons(OutlayField.rocket);
     }
 
-    public int GetTechCost(OutlayField field, int indx)
+    public int GetTechCost(OutlayField field, int indx, PlayerScript pl)
     {
-        int res = 0;
+        float res = 0;
 
         switch (field)
         {
@@ -91,7 +91,10 @@ public class MilDepMenuScript : MonoBehaviour
                 break;
         }
 
-        return res;
+        //бонус типа лидера (пиджак)
+        res -= res * pl.PlayerLeader.GetMilTechDiscount();
+
+        return Mathf.RoundToInt(res);
     }
 
     //Установка соответствующих спрайтов на кнопки технологий

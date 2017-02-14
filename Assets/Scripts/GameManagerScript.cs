@@ -64,18 +64,21 @@ public class GameManagerScript : MonoBehaviour
     public float INSTALL_PUPPER_OPPO = 80;
     [Tooltip("необходимый % оппозиции для ввода революционеров")]
     public float INSTALL_PUPPER_REVOL = 80;
+    [SerializeField]
     [Tooltip("стоимость вооруженных сил")]
-    public int MILITARY_COST = 3;
+    private int MILITARY_COST = 3;
+    [SerializeField]
     [Tooltip("стоимость добавления шпиона")]
-    public int SPY_COST = 1;
+    private int SPY_COST = 1;
     ////////////
     //новые параметры
     public MilDepMenuScript MDInstance;
     public SpaceRace SRInstance;
     [Tooltip("прирост firepower за одну открытую технологию")]
     public int FirePowerPerTech = 10;
+    [SerializeField]
     [Tooltip("стоимость обучения дипломата")]
-    public int DiplomatCost = 25;
+    private int DiplomatCost = 25;
     [Tooltip("количество изменений трат в год")]
     public int OutlayChangesPerYear;
     //делегат для запуска событий конца месяца
@@ -89,6 +92,8 @@ public class GameManagerScript : MonoBehaviour
     public int curSpeedIndex = 1;
     [Tooltip("Бюджет, при достижении которого наступает финансовый кризис")]
     public double CrisisBudget = 500;
+    //Ссылка на ScriptableObject с настройками бонусов лидеров
+    public SOLP LeaderPrefs;
 
     public void Awake()
     {
@@ -98,13 +103,16 @@ public class GameManagerScript : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        if (SettingsScript.Settings.NeedLoad)
-            Load();
-
         if(SettingsScript.Settings.playerSelected == Authority.Amer)
             Player = transform.Find("AmerPlayer").GetComponent<PlayerScript>();
         else
             Player = transform.Find("SovPlayer").GetComponent<PlayerScript>();
+
+        Player.PlayerLeader = SettingsScript.Settings.PlayerLeader;
+
+        //Заггрузка, если необходима
+        if (SettingsScript.Settings.NeedLoad)
+            Load();
 
         //MainCamera = FindObjectOfType<Camera>();
         MainCamera = FindObjectOfType<Camera>();
@@ -168,6 +176,33 @@ public class GameManagerScript : MonoBehaviour
             //Обновление информации в нижнем меню
             SnapToCountry();
         }
+    }
+
+    public int GetSpyCost(PlayerScript pl)
+    {
+        float res = SPY_COST;
+
+        //бонус типа лидера
+        res -= pl.PlayerLeader.GetSpyDiscount();
+
+        return Mathf.RoundToInt(res);
+    }
+
+    public int GetDiplomatCost(PlayerScript pl)
+    {
+        float res = DiplomatCost;
+
+        //бонус типа лидера
+        res -= pl.PlayerLeader.GetDipDiscount();
+
+        return Mathf.RoundToInt(res);
+    }
+
+    public int GetMilitaryCost(PlayerScript pl)
+    {
+        int res = MILITARY_COST;
+
+        return res;
     }
 
     public void ToggleTechMenu(GameObject Menu)
@@ -411,7 +446,7 @@ public class GameManagerScript : MonoBehaviour
             if (parade)
             {
                 c.DiscounterUsaParade = MAX_RIOT_MONTHS;
-                c.Support += c.CIA; //увеличиваем поддержку на 1% за каждого шпиона
+                c.Support += c.CIA * p.PlayerLeader.GetMeetingBoost(); //увеличиваем поддержку на 1% за каждого шпиона (бонусы лидера могут влиять на это увеличение)
                 if (c.Support > 100) c.Support = 100;
                 c.AddState(CountryScript.States.SYM_PARAD, Authority.Amer, 3);
                 VQueue.AddRolex(VQueue.LocalType(Authority.Amer), VideoQueue.V_PRIO_NULL, VideoQueue.V_PUPPER_SUPPORT, c);
@@ -419,7 +454,7 @@ public class GameManagerScript : MonoBehaviour
             else
             {
                 c.DiscounterUsaMeeting = MAX_RIOT_MONTHS;
-                c.Support -= c.CIA; //увеличиваем оппозицию на 1% за каждого шпиона
+                c.Support -= c.CIA * p.PlayerLeader.GetMeetingBoost(); //увеличиваем оппозицию на 1% за каждого шпиона (бонусы лидера могут влиять на это увеличение)
                 if (c.Support < 0) c.Support = 0;
                 c.AddState(CountryScript.States.SYM_RIOT, Authority.Amer, 3);
                 VQueue.AddRolex(VQueue.LocalType(Authority.Amer), VideoQueue.V_PRIO_NULL, VideoQueue.V_PUPPER_RIOTS, c);
@@ -430,14 +465,14 @@ public class GameManagerScript : MonoBehaviour
             if (parade)
             {
                 c.DiscounterRusParade = MAX_RIOT_MONTHS;
-                c.Support += c.KGB;
+                c.Support += c.KGB * p.PlayerLeader.GetMeetingBoost();
                 c.AddState(CountryScript.States.SYM_PARAD, Authority.Soviet, 3);
                 VQueue.AddRolex(VQueue.LocalType(Authority.Soviet), VideoQueue.V_PRIO_NULL, VideoQueue.V_PUPPER_SUPPORT, c);
             }
             else
             {
                 c.DiscounterRusMeeting = MAX_RIOT_MONTHS;
-                c.Support -= c.KGB;
+                c.Support -= c.KGB * p.PlayerLeader.GetMeetingBoost();
                 c.AddState(CountryScript.States.SYM_RIOT, Authority.Soviet, 3);
                 VQueue.AddRolex(VQueue.LocalType(Authority.Soviet), VideoQueue.V_PRIO_NULL, VideoQueue.V_PUPPER_RIOTS, c);
             }
