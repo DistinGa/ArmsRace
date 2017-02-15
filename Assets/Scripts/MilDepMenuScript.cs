@@ -192,27 +192,47 @@ public class MilDepMenuScript : MonoBehaviour
     //Заполнение отображаемых полей при нажатии кнопки технологии
     public void ShowAirTechInfo(int ind)
     {
-        ShowTechInfo(airTechs, ind);
+        ShowTechInfo(OutlayField.air, ind);
     }
 
     public void ShowGndTechInfo(int ind)
     {
-        ShowTechInfo(gndTechs, ind);
+        ShowTechInfo(OutlayField.ground, ind);
     }
 
     public void ShowSeaTechInfo(int ind)
     {
-        ShowTechInfo(seaTechs, ind);
+        ShowTechInfo(OutlayField.sea, ind);
     }
 
     public void ShowRocketTechInfo(int ind)
     {
-        ShowTechInfo(rocketTechs, ind);
+        ShowTechInfo(OutlayField.rocket, ind);
     }
 
-    void ShowTechInfo(MilTechnology[] milTech, int ind)
+    void ShowTechInfo(OutlayField fld, int ind)
     {
+        MilTechnology[] milTech;
         GameManagerScript GM = GameManagerScript.GM;
+
+        switch (fld)
+        {
+            case OutlayField.air:
+                milTech = airTechs;
+                break;
+            case OutlayField.ground:
+                milTech = gndTechs;
+                break;
+            case OutlayField.sea:
+                milTech = seaTechs;
+                break;
+            case OutlayField.rocket:
+                milTech = rocketTechs;
+                break;
+            default:
+                return;
+                break;
+        }
 
         if (GM.Player.Authority == Authority.Amer)
         {
@@ -225,7 +245,7 @@ public class MilDepMenuScript : MonoBehaviour
             Image.sprite = milTech[ind].mRusSprite;
         }
 
-        Price.text = "$" + milTech[ind].mCost.ToString();
+        Price.text = "$" + GetTechCost(fld, ind, GM.Player).ToString();
     }
 
     //Возвращает номер предыдущей технологии

@@ -183,7 +183,7 @@ public class GameManagerScript : MonoBehaviour
         float res = SPY_COST;
 
         //бонус типа лидера
-        res -= pl.PlayerLeader.GetSpyDiscount();
+        res -= res * pl.PlayerLeader.GetSpyDiscount();
 
         return Mathf.RoundToInt(res);
     }
@@ -193,7 +193,7 @@ public class GameManagerScript : MonoBehaviour
         float res = DiplomatCost;
 
         //бонус типа лидера
-        res -= pl.PlayerLeader.GetDipDiscount();
+        res -= res * pl.PlayerLeader.GetDipDiscount();
 
         return Mathf.RoundToInt(res);
     }
@@ -855,13 +855,23 @@ public class GameManagerScript : MonoBehaviour
         int y = mMonthCount / 12;
         string CurrentDate = months[m] + " " + (1950 + y);
 
+        PlayerScript amerPlayer = GameObject.Find("AmerPlayer").GetComponent<PlayerScript>();
+        PlayerScript sovPlayer = GameObject.Find("SovPlayer").GetComponent<PlayerScript>();
+
         UpMenu.Find("Date").GetComponent<Text>().text = CurrentDate;
-        UpMenu.Find("USScore").GetComponent<Text>().text = GameObject.Find("AmerPlayer").GetComponent<PlayerScript>().Score.ToString("f0");
-        UpMenu.Find("USBudget").GetComponent<Text>().text = GameObject.Find("AmerPlayer").GetComponent<PlayerScript>().Budget.ToString("f0");
-        UpMenu.Find("SovScore").GetComponent<Text>().text = GameObject.Find("SovPlayer").GetComponent<PlayerScript>().Score.ToString("f0");
-        UpMenu.Find("SovBudget").GetComponent<Text>().text = GameObject.Find("SovPlayer").GetComponent<PlayerScript>().Budget.ToString("f0");
-        UpMenu.Find("AmPP").GetComponent<Text>().text = GameObject.Find("AmerPlayer").GetComponent<PlayerScript>().PoliticalPoints.ToString("f0");
-        UpMenu.Find("SovPP").GetComponent<Text>().text = GameObject.Find("SovPlayer").GetComponent<PlayerScript>().PoliticalPoints.ToString("f0");
+        UpMenu.Find("USScore").GetComponent<Text>().text = amerPlayer.Score.ToString("f0");
+        UpMenu.Find("USBudget").GetComponent<Text>().text = amerPlayer.Budget.ToString("f0");
+        UpMenu.Find("SovScore").GetComponent<Text>().text = sovPlayer.Score.ToString("f0");
+        UpMenu.Find("SovBudget").GetComponent<Text>().text = sovPlayer.Budget.ToString("f0");
+        UpMenu.Find("AmPP").GetComponent<Text>().text = amerPlayer.PoliticalPoints.ToString("f0");
+        UpMenu.Find("SovPP").GetComponent<Text>().text = sovPlayer.PoliticalPoints.ToString("f0");
+
+#if DEBUG
+        UpMenu.Find("testLeaderNameUSA").GetComponent<Text>().text = amerPlayer.PlayerLeader.GetLeaderName(amerPlayer);
+        UpMenu.Find("testLeaderNameUSSR").GetComponent<Text>().text = sovPlayer.PlayerLeader.GetLeaderName(sovPlayer);
+        UpMenu.Find("testLeaderTypeUSA").GetComponent<Text>().text = amerPlayer.PlayerLeader.GetLeaderTypeName();
+        UpMenu.Find("testLeaderTypeUSSR").GetComponent<Text>().text = sovPlayer.PlayerLeader.GetLeaderTypeName();
+#endif
     }
 
     public bool PayCost(Authority Aut, int Money)

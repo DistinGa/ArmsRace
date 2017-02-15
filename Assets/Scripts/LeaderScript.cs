@@ -35,7 +35,50 @@ public class LeaderScript
             return lt;
         }
     }   
-    
+
+    public string GetLeaderName(PlayerScript pl)
+    {
+        string res = "";
+
+        switch (LeaderID)
+        {
+            case 1:
+                res = pl.Authority == Authority.Amer?"Truman":"Stalin";
+                break;
+            case 2:
+                res = pl.Authority == Authority.Amer ? "Kennedy" : "Khrushchev";
+                break;
+            case 3:
+                res = pl.Authority == Authority.Amer ? "Nixon" : "Brezhnev";
+                break;
+            case 4:
+                res = pl.Authority == Authority.Amer ? "Reagan" : "Gorbachev";
+                break;
+        }
+
+        return res;
+    }
+
+    public string GetLeaderTypeName()
+    {
+        string res = "";
+
+        switch (ActualLeaderType)
+        {
+            case LeaderType.Economic:
+                res = "Economic";
+                break;
+            case LeaderType.Militaristic:
+                res = "Militaristic";
+                break;
+            case LeaderType.Diplomatic:
+                res = "Diplomatic";
+                break;
+        }
+
+        return res;
+    }
+
     //var = 1 - левый список, 2 - правый
     public string GetBonuses(int var, SOLP soLeaderProperties)
     {
@@ -46,16 +89,16 @@ public class LeaderScript
             switch (LeaderID)
             {
                 case 1:
-                    res = "- " + soLeaderProperties.descriptionFPBonus;
+                    res = soLeaderProperties.descriptionFPBonus;
                     break;
                 case 2:
-                    res = "- " + soLeaderProperties.descriptionSpace;
+                    res = soLeaderProperties.descriptionSpace;
                     break;
                 case 3:
-                    res = "- " + soLeaderProperties.descriptionFDS;
+                    res = soLeaderProperties.descriptionFDS;
                     break;
                 case 4:
-                    res = "- " + soLeaderProperties.descriptionIB;
+                    res = soLeaderProperties.descriptionIB;
                     break;
             }
         }
@@ -64,13 +107,13 @@ public class LeaderScript
             switch (ActualLeaderType)
             {
                 case LeaderType.Militaristic:
-                    res = "- " + soLeaderProperties.descriptionMilDisc + "\n- " + soLeaderProperties.descriptionFMil;
+                    res = soLeaderProperties.descriptionMilDisc + "\n" + soLeaderProperties.descriptionFMil;
                     break;
                 case LeaderType.Diplomatic:
-                    res = "- " + soLeaderProperties.descriptionDipDisc + "\n- " + soLeaderProperties.descriptionSpyDisc;
+                    res = soLeaderProperties.descriptionDipDisc + "\n" + soLeaderProperties.descriptionSpyDisc;
                     break;
                 case LeaderType.Economic:
-                    res = "- " + soLeaderProperties.descriptionMB + "\n- " + soLeaderProperties.descriptionGEC;
+                    res = soLeaderProperties.descriptionMB + "\n" + soLeaderProperties.descriptionGEC;
                     break;
             }
         }

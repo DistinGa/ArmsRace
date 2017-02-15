@@ -43,8 +43,8 @@ public class PlayerScript : MonoBehaviour
     [HideInInspector]
     public int addBudgetGrowPercent = 0;
     public int growPPercentPerPP = 1;  //процент доп. прироста за 1 political point
-    [HideInInspector]
     //Ссылка на лидера игрока
+    //[HideInInspector]
     public LeaderScript PlayerLeader;
 
     // Use this for initialization
