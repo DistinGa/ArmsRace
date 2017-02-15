@@ -43,7 +43,7 @@ public class LeaderScript
         switch (LeaderID)
         {
             case 1:
-                res = pl.Authority == Authority.Amer?"Truman":"Stalin";
+                res = pl.Authority == Authority.Amer?"Truman" : "Stalin";
                 break;
             case 2:
                 res = pl.Authority == Authority.Amer ? "Kennedy" : "Khrushchev";

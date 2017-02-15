@@ -160,31 +160,44 @@ public class StartMenuScript : MonoBehaviour
 
         SettingsScript.Settings.PlayerLeader.LeaderID = LID;
 
-        if (SettingsScript.Settings.PlayerLeader.LeaderType == LeaderType.Historic)
+        //if (SettingsScript.Settings.PlayerLeader.LeaderType == LeaderType.Historic)
+        //{
+        //    if (SettingsScript.Settings.playerSelected == Authority.Amer)
+        //    {
+        //        if (LID == 1 || LID == 3)
+        //            sprSuite = sprSuiteArray[1];    //светлый
+        //        else
+        //            sprSuite = sprSuiteArray[0];    //тёмный
+        //    }
+        //    else //СССР
+        //    {
+        //        if (LID == 1)
+        //            sprSuite = sprSuiteArray[2];    //китель
+        //        else if (LID == 2)
+        //            sprSuite = sprSuiteArray[1];    //светлый
+        //        else
+        //            sprSuite = sprSuiteArray[0];    //тёмный
+        //    }
+        //}
+        //else if (SettingsScript.Settings.PlayerLeader.LeaderType == LeaderType.Economic)
+        //    sprSuite = sprSuiteArray[1];    //светлый
+        //else if (SettingsScript.Settings.PlayerLeader.LeaderType == LeaderType.Diplomatic)
+        //    sprSuite = sprSuiteArray[0];    //тёмный
+        //else if (SettingsScript.Settings.PlayerLeader.LeaderType == LeaderType.Militaristic)
+        //    sprSuite = sprSuiteArray[2];    //китель
+
+        switch (SettingsScript.Settings.PlayerLeader.ActualLeaderType)
         {
-            if (SettingsScript.Settings.playerSelected == Authority.Amer)
-            {
-                if (LID == 1 || LID == 3)
-                    sprSuite = sprSuiteArray[1];    //светлый
-                else
-                    sprSuite = sprSuiteArray[0];    //тёмный
-            }
-            else //СССР
-            {
-                if(LID == 1)
-                    sprSuite = sprSuiteArray[2];    //китель
-                else if(LID == 2)
-                    sprSuite = sprSuiteArray[1];    //светлый
-                else
-                    sprSuite = sprSuiteArray[0];    //тёмный
-            }
+            case LeaderType.Economic:
+                sprSuite = sprSuiteArray[1];    //светлый
+                break;
+            case LeaderType.Militaristic:
+                sprSuite = sprSuiteArray[2];    //китель
+                break;
+            case LeaderType.Diplomatic:
+                sprSuite = sprSuiteArray[0];    //тёмный
+                break;
         }
-        else if (SettingsScript.Settings.PlayerLeader.LeaderType == LeaderType.Economic)
-            sprSuite = sprSuiteArray[1];    //светлый
-        else if (SettingsScript.Settings.PlayerLeader.LeaderType == LeaderType.Diplomatic)
-            sprSuite = sprSuiteArray[0];    //тёмный
-        else if (SettingsScript.Settings.PlayerLeader.LeaderType == LeaderType.Militaristic)
-            sprSuite = sprSuiteArray[2];    //китель
 
         GameObject.Find("Suite").GetComponent<Image>().sprite = sprSuite;
         GameObject.Find("BonusLeft").GetComponent<Text>().text = SettingsScript.Settings.PlayerLeader.GetBonuses(1, soLeaderProperties);
