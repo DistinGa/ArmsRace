@@ -56,7 +56,7 @@ public class StartMenuScript : MonoBehaviour
         //}
 
 
-        GameObject.Find("ToggleUSA").GetComponent<Toggle>().isOn = true;
+        GameObject.Find("ToggleUSSR").GetComponent<Toggle>().isOn = true;
         GameObject.Find("Historic").GetComponent<Toggle>().isOn = true;
         GameObject.Find("Leader1").GetComponent<Toggle>().isOn = true;
 
