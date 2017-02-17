@@ -868,9 +868,11 @@ public class GameManagerScript : MonoBehaviour
 
 #if DEBUG
         UpMenu.Find("testLeaderNameUSA").GetComponent<Text>().text = amerPlayer.PlayerLeader.GetLeaderName(amerPlayer);
-        UpMenu.Find("testLeaderNameUSSR").GetComponent<Text>().text = sovPlayer.PlayerLeader.GetLeaderName(sovPlayer);
         UpMenu.Find("testLeaderTypeUSA").GetComponent<Text>().text = amerPlayer.PlayerLeader.GetLeaderTypeName();
+        UpMenu.Find("testResourcesUSA").GetComponent<Text>().text = string.Format("M:{0} S:{1} D:{2}", amerPlayer.MilitaryPool.ToString(), amerPlayer.SpyPool.ToString(), amerPlayer.DiplomatPool.ToString());
         UpMenu.Find("testLeaderTypeUSSR").GetComponent<Text>().text = sovPlayer.PlayerLeader.GetLeaderTypeName();
+        UpMenu.Find("testLeaderNameUSSR").GetComponent<Text>().text = sovPlayer.PlayerLeader.GetLeaderName(sovPlayer);
+        UpMenu.Find("testResourcesUSSR").GetComponent<Text>().text = string.Format("M:{0} S:{1} D:{2}", sovPlayer.MilitaryPool.ToString(), sovPlayer.SpyPool.ToString(), sovPlayer.DiplomatPool.ToString());
 #endif
     }
 
