@@ -142,7 +142,8 @@ public class AI : MonoBehaviour {
         {
             if (c.Support < 30)
             {
-                selectedCountries.Add(c);
+                if(c.CanOrgParade(AIPlayer.Authority))
+                    selectedCountries.Add(c);
             }
         }
 
@@ -566,7 +567,7 @@ public class AI : MonoBehaviour {
                 selectedCountries.Clear();
                 foreach (CountryScript c in countries)
                 {
-                    if (c.Authority != AIPlayer.Authority && c.GetInfluense(AIPlayer.Authority) > 50 && c.GetInfluense(AIPlayer.Authority) <= 90 && c.SpyCount(AIPlayer.Authority) > 3 && c.CanOrgMeeting(AIPlayer.Authority) && c.Support > 5)
+                    if (c.Authority != AIPlayer.Authority && c.GetInfluense(AIPlayer.Authority) > 50 && c.GetInfluense(AIPlayer.Authority) <= 90 && c.SpyCount(AIPlayer.Authority) > 3 && c.CanOrgMeeting(AIPlayer.Authority) && c.Support > 19)
                         selectedCountries.Add(c);
                 }
 
