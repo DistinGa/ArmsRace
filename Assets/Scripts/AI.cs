@@ -76,12 +76,12 @@ public class AI : MonoBehaviour {
                     AIPlayer.PlayerLeader.LeaderID = 4;
                     AIPlayer.PlayerLeader.LeaderType = LeaderType.Diplomatic;
                 }
-                else if (GM.CurrentMonth > (70 - 50) * 12)
+                else if (GM.CurrentMonth >= (70 - 50) * 12)
                 {
                     AIPlayer.PlayerLeader.LeaderID = 3;
                     AIPlayer.PlayerLeader.LeaderType = LeaderType.Diplomatic;
                 }
-                else if (GM.CurrentMonth > (60 - 50) * 12)
+                else if (GM.CurrentMonth >= (60 - 50) * 12)
                 {
                     AIPlayer.PlayerLeader.LeaderID = 2;
                     AIPlayer.PlayerLeader.LeaderType = LeaderType.Economic;
