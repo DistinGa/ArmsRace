@@ -155,20 +155,22 @@ public class AI : MonoBehaviour {
         }
 
         //Increase influence 2
-        selectedCountries.Clear();
-        foreach (var c in countries)
+        if (AIPlayer.DiplomatPool > 0)
         {
-            if (c.Authority != AIPlayer.Authority && c.GetInfluense(AIPlayer.Authority) > 70 && c.GetInfluense(AIPlayer.Authority) < 83 && c.Support < 30)
-                selectedCountries.Add(c);
-        }
+            selectedCountries.Clear();
+            foreach (var c in countries)
+            {
+                if (c.Authority != AIPlayer.Authority && c.GetInfluense(AIPlayer.Authority) > 70 && c.GetInfluense(AIPlayer.Authority) <= 83 && c.Support < 30)
+                    selectedCountries.Add(c);
+            }
 
-        if (selectedCountries.Count > 0)
-        {
-            //сортируем список стран по убыванию Influense и берём первую
-            selectedCountries.Sort((x1, x2) => x1.GetInfluense(AIPlayer.Authority) > x2.GetInfluense(AIPlayer.Authority) ? -1 : 1);
-            selectedCountries[0].AddInfluence(AIPlayer.Authority, 1, false);
+            if (selectedCountries.Count > 0)
+            {
+                //сортируем список стран по убыванию Influense и берём первую
+                selectedCountries.Sort((x1, x2) => x1.GetInfluense(AIPlayer.Authority) > x2.GetInfluense(AIPlayer.Authority) ? -1 : 1);
+                selectedCountries[0].AddInfluence(AIPlayer.Authority, 1, false);
+            }
         }
-
 
         //Действия по таблице настроек ИИ
         bool BudgetPlus;
@@ -198,7 +200,9 @@ public class AI : MonoBehaviour {
             //Если есть страна, в которую можно ввести войска и процент победы в войне >= WinPercent, считаем, AI находящимся в состоянии войны (для выбора действий)
             foreach (CountryScript country in countries)
             {
-                if (country.CanAddMil(AIPlayer.Authority) && AIPlayer.WinPercentForCountry(country) >= WinPercent)
+                if (country.CanAddMil(AIPlayer.Authority) && country.Authority != AIPlayer.Authority    //можно добавить войска и не своя страна
+                    && !(country.Authority == Authority.Neutral && country.GetInfluense(AIPlayer.Authority) > country.GetInfluense(GM.Player.Authority))    //не поддержка нейтрального правительства
+                    && AIPlayer.WinPercentForCountry(country) >= WinPercent)
                 {
                     war2 = true;
                     break;
@@ -363,6 +367,7 @@ public class AI : MonoBehaviour {
     }
 
     //Выполнение выбранного действия
+    //i - вид действия
     private void DoAction(int i, List<CountryScript> countries)
     {
         List<CountryScript> selectedCountries = new List<CountryScript>();
@@ -479,7 +484,7 @@ public class AI : MonoBehaviour {
                 }
                 break;
             case 3:
-            //Засылка шпиона (мирное время)
+            //Засылка шпиона
                 //своё влияние больше
                 if (AIPlayer.SpyPool == 0)
                     return;
