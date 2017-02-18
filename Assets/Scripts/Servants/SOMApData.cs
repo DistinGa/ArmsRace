@@ -117,5 +117,7 @@ public class TestOnInspector : Editor
 
             i++;
         }
+
+        UnityEditor.SceneManagement.EditorSceneManager.MarkSceneDirty(UnityEngine.SceneManagement.SceneManager.GetActiveScene());
     }
 }

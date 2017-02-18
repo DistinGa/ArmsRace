@@ -96,6 +96,8 @@ namespace SpaceTechsData
             {
                 SR.SetTechno(i, td[i].UsaDescr, td[i].RusDescr, td[i].Cost, td[i].LocalInfl, td[i].GlobalInfl, td[i].LocalInfl_1, td[i].GlobalInfl_1, td[i].UsaSprite, td[i].RusSprite);
             }
+
+            UnityEditor.SceneManagement.EditorSceneManager.MarkSceneDirty(UnityEngine.SceneManagement.SceneManager.GetActiveScene());
         }
     }
 }
