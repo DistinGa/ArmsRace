@@ -110,10 +110,10 @@ public class LeaderScript
                     res = soLeaderProperties.descriptionMilDisc + "\n" + soLeaderProperties.descriptionFMil;
                     break;
                 case LeaderType.Diplomatic:
-                    res = soLeaderProperties.descriptionDipDisc + "\n" + soLeaderProperties.descriptionSpyDisc;
+                    res = soLeaderProperties.descriptionDipDisc + "\n" + soLeaderProperties.descriptionSpyDisc + "\n" + soLeaderProperties.descriptionGEC;
                     break;
                 case LeaderType.Economic:
-                    res = soLeaderProperties.descriptionMB + "\n" + soLeaderProperties.descriptionGEC;
+                    res = soLeaderProperties.descriptionMB;
                     break;
             }
         }
@@ -205,7 +205,7 @@ public class LeaderScript
     public int GetTenYearsGlobalEffectsChange()
     {
         int res = 0;
-        if (ActualLeaderType == LeaderType.Economic)
+        if (ActualLeaderType == LeaderType.Diplomatic)
             res = GameManagerScript.GM.LeaderPrefs.TenYearsGlobalEffectsChange;
 
         return res;
