@@ -115,11 +115,18 @@ public class AI : MonoBehaviour {
         List<CountryScript> selectedCountries = new List<CountryScript>();
 
         //Добавление шпионов в страны альянса, где шпионов противника больше, чем своих
+        //И добавление войск в свои страны до 10.
         foreach (var c in myCountries)
         {
             if (c.SpyCount(AIPlayer.Authority) < c.SpyCount(GM.Player.Authority))
             {
                 selectedCountries.Add(c);
+            }
+
+            //Поддерживаем в своих странах полную боеготовность
+            if (c.GovForce < 10 && AIPlayer.MilitaryPool > 0)
+            {
+                AddMilitary(c, 10 - c.GovForce);
             }
         }
 
