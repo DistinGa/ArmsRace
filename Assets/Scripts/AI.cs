@@ -105,6 +105,12 @@ public class AI : MonoBehaviour {
         List<CountryScript> countries = CountryScript.Countries();
         List<CountryScript> myCountries = CountryScript.Countries(AIPlayer.Authority);
 
+        //Поддерживаем в своей главной стране полную боеготовность
+        if (AIPlayer.MyCountry.GovForce < 10 && AIPlayer.MilitaryPool > 0)
+        {
+            AddMilitary(AIPlayer.MyCountry, 10 - AIPlayer.MyCountry.GovForce);
+        }
+
         //Ищем страны, где можно установить своё правительство и устанавливаем.
         foreach (var c in countries)
         {
@@ -121,12 +127,6 @@ public class AI : MonoBehaviour {
             if (c.SpyCount(AIPlayer.Authority) < c.SpyCount(GM.Player.Authority))
             {
                 selectedCountries.Add(c);
-            }
-
-            //Поддерживаем в своих странах полную боеготовность
-            if (c.GovForce < 10 && AIPlayer.MilitaryPool > 0)
-            {
-                AddMilitary(c, 10 - c.GovForce);
             }
         }
 
