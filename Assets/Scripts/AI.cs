@@ -207,9 +207,7 @@ public class AI : MonoBehaviour {
             //Если есть страна, в которую можно ввести войска и процент победы в войне >= WinPercent, считаем, AI находящимся в состоянии войны (для выбора действий)
             foreach (CountryScript country in countries)
             {
-                if (country.CanAddMil(AIPlayer.Authority) && country.Authority != AIPlayer.Authority    //можно добавить войска и не своя страна
-                    && !(country.Authority == Authority.Neutral && country.GetInfluense(AIPlayer.Authority) > country.GetInfluense(GM.Player.Authority))    //не поддержка нейтрального правительства
-                    && AIPlayer.WinPercentForCountry(country) >= WinPercent)
+                if (country.CanAgression(AIPlayer.Authority) && AIPlayer.WinPercentForCountry(country) >= WinPercent)
                 {
                     war2 = true;
                     break;

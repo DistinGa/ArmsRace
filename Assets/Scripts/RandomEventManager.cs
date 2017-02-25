@@ -146,6 +146,7 @@ public class RandomEventManager : MonoBehaviour
         //Установка флага
         EventFlag.GetComponent<Image>().sprite = (rEvent.Country.Authority == Authority.Soviet ? rEvent.Country.FlagS : rEvent.Country.FlagNs);
         EventFlag.gameObject.SetActive(true);
+        EventFlag.SetAsFirstSibling();
     }
 
     public void OpenEvent()

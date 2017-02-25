@@ -358,14 +358,28 @@ public class CountryScript : MonoBehaviour
     //Проверка возможности добавить войска
     public bool CanAddMil(Authority Aut)
     {
+        GameManagerScript GM = GameManagerScript.GM;
+
         return (GameManagerScript.GM.GetPlayerByAuthority(Aut).MilitaryPool > 0 &&
             ((Aut == Authority && GovForce < 10) ||  //свои войска 
             (Authority == Authority.Neutral && Aut == Authority.Amer && (AmInf > SovInf) && GovForce < 10) ||   //поддержка нейтрального правительства
             (Authority == Authority.Neutral && Aut == Authority.Soviet && (AmInf < SovInf) && GovForce < 10) || //поддержка нейтрального правительства
-            (Support <= (100 - GameManagerScript.GM.INSTALL_PUPPER_REVOL) && Authority != Authority.Neutral && Authority != Aut && OppForce < 10) ||    //оппозиция в чужой стране
-            (Support <= (100 - GameManagerScript.GM.INSTALL_PUPPER_REVOL) && Authority == Authority.Neutral && Aut == Authority.Amer && (AmInf < SovInf) && OppForce < 10) ||  //оппозиция в нейтральной стране
-            (Support <= (100 - GameManagerScript.GM.INSTALL_PUPPER_REVOL) && Authority == Authority.Neutral && Aut == Authority.Soviet && (AmInf > SovInf) && OppForce < 10)    //оппозиция в нейтральной стране
+            (Support <= (100 - GM.INSTALL_PUPPER_REVOL) && Authority != Authority.Neutral && Authority != Aut && OppForce < 10) ||    //оппозиция в чужой стране
+            (Support <= (100 - GM.INSTALL_PUPPER_REVOL) && Authority == Authority.Neutral && Aut == Authority.Amer && (AmInf < SovInf) && OppForce < 10) ||  //оппозиция в нейтральной стране
+            (Support <= (100 - GM.INSTALL_PUPPER_REVOL) && Authority == Authority.Neutral && Aut == Authority.Soviet && (AmInf > SovInf) && OppForce < 10)    //оппозиция в нейтральной стране
             ));
+    }
+
+    //Проверка возможности начать войну
+    public bool CanAgression(Authority Aut)
+    {
+        GameManagerScript GM = GameManagerScript.GM;
+
+        return (Aut != Authority && OppForce == 0 && Support <= (100 - GM.INSTALL_PUPPER_REVOL)) &&
+            ((Authority != Authority.Neutral) ||    //оппозиция в чужой стране
+            (Authority == Authority.Neutral && Aut == Authority.Amer && (AmInf < SovInf)) ||    //американская оппозиция в нейтральной стране
+            (Authority == Authority.Neutral && Aut == Authority.Soviet && (AmInf > SovInf))     //советская оппозиция в нейтральной стране
+            );
     }
 
     //Проверка возможности добавить шпиона
