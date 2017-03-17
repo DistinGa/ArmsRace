@@ -264,7 +264,7 @@ namespace GlobalEffects
                     GameManagerScript.GM.GetPlayerByAuthority(AllianceAction).fpBonus += Amount;
                     break;
                 //изменение бюджета страны
-                case GETypes.GNPchange:
+                case GETypes.GNPChange:
                     GameManagerScript.GM.GetPlayerByAuthority(AllianceAction).Budget += Amount;
                     break;
                 case GETypes.SpaceDiscount:
@@ -301,7 +301,7 @@ namespace GlobalEffects
             MilitaryAddToPool,
             ChangeGovernment,
             FirePowerAddition,
-            GNPchange,
+            GNPChange,
             SpaceDiscount,
             ScoreAddition,
             Crisis

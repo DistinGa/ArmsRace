@@ -47,14 +47,14 @@ namespace GlobalEffects
                 //отображение кнопки на верхнем меню
                 if (resStep != 0)
                 {
-                    RectTransform newGO = Instantiate(ButtonPrefab);
+                    RectTransform newGO = Instantiate(ButtonPrefab) as RectTransform;
                     newGO.GetComponent<Image>().sprite = ge.icon;
 
-                    if (resStep < 1)    //usa
+                    if (resStep < 0)    //usa
                     {
                         newGO.parent = GameObject.Find("UpMenu/LefttGEPanel").transform;
                     }
-                    else if (resStep > 1)   //ussr
+                    else if (resStep > 0)   //ussr
                     {
                         newGO.parent = GameObject.Find("UpMenu/RightGEPanel").transform;
                     }
@@ -73,22 +73,26 @@ namespace GlobalEffects
             if (decade == curDecade)
                 return;
 
-            GlobalEffectObject[] GEs = GetDecadeGEs(decade);
+            //GlobalEffectObject[] GEs = GetDecadeGEs(decade);
 
-            for (int i = 0; i < GEs.Length; i++)
-            {
-                GlobalEffectsList[i].eventName = GEs[i].eventName;
-                GlobalEffectsList[i].sovDescription = GEs[i].sovDescription;
-                GlobalEffectsList[i].usaDescription = GEs[i].usaDescription;
-                GlobalEffectsList[i].picture = GEs[i].picture;
-                GlobalEffectsList[i].sovGPPLimit = GEs[i].sovGPPLimit;
-                GlobalEffectsList[i].usaGPPLimit = GEs[i].usaGPPLimit;
+            //for (int i = 0; i < GEs.Length; i++)
+            //{
+            //    GlobalEffectsList[i].eventName = GEs[i].eventName;
+            //    GlobalEffectsList[i].sovDescription = GEs[i].sovDescription;
+            //    GlobalEffectsList[i].usaDescription = GEs[i].usaDescription;
+            //    GlobalEffectsList[i].picture = GEs[i].picture;
+            //    GlobalEffectsList[i].icon = GEs[i].icon;
+            //    GlobalEffectsList[i].sovGPPLimit = GEs[i].sovGPPLimit;
+            //    GlobalEffectsList[i].usaGPPLimit = GEs[i].usaGPPLimit;
+            //    GlobalEffectsList[i].sovEvents = GEs[i].sovEvents;
+            //    GlobalEffectsList[i].usaEvents = GEs[i].usaEvents;
 
-                GlobalEffectsList[i].counter = 0;
-                GlobalEffectsList[i].sovGPP = 0;
-                GlobalEffectsList[i].usaGPP = 0;
-            }
+            //    GlobalEffectsList[i].counter = 0;
+            //    GlobalEffectsList[i].sovGPP = 0;
+            //    GlobalEffectsList[i].usaGPP = 0;
+            //}
 
+            GlobalEffectsList = GetDecadeGEs(decade);
             curDecade = decade;
 
             //удаление иконок произошедших событий
