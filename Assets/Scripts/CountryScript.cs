@@ -233,7 +233,8 @@ public class CountryScript : MonoBehaviour
 
     //Добавление шпионов.
     //Inf - чей шпион добавляется.
-    public void AddSpy(Authority Inf, int Amount)
+    //cheat - если true, шпионы не вычитаются из пула, и не изменяется дискаунтер (читинг)
+    public void AddSpy(Authority Inf, int Amount, bool cheat = false)
     {
         GameManagerScript GM = GameManagerScript.GM;
 
@@ -255,20 +256,24 @@ public class CountryScript : MonoBehaviour
         if (CIA < 0) CIA = 0;
         if (KGB < 0) KGB = 0;
 
-        if(Amount > 0)
-            GM.GetPlayerByAuthority(Inf).SpyPool -= Amount;
+        if (!cheat)
+        {
+            if (Amount > 0)
+                GM.GetPlayerByAuthority(Inf).SpyPool -= Amount;
 
-        //устанавливаем дискаунтер, чтобы отключить возможность повторного повышения в пределах отведённого периода.
-        if (Inf == Authority.Amer)
-            DiscounterUsaSpy = GM.MAX_SPY_CLICK;
-        if (Inf == Authority.Soviet)
-            DiscounterRusSpy = GM.MAX_SPY_CLICK;
+            //устанавливаем дискаунтер, чтобы отключить возможность повторного повышения в пределах отведённого периода.
+            if (Inf == Authority.Amer)
+                DiscounterUsaSpy = GM.MAX_SPY_CLICK;
+            if (Inf == Authority.Soviet)
+                DiscounterRusSpy = GM.MAX_SPY_CLICK;
+        }
     }
 
     //Добавление вооружённых сил.
     //Inf - чьи силы добавляются.
+    //cheat - если true, военные не вычитаются из пула
     //возвращает true, если добавили правительственные силы и false - если оппозиционные (нужно для показа новостей)
-    public bool AddMilitary(Authority Inf, int Amount)
+    public bool AddMilitary(Authority Inf, int Amount, bool cheat = false)
     {
         PlayerScript pl = GameManagerScript.GM.GetPlayerByAuthority(Inf);
 
@@ -308,7 +313,7 @@ public class CountryScript : MonoBehaviour
                 OppForce += Amount;
         }
 
-        if(Amount >0)
+        if(Amount > 0 && !cheat)
             pl.MilitaryPool -= Amount;
 
         //Устранение выхода за допустимую границу.
@@ -436,7 +441,7 @@ public class CountryScript : MonoBehaviour
     //Смена правительства
     public void ChangeGov(Authority NewAut)
     {
-        Support = 50;    // оппозиция стала поддержкой
+        Support = 50;
 
         if (Authority == Authority.Neutral && GovForce >= 8)
         {
@@ -655,6 +660,29 @@ public class CountryScript : MonoBehaviour
         }
 
         return result;
+    }
+
+    //Возвращает количество военных альянса
+    public int GetMilitary(Authority aut)
+    {
+        int res = 0;
+
+        if (Authority == aut)
+            res = GovForce; //свои
+        else
+        {
+            if (Authority != Authority.Neutral)
+                res = OppForce; //противника
+            else
+            {
+                if (GetInfluense(aut) > GetInfluense(GameManagerScript.GM.GetOpponentTo(GameManagerScript.GM.GetPlayerByAuthority(aut)).Authority))
+                    res = GovForce; //если страна нейтральная и запрашиваемое влияние больше - правительственные войска
+                else
+                    res = OppForce;
+            }
+        }
+
+        return res;
     }
 
     //Сохранение/загрузка

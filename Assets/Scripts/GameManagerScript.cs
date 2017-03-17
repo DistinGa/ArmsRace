@@ -537,9 +537,9 @@ public class GameManagerScript : MonoBehaviour
 
     //Смена власти
     //revolution = true - в результате революции, false - мирным способом
-    public void ChangeGovernment(CountryScript Country, Authority NewAut, bool revolution = false)
+    public void ChangeGovernment(CountryScript Country, Authority NewAut, bool revolution = false, bool checkAbility = true)
     {
-        if (!revolution && !Country.CanChangeGov(NewAut))
+        if (!revolution && (checkAbility && !Country.CanChangeGov(NewAut)))
             return;
 
         //Почистить ролики
@@ -973,6 +973,9 @@ public class GameManagerScript : MonoBehaviour
         fb.SetAsFirstSibling();
         //Установка страны
         fb.GetComponent<FlagButton>().Country = Country;
+
+        //Влияние на глобальные последствия
+        GlobalEffects.GlobalEffectsManager.GeM.ChangeCountersOnWar();
     }
 
     //Удаление флага из правой панели

@@ -25,6 +25,7 @@ public static class SaveManager
         gameData.SpeedIndx = GM.curSpeedIndex;
         gameData.RandomEvent = RandomEventManager.REMInstance.GetSavedData();
         gameData.AIPower = SettingsScript.Settings.AIPower;
+        gameData.GEData = GlobalEffects.GlobalEffectsManager.GeM.GetSavedData();
 
         //сериализация и запись
         string initPath = Application.streamingAssetsPath + "/Saves/";
@@ -68,6 +69,7 @@ public static class SaveManager
         GameManagerScript.GM.curSpeedIndex = gameData.SpeedIndx;
         GameManagerScript.GM.Tick = GameManagerScript.GM.GameSpeedPrefs[gameData.SpeedIndx];
         SettingsScript.Settings.AIPower = gameData.AIPower;
+        GlobalEffects.GlobalEffectsManager.GeM.SetSavedData(gameData.GEData);
 
         foreach (SavedCountryData item in gameData.countryData)
         {
@@ -137,6 +139,17 @@ public struct SavedPlayerData
 
     public int LeaderID;
     public LeaderType LeaderType;
+    public int TYGEDiscounter;
+    public int fpBonus;
+    public int ScoreBonus;
+    public int SpaceDiscount;
+}
+
+[System.Serializable]
+public struct GlobalEffectsData
+{
+    public int curDecade;
+    public int[,] geObjArray;
 }
 
 [System.Serializable]
@@ -148,4 +161,5 @@ public class SavedGame
     public SavedPlayerData[] playerData;
     public RandomEvent RandomEvent;
     public int AIPower;
+    public GlobalEffectsData GEData;
 }

@@ -52,7 +52,7 @@ public class AI : MonoBehaviour {
         AIPlayer.Budget = StartBudget[SettingsScript.Settings.AIPower];
         AIPlayer.History2.Add(StartBudget[SettingsScript.Settings.AIPower]);
         AIPlayer.History.Add(5);
-        AIPlayer.LastRevenue = (int)(AIPlayer.Budget - GameManagerScript.GM.CrisisBudget);
+        AIPlayer.LastRevenue = (int)(AIPlayer.Budget - GameManagerScript.GM.CrisisBudget);  //для работы части ИИ определяющей положительный или отрицательный расчётный баланс на текущий момент
         AIPlayer.growPPercentPerPP = addBudgetGrowths[SettingsScript.Settings.AIPower];
     }
 

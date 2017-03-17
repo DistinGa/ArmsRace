@@ -34,7 +34,7 @@ public class PlayerScript : MonoBehaviour
     int spyAmount = 0;
     [SerializeField]
     int diplomatAmount = 0;
-    //траты на открытие теххнологий, военныхх, дипломатов и шпионов
+    //траты на открытие технологий, военныхх, дипломатов и шпионов
     Dictionary<OutlayField, UniOutlay> outlays;
     int politicalPoints;
     //Дискаунтер для кризиса при опускании бюджета до CrisisBudget. Кризис не чаще раза в год.
@@ -46,6 +46,12 @@ public class PlayerScript : MonoBehaviour
     //Ссылка на лидера игрока
     //[HideInInspector]
     public LeaderScript PlayerLeader;
+    //Дискаунтер бонуса лидера на изменение состояния глобальных последствий
+    [HideInInspector]
+    public int TYGEDiscounter = 0;  //(сохраняется)
+    public int fpBonus = 0;  //(сохраняется)
+    public int ScoreBonus = 0;  //(сохраняется)
+    public int SpaceDiscount = 0;  //(сохраняется)
 
     // Use this for initialization
     void Start()
@@ -73,6 +79,7 @@ public class PlayerScript : MonoBehaviour
         outlays.Add(OutlayField.spaceLaunches, new UniOutlay(this, OutlayField.spaceLaunches, GM.SRInstance.GetTechCost(CurLnchTechIndex, this)));
 
         politicalPoints = GameManagerScript.GM.OutlayChangesPerYear;
+        TYGEDiscounter = PlayerLeader.GetTenYearsGlobalEffectsChange();
     }
 
     public int PoliticalPoints
@@ -160,7 +167,8 @@ public class PlayerScript : MonoBehaviour
                 if (Country.Authority == Authority)
                     s += Country.Score;
             }
-            return s;
+
+            return s + ScoreBonus;
         }
     }
 
@@ -293,7 +301,7 @@ public class PlayerScript : MonoBehaviour
         }
 
         //бонус лидера
-        fp += PlayerLeader.GetFPBonus();
+        fp += PlayerLeader.GetFPBonus() + fpBonus;
 
         return fp;
     }
@@ -314,15 +322,7 @@ public class PlayerScript : MonoBehaviour
         crisisDiscounter -= 1;
         if (Budget <= GM.CrisisBudget && crisisDiscounter <= 0)
         {
-            foreach (var item in Outlays)
-            {
-                item.Value.ResetOutlay();
-            }
-
-            CountryScript c = MyCountry;
-            c.Support -= 50f;
-            crisisDiscounter = 12;
-            GM.VQueue.AddRolex(VideoQueue.V_TYPE_GLOB, VideoQueue.V_PRIO_PRESSING, VideoQueue.V_PUPPER_EVENT_FINANCE, c);
+            MakeCrisis();
         }
 
         //Ежемесячные инвестиции
@@ -342,6 +342,8 @@ public class PlayerScript : MonoBehaviour
         diplomatAmount += PlayerLeader.GetAnnualFreeDipSpy();
         //бонусы типа лидера (пиджак)
         militaryAmount += PlayerLeader.GetAnnualFreeMil();
+        if(GameManagerScript.GM.CurrentMonth % 120 == 0)
+            TYGEDiscounter = PlayerLeader.GetTenYearsGlobalEffectsChange();
     }
 
     public int TotalYearSpendings()
@@ -357,6 +359,21 @@ public class PlayerScript : MonoBehaviour
             PoliticalPoints--;
         }
     }
+
+    //Кризис при падении бюджета
+    public void MakeCrisis()
+    {
+        foreach (var item in Outlays)
+        {
+            item.Value.ResetOutlay();
+        }
+
+        CountryScript c = MyCountry;
+        c.Support -= 50f;
+        crisisDiscounter = 12;
+        GameManagerScript.GM.VQueue.AddRolex(VideoQueue.V_TYPE_GLOB, VideoQueue.V_PRIO_PRESSING, VideoQueue.V_PUPPER_EVENT_FINANCE, c);
+    }
+
 
     //Сохранение/загрузка
     public SavedPlayerData GetSavedData()
@@ -375,6 +392,10 @@ public class PlayerScript : MonoBehaviour
         res.MoonSwitchState = MoonSwitchState;
         res.addBudgetGrowPercent = addBudgetGrowPercent;
         res.LastAddBudgetGrow = LastAddBudgetGrow;
+        res.TYGEDiscounter = TYGEDiscounter;
+        res.fpBonus = fpBonus;
+        res.ScoreBonus = ScoreBonus;
+        res.SpaceDiscount = SpaceDiscount;
 
         res.LastRevenue = LastRevenue;
         res.History = History;
@@ -405,6 +426,10 @@ public class PlayerScript : MonoBehaviour
         MoonSwitchState = sd.MoonSwitchState;
         addBudgetGrowPercent = sd.addBudgetGrowPercent;
         LastAddBudgetGrow = sd.LastAddBudgetGrow;
+        TYGEDiscounter = sd.TYGEDiscounter;
+        fpBonus = sd.fpBonus;
+        ScoreBonus = sd.ScoreBonus;
+        SpaceDiscount = sd.SpaceDiscount;
 
         LastRevenue = sd.LastRevenue;
         History = sd.History;

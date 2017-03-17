@@ -351,6 +351,8 @@ public class SpaceRace : MonoBehaviour
 
         //бонус лидера
         res -= initCost * pl.PlayerLeader.GetSpaceDiscount();
+        //прочие бонусы (от глобальных последствий, например)
+        res -= initCost * (pl.SpaceDiscount / 100f);
 
         return Mathf.RoundToInt(res);
     }
