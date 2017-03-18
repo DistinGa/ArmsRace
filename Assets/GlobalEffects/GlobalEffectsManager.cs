@@ -54,14 +54,14 @@ namespace GlobalEffects
 
                     if (resStep < 0)    //usa
                     {
-                        newGO.parent = GameObject.Find("UpMenu/LefttGEPanel").transform;
+                        newGO.SetParent(GameObject.Find("UpMenu/LefttGEPanel").transform);
                     }
                     else if (resStep > 0)   //ussr
                     {
-                        newGO.parent = GameObject.Find("UpMenu/RightGEPanel").transform;
+                        newGO.SetParent(GameObject.Find("UpMenu/RightGEPanel").transform);
                     }
 
-                    SoundManager.SM.PlaySound("ots4et");
+                    SoundManager.SM.PlaySound("sound/ots4et");
                 }
             }
 

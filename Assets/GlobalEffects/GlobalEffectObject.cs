@@ -17,6 +17,7 @@ namespace GlobalEffects
             sovDescription = GEPref.sovDescription;
             usaDescription = GEPref.usaDescription;
             picture = GEPref.picture;
+            offPicture = GEPref.offPicture;
             icon = GEPref.icon;
             sovGPPLimit = GEPref.sovGPPLimit;
             usaGPPLimit = GEPref.usaGPPLimit;

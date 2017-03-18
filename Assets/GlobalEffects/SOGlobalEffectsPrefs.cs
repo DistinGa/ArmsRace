@@ -16,6 +16,7 @@ namespace GlobalEffects
         public string sovDescription;
         public string usaDescription;
         public Sprite picture;  //картинка на панели в меню глобальныхх последствий
+        public Sprite offPicture;  //картинка на неактивной панели в меню глобальныхх последствий
         public Sprite icon;     //картинка на кнопке в верхнем меню
         public int sovGPPLimit, usaGPPLimit;
         public List<GEEvent> sovEvents, usaEvents;
@@ -61,7 +62,7 @@ namespace GlobalEffects
 
             if (Country == null && Field == GEFields.SingleCountry)
             {
-                Debug.LogError("Нет такой страны: " + CountryName);
+                Debug.LogError("Нет такой страны: <" + CountryName + ">");
                 return;
             }
 

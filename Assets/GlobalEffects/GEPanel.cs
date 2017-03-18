@@ -46,17 +46,18 @@ public class GEPanel : MonoBehaviour {
             {
                 background.sprite = activeBackGround;
             }
+
+            Title.sprite = GEobj.picture;
         }
         else
         {
             background.sprite = notActiveBackGround;
+            Title.sprite = GEobj.offPicture;
         }
 
         //отображение описания
-        if(updateDescription)
+        if (updateDescription)
             SetDescription(GEobj.counter);
-
-        Title.sprite = GEobj.picture;
 
         usabar.fillAmount = (float)GEobj.usaGPP / GEobj.usaGPPLimit;
         sovbar.fillAmount = (float)GEobj.sovGPP / GEobj.sovGPPLimit;
