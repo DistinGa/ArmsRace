@@ -49,6 +49,8 @@ namespace GlobalEffects
                 {
                     RectTransform newGO = Instantiate(ButtonPrefab) as RectTransform;
                     newGO.GetComponent<Image>().sprite = ge.icon;
+                    newGO.GetComponent<Button>().onClick.AddListener(() => GM.ToggleTechMenu(Menu.gameObject));
+                    newGO.GetComponent<Button>().onClick.AddListener(() => SoundManager.SM.PlaySound("sound/buttons"));
 
                     if (resStep < 0)    //usa
                     {
@@ -100,12 +102,14 @@ namespace GlobalEffects
             trPanel = GameObject.Find("UpMenu/LefttGEPanel").transform;
             foreach (Transform item in trPanel)
             {
+                item.GetComponent<Button>().onClick.RemoveAllListeners();
                 Destroy(item);
             }
 
             trPanel = GameObject.Find("UpMenu/RightGEPanel").transform;
             foreach (Transform item in trPanel)
             {
+                item.GetComponent<Button>().onClick.RemoveAllListeners();
                 Destroy(item);
             }
         }

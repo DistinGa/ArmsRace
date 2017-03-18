@@ -37,20 +37,34 @@ namespace GlobalEffects
         }
     }
 
+    public class CountryNameAtribute : PropertyAttribute
+    {
+    }
+
     [System.Serializable]
     public class GEEvent
     {
         public GETypes GEType;
         public int Amount;
-        public Authority AllianceAction;
-        public CountryScript Country;
-        public Region Region;
+        [Tooltip("Область применения")]
         public GEFields Field;
+        public Authority AllianceAction;
+        [CountryNameAtribute]
+        public string CountryName;
+        public Region Region;
         public bool IfInAllianceOnly;
         public Authority AllianceCondition;
 
         public void ApplyEffect()
         {
+            CountryScript Country = GameManagerScript.GM.FindCountryByName(CountryName);
+
+            if (Country == null && Field == GEFields.SingleCountry)
+            {
+                Debug.LogError("Нет такой страны: " + CountryName);
+                return;
+            }
+
             switch (GEType)
             {
                 //изменение оппозиции
@@ -75,8 +89,7 @@ namespace GlobalEffects
                         case GEFields.Global:
                             foreach (var c in CountryScript.Countries())
                             {
-                                if (!IfInAllianceOnly || (c.Authority == AllianceCondition))
-                                    c.Support -= Amount;
+                                c.Support -= Amount;
                             }
                             break;
                     }
@@ -109,11 +122,8 @@ namespace GlobalEffects
                         case GEFields.Global:
                             foreach (var c in CountryScript.Countries())
                             {
-                                if (!IfInAllianceOnly || (c.Authority == AllianceCondition))
-                                {
-                                    if (Country.Support > (100 - Amount))
-                                        c.Support = (100 - Amount);
-                                }
+                                if (Country.Support > (100 - Amount))
+                                    c.Support = (100 - Amount);
                             }
                             break;
                     }
@@ -139,8 +149,7 @@ namespace GlobalEffects
                             break;
                         case GEFields.Global:
                             foreach (var c in CountryScript.Countries())
-                                if (!IfInAllianceOnly || (c.Authority == AllianceCondition))
-                                    c.AddInfluence(AllianceAction, Amount);
+                                c.AddInfluence(AllianceAction, Amount);
                             break;
                     }
                     break;
@@ -165,8 +174,7 @@ namespace GlobalEffects
                             break;
                         case GEFields.Global:
                             foreach (var c in CountryScript.Countries())
-                                if (!IfInAllianceOnly || (c.Authority == AllianceCondition))
-                                    c.AddInfluence(AllianceAction, Amount - c.GetInfluense(AllianceAction));
+                                c.AddInfluence(AllianceAction, Amount - c.GetInfluense(AllianceAction));
                             break;
                     }
                     break;
@@ -191,8 +199,7 @@ namespace GlobalEffects
                             break;
                         case GEFields.Global:
                             foreach (var c in CountryScript.Countries())
-                                if (!IfInAllianceOnly || (c.Authority == AllianceCondition))
-                                    c.AddMilitary(AllianceAction, Amount, true);
+                                c.AddMilitary(AllianceAction, Amount, true);
                             break;
                     }
                     break;
@@ -229,8 +236,7 @@ namespace GlobalEffects
                             {
                                 if (!IfInAllianceOnly || (c.Authority == AllianceCondition))
                                 {
-                                    if (c.GetMilitary(AllianceAction) < Amount)
-                                        c.AddMilitary(AllianceAction, Amount - c.GetMilitary(AllianceAction), true);
+                                    c.AddMilitary(AllianceAction, Amount - c.GetMilitary(AllianceAction), true);
                                 }
                             }
                             break;
@@ -238,7 +244,7 @@ namespace GlobalEffects
                     break;
                 //установка определённого количества шпионов в конкретной стране
                 case GETypes.SpiesSet:
-                    if (!IfInAllianceOnly || (Country.Authority == AllianceCondition))
+                    if (Field == GEFields.SingleCountry && (!IfInAllianceOnly || (Country.Authority == AllianceCondition)))
                     {
                         if (Country.SpyCount(AllianceAction) < Amount)
                             Country.AddSpy(AllianceAction, Amount - Country.SpyCount(AllianceAction), true);

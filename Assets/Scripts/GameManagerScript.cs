@@ -938,6 +938,18 @@ public class GameManagerScript : MonoBehaviour
             return null;
     }
 
+    public CountryScript FindCountryByName(string Name)
+    {
+        foreach (var item in GameObject.Find("Countries").GetComponentsInChildren<CountryScript>())
+        {
+            if (item.Name == Name)
+                return item;
+        }
+
+        return null;
+    }
+
+
     public int CurrentMonth
     {
         get { return mMonthCount; }
