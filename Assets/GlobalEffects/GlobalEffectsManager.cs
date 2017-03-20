@@ -103,14 +103,14 @@ namespace GlobalEffects
             foreach (Transform item in trPanel)
             {
                 item.GetComponent<Button>().onClick.RemoveAllListeners();
-                Destroy(item);
+                Destroy(item.gameObject);
             }
 
             trPanel = GameObject.Find("UpMenu/RightGEPanel").transform;
             foreach (Transform item in trPanel)
             {
                 item.GetComponent<Button>().onClick.RemoveAllListeners();
-                Destroy(item);
+                Destroy(item.gameObject);
             }
         }
 

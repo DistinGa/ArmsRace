@@ -109,21 +109,21 @@ namespace GlobalEffects
                         case GEFields.AllianceCountries:
                             foreach (var c in CountryScript.Countries(AllianceCondition))
                             {
-                                if (Country.Support > (100 - Amount))
+                                if (c.Support > (100 - Amount))
                                     c.Support = (100 - Amount);
                             }
                             break;
                         case GEFields.AllianceCountriesInRegion:
                             foreach (var c in CountryScript.Countries(AllianceCondition))
                             {
-                                if (c.Region == Region && Country.Support > (100 - Amount))
+                                if (c.Region == Region && c.Support > (100 - Amount))
                                     c.Support = (100 - Amount);
                             }
                             break;
                         case GEFields.Global:
                             foreach (var c in CountryScript.Countries())
                             {
-                                if (Country.Support > (100 - Amount))
+                                if (c.Support > (100 - Amount))
                                     c.Support = (100 - Amount);
                             }
                             break;

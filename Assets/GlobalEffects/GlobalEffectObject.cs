@@ -64,12 +64,19 @@ namespace GlobalEffects
             return res;
         }
 
-        public void ChangeGPPCounter(int amount = 1)
+        //Изменение счётчика через бонус лидера-дипломата
+        public void ChangeGPPCounter()
         {
+            int amount;
             PlayerScript player = GameManagerScript.GM.Player;
 
             if (player.TYGEDiscounter > 0)
             {
+                if (player.Authority == Authority.Soviet)
+                    amount = 1;
+                else
+                    amount = -1;
+
                 counter += amount;
                 player.TYGEDiscounter--;
             }

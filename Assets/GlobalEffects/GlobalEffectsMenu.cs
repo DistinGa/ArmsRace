@@ -53,6 +53,6 @@ public class GlobalEffectsMenu : MonoBehaviour {
             Toggles[i].GetComponent<Image>().enabled = (i != dec);
         }
 
-        UpdateView();
+        UpdateView(true);
     }
 }

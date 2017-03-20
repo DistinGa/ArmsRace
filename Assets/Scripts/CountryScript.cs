@@ -460,7 +460,7 @@ public class CountryScript : MonoBehaviour
             //Читтинг. Добавляем 3 военных и 1 шпиона. (Чтобы не возникало ситуации, когда после смены власти сразу происходит революция, т.к. нет правительственных сил)
             if (GovForce < 3)
                 GovForce = 3;
-            if (!HaveSpy(NewAut))
+            if (NewAut != Authority.Neutral && !HaveSpy(NewAut))
             {
                 GameManagerScript.GM.GetPlayerByAuthority(NewAut).SpyPool += 1;
                 AddSpy(NewAut, 1);
