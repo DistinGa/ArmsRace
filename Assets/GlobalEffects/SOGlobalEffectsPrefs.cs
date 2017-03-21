@@ -13,7 +13,9 @@ namespace GlobalEffects
     public class GEPref
     {
         public string eventName;
+        [TextArea(3, 5)]
         public string sovDescription;
+        [TextArea(3, 5)]
         public string usaDescription;
         public Sprite picture;  //картинка на панели в меню глобальныхх последствий
         public Sprite offPicture;  //картинка на неактивной панели в меню глобальныхх последствий
