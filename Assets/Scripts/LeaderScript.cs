@@ -79,7 +79,7 @@ public class LeaderScript
         return res;
     }
 
-    //var = 1 - левый список, 2 - правый
+    //var = 1 - левый список (имя), 2 - правый (пиджак)
     public string GetBonuses(int var, SOLP soLeaderProperties)
     {
         string res = "";
@@ -98,7 +98,7 @@ public class LeaderScript
                     res = soLeaderProperties.descriptionFDS;
                     break;
                 case 4:
-                    res = soLeaderProperties.descriptionIB;
+                    res = soLeaderProperties.descriptionGEC;
                     break;
             }
         }
@@ -110,10 +110,10 @@ public class LeaderScript
                     res = soLeaderProperties.descriptionMilDisc + "\n" + soLeaderProperties.descriptionFMil;
                     break;
                 case LeaderType.Diplomatic:
-                    res = soLeaderProperties.descriptionDipDisc + "\n" + soLeaderProperties.descriptionSpyDisc + "\n" + soLeaderProperties.descriptionGEC;
+                    res = soLeaderProperties.descriptionIB;
                     break;
                 case LeaderType.Economic:
-                    res = soLeaderProperties.descriptionMB;
+                    res = soLeaderProperties.descriptionDipDisc + "\n" + soLeaderProperties.descriptionSpyDisc;
                     break;
             }
         }
@@ -151,7 +151,7 @@ public class LeaderScript
     public int GetInfluenceBoost()
     {
         int res = 1;
-        if (LeaderID == 4)
+        if (ActualLeaderType == LeaderType.Diplomatic)
             res = GameManagerScript.GM.LeaderPrefs.InfluenceBoost;
 
         return res;
@@ -178,7 +178,7 @@ public class LeaderScript
     public float GetDipDiscount()
     {
         float res = 0;
-        if (ActualLeaderType == LeaderType.Diplomatic)
+        if (ActualLeaderType == LeaderType.Economic)
             res = GameManagerScript.GM.LeaderPrefs.DipDiscount;
 
         return res;
@@ -187,7 +187,7 @@ public class LeaderScript
     public float GetSpyDiscount()
     {
         float res = 0;
-        if (ActualLeaderType == LeaderType.Diplomatic)
+        if (ActualLeaderType == LeaderType.Economic)
             res = GameManagerScript.GM.LeaderPrefs.SpyDiscount;
 
         return res;
@@ -196,8 +196,8 @@ public class LeaderScript
     public int GetMeetingBoost()
     {
         int res = 1;
-        if (ActualLeaderType == LeaderType.Economic)
-            res = GameManagerScript.GM.LeaderPrefs.MeetingBoost;
+        //if (ActualLeaderType == LeaderType.Economic)
+        //    res = GameManagerScript.GM.LeaderPrefs.MeetingBoost;
 
         return res;
     }
@@ -205,7 +205,7 @@ public class LeaderScript
     public int GetTenYearsGlobalEffectsChange()
     {
         int res = 0;
-        if (ActualLeaderType == LeaderType.Diplomatic)
+        if (LeaderID == 4)
             res = GameManagerScript.GM.LeaderPrefs.TenYearsGlobalEffectsChange;
 
         return res;
