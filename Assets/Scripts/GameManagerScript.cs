@@ -873,6 +873,14 @@ public class GameManagerScript : MonoBehaviour
         UpMenu.Find("testLeaderTypeUSSR").GetComponent<Text>().text = sovPlayer.PlayerLeader.GetLeaderTypeName();
         UpMenu.Find("testLeaderNameUSSR").GetComponent<Text>().text = sovPlayer.PlayerLeader.GetLeaderName(sovPlayer);
         UpMenu.Find("testResourcesUSSR").GetComponent<Text>().text = string.Format("M:{0} S:{1} D:{2}", sovPlayer.MilitaryPool.ToString(), sovPlayer.SpyPool.ToString(), sovPlayer.DiplomatPool.ToString());
+        int usaInf = 0, ussrInf = 0;
+        foreach (CountryScript c in CountryScript.Countries())
+        {
+            usaInf += c.AmInf;
+            ussrInf += c.SovInf;
+        }
+        UpMenu.Find("testInfUSSR").GetComponent<Text>().text = string.Format("Sov Inf: {0}", ussrInf.ToString());
+        UpMenu.Find("testInfUSA").GetComponent<Text>().text = string.Format("Amer Inf: {0}", usaInf.ToString());
 #endif
     }
 
