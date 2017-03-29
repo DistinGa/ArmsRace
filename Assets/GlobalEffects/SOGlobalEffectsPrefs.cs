@@ -21,6 +21,7 @@ namespace GlobalEffects
         public Sprite offPicture;  //картинка на неактивной панели в меню глобальныхх последствий
         public Sprite icon;     //картинка на кнопке в верхнем меню
         public int sovGPPLimit, usaGPPLimit;
+        public bool AIPrioritet;
         public List<GEEvent> sovEvents, usaEvents;
 
         public void InvokeSovEvent()

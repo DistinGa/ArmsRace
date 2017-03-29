@@ -696,6 +696,7 @@ public class CountryScript : MonoBehaviour
         res.AmInf = AmInf;
         res.NInf = NInf;
         res.LastAut = LastAut;
+        res.CurAut = Authority;
         res.GovForce = GovForce;
         res.OppForce = OppForce;
         res.KGB = KGB;
@@ -720,6 +721,8 @@ public class CountryScript : MonoBehaviour
         AmInf = sd.AmInf;
         NInf = sd.NInf;
         LastAut = sd.LastAut;
+        Authority = sd.CurAut;
+        SetAuthority();
         GovForce = sd.GovForce;
         OppForce = sd.OppForce;
         KGB = sd.KGB;

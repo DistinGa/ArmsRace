@@ -98,6 +98,7 @@ public struct SavedCountryData
     public int AmInf;
     public int NInf;
     public Authority LastAut;
+    public Authority CurAut;
     public int GovForce;
     public int OppForce;
     public int KGB;

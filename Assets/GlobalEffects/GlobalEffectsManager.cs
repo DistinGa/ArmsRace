@@ -141,11 +141,11 @@ namespace GlobalEffects
 
         public void ChangeCountersOnWar()
         {
-            int randV;
+            int randV, randLimit = 100;
 
             foreach (var item in GlobalEffectsList)
             {
-                randV = Random.Range(0, 100);
+                randV = Random.Range(0, randLimit);
 
                 if (randV < 50)
                     item.counter--;
