@@ -14,6 +14,7 @@ public class BudgetMenuScript : MonoBehaviour
     public Text MilitaryOutlay;
     public Text DiplomacyOutlay;
     public Text SpaceOutlay;
+    public Text CrisisGNP;
 
     void OnEnable()
     {
@@ -61,6 +62,7 @@ public class BudgetMenuScript : MonoBehaviour
         MilitaryOutlay.text = milOutlay.ToString();
         DiplomacyOutlay.text = dipOutlay.ToString();
         SpaceOutlay.text = spaceOutlay.ToString();
+        CrisisGNP.text = "Crisis GNP = " + GM.CrisisBudget.ToString();
 
         DrawChart(1);
         DrawChart(2);
@@ -134,7 +136,12 @@ public class BudgetMenuScript : MonoBehaviour
         if (GM.Player.History.Count < 2)
             return;
 
-        int maxY = Mathf.Max(Mathf.Max(AmHist), Mathf.Max(SovHist));
+        int maxY;
+        if (GM.Player.Authority == Authority.Amer)
+            maxY = Mathf.Max(AmHist);
+        else
+            maxY = Mathf.Max(SovHist);
+
         int minY = Mathf.Min(Mathf.Min(AmHist), Mathf.Min(SovHist));
         yScale = chartPanel.rect.height / (maxY - minY);
         yOffset = minY;
@@ -153,7 +160,7 @@ public class BudgetMenuScript : MonoBehaviour
             //Для рисования линии будем поворачивать и растягивать простой прямоугольник (Image с пустым спрайтом)
             //Начало линии будет в точке текущего значения статистики (х - год, у - значени), а конец в точке следующего значения из массива.
             p1.x = ind * xScale;
-            p1.y = (AmHist[ind] - yOffset) * yScale;
+            p1.y = (Mathf.Min(AmHist[ind], maxY) - yOffset) * yScale;
 
             Line = Instantiate(LinePrefab);
             Line.GetComponent<Image>().color = blueBrush;
@@ -161,7 +168,7 @@ public class BudgetMenuScript : MonoBehaviour
             Line.localPosition = p1;
 
             p2.x = (ind + 1) * xScale;
-            p2.y = (AmHist[ind + 1] - yOffset) * yScale;
+            p2.y = (Mathf.Min(AmHist[ind + 1], maxY) - yOffset) * yScale;
 
             p1 = p2 - p1;
             Line.localScale = new Vector3(p1.magnitude, 1, 1);
@@ -172,7 +179,7 @@ public class BudgetMenuScript : MonoBehaviour
         for (int ind = 0; ind < SovHist.Length - 1; ind++)
         {
             p1.x = ind * xScale;
-            p1.y = (SovHist[ind] - yOffset) * yScale;
+            p1.y = (Mathf.Min(SovHist[ind], maxY) - yOffset) * yScale;
 
             Line = Instantiate(LinePrefab);
             Line.GetComponent<Image>().color = redBrush;
@@ -180,7 +187,7 @@ public class BudgetMenuScript : MonoBehaviour
             Line.localPosition = p1;
 
             p2.x = (ind + 1) * xScale;
-            p2.y = (SovHist[ind + 1] - yOffset) * yScale;
+            p2.y = (Mathf.Min(SovHist[ind + 1], maxY) - yOffset) * yScale;
 
             p1 = p2 - p1;
             Line.localScale = new Vector3(p1.magnitude, 1, 1);
