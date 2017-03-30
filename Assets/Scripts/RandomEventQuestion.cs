@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-using System.Collections;
+using UnityEngine.UI;
 
 public class RandomEventQuestion : MonoBehaviour
 {
@@ -15,6 +15,26 @@ public class RandomEventQuestion : MonoBehaviour
     public void Init(RandomEvent re)
     {
         rEvent = re;
+
+        //string _color = "";
+        //switch (rEvent.Country.Authority)
+        //{
+        //    case Authority.Neutral:
+        //        _color = "yellow";
+        //        break;
+        //    case Authority.Amer:
+        //        _color = "blue";
+        //        break;
+        //    case Authority.Soviet:
+        //        _color = "red";
+        //        break;
+        //}
+        //transform.Find("CountryName").GetComponent<Text>().text = "<color=" + _color + ">" + rEvent.Country.Name + "</color>";
+        transform.Find("CountryName").GetComponent<Text>().text = rEvent.Country.Name;
+        transform.Find("DescriptionPanel/Description").GetComponent<Text>().text = rEvent.Description;
+        transform.Find("DescriptionPanel/Description2").GetComponent<Text>().text = rEvent.Description2;
+        transform.Find("CostPanel/Cost").GetComponent<Text>().text = "$" + rEvent.Cost.ToString();
+        transform.Find("Flag").GetComponent<Image>().sprite = rEvent.Country.Authority == Authority.Soviet ? rEvent.Country.FlagS : rEvent.Country.FlagNs;
     }
 
     public void SelectYes()

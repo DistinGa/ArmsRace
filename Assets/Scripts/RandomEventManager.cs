@@ -155,24 +155,6 @@ public class RandomEventManager : MonoBehaviour
         if (!EventMenu.activeSelf)
             GameManagerScript.GM.ToggleTechMenu(EventMenu);
         EventMenu.GetComponent<RandomEventQuestion>().Init(rEvent);
-
-        string _color = "";
-        switch (rEvent.Country.Authority)
-        {
-            case Authority.Neutral:
-                _color = "yellow";
-                break;
-            case Authority.Amer:
-                _color = "blue";
-                break;
-            case Authority.Soviet:
-                _color = "red";
-                break;
-        }
-        EventMenu.transform.Find("CountryName").GetComponent<Text>().text = "<color=" + _color + ">" + rEvent.Country.Name + "</color>";
-        EventMenu.transform.Find("DescriptionPanel/Description").GetComponent<Text>().text = rEvent.Description;
-        EventMenu.transform.Find("Description2").GetComponent<Text>().text = rEvent.Description2 + ":";
-        EventMenu.transform.Find("Cost").GetComponent<Text>().text = "$" + rEvent.Cost.ToString();
     }
 
     public void CloseEvent(RandomEvent re)

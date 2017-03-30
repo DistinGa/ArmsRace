@@ -62,7 +62,7 @@ public class BudgetMenuScript : MonoBehaviour
         MilitaryOutlay.text = milOutlay.ToString();
         DiplomacyOutlay.text = dipOutlay.ToString();
         SpaceOutlay.text = spaceOutlay.ToString();
-        CrisisGNP.text = "Crisis GNP = " + GM.CrisisBudget.ToString();
+        CrisisGNP.text = GM.CrisisBudget.ToString() + " = Crisis of the Elites";
 
         DrawChart(1);
         DrawChart(2);
