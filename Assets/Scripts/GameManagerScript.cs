@@ -110,7 +110,7 @@ public class GameManagerScript : MonoBehaviour
 
         Player.PlayerLeader = SettingsScript.Settings.PlayerLeader;
 
-        //Заггрузка, если необходима
+        //Загрузка, если необходима
         if (SettingsScript.Settings.NeedLoad)
             Load();
 
