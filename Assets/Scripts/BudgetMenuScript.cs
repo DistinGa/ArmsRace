@@ -136,8 +136,10 @@ public class BudgetMenuScript : MonoBehaviour
         if (GM.Player.History.Count < 2)
             return;
 
-        int maxY = 13;    //Макс попросил
 
+        int maxY = Mathf.Max(Mathf.Max(AmHist), Mathf.Max(SovHist));
+        if(variant == 1)
+            maxY = Mathf.Min(maxY, 13);    //Макс попросил
         int minY = Mathf.Min(Mathf.Min(AmHist), Mathf.Min(SovHist));
         yScale = chartPanel.rect.height / (maxY - minY);
         yOffset = minY;
