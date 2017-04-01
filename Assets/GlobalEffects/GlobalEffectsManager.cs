@@ -47,26 +47,31 @@ namespace GlobalEffects
                 //отображение кнопки на верхнем меню
                 if (resStep != 0)
                 {
-                    RectTransform newGO = Instantiate(ButtonPrefab) as RectTransform;
-                    newGO.GetComponent<Image>().sprite = ge.icon;
-                    newGO.GetComponent<Button>().onClick.AddListener(() => GM.ToggleTechMenu(Menu.gameObject));
-                    newGO.GetComponent<Button>().onClick.AddListener(() => SoundManager.SM.PlaySound("sound/buttons"));
-
-                    if (resStep < 0)    //usa
-                    {
-                        newGO.SetParent(GameObject.Find("UpMenu/LefttGEPanel").transform);
-                    }
-                    else if (resStep > 0)   //ussr
-                    {
-                        newGO.SetParent(GameObject.Find("UpMenu/RightGEPanel").transform);
-                    }
-
-                    SoundManager.SM.PlaySound("sound/ots4et");
+                    AddIcon(ge, resStep);
                 }
             }
 
             if (Menu.gameObject.activeSelf)
                 Menu.UpdateView();
+        }
+
+        void AddIcon(GlobalEffectObject ge, int side)
+        {
+            RectTransform newGO = Instantiate(ButtonPrefab) as RectTransform;
+            newGO.GetComponent<Image>().sprite = ge.icon;
+            newGO.GetComponent<Button>().onClick.AddListener(() => GameManagerScript.GM.ToggleTechMenu(Menu.gameObject));
+            newGO.GetComponent<Button>().onClick.AddListener(() => SoundManager.SM.PlaySound("sound/buttons"));
+
+            if (side < 0)    //usa
+            {
+                newGO.SetParent(GameObject.Find("UpMenu/LefttGEPanel").transform);
+            }
+            else if (side > 0)   //ussr
+            {
+                newGO.SetParent(GameObject.Find("UpMenu/RightGEPanel").transform);
+            }
+
+            SoundManager.SM.PlaySound("sound/ots4et");
         }
 
         //смена активных глобальных последствий
@@ -172,12 +177,23 @@ namespace GlobalEffects
 
         public void SetSavedData(GlobalEffectsData geData)
         {
-            curDecade = geData.curDecade;
+
+
+            changeGE(geData.curDecade);
             for (int i = 0; i < GlobalEffectsList.Length; i++)
             {
                 GlobalEffectsList[i].counter = geData.geObjArray[i, 0];
                 GlobalEffectsList[i].sovGPP = geData.geObjArray[i, 1];
                 GlobalEffectsList[i].usaGPP = geData.geObjArray[i, 2];
+
+                //показ иконок произошедших событий
+                if (GlobalEffectsList[i].GEDone)
+                {
+                    if (GlobalEffectsList[i].sovGPP > GlobalEffectsList[i].usaGPP)
+                        AddIcon(GlobalEffectsList[i], 1);
+                    else
+                        AddIcon(GlobalEffectsList[i], -1);
+                }
             }
         }
     }
