@@ -546,8 +546,6 @@ public class CountryScript : MonoBehaviour
 
         if(!exist)
             Symbols.Add(new StateSymbol(state, aut, lifeTime, this));
-
-
     }
 
     //Удаление состояния
@@ -569,6 +567,9 @@ public class CountryScript : MonoBehaviour
         if (exist)
         {
             Destroy(ss.Symbol.gameObject);
+            if (ss.GlobalAnimation != null)
+                Destroy(ss.GlobalAnimation.gameObject);
+
             Symbols.Remove(ss);
         }
     }
