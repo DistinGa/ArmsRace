@@ -62,29 +62,29 @@ public static class SaveManager
             stream = File.Open(filePath, FileMode.Open);
             gameData = (SavedGame)bf.Deserialize(stream);
             stream.Close();
+
+            //установка значений объектов
+            GameManagerScript.GM.CurrentMonth = gameData.month;
+            GameManagerScript.GM.curSpeedIndex = gameData.SpeedIndx;
+            GameManagerScript.GM.Tick = GameManagerScript.GM.GameSpeedPrefs[gameData.SpeedIndx];
+            SettingsScript.Settings.AIPower = gameData.AIPower;
+            GlobalEffects.GlobalEffectsManager.GeM.SetSavedData(gameData.GEData);
+
+            foreach (SavedCountryData item in gameData.countryData)
+            {
+                CountryScript country = GameObject.Find(item.Name).GetComponent<CountryScript>();
+                country.SetSavedData(item);
+            }
+
+            foreach (SavedPlayerData item in gameData.playerData)
+            {
+                PlayerScript player = GameManagerScript.GM.GetPlayerByAuthority(item.aut).GetComponent<PlayerScript>();
+                player.SetSavedData(item);
+            }
+
+            if (gameData.RandomEvent != null)
+                RandomEventManager.REMInstance.SetSavedData(gameData.RandomEvent);
         }
-
-        //установка значений объектов
-        GameManagerScript.GM.CurrentMonth = gameData.month;
-        GameManagerScript.GM.curSpeedIndex = gameData.SpeedIndx;
-        GameManagerScript.GM.Tick = GameManagerScript.GM.GameSpeedPrefs[gameData.SpeedIndx];
-        SettingsScript.Settings.AIPower = gameData.AIPower;
-        GlobalEffects.GlobalEffectsManager.GeM.SetSavedData(gameData.GEData);
-
-        foreach (SavedCountryData item in gameData.countryData)
-        {
-            CountryScript country = GameObject.Find(item.Name).GetComponent<CountryScript>();
-            country.SetSavedData(item);
-        }
-
-        foreach (SavedPlayerData item in gameData.playerData)
-        {
-            PlayerScript player = GameManagerScript.GM.GetPlayerByAuthority(item.aut).GetComponent<PlayerScript>();
-            player.SetSavedData(item);
-        }
-
-        if(gameData.RandomEvent != null)
-            RandomEventManager.REMInstance.SetSavedData(gameData.RandomEvent);
     }
 }
 

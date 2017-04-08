@@ -26,14 +26,15 @@ public class GameManagerScript : MonoBehaviour
     public GameObject PausePlate;    //Надпись "Pause"
     public RectTransform StatePrefab;   //префаб значка состояния страны
     public RectTransform FlagButtonPrefab;   //префаб флага в правой панели
+    public GameObject WarAnimationPrefab;   //префаб глобальной анимации войны
     [Space(10)]
     public Sprite SignUSA;
     public Sprite SignSU;
 
     [SerializeField]
     int mMonthCount = -1;     // счетчик месяцев с нуля (-1 потому что в первом кадре значение уже увеличивается)
-    float TickCount;
-    bool IsPoused;  //игра на паузе
+    float TickCount;        //время одного тика
+    public bool IsPaused;  //игра на паузе
 
     [Space(10)]
     [Tooltip("время (сек) между итерациями")]
@@ -95,6 +96,16 @@ public class GameManagerScript : MonoBehaviour
     //Ссылка на ScriptableObject с настройками бонусов лидеров
     public SOLP LeaderPrefs;
 
+    public int CurrentSpeed
+    {
+        get { return curSpeedIndex; }
+        set
+        {
+            curSpeedIndex = Mathf.Clamp(value, 0, GameSpeedPrefs.Length - 1);
+            Tick = GameSpeedPrefs[curSpeedIndex];
+        }
+    }
+
     public void Awake()
     {
         GM = this;
@@ -109,10 +120,6 @@ public class GameManagerScript : MonoBehaviour
             Player = transform.Find("SovPlayer").GetComponent<PlayerScript>();
 
         Player.PlayerLeader = SettingsScript.Settings.PlayerLeader;
-
-        //Загрузка, если необходима
-        if (SettingsScript.Settings.NeedLoad)
-            Load();
 
         //MainCamera = FindObjectOfType<Camera>();
         MainCamera = FindObjectOfType<Camera>();
@@ -129,6 +136,10 @@ public class GameManagerScript : MonoBehaviour
         Player.Budget = START_BUDGET;
         Player.History2.Add(START_BUDGET);
         Player.History.Add(5);
+
+        //Загрузка, если необходима
+        if (SettingsScript.Settings.NeedLoad)
+            Load();
     }
 
     void Update()
@@ -142,12 +153,12 @@ public class GameManagerScript : MonoBehaviour
         //Пауза
         if (Input.GetKeyDown(KeyCode.P))
         {
-            IsPoused = !IsPoused;
-            PausePlate.SetActive(IsPoused);
+            IsPaused = !IsPaused;
+            PausePlate.SetActive(IsPaused);
 
         }
 
-        if (IsPoused)
+        if (IsPaused)
             return;
 
         TickCount -= Time.deltaTime;
@@ -1088,6 +1099,18 @@ public class GameManagerScript : MonoBehaviour
         curSpeedIndex = Mathf.Clamp(curSpeedIndex, 0, GameSpeedPrefs.Length - 1);
         
         Tick = GameSpeedPrefs[curSpeedIndex];
+    }
+
+    public void SetPause(int state)
+    {
+        if (state == -1)
+            IsPaused = !IsPaused;
+        if(state == 0)
+            IsPaused = false;
+        if (state == 1)
+            IsPaused = true;
+
+        PausePlate.SetActive(IsPaused);
     }
 }
 

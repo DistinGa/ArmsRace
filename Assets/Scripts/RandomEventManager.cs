@@ -106,13 +106,13 @@ public class RandomEventManager : MonoBehaviour
                     if (GM.Player.Authority == Authority.Amer)
                     {
                         rEvent.Description = "Would you like to support local democratic party";
-                        rEvent.Description2 = "+20 american influence";
+                        rEvent.Description2 = "+20 American influence";
                         rEvent.Authority = Authority.Amer;
                     }
                     else
                     {
                         rEvent.Description = "Would you like to support local communist party";
-                        rEvent.Description2 = "+20 soviet influence";
+                        rEvent.Description2 = "+20 Soviet influence";
                         rEvent.Authority = Authority.Soviet;
                     }
                     rEvent.Amount = 20;
@@ -124,13 +124,13 @@ public class RandomEventManager : MonoBehaviour
                     if (GM.Player.Authority == Authority.Amer)
                     {
                         rEvent.Description = "Would you like to discredit Soviet ambassador";
-                        rEvent.Description2 = "-10 soviet influence";
+                        rEvent.Description2 = "-10 Soviet influence";
                         rEvent.Authority = Authority.Soviet;
                     }
                     else
                     {
                         rEvent.Description = "Would you like to discredit American ambassador";
-                        rEvent.Description2 = "-10 american influence";
+                        rEvent.Description2 = "-10 American influence";
                         rEvent.Authority = Authority.Amer;
                     }
                     rEvent.Amount = -10;

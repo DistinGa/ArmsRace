@@ -36,6 +36,7 @@ public class CountryScript : MonoBehaviour
 
     private Transform StatePanel;
     public List<StateSymbol> Symbols = new List<StateSymbol>();
+    private List<GameObject> globalMapAnimations = new List<GameObject>();
 
     [HideInInspector]
     public int DiscounterUsaMeeting, DiscounterRusMeeting; //Сколько ждать до возможности следующего митинга протеста (0 - можно митинговать)
@@ -545,6 +546,8 @@ public class CountryScript : MonoBehaviour
 
         if(!exist)
             Symbols.Add(new StateSymbol(state, aut, lifeTime, this));
+
+
     }
 
     //Удаление состояния
@@ -760,6 +763,8 @@ public class CountryScript : MonoBehaviour
         public int MonthsToShow; //сколько месяцев показывать (discaunter)
         public RectTransform Symbol; // сам значок
 
+        public GameObject GlobalAnimation; 
+
         // конструктор
         public StateSymbol(States state, Authority authority, int life, CountryScript Country)
         {
@@ -770,6 +775,11 @@ public class CountryScript : MonoBehaviour
             Symbol = Instantiate(GameManagerScript.GM.StatePrefab);
             Symbol.SetParent(Country.StatePanel);
             Symbol.GetComponent<StatePrefab>().Init((int)state, authority);
+
+            if (state == States.SYM_WAR)
+            {
+                GlobalAnimation = (GameObject)Instantiate(GameManagerScript.GM.WarAnimationPrefab, Country.Capital.position, Quaternion.identity);
+            }
         }
 
     }

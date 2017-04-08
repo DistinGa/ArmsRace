@@ -14,7 +14,7 @@ public class SettingsScript : MonoBehaviour
 
     public int AIPower { get; set; }
     public Authority playerSelected { get; set; }
-    public bool NeedLoad = false;
+    public bool NeedLoad { get; set; }
     public LeaderScript PlayerLeader;
 
     public void Awake()
