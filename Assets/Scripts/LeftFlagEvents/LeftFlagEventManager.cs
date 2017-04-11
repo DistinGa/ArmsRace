@@ -16,12 +16,15 @@ namespace LeftFlagEvents
     {
         public GameObject SetAgressionFlagEventButton;
         public GameObject SetCHGovFlagEventButton;
+        public GameObject CanChangeGE;
 
         List<ILFEvent> listLFE = new List<ILFEvent>();
+        GameManagerScript GM;
 
         void Start()
         {
-            GameManagerScript.GM.SubscribeMonth(checkLFStatus);
+            GM = GameManagerScript.GM;
+            GM.SubscribeMonth(checkLFStatus);
         }
 
         void checkLFStatus()
@@ -42,7 +45,7 @@ namespace LeftFlagEvents
             foreach (CountryScript c in CountryScript.Countries())
             {
                 //страны, где можно начать войну
-                if (c.CanAgression(GameManagerScript.GM.Player.Authority))
+                if (c.CanAgression(GM.Player.Authority))
                 {
                     if (listLFE.Where(x=>(x is AgressionEventFlagScript) && (x as AgressionEventFlagScript).Country == c).Count() > 0)    //в списке уже есть такой флаг
                         continue;
@@ -56,7 +59,7 @@ namespace LeftFlagEvents
                 }
 
                 //страны, где можно сменить правительство
-                if (c.CanChangeGov(GameManagerScript.GM.Player.Authority))
+                if (c.CanChangeGov(GM.Player.Authority))
                 {
                     if (listLFE.Where(x => (x is ChGovEventFlagScript) && (x as ChGovEventFlagScript).Country == c).Count() > 0)    //в списке уже есть такой флаг
                         continue;
@@ -68,7 +71,19 @@ namespace LeftFlagEvents
                     tmpAE.Country = c;
                     listLFE.Add(tmpAE);
                 }
+            }
 
+            //Возможность влиять на глобальные последствия
+            if (GM.Player.TYGEDiscounter > 0)
+            {
+                if (listLFE.Where(x => (x is CanChangeGE)).Count() == 0)    //в списке ещё нет такого флага
+                {
+                    GameObject tmpGO = Instantiate(CanChangeGE);
+                    tmpGO.transform.SetParent(transform.FindChild("Panel/Flags"));
+                    tmpGO.transform.SetAsFirstSibling();
+                    CanChangeGE tmpAE = tmpGO.GetComponent<CanChangeGE>();
+                    listLFE.Add(tmpAE);
+                }
             }
         }
     }

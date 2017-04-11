@@ -15,6 +15,7 @@ public class RandomEventManager : MonoBehaviour
     public int EventPeriod = 24;    //периодичность событий (раз во сколько месяцев)
     public RectTransform EventFlag;
     public GameObject EventMenu;
+    public GameObject GEMenu;
 
     RandomEvent rEvent;
 
