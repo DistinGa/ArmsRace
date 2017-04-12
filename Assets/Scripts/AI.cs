@@ -16,6 +16,8 @@ public class AI : MonoBehaviour {
     [Tooltip("Прибавка к бюджету в начале месяца, если AI проигрывает по очкам")]
     public int[] MonthCheat;
     public int[] addBudgetGrowths;
+    //читинг для GE
+    public int[] GEChance;
 
 
     bool gndSpaceTech = true;   //В космические технологии АИ вкладывается поочередно (ground/launches). Флаг хранит направление вложения.
@@ -65,6 +67,13 @@ public class AI : MonoBehaviour {
             AIPlayer.Budget += MonthCheat[SettingsScript.Settings.AIPower];
 
         AIPlayer.NewMonth();
+
+        //Распределение бонуса ГП
+        while (AIPlayer.TYGEDiscounter > 0)
+        {
+            GlobalEffects.GlobalEffectsManager.GeM.AIBonusSpending(AIPlayer.Authority);
+            AIPlayer.TYGEDiscounter--;
+        }
 
         if (GM.CurrentMonth % 12 == 0)  //делаем проверку каждый год
         {
@@ -628,10 +637,14 @@ public class AI : MonoBehaviour {
         GM.VQueue.AddRolex(GM.GetMySideVideoType(AIPlayer.Authority), VideoQueue.V_PRIO_NULL, milType ? VideoQueue.V_PUPPER_MIL_ADDED : VideoQueue.V_PUPPER_REV_ADDED, Country);
     }
 
-
     public int NewYearBonus()
     {
         return YearCheat[SettingsScript.Settings.AIPower];
+    }
+
+    public int GECHance(int i)
+    {
+        return GEChance[SettingsScript.Settings.AIPower];
     }
 }
 

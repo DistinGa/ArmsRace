@@ -23,6 +23,7 @@ namespace GlobalEffects
             usaGPPLimit = GEPref.usaGPPLimit;
             sovEvents = GEPref.sovEvents;
             usaEvents = GEPref.usaEvents;
+            AIPrioritet = GEPref.AIPrioritet;
 
             counter = 0;
             sovGPP = 0;

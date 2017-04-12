@@ -22,7 +22,6 @@ namespace GlobalEffects
             GeM = this;
         }
 
-        // Use this for initialization
         void Start()
         {
             GameManagerScript.GM.SubscribeMonth(MonthTick);
@@ -80,25 +79,6 @@ namespace GlobalEffects
             if (decade == curDecade)
                 return;
 
-            //GlobalEffectObject[] GEs = GetDecadeGEs(decade);
-
-            //for (int i = 0; i < GEs.Length; i++)
-            //{
-            //    GlobalEffectsList[i].eventName = GEs[i].eventName;
-            //    GlobalEffectsList[i].sovDescription = GEs[i].sovDescription;
-            //    GlobalEffectsList[i].usaDescription = GEs[i].usaDescription;
-            //    GlobalEffectsList[i].picture = GEs[i].picture;
-            //    GlobalEffectsList[i].icon = GEs[i].icon;
-            //    GlobalEffectsList[i].sovGPPLimit = GEs[i].sovGPPLimit;
-            //    GlobalEffectsList[i].usaGPPLimit = GEs[i].usaGPPLimit;
-            //    GlobalEffectsList[i].sovEvents = GEs[i].sovEvents;
-            //    GlobalEffectsList[i].usaEvents = GEs[i].usaEvents;
-
-            //    GlobalEffectsList[i].counter = 0;
-            //    GlobalEffectsList[i].sovGPP = 0;
-            //    GlobalEffectsList[i].usaGPP = 0;
-            //}
-
             GlobalEffectsList = GetDecadeGEs(decade);
             curDecade = decade;
 
@@ -133,8 +113,6 @@ namespace GlobalEffects
             }
             else
             {
-                //curDecade = decade;
-
                 for (int i = 0; i < count; i++)
                 {
                     res[i] = new GlobalEffectObject(SOGEPrefs.GlobalEffectsPreferences[decade * count + i]);
@@ -146,16 +124,58 @@ namespace GlobalEffects
 
         public void ChangeCountersOnWar()
         {
-            int randV, randLimit = 100;
+            GameManagerScript GM = GameManagerScript.GM;
+            int randV = 50, randLimit = 100; //задел для читинга ИИ
+            int GEChance = GM.AI.GECHance(SettingsScript.Settings.AIPower);
+
+            //для отмеченных ГП вероятность смещения counter в сторону ИИ зависит от сложности игры
+            foreach (var item in GlobalEffectsList)
+            {
+                if (item.AIPrioritet)
+                {
+                    if (GM.AI.AIPlayer.Authority == Authority.Soviet)
+                        randV = GEChance;
+                    else
+                        randV = randLimit - GEChance;
+                }
+                else
+                    randV = 50;
+
+                if (Random.Range(0, randLimit) >= randV)
+                    item.counter--; //usa
+                else
+                    item.counter++; //ussr
+            }
+        }
+
+        //ИИ тратит бонусные очки ГП
+        public void AIBonusSpending(Authority aut)
+        {
+            bool done = false;
 
             foreach (var item in GlobalEffectsList)
             {
-                randV = Random.Range(0, randLimit);
+                if (item.AIPrioritet)
+                {
+                    if (aut == Authority.Soviet)
+                        item.counter++;
+                    else
+                        item.counter--;
 
-                if (randV < 50)
-                    item.counter--;
-                else
+                    done = true;
+                    break;
+                }
+            }
+
+            //если не было приоритетных событий, тратит на любое ГП
+            if (!done)
+            {
+                var item = GlobalEffectsList[Random.Range(0, GlobalEffectsList.Length)];
+
+                if (aut == Authority.Soviet)
                     item.counter++;
+                else
+                    item.counter--;
             }
         }
 
