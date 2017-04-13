@@ -123,7 +123,7 @@ public class AI : MonoBehaviour {
         //Ищем страны, где можно установить своё правительство и устанавливаем.
         foreach (var c in countries)
         {
-            if(c.Authority != AIPlayer.Authority)
+            if(c.Authority != AIPlayer.Authority && (c.GovForce >= 8 || AIPlayer.WinPercentForCountry(c) >= 40))
                 GM.ChangeGovernment(c, AIPlayer.Authority);
         }
 
@@ -421,7 +421,7 @@ public class AI : MonoBehaviour {
                 selectedCountries.Clear();
                 foreach (CountryScript c in countries)
                 {
-                    if (c.Authority == Authority.Neutral && c.GetInfluense(AIPlayer.Authority) > c.GetInfluense(GM.GetOpponentTo(AIPlayer).Authority) && c.CanAddMil(AIPlayer.Authority))
+                    if (c.Authority == Authority.Neutral && c.GetInfluense(AIPlayer.Authority) > c.GetInfluense(GM.GetOpponentTo(AIPlayer).Authority) && c.CanAddMil(AIPlayer.Authority) && AIPlayer.MilitaryPool > 9)
                         selectedCountries.Add(c);
                 }
 
@@ -441,7 +441,7 @@ public class AI : MonoBehaviour {
                 selectedCountries.Clear();
                 foreach (CountryScript c in countries)
                 {
-                    if (c.Authority == AIPlayer.Authority && c.CanAddMil(AIPlayer.Authority))
+                    if (c.Authority == AIPlayer.Authority && c.CanAddMil(AIPlayer.Authority) && AIPlayer.MilitaryPool > 9)
                         selectedCountries.Add(c);
                 }
 
