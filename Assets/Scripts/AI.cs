@@ -123,7 +123,7 @@ public class AI : MonoBehaviour {
         //Ищем страны, где можно установить своё правительство и устанавливаем.
         foreach (var c in countries)
         {
-            if(c.Authority != AIPlayer.Authority && (c.GovForce >= 8 || AIPlayer.WinPercentForCountry(c) >= 40))
+            if(c.Authority != AIPlayer.Authority && (c.GovForce >= 8 || AIPlayer.WinPercentForCountry(c) >= 40 || c.OppForce > 0))
                 GM.ChangeGovernment(c, AIPlayer.Authority);
         }
 
