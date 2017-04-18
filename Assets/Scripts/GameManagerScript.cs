@@ -27,6 +27,8 @@ public class GameManagerScript : MonoBehaviour
     public RectTransform StatePrefab;   //префаб значка состояния страны
     public RectTransform FlagButtonPrefab;   //префаб флага в правой панели
     public GameObject WarAnimationPrefab;   //префаб глобальной анимации войны
+    public GInfPanelScript LeaderPanelUSA;
+    public GInfPanelScript LeaderPanelUSSR;
     [Space(10)]
     public Sprite SignUSA;
     public Sprite SignSU;
@@ -877,6 +879,27 @@ public class GameManagerScript : MonoBehaviour
         UpMenu.Find("AmPP").GetComponent<Text>().text = amerPlayer.PoliticalPoints.ToString("f0");
         UpMenu.Find("SovPP").GetComponent<Text>().text = sovPlayer.PoliticalPoints.ToString("f0");
 
+        //Панели лидеров (внизу)
+        int usaInf = 0, ussrInf = 0;
+        foreach (CountryScript c in CountryScript.Countries())
+        {
+            usaInf += c.AmInf;
+            ussrInf += c.SovInf;
+        }
+
+        LeaderPanelUSA.SetSuit((int)amerPlayer.PlayerLeader.ActualLeaderType);
+        LeaderPanelUSA.SetHead(amerPlayer.PlayerLeader.LeaderID - 1);   //лидеры нумеруются с 1
+        LeaderPanelUSA.SetName(amerPlayer.PlayerLeader.GetLeaderName(amerPlayer));
+        LeaderPanelUSA.SetInfPercent(Mathf.RoundToInt(100f * usaInf/(usaInf + ussrInf)));
+        LeaderPanelUSA.SetFPBonus(amerPlayer.GetInfFPbonus());
+        LeaderPanelUSA.SetInfValue(usaInf);
+
+        LeaderPanelUSSR.SetSuit((int)sovPlayer.PlayerLeader.ActualLeaderType);
+        LeaderPanelUSSR.SetHead(sovPlayer.PlayerLeader.LeaderID - 1);   //лидеры нумеруются с 1
+        LeaderPanelUSSR.SetName(sovPlayer.PlayerLeader.GetLeaderName(sovPlayer));
+        LeaderPanelUSSR.SetInfPercent(Mathf.RoundToInt(100f * ussrInf / (usaInf + ussrInf)));
+        LeaderPanelUSSR.SetFPBonus(sovPlayer.GetInfFPbonus());
+        LeaderPanelUSSR.SetInfValue(ussrInf);
 #if DEBUG
         UpMenu.Find("testLeaderNameUSA").GetComponent<Text>().text = amerPlayer.PlayerLeader.GetLeaderName(amerPlayer);
         UpMenu.Find("testLeaderTypeUSA").GetComponent<Text>().text = amerPlayer.PlayerLeader.GetLeaderTypeName();
@@ -884,12 +907,6 @@ public class GameManagerScript : MonoBehaviour
         UpMenu.Find("testLeaderTypeUSSR").GetComponent<Text>().text = sovPlayer.PlayerLeader.GetLeaderTypeName();
         UpMenu.Find("testLeaderNameUSSR").GetComponent<Text>().text = sovPlayer.PlayerLeader.GetLeaderName(sovPlayer);
         UpMenu.Find("testResourcesUSSR").GetComponent<Text>().text = string.Format("M:{0} S:{1} D:{2}", sovPlayer.MilitaryPool.ToString(), sovPlayer.SpyPool.ToString(), sovPlayer.DiplomatPool.ToString());
-        int usaInf = 0, ussrInf = 0;
-        foreach (CountryScript c in CountryScript.Countries())
-        {
-            usaInf += c.AmInf;
-            ussrInf += c.SovInf;
-        }
         UpMenu.Find("testInfUSSR").GetComponent<Text>().text = string.Format("Sov Inf: {0}", ussrInf.ToString());
         UpMenu.Find("testInfUSA").GetComponent<Text>().text = string.Format("Amer Inf: {0}", usaInf.ToString());
 #endif

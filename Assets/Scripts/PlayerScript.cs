@@ -49,9 +49,10 @@ public class PlayerScript : MonoBehaviour
     //Дискаунтер бонуса лидера на изменение состояния глобальных последствий
     [HideInInspector]
     public int TYGEDiscounter = 0;  //(сохраняется)
-    public int fpBonus = 0;  //(сохраняется)
-    public int ScoreBonus = 0;  //(сохраняется)
-    public int SpaceDiscount = 0;  //(сохраняется)
+
+    public int fpBonus = 0;  //(сохраняется) firepower от каких-либо воздействий (глобальных последствий)
+    public int ScoreBonus = 0;  //(сохраняется) от каких-либо воздействий (глобальных последствий)
+    public int SpaceDiscount = 0;  //(сохраняется) от каких-либо воздействий (глобальных последствий)
 
     // Use this for initialization
     void Start()
@@ -300,8 +301,14 @@ public class PlayerScript : MonoBehaviour
                 fp += GameManagerScript.GM.FirePowerPerTech;
         }
 
+        //бонус от глобального влияния
+        fp += GetInfFPbonus();
+
         //бонус лидера
-        fp += PlayerLeader.GetFPBonus() + fpBonus;
+        fp += PlayerLeader.GetFPBonus();
+
+        //бонус от других влияний (глобальные последствия)
+        fp += +fpBonus;
 
         return fp;
     }
@@ -374,6 +381,34 @@ public class PlayerScript : MonoBehaviour
         GameManagerScript.GM.VQueue.AddRolex(VideoQueue.V_TYPE_GLOB, VideoQueue.V_PRIO_PRESSING, VideoQueue.V_PUPPER_EVENT_FINANCE, c);
     }
 
+    //бонус к огневой мощи за глобальное влияние
+    //Формула бонус фаерповер очень простая - +5 фаерповер к ленд, аир, море за каждые 5%, тоесть:
+    //50-55% = +5 фаерповер
+    //55-60% = +10 фаерповер
+    //60-65% = +15 фаерповер и тд
+    public int GetInfFPbonus()
+    {
+        PlayerScript opp = GameManagerScript.GM.GetOpponentTo(this);
+
+        int usaInf = 0, ussrInf = 0, delta = 0, res = 0;
+        foreach (CountryScript c in CountryScript.Countries())
+        {
+            usaInf += c.AmInf;
+            ussrInf += c.SovInf;
+        }
+
+        if (this.Authority == Authority.Soviet)
+            delta = ussrInf - usaInf;
+        else
+            delta = usaInf - ussrInf;
+
+        if (delta > 0)
+        {
+            res = Mathf.RoundToInt(Mathf.RoundToInt(100f * delta / (ussrInf + usaInf)) / 5f + 0.5f) * 5;
+        }
+
+        return res;
+    }
 
     //Сохранение/загрузка
     public SavedPlayerData GetSavedData()
