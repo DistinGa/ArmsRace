@@ -472,12 +472,13 @@ public class PlayerScript : MonoBehaviour
         militaryAmount = sd.militaryAmount;
         spyAmount = sd.spyAmount;
         diplomatAmount = sd.diplomatAmount;
-        PoliticalPoints = sd.outlayChangeDiscounter;
 
         outlays = sd.outlays;
 
         PlayerLeader.LeaderID = sd.LeaderID;
         PlayerLeader.LeaderType = sd.LeaderType;
+
+        PoliticalPoints = sd.outlayChangeDiscounter;    //должно быть после установки значений лидера
     }
 }
 

@@ -139,13 +139,17 @@ public class GameManagerScript : MonoBehaviour
         Player.History2.Add(START_BUDGET);
         Player.History.Add(5);
 
-        //Загрузка, если необходима
-        if (SettingsScript.Settings.NeedLoad)
-            Load();
     }
 
     void Update()
     {
+        //Загрузка, если необходима (в первый update, чтобы все скрипты успели проинициализироваться)
+        if (SettingsScript.Settings.NeedLoad)
+        {
+            Load();
+            SettingsScript.Settings.NeedLoad = false;
+        }
+
         //регулирование скорости игры: "+" - увеличение, "-" - уменьшение.
         if (Input.GetKeyUp(KeyCode.KeypadPlus) || Input.GetKeyUp(KeyCode.Equals) || Input.GetKeyUp(KeyCode.UpArrow))
             ChangeSpeed(1);
