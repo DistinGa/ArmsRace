@@ -203,5 +203,13 @@ public class StartMenuScript : MonoBehaviour
         GameObject.Find("BonusLeft").GetComponent<Text>().text = SettingsScript.Settings.PlayerLeader.GetBonuses(1, soLeaderProperties);
         GameObject.Find("BonusRight").GetComponent<Text>().text = SettingsScript.Settings.PlayerLeader.GetBonuses(2, soLeaderProperties);
     }
+
+    public void SetTogglesActive(bool b)
+    {
+        foreach (var item in FindObjectsOfType<MarkToggle>())
+        {
+            item.SetToggleActive(b);
+        }
+    }
 }
 

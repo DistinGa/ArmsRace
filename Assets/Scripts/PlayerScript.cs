@@ -398,13 +398,13 @@ public class PlayerScript : MonoBehaviour
         }
 
         if (this.Authority == Authority.Soviet)
-            delta = ussrInf - usaInf;
+            delta = Mathf.RoundToInt(100f * ussrInf / (ussrInf + usaInf)) - 50;
         else
-            delta = usaInf - ussrInf;
+            delta = Mathf.RoundToInt(100f * usaInf / (ussrInf + usaInf)) - 50;
 
         if (delta > 0)
         {
-            res = Mathf.RoundToInt(Mathf.RoundToInt(100f * delta / (ussrInf + usaInf)) / 5f + 0.5f) * 5;
+            res = Mathf.RoundToInt(delta / 5f + 0.5f) * 5;
         }
 
         return res;

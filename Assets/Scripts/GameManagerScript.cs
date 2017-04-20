@@ -284,7 +284,7 @@ public class GameManagerScript : MonoBehaviour
                 DownMenu.Find("Sign").GetComponent<Image>().sprite = SignSU;
                 break;
         }
-        DownMenu.Find("CountryState").GetComponent<Text>().text = Country.Name + ": GOVERNMENT - PRO " + CountryState;
+        DownMenu.Find("CountryState").GetComponent<Text>().text = Country.Name;// + ": GOVERNMENT - PRO " + CountryState;
         DownMenu.Find("Page1/Support").GetComponent<Text>().text = Country.Support.ToString("g3");
         DownMenu.Find("Page1/Riots").GetComponent<Text>().text = (100 - Country.Support).ToString("g3");
         DownMenu.Find("Page1/Budget").GetComponent<Text>().text = Player.Budget.ToString("f0");
