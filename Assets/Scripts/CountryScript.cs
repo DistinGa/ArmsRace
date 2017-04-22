@@ -34,9 +34,12 @@ public class CountryScript : MonoBehaviour
     public int Ground = 1;
     public int Sea = 1;
 
+    [Space(10)]
+    //Объект анимации войны на глобальной карте
+    public GameObject GlobalWarAnimation;
+
     private Transform StatePanel;
     public List<StateSymbol> Symbols = new List<StateSymbol>();
-    private List<GameObject> globalMapAnimations = new List<GameObject>();
 
     [HideInInspector]
     public int DiscounterUsaMeeting, DiscounterRusMeeting; //Сколько ждать до возможности следующего митинга протеста (0 - можно митинговать)
@@ -546,6 +549,9 @@ public class CountryScript : MonoBehaviour
 
         if(!exist)
             Symbols.Add(new StateSymbol(state, aut, lifeTime, this));
+
+        if (state == States.SYM_WAR && !GlobalWarAnimation.activeSelf)
+            GlobalWarAnimation.SetActive(true);
     }
 
     //Удаление состояния
@@ -572,6 +578,9 @@ public class CountryScript : MonoBehaviour
 
             Symbols.Remove(ss);
         }
+
+        if (state == States.SYM_WAR)
+            GlobalWarAnimation.SetActive(false);
     }
 
     //Проверка состояний в стране
@@ -776,11 +785,6 @@ public class CountryScript : MonoBehaviour
             Symbol = Instantiate(GameManagerScript.GM.StatePrefab);
             Symbol.SetParent(Country.StatePanel);
             Symbol.GetComponent<StatePrefab>().Init((int)state, authority);
-
-            if (state == States.SYM_WAR)
-            {
-                GlobalAnimation = (GameObject)Instantiate(GameManagerScript.GM.WarAnimationPrefab, Country.Capital.position, Quaternion.identity);
-            }
         }
 
     }
