@@ -53,7 +53,10 @@ public class MilDepMenuScript : MonoBehaviour
         transform.Find("Panel/Raw1/ToggleGroup/Toggle0").GetComponent<Toggle>().isOn = true;
         transform.Find("Panel/Raw2/ToggleGroup/Toggle0").GetComponent<Toggle>().isOn = true;
         transform.Find("Panel/Raw3/ToggleGroup/Toggle0").GetComponent<Toggle>().isOn = true;
-        //transform.Find("Panel/Raw4/ToggleGroup/Toggle0").GetComponent<Toggle>().isOn = true;
+        if (SettingsScript.Settings)
+        {
+            transform.Find("Panel/Raw4/ToggleGroup/Toggle0").GetComponent<Toggle>().isOn = true;
+        }
     }
 
     public void OnDisable()
@@ -66,7 +69,8 @@ public class MilDepMenuScript : MonoBehaviour
         PaintTechButtons(OutlayField.air);
         PaintTechButtons(OutlayField.ground);
         PaintTechButtons(OutlayField.sea);
-        //PaintTechButtons(OutlayField.rocket);
+        if (SettingsScript.Settings)
+            PaintTechButtons(OutlayField.rocket);
     }
 
     public int GetTechCost(OutlayField field, int indx, PlayerScript pl)
@@ -95,6 +99,31 @@ public class MilDepMenuScript : MonoBehaviour
         res -= res * pl.PlayerLeader.GetMilTechDiscount();
 
         return Mathf.RoundToInt(res);
+    }
+
+    public int GetTechPower(OutlayField field, int indx, PlayerScript pl)
+    {
+        int res = 0;
+
+        switch (field)
+        {
+            case OutlayField.air:
+                res = airTechs[indx].Power;
+                break;
+            case OutlayField.ground:
+                res = gndTechs[indx].Power;
+                break;
+            case OutlayField.sea:
+                res = seaTechs[indx].Power;
+                break;
+            case OutlayField.rocket:
+                res = rocketTechs[indx].Power;
+                break;
+            default:
+                break;
+        }
+
+        return res;
     }
 
     //Установка соответствующих спрайтов на кнопки технологий
@@ -264,8 +293,9 @@ public class MilDepMenuScript : MonoBehaviour
 class MilTechnology
 {
     public Sprite mUsaSprite = null, mRusSprite = null;
-    [TextArea(2, 5)]
+    [TextArea(2, 7)]
     public string mUsaDescr = "", mRusDescr = ""; // текстовое описание
-    public int mCost = 0; // стоимость технологии
+    public int mCost = 0;   // стоимость технологии
+    public int Power = 5;   //мощь иехнологии (используется только для ядерных технологий)
 }
 

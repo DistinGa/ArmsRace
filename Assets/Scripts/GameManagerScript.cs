@@ -97,6 +97,9 @@ public class GameManagerScript : MonoBehaviour
     public double CrisisBudget = 500;
     //Ссылка на ScriptableObject с настройками бонусов лидеров
     public SOLP LeaderPrefs;
+    [Space(10)]
+    public Armageddon DLC_Armageddon;
+
 
     public int CurrentSpeed
     {
@@ -183,6 +186,13 @@ public class GameManagerScript : MonoBehaviour
 
             ////Проверка на предмет победы/поражения
             //CheckGameResult();
+
+            //Проверяем конец игры по доминации
+            if (DLC_Armageddon.GetWinner(SettingsScript.Settings.AIPower) != null)
+            {
+                StopGame();
+                return;
+            }
 
             // прошел год?
             if (mMonthCount % 12 == 0 && mMonthCount > 0)
@@ -568,16 +578,16 @@ public class GameManagerScript : MonoBehaviour
 
         ////Steam achievments
         ////Ачивка за дипломатическую смену власти (в любой стране)
-        //if (Country.Authority == Player.Authority && !revolution)
-        //    SteamManager.UnLockAchievment("NEW_ACHIEVEMENT_1_7");
+        //if (Country.Authority == Player.Authority && !revolution && CurrentMonth < 120) //до 1960 года
+        //    SteamManager.UnLockAchievment("Coup a country diplomatically");
 
         //Если в главной стране правительство сменилось, тогда победа нокаутом
         if (Player.MyCountry == Country || Player.OppCountry == Country)
         {
             ////Steam achievments
             ////Ачивка связанная с переворотом в стране противника (мирным или вооруженным)
-            //if (Player.OppCountry.Authority == Player.Authority)
-            //    SteamManager.UnLockAchievment("NEW_ACHIEVEMENT_1_5");
+            //if (Player.OppCountry.Authority == Player.Authority && CurrentMonth < 504) //до 1992 года
+            //    SteamManager.UnLockAchievment("Coup your main enemy");
 
             StopGame();
         }
@@ -596,6 +606,12 @@ public class GameManagerScript : MonoBehaviour
     //Возвращает tru в случае победы
     public bool CheckGameResult()
     {
+        //Проверка победы ядерной доминацией
+        if (DLC_Armageddon.GetWinner(SettingsScript.Settings.AIPower) == Player)
+            return true;
+        else if (DLC_Armageddon.GetWinner(SettingsScript.Settings.AIPower) == AI.AIPlayer)
+            return false;
+
         //Проверка победы нокаутом
         if (Player.MyCountry.Authority != Player.Authority)
             return false;
@@ -699,7 +715,7 @@ public class GameManagerScript : MonoBehaviour
 
             ////Steam achievments
             ////Ачивка за первую победу
-            //SteamManager.UnLockAchievment("NEW_ACHIEVEMENT_1_6");
+            //SteamManager.UnLockAchievment("Win the game");
         }
         else
             SceneName = "LostScreen";
@@ -737,7 +753,7 @@ public class GameManagerScript : MonoBehaviour
                         SavedSettings.Mission3SU = true;
                         ////Steam achievments
                         ////Ачивка за выполнение вссех миссий за СССР
-                        //SteamManager.UnLockAchievment("NEW_ACHIEVEMENT_1_8");
+                        //SteamManager.UnLockAchievment("Soviet glory");
                     }
                 }
             }
@@ -772,7 +788,7 @@ public class GameManagerScript : MonoBehaviour
                         SavedSettings.Mission3USA = true;
                         ////Steam achievments
                         ////Ачивка за выполнение вссех миссий за США
-                        //SteamManager.UnLockAchievment("NEW_ACHIEVEMENT_1_9");
+                        //SteamManager.UnLockAchievment("American dream");
                     }
                 }
             }
@@ -904,15 +920,22 @@ public class GameManagerScript : MonoBehaviour
         LeaderPanelUSSR.SetInfPercent(Mathf.RoundToInt(100f * ussrInf / (usaInf + ussrInf)));
         LeaderPanelUSSR.SetFPBonus(sovPlayer.GetInfFPbonus());
         LeaderPanelUSSR.SetInfValue(ussrInf);
+
+        if (SettingsScript.Settings.CheckDLC_Armageddon())
+        {
+            DLC_Armageddon.SetNuclearPercent(Player.Authority, Player.RelativeNuclearPower());
+            DLC_Armageddon.SetNuclearPercent(AI.AIPlayer.Authority, AI.AIPlayer.RelativeNuclearPower());
+        }
+
 #if DEBUG
-        UpMenu.Find("testLeaderNameUSA").GetComponent<Text>().text = amerPlayer.PlayerLeader.GetLeaderName(amerPlayer);
-        UpMenu.Find("testLeaderTypeUSA").GetComponent<Text>().text = amerPlayer.PlayerLeader.GetLeaderTypeName();
+        //UpMenu.Find("testLeaderNameUSA").GetComponent<Text>().text = amerPlayer.PlayerLeader.GetLeaderName(amerPlayer);
+        //UpMenu.Find("testLeaderTypeUSA").GetComponent<Text>().text = amerPlayer.PlayerLeader.GetLeaderTypeName();
         UpMenu.Find("testResourcesUSA").GetComponent<Text>().text = string.Format("M:{0} S:{1} D:{2}", amerPlayer.MilitaryPool.ToString(), amerPlayer.SpyPool.ToString(), amerPlayer.DiplomatPool.ToString());
-        UpMenu.Find("testLeaderTypeUSSR").GetComponent<Text>().text = sovPlayer.PlayerLeader.GetLeaderTypeName();
-        UpMenu.Find("testLeaderNameUSSR").GetComponent<Text>().text = sovPlayer.PlayerLeader.GetLeaderName(sovPlayer);
+        //UpMenu.Find("testLeaderTypeUSSR").GetComponent<Text>().text = sovPlayer.PlayerLeader.GetLeaderTypeName();
+        //UpMenu.Find("testLeaderNameUSSR").GetComponent<Text>().text = sovPlayer.PlayerLeader.GetLeaderName(sovPlayer);
         UpMenu.Find("testResourcesUSSR").GetComponent<Text>().text = string.Format("M:{0} S:{1} D:{2}", sovPlayer.MilitaryPool.ToString(), sovPlayer.SpyPool.ToString(), sovPlayer.DiplomatPool.ToString());
-        UpMenu.Find("testInfUSSR").GetComponent<Text>().text = string.Format("Sov Inf: {0}", ussrInf.ToString());
-        UpMenu.Find("testInfUSA").GetComponent<Text>().text = string.Format("Amer Inf: {0}", usaInf.ToString());
+        //UpMenu.Find("testInfUSSR").GetComponent<Text>().text = string.Format("Sov Inf: {0}", ussrInf.ToString());
+        //UpMenu.Find("testInfUSA").GetComponent<Text>().text = string.Format("Amer Inf: {0}", usaInf.ToString());
 #endif
     }
 

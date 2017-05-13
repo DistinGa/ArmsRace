@@ -17,6 +17,10 @@ public class SettingsScript : MonoBehaviour
     public bool NeedLoad { get; set; }
     public LeaderScript PlayerLeader;
 
+    [Space(10)]
+    [SerializeField]
+    bool DLC_Armageddon;
+
     public void Awake()
     {
         //Singletone
@@ -51,5 +55,11 @@ public class SettingsScript : MonoBehaviour
 
         mMusicVol = SavedSettings.SoundVolume;
         mSoundVol = SavedSettings.MusicVolume;
+    }
+
+    public bool CheckDLC_Armageddon()
+    {
+        //if (SteamApps.BIsDlcInstalled((AppId_t)508430))
+        return DLC_Armageddon;
     }
 }

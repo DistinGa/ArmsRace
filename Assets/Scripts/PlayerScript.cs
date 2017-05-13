@@ -274,6 +274,20 @@ public class PlayerScript : MonoBehaviour
         return res;
     }
 
+    public int NuclearPower()
+    {
+        GameManagerScript GM = GameManagerScript.GM;
+        int fp = 0;
+
+        for (int i = 0; i < MilRocketTechStatus.Length; i++)
+        {
+            if (MilRocketTechStatus[i])
+                fp += GM.MDInstance.GetTechPower(OutlayField.rocket, i, this);
+        }
+
+        return fp;
+    }
+
     public int FirePower(OutlayField field)
     {
         if (field != OutlayField.air && field != OutlayField.ground && field != OutlayField.sea)
@@ -320,6 +334,14 @@ public class PlayerScript : MonoBehaviour
         int oppFP = country.Air * oppPlayer.FirePower(OutlayField.air) + country.Ground * oppPlayer.FirePower(OutlayField.ground) + country.Sea * oppPlayer.FirePower(OutlayField.sea);
 
         return Mathf.RoundToInt(100f * thisFP / (thisFP + oppFP));
+    }
+
+    public int RelativeNuclearPower()
+    {
+        PlayerScript oppPlayer = GameManagerScript.GM.GetOpponentTo(this);
+        int thisP = NuclearPower(), oppP = oppPlayer.NuclearPower();
+
+        return Mathf.RoundToInt(100f * thisP / (thisP + oppP));
     }
 
     public void NewMonth()
