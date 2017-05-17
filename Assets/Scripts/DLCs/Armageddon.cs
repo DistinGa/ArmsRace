@@ -10,17 +10,15 @@ public class Armageddon : MonoBehaviour {
 
     void Start()
     {
-        if (SettingsScript.Settings.CheckDLC_Armageddon())
-        {
-            RocketPanel.SetActive(true);
-            NuclearUSSR.gameObject.SetActive(true);
-            NuclearUSA.gameObject.SetActive(true);
-        }
+        bool ArmaCheck = SettingsScript.Settings.ArmageddonAvailable;
+        RocketPanel.SetActive(ArmaCheck);
+        NuclearUSSR.gameObject.SetActive(ArmaCheck);
+        NuclearUSA.gameObject.SetActive(ArmaCheck);
     }
 
     public PlayerScript GetWinner(int AIpower)
     {
-        if (!SettingsScript.Settings.CheckDLC_Armageddon())
+        if (!SettingsScript.Settings.ArmageddonAvailable)
             return null;
 
         if (AIpower > AIWinPercent.Length)

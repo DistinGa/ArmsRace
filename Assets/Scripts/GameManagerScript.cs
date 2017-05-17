@@ -921,7 +921,7 @@ public class GameManagerScript : MonoBehaviour
         LeaderPanelUSSR.SetFPBonus(sovPlayer.GetInfFPbonus());
         LeaderPanelUSSR.SetInfValue(ussrInf);
 
-        if (SettingsScript.Settings.CheckDLC_Armageddon())
+        if (SettingsScript.Settings.ArmageddonAvailable)
         {
             DLC_Armageddon.SetNuclearPercent(Player.Authority, Player.RelativeNuclearPower());
             DLC_Armageddon.SetNuclearPercent(AI.AIPlayer.Authority, AI.AIPlayer.RelativeNuclearPower());
