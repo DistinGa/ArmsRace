@@ -37,6 +37,7 @@ public class GameManagerScript : MonoBehaviour
     int mMonthCount = -1;     // счетчик месяцев с нуля (-1 потому что в первом кадре значение уже увеличивается)
     float TickCount;        //время одного тика
     public bool IsPaused;  //игра на паузе
+    private bool delayedStop = false;   //игра фактически закончена, но сцена пока не выгружается, например из-за анимации
 
     [Space(10)]
     [Tooltip("время (сек) между итерациями")]
@@ -167,7 +168,7 @@ public class GameManagerScript : MonoBehaviour
 
         }
 
-        if (IsPaused)
+        if (IsPaused || delayedStop)
             return;
 
         TickCount -= Time.deltaTime;
@@ -188,9 +189,22 @@ public class GameManagerScript : MonoBehaviour
             //CheckGameResult();
 
             //Проверяем конец игры по доминации
-            if (DLC_Armageddon.GetWinner(SettingsScript.Settings.AIPower) != null)
+            PlayerScript winPlayer = DLC_Armageddon.GetWinner(SettingsScript.Settings.AIPower);
+            if (winPlayer != null)
             {
-                StopGame();
+                delayedStop = true;
+                //Закрываем все меню
+                foreach (var item in Menus)
+                {
+                    item.SetActive(false);
+                }
+
+                //переключаемся к проигравшей стране
+                SnapToCountry(winPlayer.OppCountry);
+                //и показываем ядерный взрыв
+                GameObject nuke = (GameObject)Instantiate(DLC_Armageddon.NukePrefab, winPlayer.OppCountry.Capital.position, Quaternion.identity);
+                //отложенное завершение игры (чтобы показать анимацию взрыва)
+                Invoke("StopGame", 7);
                 return;
             }
 

@@ -305,7 +305,13 @@ public class AI : MonoBehaviour {
             case 1:
                 //military
                 //выбираем, куда вкладывать
-                int way = Random.Range(0, 4);
+                int maxRand;
+                if (SettingsScript.Settings.ArmageddonAvailable)
+                    maxRand = 5;
+                else
+                    maxRand = 4;
+
+                int way = Random.Range(0, maxRand);
 
                 switch (way)
                 {
@@ -319,6 +325,8 @@ public class AI : MonoBehaviour {
                             AIPlayer.Outlays[OutlayField.ground].ChangeOutlet(amount);
                         else if (AIPlayer.GetCurMilTech(OutlayField.sea) > 0)
                             AIPlayer.Outlays[OutlayField.sea].ChangeOutlet(amount);
+                        else if (maxRand == 5 && AIPlayer.GetCurMilTech(OutlayField.rocket) > 0)
+                            AIPlayer.Outlays[OutlayField.rocket].ChangeOutlet(amount);
                         else if (AIPlayer.GetCurMilTech(OutlayField.military) > 0)  //если все линии изучены полностью, вкладываем в войска
                             AIPlayer.Outlays[OutlayField.military].ChangeOutlet(amount);
 
@@ -330,12 +338,29 @@ public class AI : MonoBehaviour {
                             AIPlayer.Outlays[OutlayField.sea].ChangeOutlet(amount);
                         else if (AIPlayer.GetCurMilTech(OutlayField.air) > 0)
                             AIPlayer.Outlays[OutlayField.air].ChangeOutlet(amount);
+                        else if (maxRand == 5 && AIPlayer.GetCurMilTech(OutlayField.rocket) > 0)
+                            AIPlayer.Outlays[OutlayField.rocket].ChangeOutlet(amount);
                         else if (AIPlayer.GetCurMilTech(OutlayField.military) > 0)
                             AIPlayer.Outlays[OutlayField.military].ChangeOutlet(amount);
 
                         break;
                     case 3:
                         if (AIPlayer.GetCurMilTech(OutlayField.sea) > 0)
+                            AIPlayer.Outlays[OutlayField.sea].ChangeOutlet(amount);
+                        else if (AIPlayer.GetCurMilTech(OutlayField.air) > 0)
+                            AIPlayer.Outlays[OutlayField.air].ChangeOutlet(amount);
+                        else if (AIPlayer.GetCurMilTech(OutlayField.ground) > 0)    //если все технологии в линии изучены, пробуем изучить другую технологию
+                            AIPlayer.Outlays[OutlayField.ground].ChangeOutlet(amount);
+                        else if (maxRand == 5 && AIPlayer.GetCurMilTech(OutlayField.rocket) > 0)
+                            AIPlayer.Outlays[OutlayField.rocket].ChangeOutlet(amount);
+                        else if (AIPlayer.GetCurMilTech(OutlayField.military) > 0)
+                            AIPlayer.Outlays[OutlayField.military].ChangeOutlet(amount);
+
+                        break;
+                    case 4:
+                        if (AIPlayer.GetCurMilTech(OutlayField.rocket) > 0)
+                            AIPlayer.Outlays[OutlayField.rocket].ChangeOutlet(amount);
+                        else if(AIPlayer.GetCurMilTech(OutlayField.sea) > 0)
                             AIPlayer.Outlays[OutlayField.sea].ChangeOutlet(amount);
                         else if (AIPlayer.GetCurMilTech(OutlayField.air) > 0)
                             AIPlayer.Outlays[OutlayField.air].ChangeOutlet(amount);

@@ -4,6 +4,7 @@ using UnityEngine.UI;
 public class Armageddon : MonoBehaviour {
     public GameObject RocketPanel;
     public Text NuclearUSSR, NuclearUSA;
+    public GameObject NukePrefab;
     [Space(10)]
     public int[] PlayerWinPercent = new int[3];
     public int[] AIWinPercent = new int[3];
