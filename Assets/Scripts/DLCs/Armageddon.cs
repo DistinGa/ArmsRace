@@ -49,4 +49,10 @@ public class Armageddon : MonoBehaviour {
         if (aut == Authority.Amer)
             NuclearUSA.text = percent.ToString() + "%";
     }
+
+    public void StartNukeAnim(Vector3 pos)
+    {
+        GameObject nuke = (GameObject)Instantiate(NukePrefab, pos, Quaternion.identity);
+        SoundManager.SM.PlaySound("sound/nukeboom");
+    }
 }

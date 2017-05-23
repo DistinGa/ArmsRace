@@ -282,7 +282,7 @@ public class PlayerScript : MonoBehaviour
         for (int i = 0; i < MilRocketTechStatus.Length; i++)
         {
             if (MilRocketTechStatus[i])
-                fp += GM.MDInstance.GetTechPower(OutlayField.rocket, i, this);
+                fp += GM.MDInstance.GetTechPower(OutlayField.rocket, i);
         }
 
         return fp;

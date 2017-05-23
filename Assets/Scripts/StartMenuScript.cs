@@ -34,6 +34,9 @@ public class StartMenuScript : MonoBehaviour
     [SerializeField]
     SOLP soLeaderProperties;
 
+    [Space(10)]
+    public Toggle Armageddon;
+
     private AudioSource AS;
 
     public void Start()
@@ -64,6 +67,8 @@ public class StartMenuScript : MonoBehaviour
         Sound.isOn = SettingsScript.Settings.mSoundOn;
         MusicVolume.value = SettingsScript.Settings.mMusicVol;
         SoundVolume.value = SettingsScript.Settings.mSoundVol;
+
+        Armageddon.isOn = SettingsScript.Settings.ArmageddonAvailable;
 
         //экран кампаний
         UsaEasy.gameObject.SetActive(!SavedSettings.Mission1USA);

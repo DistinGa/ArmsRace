@@ -52,6 +52,8 @@ public class SettingsScript : MonoBehaviour
 
         SavedSettings.SoundVolume = mMusicVol;
         SavedSettings.MusicVolume = mSoundVol;
+
+        SavedSettings.ArmageddonEnable = DLC_Armageddon;
     }
 
     public void LoadSettings()
@@ -63,5 +65,7 @@ public class SettingsScript : MonoBehaviour
 
         mMusicVol = SavedSettings.SoundVolume;
         mSoundVol = SavedSettings.MusicVolume;
+
+        DLC_Armageddon = SavedSettings.ArmageddonEnable;
     }
 }

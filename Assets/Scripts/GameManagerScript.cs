@@ -202,7 +202,8 @@ public class GameManagerScript : MonoBehaviour
                 //переключаемся к проигравшей стране
                 SnapToCountry(winPlayer.OppCountry);
                 //и показываем ядерный взрыв
-                GameObject nuke = (GameObject)Instantiate(DLC_Armageddon.NukePrefab, winPlayer.OppCountry.Capital.position, Quaternion.identity);
+                DLC_Armageddon.StartNukeAnim(winPlayer.OppCountry.Capital.position);
+                Marker.SetActive(false);
                 //отложенное завершение игры (чтобы показать анимацию взрыва)
                 Invoke("StopGame", 7);
                 return;

@@ -101,7 +101,7 @@ public class MilDepMenuScript : MonoBehaviour
         return Mathf.RoundToInt(res);
     }
 
-    public int GetTechPower(OutlayField field, int indx, PlayerScript pl)
+    public int GetTechPower(OutlayField field, int indx)
     {
         int res = 0;
 
@@ -275,6 +275,10 @@ public class MilDepMenuScript : MonoBehaviour
         }
 
         Price.text = "$" + GetTechCost(fld, ind, GM.Player).ToString();
+        if(fld == OutlayField.rocket)
+            FirePower.text = milTech[ind].Power.ToString();
+        else
+            FirePower.text = GM.FirePowerPerTech.ToString();
     }
 
     //Возвращает номер предыдущей технологии

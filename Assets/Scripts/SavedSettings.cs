@@ -250,4 +250,23 @@ public static class SavedSettings {
             PlayerPrefs.Save();
         }
     }
+
+    public static bool ArmageddonEnable
+    {
+        get
+        {
+            if (PlayerPrefs.HasKey("ArmageddonEnable"))
+                return PlayerPrefs.GetInt("ArmageddonEnable") == 1 ? true : false;
+            else
+            {
+                return false;
+            }
+        }
+
+        set
+        {
+            PlayerPrefs.SetInt("ArmageddonEnable", value ? 1 : 0);
+            PlayerPrefs.Save();
+        }
+    }
 }
