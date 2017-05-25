@@ -37,7 +37,7 @@ public class GameManagerScript : MonoBehaviour
     int mMonthCount = -1;     // счетчик месяцев с нуля (-1 потому что в первом кадре значение уже увеличивается)
     float TickCount;        //время одного тика
     public bool IsPaused;  //игра на паузе
-    private bool delayedStop = false;   //игра фактически закончена, но сцена пока не выгружается, например из-за анимации
+    public bool delayedStop = false;   //игра фактически закончена, но сцена пока не выгружается, например из-за анимации
 
     [Space(10)]
     [Tooltip("время (сек) между итерациями")]
@@ -185,8 +185,12 @@ public class GameManagerScript : MonoBehaviour
 
             NextMonth();
 
-            ////Проверка на предмет победы/поражения
-            //CheckGameResult();
+            // прошел год?
+            if (mMonthCount % 12 == 0 && mMonthCount > 0)
+                NewYear();
+
+            //Обновление информации в верхнем меню
+            ShowHighWinInfo();
 
             //Проверяем конец игры по доминации
             PlayerScript winPlayer = DLC_Armageddon.GetWinner(SettingsScript.Settings.AIPower);
@@ -208,13 +212,6 @@ public class GameManagerScript : MonoBehaviour
                 Invoke("StopGame", 7);
                 return;
             }
-
-            // прошел год?
-            if (mMonthCount % 12 == 0 && mMonthCount > 0)
-                NewYear();
-
-            //Обновление информации в верхнем меню
-            ShowHighWinInfo();
             //Обновление информации в нижнем меню
             SnapToCountry();
         }

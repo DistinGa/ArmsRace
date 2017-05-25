@@ -30,6 +30,9 @@ public class CameraScriptXZ : MonoBehaviour
 
     void LateUpdate()
     {
+        if (GameManagerScript.GM.delayedStop)
+            return;
+
         //Vector3 mousePos = Camera.ScreenToWorldPoint(Input.mousePosition);
         Vector3 mousePos = Input.mousePosition;
         if (StartMovingPoint != Vector3.zero)
