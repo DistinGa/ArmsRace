@@ -98,6 +98,7 @@ public class GameManagerScript : MonoBehaviour
     public double CrisisBudget = 500;
     //Ссылка на ScriptableObject с настройками бонусов лидеров
     public SOLP LeaderPrefs;
+    public GameObject CountryLabelPrefab;
     [Space(10)]
     public Armageddon DLC_Armageddon;
 

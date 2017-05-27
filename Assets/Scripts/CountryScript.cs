@@ -6,6 +6,7 @@ public class CountryScript : MonoBehaviour
     static Color amColor = new Color(0, 0, 1);
     static Color sovColor = new Color(1, 0, 0);
     static Color neuColor = new Color(1, 1, 0);
+    static Transform CountryLabelsParent = null;
 
     public Sprite FlagS;
     public Sprite FlagNs;
@@ -48,11 +49,20 @@ public class CountryScript : MonoBehaviour
     [HideInInspector]
     public int DiscounterUsaSpy, DiscounterRusSpy, DiscounterUsaInfl, DiscounterRusInfl; //Дискаунтер для возможности засылки шпионов или повышения влияния (0 - можно)
 
+    void Awake()
+    {
+        if(CountryLabelsParent == null)
+            CountryLabelsParent = GameObject.Find("CountryLabels").transform;
+    }
+
     // Use this for initialization
     void Start()
     {
         SetAuthority();
-        StatePanel = transform.Find("Capital/Canvas/Panel");
+        Transform trCountryName = ((GameObject)Instantiate(GameManagerScript.GM.CountryLabelPrefab, Capital.position, Quaternion.AngleAxis(90, Vector3.right))).transform;
+        trCountryName.SetParent(CountryLabelsParent);
+        trCountryName.GetComponent<CountryLabelScript>().SetName(Name);
+        StatePanel = trCountryName.Find("Panel");
     }
 
     //Возвращает список всех стран
