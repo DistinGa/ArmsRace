@@ -1064,6 +1064,9 @@ public class GameManagerScript : MonoBehaviour
 
         //Влияние на глобальные последствия
         GlobalEffects.GlobalEffectsManager.GeM.ChangeCountersOnWar();
+
+        //проигрывание звука войны
+        SoundManager.SM.TurnWarSound(true);
     }
 
     //Удаление флага из правой панели
@@ -1074,6 +1077,11 @@ public class GameManagerScript : MonoBehaviour
             if (WarFlagsPanel.GetChild(i).GetComponent<FlagButton>().Country == Country)
                 Destroy(WarFlagsPanel.GetChild(i).gameObject);
         }
+
+        //остановка звука войны, если нигде войны нет
+        if (WarFlagsPanel.childCount == 0)
+            SoundManager.SM.TurnWarSound(false);
+
     }
 
     //Определение оппонента

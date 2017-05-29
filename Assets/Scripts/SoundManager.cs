@@ -7,6 +7,7 @@ public class SoundManager : MonoBehaviour
     public AudioSource trackAudioSource;
     public AudioSource otherAudioSource;
     public AudioClip[] Tracks;
+    public AudioSource warAudioSource;
 
     int curTrack = 0;   //трек играющий в данный момент
 
@@ -23,6 +24,7 @@ public class SoundManager : MonoBehaviour
     {
         trackAudioSource.volume = SettingsScript.Settings.mMusicVol;
         otherAudioSource.volume = SettingsScript.Settings.mSoundVol;
+        warAudioSource.volume = SettingsScript.Settings.mSoundVol;
 
         if (SettingsScript.Settings.mMusicOn)
         {
@@ -83,6 +85,20 @@ public class SoundManager : MonoBehaviour
         }
     }
 
+    public void TurnWarSound(bool on)
+    {
+        if (SettingsScript.Settings.mSoundOn)
+        {
+            if (on)
+            {
+                if (!warAudioSource.isPlaying)
+                    warAudioSource.Play();
+            }
+            else
+                if (warAudioSource.isPlaying)
+                    warAudioSource.Stop();
+        }
+    }
 
     public void OnDestroy()
     {
