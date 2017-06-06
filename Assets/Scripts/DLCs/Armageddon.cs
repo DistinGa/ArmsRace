@@ -8,6 +8,8 @@ public class Armageddon : MonoBehaviour {
     [Space(10)]
     public int[] PlayerWinPercent = new int[3];
     public int[] AIWinPercent = new int[3];
+    [Space(10)]
+    public GameObject nukeButtonUSA, nukeButtonUSSR;
 
     void Start()
     {
@@ -39,6 +41,11 @@ public class Armageddon : MonoBehaviour {
         else if(opp.RelativeNuclearPower() >= AIWinPercent[AIpower] && GM.Player.Score < opp.Score)
             res = opp;
 
+        if (res != null)
+            ActivateButton(res.Authority);
+        else
+            DeactivateButtons();
+
         return res;
     }
 
@@ -54,5 +61,19 @@ public class Armageddon : MonoBehaviour {
     {
         GameObject nuke = (GameObject)Instantiate(NukePrefab, pos, Quaternion.identity);
         SoundManager.SM.PlaySound("sound/nukeboom");
+    }
+
+    public void ActivateButton(Authority auth)
+    {
+        if (auth == Authority.Amer)
+            nukeButtonUSA.SetActive(true);
+        else
+            nukeButtonUSSR.SetActive(true);
+    }
+
+    public void DeactivateButtons()
+    {
+        nukeButtonUSA.SetActive(false);
+        nukeButtonUSSR.SetActive(false);
     }
 }

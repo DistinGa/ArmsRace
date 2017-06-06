@@ -195,24 +195,6 @@ public class GameManagerScript : MonoBehaviour
 
             //Проверяем конец игры по доминации
             PlayerScript winPlayer = DLC_Armageddon.GetWinner(SettingsScript.Settings.AIPower);
-            if (winPlayer != null)
-            {
-                delayedStop = true;
-                //Закрываем все меню
-                foreach (var item in Menus)
-                {
-                    item.SetActive(false);
-                }
-
-                //переключаемся к проигравшей стране
-                SnapToCountry(winPlayer.OppCountry);
-                //и показываем ядерный взрыв
-                DLC_Armageddon.StartNukeAnim(winPlayer.OppCountry.Capital.position);
-                Marker.SetActive(false);
-                //отложенное завершение игры (чтобы показать анимацию взрыва)
-                Invoke("StopGame", 7);
-                return;
-            }
             //Обновление информации в нижнем меню
             SnapToCountry();
         }
@@ -1176,6 +1158,24 @@ public class GameManagerScript : MonoBehaviour
             IsPaused = true;
 
         PausePlate.SetActive(IsPaused);
+    }
+
+    public void DeferredStopGame(PlayerScript pl)
+    {
+        delayedStop = true;
+        //Закрываем все меню
+        foreach (var item in Menus)
+        {
+            item.SetActive(false);
+        }
+
+        //переключаемся к проигравшей стране
+        SnapToCountry(pl.OppCountry);
+        //и показываем ядерный взрыв
+        DLC_Armageddon.StartNukeAnim(pl.OppCountry.Capital.position);
+        Marker.SetActive(false);
+        //отложенное завершение игры (чтобы показать анимацию взрыва)
+        Invoke("StopGame", 7);
     }
 }
 
