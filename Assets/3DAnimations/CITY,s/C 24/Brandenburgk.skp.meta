@@ -1,0 +1,414 @@
+fileFormatVersion: 2
+guid: ab2bdc44d906210429d0e7e6a0438a5e
+timeCreated: 1484425639
+licenseType: Free
+SketchUpImporter:
+  generateBackFace: 0
+  mergeCoplanarFaces: 0
+  selectedNodes: 0000000001000000020000000300000008000000090000000a0000000b0000000c0000000d0000000e0000000f000000100000001100000012000000130000001400000015000000160000001700000018000000190000001a0000001b0000001c0000001d0000001e0000001f000000200000002100000022000000230000002400000025000000260000002700000028000000290000002a0000002b0000002c0000002d0000002e0000002f000000300000003100000032000000330000003400000035000000360000003700000038000000390000003a0000003b0000003c0000003d0000003e0000003f000000400000004100000042000000430000004400000045000000460000004700000048000000490000004a0000004b0000004c0000004d0000004e0000004f000000500000005100000052000000530000005400000055000000560000005700000058000000590000005a0000005b0000005c0000005d0000005e0000005f000000600000006100000062000000630000006400000065000000660000006700000068000000690000006a0000006b0000006c0000006d0000006e0000006f000000700000007100000072000000730000007400000075000000760000007700000078000000790000007a0000007b0000007c0000007d0000007e0000007f000000800000008100000082000000830000008400000085000000860000008700000088000000890000008a0000008b0000008c0000008d0000008e0000008f000000900000009100000092000000930000009400000095000000960000009700000098000000990000009a0000009b0000009c0000009d0000009e0000009f000000a0000000a1000000
+  assetHash:
+    serializedVersion: 2
+    Hash: 25fd6ae42cbb4b835b219e5fd8ba69f0
+  longitude: 13.377719644063546
+  latitude: 52.51627165637225
+  northCorrection: -0
+  fileUnit: 0
+  sketchUpImportData:
+    defaultCamera:
+      position: {x: 64.18213, y: 9.130533, z: -16.931837}
+      lookAt: {x: -12.821311, y: 18.76297, z: 2.2629988}
+      up: {x: 0.11691491, y: 0.9927142, z: -0.02914367}
+      fov: 35
+      aspectRatio: 0
+      orthoSize: 1
+      isPerspective: 1
+    scenes: []
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: brandenburg
+    100002: //RootNode
+    100004: Component#1
+    100006: Component#2
+    100008: Component#2 1
+    100010: Component#3
+    100012: Component#3 1
+    100014: Component#3 2
+    100016: Component#3 3
+    100018: Component#3 4
+    100020: Component#3 5
+    100022: Component#4
+    100024: Component#4 1
+    100026: Component#4 10
+    100028: Component#4 11
+    100030: Component#4 12
+    100032: Component#4 13
+    100034: Component#4 14
+    100036: Component#4 15
+    100038: Component#4 16
+    100040: Component#4 17
+    100042: Component#4 18
+    100044: Component#4 19
+    100046: Component#4 2
+    100048: Component#4 20
+    100050: Component#4 21
+    100052: Component#4 22
+    100054: Component#4 23
+    100056: Component#4 24
+    100058: Component#4 25
+    100060: Component#4 26
+    100062: Component#4 27
+    100064: Component#4 28
+    100066: Component#4 29
+    100068: Component#4 3
+    100070: Component#4 30
+    100072: Component#4 31
+    100074: Component#4 32
+    100076: Component#4 33
+    100078: Component#4 34
+    100080: Component#4 35
+    100082: Component#4 36
+    100084: Component#4 37
+    100086: Component#4 38
+    100088: Component#4 39
+    100090: Component#4 4
+    100092: Component#4 40
+    100094: Component#4 41
+    100096: Component#4 42
+    100098: Component#4 43
+    100100: Component#4 44
+    100102: Component#4 45
+    100104: Component#4 46
+    100106: Component#4 47
+    100108: Component#4 48
+    100110: Component#4 49
+    100112: Component#4 5
+    100114: Component#4 50
+    100116: Component#4 51
+    100118: Component#4 52
+    100120: Component#4 53
+    100122: Component#4 54
+    100124: Component#4 55
+    100126: Component#4 56
+    100128: Component#4 57
+    100130: Component#4 58
+    100132: Component#4 59
+    100134: Component#4 6
+    100136: Component#4 60
+    100138: Component#4 61
+    100140: Component#4 62
+    100142: Component#4 63
+    100144: Component#4 64
+    100146: Component#4 65
+    100148: Component#4 66
+    100150: Component#4 67
+    100152: Component#4 7
+    100154: Component#4 8
+    100156: Component#4 9
+    100158: ske360
+    400000: brandenburg
+    400002: //RootNode
+    400004: Component#1
+    400006: Component#2
+    400008: Component#2 1
+    400010: Component#3
+    400012: Component#3 1
+    400014: Component#3 2
+    400016: Component#3 3
+    400018: Component#3 4
+    400020: Component#3 5
+    400022: Component#4
+    400024: Component#4 1
+    400026: Component#4 10
+    400028: Component#4 11
+    400030: Component#4 12
+    400032: Component#4 13
+    400034: Component#4 14
+    400036: Component#4 15
+    400038: Component#4 16
+    400040: Component#4 17
+    400042: Component#4 18
+    400044: Component#4 19
+    400046: Component#4 2
+    400048: Component#4 20
+    400050: Component#4 21
+    400052: Component#4 22
+    400054: Component#4 23
+    400056: Component#4 24
+    400058: Component#4 25
+    400060: Component#4 26
+    400062: Component#4 27
+    400064: Component#4 28
+    400066: Component#4 29
+    400068: Component#4 3
+    400070: Component#4 30
+    400072: Component#4 31
+    400074: Component#4 32
+    400076: Component#4 33
+    400078: Component#4 34
+    400080: Component#4 35
+    400082: Component#4 36
+    400084: Component#4 37
+    400086: Component#4 38
+    400088: Component#4 39
+    400090: Component#4 4
+    400092: Component#4 40
+    400094: Component#4 41
+    400096: Component#4 42
+    400098: Component#4 43
+    400100: Component#4 44
+    400102: Component#4 45
+    400104: Component#4 46
+    400106: Component#4 47
+    400108: Component#4 48
+    400110: Component#4 49
+    400112: Component#4 5
+    400114: Component#4 50
+    400116: Component#4 51
+    400118: Component#4 52
+    400120: Component#4 53
+    400122: Component#4 54
+    400124: Component#4 55
+    400126: Component#4 56
+    400128: Component#4 57
+    400130: Component#4 58
+    400132: Component#4 59
+    400134: Component#4 6
+    400136: Component#4 60
+    400138: Component#4 61
+    400140: Component#4 62
+    400142: Component#4 63
+    400144: Component#4 64
+    400146: Component#4 65
+    400148: Component#4 66
+    400150: Component#4 67
+    400152: Component#4 7
+    400154: Component#4 8
+    400156: Component#4 9
+    400158: ske360
+    2300000: Component#1
+    2300002: Component#2
+    2300004: Component#2 1
+    2300006: Component#3
+    2300008: Component#3 1
+    2300010: Component#3 2
+    2300012: Component#3 3
+    2300014: Component#3 4
+    2300016: Component#3 5
+    2300018: Component#4
+    2300020: Component#4 1
+    2300022: Component#4 10
+    2300024: Component#4 11
+    2300026: Component#4 12
+    2300028: Component#4 13
+    2300030: Component#4 14
+    2300032: Component#4 15
+    2300034: Component#4 16
+    2300036: Component#4 17
+    2300038: Component#4 18
+    2300040: Component#4 19
+    2300042: Component#4 2
+    2300044: Component#4 20
+    2300046: Component#4 21
+    2300048: Component#4 22
+    2300050: Component#4 23
+    2300052: Component#4 24
+    2300054: Component#4 25
+    2300056: Component#4 26
+    2300058: Component#4 27
+    2300060: Component#4 28
+    2300062: Component#4 29
+    2300064: Component#4 3
+    2300066: Component#4 30
+    2300068: Component#4 31
+    2300070: Component#4 32
+    2300072: Component#4 33
+    2300074: Component#4 34
+    2300076: Component#4 35
+    2300078: Component#4 36
+    2300080: Component#4 37
+    2300082: Component#4 38
+    2300084: Component#4 39
+    2300086: Component#4 4
+    2300088: Component#4 40
+    2300090: Component#4 41
+    2300092: Component#4 42
+    2300094: Component#4 43
+    2300096: Component#4 44
+    2300098: Component#4 45
+    2300100: Component#4 46
+    2300102: Component#4 47
+    2300104: Component#4 48
+    2300106: Component#4 49
+    2300108: Component#4 5
+    2300110: Component#4 50
+    2300112: Component#4 51
+    2300114: Component#4 52
+    2300116: Component#4 53
+    2300118: Component#4 54
+    2300120: Component#4 55
+    2300122: Component#4 56
+    2300124: Component#4 57
+    2300126: Component#4 58
+    2300128: Component#4 59
+    2300130: Component#4 6
+    2300132: Component#4 60
+    2300134: Component#4 61
+    2300136: Component#4 62
+    2300138: Component#4 63
+    2300140: Component#4 64
+    2300142: Component#4 65
+    2300144: Component#4 66
+    2300146: Component#4 67
+    2300148: Component#4 7
+    2300150: Component#4 8
+    2300152: Component#4 9
+    2300154: ske360
+    3300000: Component#1
+    3300002: Component#2
+    3300004: Component#2 1
+    3300006: Component#3
+    3300008: Component#3 1
+    3300010: Component#3 2
+    3300012: Component#3 3
+    3300014: Component#3 4
+    3300016: Component#3 5
+    3300018: Component#4
+    3300020: Component#4 1
+    3300022: Component#4 10
+    3300024: Component#4 11
+    3300026: Component#4 12
+    3300028: Component#4 13
+    3300030: Component#4 14
+    3300032: Component#4 15
+    3300034: Component#4 16
+    3300036: Component#4 17
+    3300038: Component#4 18
+    3300040: Component#4 19
+    3300042: Component#4 2
+    3300044: Component#4 20
+    3300046: Component#4 21
+    3300048: Component#4 22
+    3300050: Component#4 23
+    3300052: Component#4 24
+    3300054: Component#4 25
+    3300056: Component#4 26
+    3300058: Component#4 27
+    3300060: Component#4 28
+    3300062: Component#4 29
+    3300064: Component#4 3
+    3300066: Component#4 30
+    3300068: Component#4 31
+    3300070: Component#4 32
+    3300072: Component#4 33
+    3300074: Component#4 34
+    3300076: Component#4 35
+    3300078: Component#4 36
+    3300080: Component#4 37
+    3300082: Component#4 38
+    3300084: Component#4 39
+    3300086: Component#4 4
+    3300088: Component#4 40
+    3300090: Component#4 41
+    3300092: Component#4 42
+    3300094: Component#4 43
+    3300096: Component#4 44
+    3300098: Component#4 45
+    3300100: Component#4 46
+    3300102: Component#4 47
+    3300104: Component#4 48
+    3300106: Component#4 49
+    3300108: Component#4 5
+    3300110: Component#4 50
+    3300112: Component#4 51
+    3300114: Component#4 52
+    3300116: Component#4 53
+    3300118: Component#4 54
+    3300120: Component#4 55
+    3300122: Component#4 56
+    3300124: Component#4 57
+    3300126: Component#4 58
+    3300128: Component#4 59
+    3300130: Component#4 6
+    3300132: Component#4 60
+    3300134: Component#4 61
+    3300136: Component#4 62
+    3300138: Component#4 63
+    3300140: Component#4 64
+    3300142: Component#4 65
+    3300144: Component#4 66
+    3300146: Component#4 67
+    3300148: Component#4 7
+    3300150: Component#4 8
+    3300152: Component#4 9
+    3300154: ske360
+    4300000: Mesh ske360
+    4300002: Mesh Component#2
+    4300004: Mesh Component#4
+    4300006: Mesh Component#4
+    4300008: Mesh Component#3
+    4300010: Mesh Component#3
+    4300012: Mesh Component#1
+  materials:
+    importMaterials: 1
+    materialName: 2
+    materialSearch: 0
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 0.0254
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 0
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

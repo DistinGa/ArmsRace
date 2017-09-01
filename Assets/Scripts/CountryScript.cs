@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+using video3D;
 
 public class CountryScript : MonoBehaviour
 {
@@ -38,9 +39,13 @@ public class CountryScript : MonoBehaviour
     [Space(10)]
     //Объект анимации войны на глобальной карте
     public GameObject GlobalWarAnimation;
+    public GameObject CapitalScene = null;
+    [SerializeField]
+    Dictionary<int, GameObject> CitysAnimObjects = new Dictionary<int, GameObject>();    //Словарь анимационных объектов в городах.
 
-    private Transform StatePanel;
+    [Space(10)]
     public List<StateSymbol> Symbols = new List<StateSymbol>();
+    private Transform StatePanel;
 
     [HideInInspector]
     public int DiscounterUsaMeeting, DiscounterRusMeeting; //Сколько ждать до возможности следующего митинга протеста (0 - можно митинговать)
@@ -49,10 +54,34 @@ public class CountryScript : MonoBehaviour
     [HideInInspector]
     public int DiscounterUsaSpy, DiscounterRusSpy, DiscounterUsaInfl, DiscounterRusInfl; //Дискаунтер для возможности засылки шпионов или повышения влияния (0 - можно)
 
+
     void Awake()
     {
         if(CountryLabelsParent == null)
             CountryLabelsParent = GameObject.Find("CountryLabels").transform;
+
+        //Заполнение массива анимационных объектов.
+        if (CapitalScene != null)
+        {
+            CitysAnimObjects.Add((int)CitysAnim.War, CapitalScene.transform.FindChild("War 1").gameObject);
+            CitysAnimObjects.Add((int)CitysAnim.InvasionUSA, CapitalScene.transform.FindChild("USA army invasion").gameObject);
+            CitysAnimObjects.Add((int)CitysAnim.InvasionUSSR, CapitalScene.transform.FindChild("USSR army invasion").gameObject);
+            CitysAnimObjects.Add((int)CitysAnim.DemRed, CapitalScene.transform.FindChild("DemRED").gameObject);
+            CitysAnimObjects.Add((int)CitysAnim.DemBlue, CapitalScene.transform.FindChild("Dem Blue").gameObject);
+            CitysAnimObjects.Add((int)CitysAnim.ParadRed, CapitalScene.transform.FindChild("Parad RED + salut").gameObject);
+            CitysAnimObjects.Add((int)CitysAnim.ParadBlue, CapitalScene.transform.FindChild("Parad BLUE + salut").gameObject);
+            CitysAnimObjects.Add((int)CitysAnim.StrikeRed, CapitalScene.transform.FindChild("Strike Red").gameObject);
+            CitysAnimObjects.Add((int)CitysAnim.StrikeBlue, CapitalScene.transform.FindChild("Strike Blie").gameObject);
+            CitysAnimObjects.Add((int)CitysAnim.Storm, CapitalScene.transform.FindChild("Storm").gameObject);
+            CitysAnimObjects.Add((int)CitysAnim.Industry, CapitalScene.transform.FindChild("Krane constraction").gameObject);
+            CitysAnimObjects.Add((int)CitysAnim.Nobel, CapitalScene.transform.FindChild("Nobel").gameObject);
+            CitysAnimObjects.Add((int)CitysAnim.PoliticalCrisis, CapitalScene.transform.FindChild("Political crisis").gameObject);
+            CitysAnimObjects.Add((int)CitysAnim.FinanceCrisis, CapitalScene.transform.FindChild("Finance crisis").gameObject);
+            CitysAnimObjects.Add((int)CitysAnim.MoveRed, CapitalScene.transform.FindChild("Parad RED").gameObject);
+            CitysAnimObjects.Add((int)CitysAnim.MoveBlue, CapitalScene.transform.FindChild("Parad BLUE").gameObject);
+            CitysAnimObjects.Add((int)CitysAnim.MoveNeutral, CapitalScene.transform.FindChild("Parad NATIONAL").gameObject);
+            CitysAnimObjects.Add((int)CitysAnim.Nuke, null);
+        }
     }
 
     // Use this for initialization
@@ -707,6 +736,15 @@ public class CountryScript : MonoBehaviour
 
         return res;
     }
+
+    public GameObject GetAnimObject(video3D.CitysAnim type)
+    {
+        if ((int)type >= CitysAnimObjects.Count)
+            return null;
+
+        return CitysAnimObjects[(int)type];
+    }
+
 
     //Сохранение/загрузка
     public SavedCountryData GetSavedData()

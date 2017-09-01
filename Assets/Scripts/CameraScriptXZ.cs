@@ -5,7 +5,7 @@ using UnityEngine.EventSystems;
 public class CameraScriptXZ : MonoBehaviour
 {
     public Transform Frame;
-    Camera Camera;
+    public Camera Camera;
     public float Offset;    //Отступы по бокам для отображения атмосферы
     float fieldWidth, fieldHeight;      //размеры карты
     float cameraWidth, cameraHeight;    //половинные размеры камеры
@@ -18,7 +18,7 @@ public class CameraScriptXZ : MonoBehaviour
 
     void Awake()
     {
-        Camera = FindObjectOfType<Camera>();
+        //Camera = FindObjectOfType<Camera>();
         cameraHeight = Camera.orthographicSize;
         cameraWidth = Camera.aspect * cameraHeight;
 

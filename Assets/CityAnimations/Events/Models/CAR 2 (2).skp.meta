@@ -1,0 +1,407 @@
+fileFormatVersion: 2
+guid: 4f66ae596b1536f46970229edb637917
+timeCreated: 1494103609
+licenseType: Free
+SketchUpImporter:
+  generateBackFace: 0
+  mergeCoplanarFaces: 0
+  selectedNodes: 000000000100000002000000030000000400000005000000060000000700000008000000090000000a0000000b0000000c0000000d0000000e0000000f000000100000001100000012000000130000001400000015000000160000001700000018000000190000001a0000001b0000001c0000001d0000001e0000001f000000200000002100000022000000230000002400000025000000260000002700000028000000290000002a0000002b0000002c0000002d0000002e0000002f000000300000003100000032000000330000003400000035000000360000003700000038000000390000003a0000003b0000003c0000003d0000003e0000003f000000400000004100000042000000430000004400000045000000460000004700000048000000490000004a0000004b0000004c0000004d0000004e0000004f000000500000005100000052000000530000005400000055000000560000005700000058000000590000005a0000005b0000005c0000005d0000005e0000005f000000600000006100000062000000630000006400000065000000660000006700000068000000690000006a0000006b0000006c0000006d0000006e0000006f000000700000007100000072000000730000007400000075000000760000007700000078000000790000007a0000007b0000007c0000007d0000007e0000007f000000800000008100000082000000830000008400000085000000860000008700000088000000890000008a0000008b0000008c0000008d0000008e0000008f000000
+  assetHash:
+    serializedVersion: 2
+    Hash: 0d2d183c03e4390647dc288fcdcce976
+  longitude: -105.283
+  latitude: 40.017
+  northCorrection: -0
+  fileUnit: 0
+  sketchUpImportData:
+    defaultCamera:
+      position: {x: 9.005127, y: 0.06696763, z: -1.5994953}
+      lookAt: {x: -10.28743, y: 7.572515, z: 11.577941}
+      up: {x: 0.25256494, y: 0.9520774, z: -0.17250997}
+      fov: 35
+      aspectRatio: 0
+      orthoSize: 1
+      isPerspective: 1
+    scenes: []
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: Back Door Side Windows Galant
+    100002: Back Door Side Windows Galant 1
+    100004: Back Windscreen Galant
+    100006: box
+    100008: box 1
+    100010: box 2
+    100012: //RootNode
+    100014: Component#4
+    100016: Component#4 1
+    100018: Component#4 2
+    100020: Component#4 3
+    100022: Component#5
+    100024: Component#5 1
+    100026: Component#5 2
+    100028: Component#5 3
+    100030: Component#6
+    100032: Component#6 1
+    100034: Component#6 2
+    100036: Component#6 3
+    100038: Component#7
+    100040: Component#7 1
+    100042: Component#7 2
+    100044: Component#7 3
+    100046: Component#8
+    100048: Component#8 1
+    100050: Component#8 2
+    100052: Component#8 3
+    100054: Component#9
+    100056: Component#9 1
+    100058: Component#9 2
+    100060: Component#9 3
+    100062: Disco de freno
+    100064: Disco de freno 1
+    100066: Disco de freno 2
+    100068: Disco de freno 3
+    100070: Exhaust Galant
+    100072: floor
+    100074: Front Bumper Galant
+    100076: Front Door Galant
+    100078: Front Door Galant 1
+    100080: Front Door Side Window Galant
+    100082: Front Door Side Window Galant 1
+    100084: Front Fender
+    100086: Front Fender 1
+    100088: Grille Mitsubishi Galant
+    100090: Group 107
+    100092: Group 122
+    100094: Group 124
+    100096: Group 127
+    100098: Group 129
+    100100: Group 2
+    100102: Group 3
+    100104: Group 5
+    100106: Group 6
+    100108: Group 73
+    100110: Group 75
+    100112: Group 88
+    100114: Group 91
+    100116: Group 93
+    100118: Headlight Cover Galant
+    100120: Headlight Cover Galant 1
+    100122: Headlight Mitsubishi Galant
+    100124: Headlight Mitsubishi Galant 1
+    100126: Headlight Unit Galant
+    100128: Headlight Unit Galant 1
+    100130: Main Body Panel Galant
+    100132: Mirror Galant
+    100134: Mirror Galant 1
+    100136: Numberplate Galant
+    100138: Numberplate Galant 1
+    100140: Rear Bumper Galant
+    100142: Rear Door Galant
+    100144: Rear Door Galant 1
+    100146: Side Skirt Galant
+    100148: Side Skirt Galant 1
+    100150: spring
+    100152: spring 1
+    100154: spring 2
+    100156: spring 3
+    100158: spring46704
+    100160: spring46792
+    100162: spring46819
+    100164: spring46846
+    100166: Taillights Galant
+    100168: Taillights Galant 1
+    100170: Under Body Galant
+    100172: Windscreen Galant
+    400000: Back Door Side Windows Galant
+    400002: Back Door Side Windows Galant 1
+    400004: Back Windscreen Galant
+    400006: box
+    400008: box 1
+    400010: box 2
+    400012: //RootNode
+    400014: Component#4
+    400016: Component#4 1
+    400018: Component#4 2
+    400020: Component#4 3
+    400022: Component#5
+    400024: Component#5 1
+    400026: Component#5 2
+    400028: Component#5 3
+    400030: Component#6
+    400032: Component#6 1
+    400034: Component#6 2
+    400036: Component#6 3
+    400038: Component#7
+    400040: Component#7 1
+    400042: Component#7 2
+    400044: Component#7 3
+    400046: Component#8
+    400048: Component#8 1
+    400050: Component#8 2
+    400052: Component#8 3
+    400054: Component#9
+    400056: Component#9 1
+    400058: Component#9 2
+    400060: Component#9 3
+    400062: Disco de freno
+    400064: Disco de freno 1
+    400066: Disco de freno 2
+    400068: Disco de freno 3
+    400070: Exhaust Galant
+    400072: floor
+    400074: Front Bumper Galant
+    400076: Front Door Galant
+    400078: Front Door Galant 1
+    400080: Front Door Side Window Galant
+    400082: Front Door Side Window Galant 1
+    400084: Front Fender
+    400086: Front Fender 1
+    400088: Grille Mitsubishi Galant
+    400090: Group 107
+    400092: Group 122
+    400094: Group 124
+    400096: Group 127
+    400098: Group 129
+    400100: Group 2
+    400102: Group 3
+    400104: Group 5
+    400106: Group 6
+    400108: Group 73
+    400110: Group 75
+    400112: Group 88
+    400114: Group 91
+    400116: Group 93
+    400118: Headlight Cover Galant
+    400120: Headlight Cover Galant 1
+    400122: Headlight Mitsubishi Galant
+    400124: Headlight Mitsubishi Galant 1
+    400126: Headlight Unit Galant
+    400128: Headlight Unit Galant 1
+    400130: Main Body Panel Galant
+    400132: Mirror Galant
+    400134: Mirror Galant 1
+    400136: Numberplate Galant
+    400138: Numberplate Galant 1
+    400140: Rear Bumper Galant
+    400142: Rear Door Galant
+    400144: Rear Door Galant 1
+    400146: Side Skirt Galant
+    400148: Side Skirt Galant 1
+    400150: spring
+    400152: spring 1
+    400154: spring 2
+    400156: spring 3
+    400158: spring46704
+    400160: spring46792
+    400162: spring46819
+    400164: spring46846
+    400166: Taillights Galant
+    400168: Taillights Galant 1
+    400170: Under Body Galant
+    400172: Windscreen Galant
+    2300000: Back Door Side Windows Galant
+    2300002: Back Door Side Windows Galant 1
+    2300004: Back Windscreen Galant
+    2300006: Component#4
+    2300008: Component#4 1
+    2300010: Component#4 2
+    2300012: Component#4 3
+    2300014: Component#5
+    2300016: Component#5 1
+    2300018: Component#5 2
+    2300020: Component#5 3
+    2300022: Component#6
+    2300024: Component#6 1
+    2300026: Component#6 2
+    2300028: Component#6 3
+    2300030: Component#7
+    2300032: Component#7 1
+    2300034: Component#7 2
+    2300036: Component#7 3
+    2300038: Component#8
+    2300040: Component#8 1
+    2300042: Component#8 2
+    2300044: Component#8 3
+    2300046: Exhaust Galant
+    2300048: floor
+    2300050: Front Bumper Galant
+    2300052: Front Door Galant
+    2300054: Front Door Galant 1
+    2300056: Front Door Side Window Galant
+    2300058: Front Door Side Window Galant 1
+    2300060: Front Fender
+    2300062: Front Fender 1
+    2300064: Grille Mitsubishi Galant
+    2300066: Group 122
+    2300068: Group 127
+    2300070: Group 3
+    2300072: Group 6
+    2300074: Group 73
+    2300076: Group 91
+    2300078: Headlight Cover Galant
+    2300080: Headlight Cover Galant 1
+    2300082: Headlight Unit Galant
+    2300084: Headlight Unit Galant 1
+    2300086: Main Body Panel Galant
+    2300088: Mirror Galant
+    2300090: Mirror Galant 1
+    2300092: Numberplate Galant
+    2300094: Numberplate Galant 1
+    2300096: Rear Bumper Galant
+    2300098: Rear Door Galant
+    2300100: Rear Door Galant 1
+    2300102: Side Skirt Galant
+    2300104: Side Skirt Galant 1
+    2300106: Taillights Galant
+    2300108: Taillights Galant 1
+    2300110: Under Body Galant
+    2300112: Windscreen Galant
+    3300000: Back Door Side Windows Galant
+    3300002: Back Door Side Windows Galant 1
+    3300004: Back Windscreen Galant
+    3300006: Component#4
+    3300008: Component#4 1
+    3300010: Component#4 2
+    3300012: Component#4 3
+    3300014: Component#5
+    3300016: Component#5 1
+    3300018: Component#5 2
+    3300020: Component#5 3
+    3300022: Component#6
+    3300024: Component#6 1
+    3300026: Component#6 2
+    3300028: Component#6 3
+    3300030: Component#7
+    3300032: Component#7 1
+    3300034: Component#7 2
+    3300036: Component#7 3
+    3300038: Component#8
+    3300040: Component#8 1
+    3300042: Component#8 2
+    3300044: Component#8 3
+    3300046: Exhaust Galant
+    3300048: floor
+    3300050: Front Bumper Galant
+    3300052: Front Door Galant
+    3300054: Front Door Galant 1
+    3300056: Front Door Side Window Galant
+    3300058: Front Door Side Window Galant 1
+    3300060: Front Fender
+    3300062: Front Fender 1
+    3300064: Grille Mitsubishi Galant
+    3300066: Group 122
+    3300068: Group 127
+    3300070: Group 3
+    3300072: Group 6
+    3300074: Group 73
+    3300076: Group 91
+    3300078: Headlight Cover Galant
+    3300080: Headlight Cover Galant 1
+    3300082: Headlight Unit Galant
+    3300084: Headlight Unit Galant 1
+    3300086: Main Body Panel Galant
+    3300088: Mirror Galant
+    3300090: Mirror Galant 1
+    3300092: Numberplate Galant
+    3300094: Numberplate Galant 1
+    3300096: Rear Bumper Galant
+    3300098: Rear Door Galant
+    3300100: Rear Door Galant 1
+    3300102: Side Skirt Galant
+    3300104: Side Skirt Galant 1
+    3300106: Taillights Galant
+    3300108: Taillights Galant 1
+    3300110: Under Body Galant
+    3300112: Windscreen Galant
+    4300000: Mesh Group 3
+    4300002: Mesh Group 6
+    4300004: Mesh Numberplate Galant
+    4300006: Mesh Windscreen Galant
+    4300008: Mesh Grille Mitsubishi Galant
+    4300010: Mesh Back Windscreen Galant
+    4300012: Mesh Main Body Panel Galant
+    4300014: Mesh Front Fender
+    4300016: Mesh Rear Door Galant
+    4300018: Mesh Back Door Side Windows Galant
+    4300020: Mesh Side Skirt Galant
+    4300022: Mesh Front Bumper Galant
+    4300024: Mesh Under Body Galant
+    4300026: Mesh Exhaust Galant
+    4300028: Mesh Headlight Cover Galant
+    4300030: Mesh Headlight Unit Galant
+    4300032: Mesh Rear Bumper Galant
+    4300034: Mesh Taillights Galant
+    4300036: Mesh Front Door Galant
+    4300038: Mesh Front Door Side Window Galant
+    4300040: Mesh Mirror Galant
+    4300042: Mesh Group 73
+    4300044: Mesh Component#4
+    4300046: Mesh Component#5
+    4300048: Mesh Component#6
+    4300050: Mesh Component#7
+    4300052: Mesh Component#8
+    4300054: Mesh floor
+  materials:
+    importMaterials: 1
+    materialName: 2
+    materialSearch: 0
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleRotations: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 0.0254
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 0
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

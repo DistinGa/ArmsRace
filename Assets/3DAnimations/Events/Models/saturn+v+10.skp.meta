@@ -1,0 +1,134 @@
+fileFormatVersion: 2
+guid: 709ffad347d0f794fbf21b8a9bbcbc72
+timeCreated: 1488758255
+licenseType: Free
+SketchUpImporter:
+  generateBackFace: 0
+  mergeCoplanarFaces: 0
+  selectedNodes: 00000000010000000200000003000000040000000700000008000000090000000a0000000b0000000c0000000d0000000e0000000f0000001000000011000000120000001300000014000000
+  assetHash:
+    serializedVersion: 2
+    Hash: c0a1b6d6de5c08840b7134599aa93f93
+  longitude: -80.62068875586873
+  latitude: 28.622580245890468
+  northCorrection: -0
+  fileUnit: 0
+  sketchUpImportData:
+    defaultCamera:
+      position: {x: 88.043365, y: 131.48726, z: -86.25368}
+      lookAt: {x: 13.9783945, y: 60.03177, z: 21.919062}
+      up: {x: -0.8502383, y: 0.43698722, z: -0.29349115}
+      fov: 35
+      aspectRatio: 0
+      orthoSize: 1
+      isPerspective: 1
+    scenes: []
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: Body#1
+    100002: Bryce
+    100004: Crawler
+    100006: NASA Crawler Transporter
+    100008: Sang
+    100010: //RootNode
+    100012: Track
+    100014: Track 1
+    100016: Track 2
+    100018: Track 3
+    100020: tracks
+    400000: Body#1
+    400002: Bryce
+    400004: Crawler
+    400006: NASA Crawler Transporter
+    400008: Sang
+    400010: //RootNode
+    400012: Track
+    400014: Track 1
+    400016: Track 2
+    400018: Track 3
+    400020: tracks
+    2300000: Body#1
+    2300002: Bryce
+    2300004: Sang
+    2300006: //RootNode
+    2300008: Track
+    2300010: Track 1
+    2300012: Track 2
+    2300014: Track 3
+    3300000: Body#1
+    3300002: Bryce
+    3300004: Sang
+    3300006: //RootNode
+    3300008: Track
+    3300010: Track 1
+    3300012: Track 2
+    3300014: Track 3
+    4300000: Mesh saturn+v+10
+    4300002: Mesh Sang
+    4300004: Mesh Bryce
+    4300006: Mesh Body#1
+    4300008: Mesh Track
+  materials:
+    importMaterials: 1
+    materialName: 2
+    materialSearch: 0
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleRotations: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 0.0254
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 0
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

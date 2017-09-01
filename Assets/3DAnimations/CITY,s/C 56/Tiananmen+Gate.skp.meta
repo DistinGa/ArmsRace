@@ -1,0 +1,184 @@
+fileFormatVersion: 2
+guid: e5cfec14945cec6429d5b121595a5c17
+timeCreated: 1481942998
+licenseType: Free
+SketchUpImporter:
+  generateBackFace: 0
+  mergeCoplanarFaces: 0
+  selectedNodes: 00000000010000000200000005000000060000000700000008000000090000000a0000000b0000000c0000000d0000000e0000000f000000100000001100000012000000130000001400000015000000160000001700000018000000190000001a0000001b0000001c0000001d0000001e0000001f000000200000002100000022000000230000002400000025000000260000002700000028000000290000002a0000002b0000002c0000002d0000002e000000
+  assetHash:
+    serializedVersion: 2
+    Hash: a10d0a6d3c0a6659498cf13c1c5668f0
+  longitude: 116.39145118462986
+  latitude: 39.90740816603143
+  northCorrection: -0
+  fileUnit: 0
+  sketchUpImportData:
+    defaultCamera:
+      position: {x: 74.493744, y: 37.84426, z: -96.42386}
+      lookAt: {x: -191.29398, y: -54.503433, z: 156.34148}
+      up: {x: -0.17692307, y: 0.9697364, z: 0.16825464}
+      fov: 32.84787
+      aspectRatio: 0
+      orthoSize: 1
+      isPerspective: 1
+    scenes: []
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: Google Earth Terrain
+    100002: Group 5
+    100004: Lizhu
+    100006: Lizhu 1
+    100008: Lizhu 10
+    100010: Lizhu 11
+    100012: Lizhu 12
+    100014: Lizhu 13
+    100016: Lizhu 14
+    100018: Lizhu 15
+    100020: Lizhu 16
+    100022: Lizhu 17
+    100024: Lizhu 18
+    100026: Lizhu 19
+    100028: Lizhu 2
+    100030: Lizhu 3
+    100032: Lizhu 4
+    100034: Lizhu 5
+    100036: Lizhu 6
+    100038: Lizhu 7
+    100040: Lizhu 8
+    100042: Lizhu 9
+    100044: //RootNode
+    400000: Google Earth Terrain
+    400002: Group 5
+    400004: Lizhu
+    400006: Lizhu 1
+    400008: Lizhu 10
+    400010: Lizhu 11
+    400012: Lizhu 12
+    400014: Lizhu 13
+    400016: Lizhu 14
+    400018: Lizhu 15
+    400020: Lizhu 16
+    400022: Lizhu 17
+    400024: Lizhu 18
+    400026: Lizhu 19
+    400028: Lizhu 2
+    400030: Lizhu 3
+    400032: Lizhu 4
+    400034: Lizhu 5
+    400036: Lizhu 6
+    400038: Lizhu 7
+    400040: Lizhu 8
+    400042: Lizhu 9
+    400044: //RootNode
+    2300000: Google Earth Terrain
+    2300002: Group 5
+    2300004: Lizhu
+    2300006: Lizhu 1
+    2300008: Lizhu 10
+    2300010: Lizhu 11
+    2300012: Lizhu 12
+    2300014: Lizhu 13
+    2300016: Lizhu 14
+    2300018: Lizhu 15
+    2300020: Lizhu 16
+    2300022: Lizhu 17
+    2300024: Lizhu 18
+    2300026: Lizhu 19
+    2300028: Lizhu 2
+    2300030: Lizhu 3
+    2300032: Lizhu 4
+    2300034: Lizhu 5
+    2300036: Lizhu 6
+    2300038: Lizhu 7
+    2300040: Lizhu 8
+    2300042: Lizhu 9
+    3300000: Google Earth Terrain
+    3300002: Group 5
+    3300004: Lizhu
+    3300006: Lizhu 1
+    3300008: Lizhu 10
+    3300010: Lizhu 11
+    3300012: Lizhu 12
+    3300014: Lizhu 13
+    3300016: Lizhu 14
+    3300018: Lizhu 15
+    3300020: Lizhu 16
+    3300022: Lizhu 17
+    3300024: Lizhu 18
+    3300026: Lizhu 19
+    3300028: Lizhu 2
+    3300030: Lizhu 3
+    3300032: Lizhu 4
+    3300034: Lizhu 5
+    3300036: Lizhu 6
+    3300038: Lizhu 7
+    3300040: Lizhu 8
+    3300042: Lizhu 9
+    4300000: Mesh Google Earth Terrain
+    4300002: Mesh Group 5
+    4300004: Mesh Lizhu
+  materials:
+    importMaterials: 1
+    materialName: 2
+    materialSearch: 0
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 0.0254
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 0
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -1,0 +1,386 @@
+fileFormatVersion: 2
+guid: 240c1c3a65030fa488f49d99034a3fcc
+timeCreated: 1493432864
+licenseType: Free
+SketchUpImporter:
+  generateBackFace: 0
+  mergeCoplanarFaces: 0
+  selectedNodes: 000000000100000002000000030000000400000005000000060000000700000008000000090000000a0000000b0000000c0000000d0000000e0000000f000000100000001100000012000000130000001400000015000000160000001700000018000000190000001a0000001b0000001c0000001d0000001e0000001f000000200000002100000022000000230000002400000025000000260000002700000028000000290000002a0000002b0000002c0000002d0000002e0000002f000000300000003100000032000000330000003400000035000000360000003700000038000000390000003a0000003b0000003c0000003d0000003e0000003f000000400000004100000042000000430000004400000045000000460000004700000048000000490000004a0000004b0000004c0000004d0000004e0000004f000000500000005100000052000000530000005400000055000000560000005700000058000000590000005a0000005b0000005c0000005d0000005e0000005f000000600000006100000062000000630000006400000065000000660000006700000068000000690000006a0000006b0000006c0000006d0000006e0000006f000000700000007100000072000000730000007400000075000000760000007700000078000000790000007a0000007b0000007c0000007d0000007e0000007f000000800000008100000082000000830000008400000085000000
+  assetHash:
+    serializedVersion: 2
+    Hash: 828d96140f241a99107174f60b79e7aa
+  longitude: 13.417
+  latitude: 52.533
+  northCorrection: -0
+  fileUnit: 0
+  sketchUpImportData:
+    defaultCamera:
+      position: {x: 3.470255, y: 3.71342, z: -6.28832}
+      lookAt: {x: -0.34173274, y: 0.8853471, z: 3.1494853}
+      up: {x: -0.10025827, y: 0.9635011, z: 0.24822168}
+      fov: 30
+      aspectRatio: 0
+      orthoSize: 1
+      isPerspective: 1
+    scenes: []
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: boreg
+    100002: boreg 1
+    100004: boreg 10
+    100006: boreg 11
+    100008: boreg 2
+    100010: boreg 3
+    100012: boreg 4
+    100014: boreg 5
+    100016: boreg 6
+    100018: boreg 7
+    100020: boreg 8
+    100022: boreg 9
+    100024: Component#1
+    100026: Component#11
+    100028: Component#12
+    100030: Component#12 1
+    100032: Component#13
+    100034: Component#13 1
+    100036: Component#14
+    100038: Component#15
+    100040: Component#15 1
+    100042: Component#16
+    100044: Component#16 1
+    100046: Component#18
+    100048: Component#19
+    100050: Component#2
+    100052: Component#20
+    100054: Component#22
+    100056: Component#22 1
+    100058: Component#24
+    100060: Component#24 1
+    100062: Component#28
+    100064: Component#3
+    100066: Component#3 1
+    100068: Component#30
+    100070: Component#30 1
+    100072: Component#31
+    100074: Component#31 1
+    100076: Component#32
+    100078: Component#32 1
+    100080: Component#32 2
+    100082: Component#32 3
+    100084: Component#32 4
+    100086: Component#32 5
+    100088: Component#33
+    100090: Component#33 1
+    100092: Component#33 2
+    100094: Component#33 3
+    100096: Component#33 4
+    100098: Component#33 5
+    100100: Component#34
+    100102: Component#34 1
+    100104: Component#34 2
+    100106: Component#34 3
+    100108: Component#34 4
+    100110: Component#34 5
+    100112: Component#35
+    100114: Component#35 1
+    100116: Component#35 2
+    100118: Component#6
+    100120: Component#8
+    100122: Component#8 1
+    100124: Hmmwv wheel
+    100126: Hmmwv wheel 1
+    100128: Hmmwv wheel 2
+    100130: Hmmwv wheel 3
+    100132: Hmmwv wheel 4
+    100134: Hmmwv wheel 5
+    100136: Komponente#22e
+    100138: //RootNode
+    100140: side_ligth hmmwv
+    100142: side_ligth hmmwv 1
+    100144: side_ligth hmmwv 2
+    100146: side_ligth hmmwv 3
+    100148: ske4C
+    400000: boreg
+    400002: boreg 1
+    400004: boreg 10
+    400006: boreg 11
+    400008: boreg 2
+    400010: boreg 3
+    400012: boreg 4
+    400014: boreg 5
+    400016: boreg 6
+    400018: boreg 7
+    400020: boreg 8
+    400022: boreg 9
+    400024: Component#1
+    400026: Component#11
+    400028: Component#12
+    400030: Component#12 1
+    400032: Component#13
+    400034: Component#13 1
+    400036: Component#14
+    400038: Component#15
+    400040: Component#15 1
+    400042: Component#16
+    400044: Component#16 1
+    400046: Component#18
+    400048: Component#19
+    400050: Component#2
+    400052: Component#20
+    400054: Component#22
+    400056: Component#22 1
+    400058: Component#24
+    400060: Component#24 1
+    400062: Component#28
+    400064: Component#3
+    400066: Component#3 1
+    400068: Component#30
+    400070: Component#30 1
+    400072: Component#31
+    400074: Component#31 1
+    400076: Component#32
+    400078: Component#32 1
+    400080: Component#32 2
+    400082: Component#32 3
+    400084: Component#32 4
+    400086: Component#32 5
+    400088: Component#33
+    400090: Component#33 1
+    400092: Component#33 2
+    400094: Component#33 3
+    400096: Component#33 4
+    400098: Component#33 5
+    400100: Component#34
+    400102: Component#34 1
+    400104: Component#34 2
+    400106: Component#34 3
+    400108: Component#34 4
+    400110: Component#34 5
+    400112: Component#35
+    400114: Component#35 1
+    400116: Component#35 2
+    400118: Component#6
+    400120: Component#8
+    400122: Component#8 1
+    400124: Hmmwv wheel
+    400126: Hmmwv wheel 1
+    400128: Hmmwv wheel 2
+    400130: Hmmwv wheel 3
+    400132: Hmmwv wheel 4
+    400134: Hmmwv wheel 5
+    400136: Komponente#22e
+    400138: //RootNode
+    400140: side_ligth hmmwv
+    400142: side_ligth hmmwv 1
+    400144: side_ligth hmmwv 2
+    400146: side_ligth hmmwv 3
+    400148: ske4C
+    2300000: boreg
+    2300002: boreg 1
+    2300004: boreg 10
+    2300006: boreg 11
+    2300008: boreg 2
+    2300010: boreg 3
+    2300012: boreg 4
+    2300014: boreg 5
+    2300016: boreg 6
+    2300018: boreg 7
+    2300020: boreg 8
+    2300022: boreg 9
+    2300024: Component#1
+    2300026: Component#11
+    2300028: Component#12
+    2300030: Component#12 1
+    2300032: Component#13
+    2300034: Component#13 1
+    2300036: Component#14
+    2300038: Component#15
+    2300040: Component#15 1
+    2300042: Component#16
+    2300044: Component#16 1
+    2300046: Component#18
+    2300048: Component#19
+    2300050: Component#2
+    2300052: Component#20
+    2300054: Component#22
+    2300056: Component#22 1
+    2300058: Component#24
+    2300060: Component#24 1
+    2300062: Component#28
+    2300064: Component#3
+    2300066: Component#3 1
+    2300068: Component#30
+    2300070: Component#30 1
+    2300072: Component#31
+    2300074: Component#31 1
+    2300076: Component#32
+    2300078: Component#32 1
+    2300080: Component#32 2
+    2300082: Component#32 3
+    2300084: Component#32 4
+    2300086: Component#32 5
+    2300088: Component#33
+    2300090: Component#33 1
+    2300092: Component#33 2
+    2300094: Component#33 3
+    2300096: Component#33 4
+    2300098: Component#33 5
+    2300100: Component#6
+    2300102: Component#8
+    2300104: Component#8 1
+    2300106: Komponente#22e
+    2300108: side_ligth hmmwv
+    2300110: side_ligth hmmwv 1
+    2300112: side_ligth hmmwv 2
+    2300114: side_ligth hmmwv 3
+    2300116: ske4C
+    3300000: boreg
+    3300002: boreg 1
+    3300004: boreg 10
+    3300006: boreg 11
+    3300008: boreg 2
+    3300010: boreg 3
+    3300012: boreg 4
+    3300014: boreg 5
+    3300016: boreg 6
+    3300018: boreg 7
+    3300020: boreg 8
+    3300022: boreg 9
+    3300024: Component#1
+    3300026: Component#11
+    3300028: Component#12
+    3300030: Component#12 1
+    3300032: Component#13
+    3300034: Component#13 1
+    3300036: Component#14
+    3300038: Component#15
+    3300040: Component#15 1
+    3300042: Component#16
+    3300044: Component#16 1
+    3300046: Component#18
+    3300048: Component#19
+    3300050: Component#2
+    3300052: Component#20
+    3300054: Component#22
+    3300056: Component#22 1
+    3300058: Component#24
+    3300060: Component#24 1
+    3300062: Component#28
+    3300064: Component#3
+    3300066: Component#3 1
+    3300068: Component#30
+    3300070: Component#30 1
+    3300072: Component#31
+    3300074: Component#31 1
+    3300076: Component#32
+    3300078: Component#32 1
+    3300080: Component#32 2
+    3300082: Component#32 3
+    3300084: Component#32 4
+    3300086: Component#32 5
+    3300088: Component#33
+    3300090: Component#33 1
+    3300092: Component#33 2
+    3300094: Component#33 3
+    3300096: Component#33 4
+    3300098: Component#33 5
+    3300100: Component#6
+    3300102: Component#8
+    3300104: Component#8 1
+    3300106: Komponente#22e
+    3300108: side_ligth hmmwv
+    3300110: side_ligth hmmwv 1
+    3300112: side_ligth hmmwv 2
+    3300114: side_ligth hmmwv 3
+    3300116: ske4C
+    4300000: Mesh Komponente#22e
+    4300002: Mesh ske4C
+    4300004: Mesh Component#3
+    4300006: Mesh Component#8
+    4300008: Mesh Component#12
+    4300010: Mesh Component#2
+    4300012: Mesh Component#28
+    4300014: Mesh Component#18
+    4300016: Mesh Component#13
+    4300018: Mesh Component#16
+    4300020: Mesh Component#31
+    4300022: Mesh Component#14
+    4300024: Mesh Component#11
+    4300026: Mesh Component#24
+    4300028: Mesh Component#15
+    4300030: Mesh Component#22
+    4300032: Mesh Component#16
+    4300034: Mesh Component#1
+    4300036: Mesh Component#33
+    4300038: Mesh Component#32
+    4300040: Mesh Component#30
+    4300042: Mesh side_ligth hmmwv
+    4300044: Mesh boreg
+    4300046: Mesh Component#24
+    4300048: Mesh Component#19
+    4300050: Mesh Component#20
+    4300052: Mesh Component#6
+  materials:
+    importMaterials: 1
+    materialName: 2
+    materialSearch: 0
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleRotations: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 0.0254
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 0
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

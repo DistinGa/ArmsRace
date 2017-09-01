@@ -1,0 +1,156 @@
+fileFormatVersion: 2
+guid: ecd3f7a8d1fff9c4dbb808745cf9d35f
+timeCreated: 1488775018
+licenseType: Free
+SketchUpImporter:
+  generateBackFace: 0
+  mergeCoplanarFaces: 0
+  selectedNodes: 00000000090000000a0000000b0000000c0000000d0000000e0000000f000000100000001100000012000000130000001400000015000000160000001700000018000000190000001a0000001b0000001c0000001d0000001e0000001f0000002000000021000000220000002300000024000000
+  assetHash:
+    serializedVersion: 2
+    Hash: 4efdb8d5a1af4dfb6db805c0734358bd
+  longitude: 130.975471
+  latitude: 30.40095
+  northCorrection: 1.000230323773735
+  fileUnit: 0
+  sketchUpImportData:
+    defaultCamera:
+      position: {x: -57.071617, y: 135.5324, z: 62.705315}
+      lookAt: {x: 33.84903, y: -46.174885, z: -40.213654}
+      up: {x: 0.52819216, y: 0.6029384, z: -0.5978949}
+      fov: 35
+      aspectRatio: 0
+      orthoSize: 1
+      isPerspective: 1
+    scenes: []
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: Google Earth Snapshot
+    100002: H2B
+    100004: //RootNode
+    100006: LT
+    100008: LT 1
+    100010: ML
+    100012: "\u30B3\u30F3\u30DD\u30FC\u30CD\u30F3\u30C8#1"
+    100014: "\u30B3\u30F3\u30DD\u30FC\u30CD\u30F3\u30C8#1 1"
+    100016: "\u30B3\u30F3\u30DD\u30FC\u30CD\u30F3\u30C8#2"
+    100018: "\u30B3\u30F3\u30DD\u30FC\u30CD\u30F3\u30C8#5"
+    100020: "\u30B3\u30F3\u30DD\u30FC\u30CD\u30F3\u30C8#6"
+    100022: "\u30B3\u30F3\u30DD\u30FC\u30CD\u30F3\u30C8#6 1"
+    100024: "\u30B3\u30F3\u30DD\u30FC\u30CD\u30F3\u30C8#8"
+    100026: "\u30B3\u30F3\u30DD\u30FC\u30CD\u30F3\u30C8#8 1"
+    100028: "\u30B3\u30F3\u30DD\u30FC\u30CD\u30F3\u30C8#8 2"
+    100030: "\u30B3\u30F3\u30DD\u30FC\u30CD\u30F3\u30C8#8 3"
+    100032: "\u30B3\u30F3\u30DD\u30FC\u30CD\u30F3\u30C8#9"
+    400000: Google Earth Snapshot
+    400002: H2B
+    400004: //RootNode
+    400006: LT
+    400008: LT 1
+    400010: ML
+    400012: "\u30B3\u30F3\u30DD\u30FC\u30CD\u30F3\u30C8#1"
+    400014: "\u30B3\u30F3\u30DD\u30FC\u30CD\u30F3\u30C8#1 1"
+    400016: "\u30B3\u30F3\u30DD\u30FC\u30CD\u30F3\u30C8#2"
+    400018: "\u30B3\u30F3\u30DD\u30FC\u30CD\u30F3\u30C8#5"
+    400020: "\u30B3\u30F3\u30DD\u30FC\u30CD\u30F3\u30C8#6"
+    400022: "\u30B3\u30F3\u30DD\u30FC\u30CD\u30F3\u30C8#6 1"
+    400024: "\u30B3\u30F3\u30DD\u30FC\u30CD\u30F3\u30C8#8"
+    400026: "\u30B3\u30F3\u30DD\u30FC\u30CD\u30F3\u30C8#8 1"
+    400028: "\u30B3\u30F3\u30DD\u30FC\u30CD\u30F3\u30C8#8 2"
+    400030: "\u30B3\u30F3\u30DD\u30FC\u30CD\u30F3\u30C8#8 3"
+    400032: "\u30B3\u30F3\u30DD\u30FC\u30CD\u30F3\u30C8#9"
+    2300000: Google Earth Snapshot
+    2300002: "\u30B3\u30F3\u30DD\u30FC\u30CD\u30F3\u30C8#1"
+    2300004: "\u30B3\u30F3\u30DD\u30FC\u30CD\u30F3\u30C8#1 1"
+    2300006: "\u30B3\u30F3\u30DD\u30FC\u30CD\u30F3\u30C8#2"
+    2300008: "\u30B3\u30F3\u30DD\u30FC\u30CD\u30F3\u30C8#5"
+    2300010: "\u30B3\u30F3\u30DD\u30FC\u30CD\u30F3\u30C8#6"
+    2300012: "\u30B3\u30F3\u30DD\u30FC\u30CD\u30F3\u30C8#6 1"
+    2300014: "\u30B3\u30F3\u30DD\u30FC\u30CD\u30F3\u30C8#8"
+    2300016: "\u30B3\u30F3\u30DD\u30FC\u30CD\u30F3\u30C8#8 1"
+    2300018: "\u30B3\u30F3\u30DD\u30FC\u30CD\u30F3\u30C8#8 2"
+    2300020: "\u30B3\u30F3\u30DD\u30FC\u30CD\u30F3\u30C8#8 3"
+    2300022: "\u30B3\u30F3\u30DD\u30FC\u30CD\u30F3\u30C8#9"
+    3300000: Google Earth Snapshot
+    3300002: "\u30B3\u30F3\u30DD\u30FC\u30CD\u30F3\u30C8#1"
+    3300004: "\u30B3\u30F3\u30DD\u30FC\u30CD\u30F3\u30C8#1 1"
+    3300006: "\u30B3\u30F3\u30DD\u30FC\u30CD\u30F3\u30C8#2"
+    3300008: "\u30B3\u30F3\u30DD\u30FC\u30CD\u30F3\u30C8#5"
+    3300010: "\u30B3\u30F3\u30DD\u30FC\u30CD\u30F3\u30C8#6"
+    3300012: "\u30B3\u30F3\u30DD\u30FC\u30CD\u30F3\u30C8#6 1"
+    3300014: "\u30B3\u30F3\u30DD\u30FC\u30CD\u30F3\u30C8#8"
+    3300016: "\u30B3\u30F3\u30DD\u30FC\u30CD\u30F3\u30C8#8 1"
+    3300018: "\u30B3\u30F3\u30DD\u30FC\u30CD\u30F3\u30C8#8 2"
+    3300020: "\u30B3\u30F3\u30DD\u30FC\u30CD\u30F3\u30C8#8 3"
+    3300022: "\u30B3\u30F3\u30DD\u30FC\u30CD\u30F3\u30C8#9"
+    4300000: Mesh Google Earth Snapshot
+    4300002: "Mesh \u30B3\u30F3\u30DD\u30FC\u30CD\u30F3\u30C8#1"
+    4300004: "Mesh \u30B3\u30F3\u30DD\u30FC\u30CD\u30F3\u30C8#2"
+    4300006: "Mesh \u30B3\u30F3\u30DD\u30FC\u30CD\u30F3\u30C8#5"
+    4300008: "Mesh \u30B3\u30F3\u30DD\u30FC\u30CD\u30F3\u30C8#6"
+    4300010: "Mesh \u30B3\u30F3\u30DD\u30FC\u30CD\u30F3\u30C8#9"
+    4300012: "Mesh \u30B3\u30F3\u30DD\u30FC\u30CD\u30F3\u30C8#8"
+  materials:
+    importMaterials: 1
+    materialName: 2
+    materialSearch: 0
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleRotations: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 0.0254
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 0
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

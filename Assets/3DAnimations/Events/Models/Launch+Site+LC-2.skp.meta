@@ -1,0 +1,204 @@
+fileFormatVersion: 2
+guid: 352b6227e8925244babb1665c70285b4
+timeCreated: 1489981161
+licenseType: Free
+SketchUpImporter:
+  generateBackFace: 0
+  mergeCoplanarFaces: 0
+  selectedNodes: 000000000100000002000000030000000400000005000000060000000700000008000000090000000a0000000b0000000c0000000d0000000e0000000f000000100000001100000012000000130000001400000015000000160000001700000018000000190000001a0000001b0000001c0000001d0000001e0000001f000000200000002100000022000000230000002400000025000000260000002700000028000000290000002a0000002b0000002c0000002d0000002e0000002f00000030000000310000003200000033000000
+  assetHash:
+    serializedVersion: 2
+    Hash: 6964007b38cdd83ba59b87e00b131251
+  longitude: -105.283
+  latitude: 40.017
+  northCorrection: -0
+  fileUnit: 0
+  sketchUpImportData:
+    defaultCamera:
+      position: {x: 17.593178, y: 4.960951, z: -11.324415}
+      lookAt: {x: 17.618628, y: 4.4959126, z: 13.210538}
+      up: {x: 0.000019655756, y: 0.9998204, z: 0.018950691}
+      fov: 35
+      aspectRatio: 0
+      orthoSize: 1
+      isPerspective: 1
+    scenes: []
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: capsule
+    100002: capsule 1
+    100004: capsule 2
+    100006: capsule 3
+    100008: capsule 4
+    100010: capsule 5
+    100012: capsule 6
+    100014: Component#1
+    100016: Component#1 1
+    100018: Component#1 2
+    100020: Component#1 3
+    100022: Component#1 4
+    100024: Component#1 5
+    100026: Component#10
+    100028: Component#10 1
+    100030: Component#10 2
+    100032: Component#10 3
+    100034: Component#2
+    100036: Component#3
+    100038: Component#3 1
+    100040: Component#3 2
+    100042: Component#3 3
+    100044: Component#3 4
+    100046: Component#5
+    100048: Component#7
+    100050: Component#8
+    100052: Concept Rocket
+    100054: Concept Rocket#1
+    100056: //RootNode
+    400000: capsule
+    400002: capsule 1
+    400004: capsule 2
+    400006: capsule 3
+    400008: capsule 4
+    400010: capsule 5
+    400012: capsule 6
+    400014: Component#1
+    400016: Component#1 1
+    400018: Component#1 2
+    400020: Component#1 3
+    400022: Component#1 4
+    400024: Component#1 5
+    400026: Component#10
+    400028: Component#10 1
+    400030: Component#10 2
+    400032: Component#10 3
+    400034: Component#2
+    400036: Component#3
+    400038: Component#3 1
+    400040: Component#3 2
+    400042: Component#3 3
+    400044: Component#3 4
+    400046: Component#5
+    400048: Component#7
+    400050: Component#8
+    400052: Concept Rocket
+    400054: Concept Rocket#1
+    400056: //RootNode
+    2300000: capsule
+    2300002: capsule 1
+    2300004: capsule 2
+    2300006: capsule 3
+    2300008: capsule 4
+    2300010: capsule 5
+    2300012: capsule 6
+    2300014: Component#1
+    2300016: Component#1 1
+    2300018: Component#1 2
+    2300020: Component#1 3
+    2300022: Component#1 4
+    2300024: Component#1 5
+    2300026: Component#2
+    2300028: Component#3
+    2300030: Component#3 1
+    2300032: Component#3 2
+    2300034: Component#3 3
+    2300036: Component#3 4
+    2300038: Component#5
+    2300040: Component#7
+    2300042: Component#8
+    2300044: //RootNode
+    3300000: capsule
+    3300002: capsule 1
+    3300004: capsule 2
+    3300006: capsule 3
+    3300008: capsule 4
+    3300010: capsule 5
+    3300012: capsule 6
+    3300014: Component#1
+    3300016: Component#1 1
+    3300018: Component#1 2
+    3300020: Component#1 3
+    3300022: Component#1 4
+    3300024: Component#1 5
+    3300026: Component#2
+    3300028: Component#3
+    3300030: Component#3 1
+    3300032: Component#3 2
+    3300034: Component#3 3
+    3300036: Component#3 4
+    3300038: Component#5
+    3300040: Component#7
+    3300042: Component#8
+    3300044: //RootNode
+    4300000: Mesh Launch+Site+LC-2
+    4300002: Mesh Component#2
+    4300004: Mesh Component#7
+    4300006: Mesh Component#8
+    4300008: Mesh capsule
+    4300010: Mesh Component#3
+    4300012: Mesh Component#1
+    4300014: Mesh capsule
+    4300016: Mesh Component#5
+  materials:
+    importMaterials: 1
+    materialName: 2
+    materialSearch: 0
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleRotations: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 0.0254
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 0
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

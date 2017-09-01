@@ -1,10 +1,13 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using System.Collections;
 using Steamworks;
 
 public class StartMenuScript : MonoBehaviour
 {
+    [SerializeField]
+    Image LoadingBar;
     public Animator Animator;
     [Space(10)]
     public Toggle VideoNews;
@@ -100,7 +103,22 @@ public class StartMenuScript : MonoBehaviour
     {
         SettingsScript.Settings.SaveSettings();
         Animator.Play(0);
-        Invoke(("StartGame"), 5f);
+        //Invoke(("StartGame"), 5f);
+        StartCoroutine(DelayedStartGame());
+    }
+
+    public IEnumerator DelayedStartGame()
+    {
+        FindObjectOfType<UnityEngine.EventSystems.EventSystem>().gameObject.SetActive(false);
+        AsyncOperation Progress = SceneManager.LoadSceneAsync("GameScene", LoadSceneMode.Additive);
+        while (!Progress.isDone)
+        {
+            LoadingBar.fillAmount = Progress.progress;
+            yield return new WaitForSeconds(0.5f);
+        }
+        //SceneManager.SetActiveScene(SceneManager.GetSceneByName("GameScene"));
+        //SceneManager.UnloadScene("StartMenu");        
+        SceneManagerScript.ChangeScenes("StartMenu", "GameScene");
     }
 
     public void StartGame()

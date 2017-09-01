@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System;
 using UnityEngine.UI;
-using System.Collections;
+using video3D;
 
 public class VideoQueue : MonoBehaviour {
     Image VideoPanel;
@@ -82,6 +82,9 @@ public class VideoQueue : MonoBehaviour {
     // type- глоб/лок V_TYPE_*
     public void AddRolex(int type, int tempo, int info, CountryScript c)
     {
+        string AudioFile = "";
+        CitysAnim animType = 0;
+
         GameManagerScript GM = GameManagerScript.GM;
 
         VideoRealPlayRolex vrr = SearchRolex(type, tempo, info, c.Region, GM.GetCurrentEpoch(), c, GM.CurrentMonth);
@@ -96,43 +99,82 @@ public class VideoQueue : MonoBehaviour {
             switch (info)
             {
                 case V_PUPPER_MIL_ADDED:
-                    if (type == V_TYPE_USA) vrr.mWavFile = "03 DislAmTroops";
+                    if (type == V_TYPE_USA)
+                    {
+                        //vrr.mWavFile = "03 DislAmTroops";
+                        animType = CitysAnim.InvasionUSA;
+                    }
                     else
-                    if (type == V_TYPE_USSR) vrr.mWavFile = "04 DislSovTroops"; break;
+                    if (type == V_TYPE_USSR)
+                        //vrr.mWavFile = "04 DislSovTroops";
+                        animType = CitysAnim.InvasionUSSR;
+                    break;
 
                 case V_PUPPER_PEACE:
-                    if (type == V_TYPE_USA) vrr.mWavFile = "05 NewDemGov";
+                    if (type == V_TYPE_USA)
+                        //vrr.mWavFile = "05 NewDemGov";
+                        animType = CitysAnim.DemBlue;
                     else
-                    if (type == V_TYPE_USSR) vrr.mWavFile = "06 NewCommGov"; break;
+                    if (type == V_TYPE_USSR)
+                        //vrr.mWavFile = "06 NewCommGov";
+                        animType = CitysAnim.DemRed;
+                    break;
 
                 case V_PUPPER_WAR:
-                    if (type == V_TYPE_USA) vrr.mWavFile = "07 NewDemGovInstalled";
+                    if (type == V_TYPE_USA)
+                        //vrr.mWavFile = "07 NewDemGovInstalled";
+                        animType = CitysAnim.DemBlue;
                     else
-                    if (type == V_TYPE_USSR) vrr.mWavFile = "08 NewCommGovInstalled"; break;
+                    if (type == V_TYPE_USSR)
+                        //vrr.mWavFile = "08 NewCommGovInstalled";
+                        animType = CitysAnim.DemRed;
+                    break;
 
-                case V_PUPPER_REVOLUTION: vrr.mWavFile = "09 CivilWarStrikes"; break;
+                case V_PUPPER_REVOLUTION:
+                    //vrr.mWavFile = "09 CivilWarStrikes";
+                    animType = CitysAnim.War;
+                    break;
 
                 case V_PUPPER_SPY_KILLED:
-                    if (type == V_TYPE_USA) vrr.mWavFile = "10 AmSpy";
-                    else
-                    if (type == V_TYPE_USSR) vrr.mWavFile = "11 SovSpy"; break;
+                    //    if (type == V_TYPE_USA) vrr.mWavFile = "10 AmSpy";
+                    //    else
+                    //    if (type == V_TYPE_USSR) vrr.mWavFile = "11 SovSpy"; break;
+                    return;
+                    break;
 
                 case V_PUPPER_REV_ADDED:
-                    if (type == V_TYPE_USA) vrr.mWavFile = "13 US MilHelp";
+                    //if (type == V_TYPE_USA) vrr.mWavFile = "13 US MilHelp";
+                    //else
+                    //if (type == V_TYPE_USSR) vrr.mWavFile = "12 SovMilHelp"; break;
+                    animType = CitysAnim.War;
+                    break;
+                case V_PUPPER_SUPPORT:
+                    //vrr.mWavFile = "14 PeopleOnStreets";
+                    if (type == V_TYPE_USA)
+                        animType = CitysAnim.ParadBlue;
                     else
-                    if (type == V_TYPE_USSR) vrr.mWavFile = "12 SovMilHelp"; break;
+                    if (type == V_TYPE_USSR)
+                        animType = CitysAnim.ParadRed;
+                    break;
 
-                case V_PUPPER_SUPPORT: vrr.mWavFile = "14 PeopleOnStreets"; break;
-
-                case V_PUPPER_RIOTS: vrr.mWavFile = "15 RiotOnTheStreets"; break;
+                case V_PUPPER_RIOTS:
+                    //vrr.mWavFile = "15 RiotOnTheStreets"; break;
+                    if (type == V_TYPE_USA)
+                        animType = CitysAnim.StrikeBlue;
+                    else
+                    if (type == V_TYPE_USSR)
+                        animType = CitysAnim.StrikeRed;
+                    break;
 
                 case V_PUPPER_OPPO_INFLU:
-                    if (type == V_TYPE_USA) vrr.mWavFile = "17 AmInfluence";
-                    else
-                    if (type == V_TYPE_USSR) vrr.mWavFile = "16 SovInfluence"; break;
+                    //    if (type == V_TYPE_USA) vrr.mWavFile = "17 AmInfluence";
+                    //    else
+                    //    if (type == V_TYPE_USSR) vrr.mWavFile = "16 SovInfluence"; break;
+                    return;
+                    break;
 
             }
-
+            Video3D.V3Dinstance.AddNews(c.CapitalScene, c.GetAnimObject(animType), GameManagerScript.GM.CurrentMonth, c, vrr.mVideoRolexPattern.mText, AudioFile, vrr.mVideoRolexPattern.mSubtype == V_PRIO_PRESSING);
         }
         else
 
@@ -140,25 +182,64 @@ public class VideoQueue : MonoBehaviour {
         {
             switch (info)
             {
-                case V_PUPPER_EVENT_FLOOD: vrr.mWavFile = "18 GreatFlood"; break;
-                case V_PUPPER_EVENT_INDUSTR: vrr.mWavFile = "19 Industrialization"; break;
-                case V_PUPPER_EVENT_NOBEL: vrr.mWavFile = "20 Great scientist"; break;
-                case V_PUPPER_EVENT_FINANCE: vrr.mWavFile = "21 Financial crisis"; break;
-                case V_PUPPER_EVENT_POLITIC: vrr.mWavFile = "25 DistabOfGov"; break;
-                case V_PUPPER_EVENT_NAZI: vrr.mWavFile = "22 BigWaveOfNation"; break;
-                case V_PUPPER_EVENT_COMMI: vrr.mWavFile = "23 CommunismMovement"; break;
-                case V_PUPPER_EVENT_DEMOCR: vrr.mWavFile = "24 DemocrMovmnt"; break;
+                case V_PUPPER_EVENT_FLOOD:
+                    //vrr.mWavFile = "18 GreatFlood"; break;
+                    animType = CitysAnim.Storm; break;
+                case V_PUPPER_EVENT_INDUSTR:
+                    //vrr.mWavFile = "19 Industrialization"; break;
+                    animType = CitysAnim.Industry; break;
+                case V_PUPPER_EVENT_NOBEL:
+                    //vrr.mWavFile = "20 Great scientist"; break;
+                    animType = CitysAnim.Nobel; break;
+                case V_PUPPER_EVENT_FINANCE:
+                    //vrr.mWavFile = "21 Financial crisis"; break;
+                    animType = CitysAnim.FinanceCrisis; break;
+                case V_PUPPER_EVENT_POLITIC:
+                    //vrr.mWavFile = "25 DistabOfGov"; break;
+                    animType = CitysAnim.PoliticalCrisis; break;
+                case V_PUPPER_EVENT_NAZI:
+                    //vrr.mWavFile = "22 BigWaveOfNation"; break;
+                    animType = CitysAnim.MoveNeutral; break;
+                case V_PUPPER_EVENT_COMMI:
+                    //vrr.mWavFile = "23 CommunismMovement"; break;
+                    animType = CitysAnim.MoveRed; break;
+                case V_PUPPER_EVENT_DEMOCR:
+                    //vrr.mWavFile = "24 DemocrMovmnt"; break;
+                    animType = CitysAnim.MoveBlue; break;
             }
+            Video3D.V3Dinstance.AddNews(c.CapitalScene, c.GetAnimObject(animType), GameManagerScript.GM.CurrentMonth, c, vrr.mVideoRolexPattern.mText, AudioFile, true);
         }
 
         else // для космотехнологий -- сказать речь за сторону
         {
-            if (c.Authority == Authority.Amer) vrr.mWavFile = "01 AmSpcPrgr";
-            else vrr.mWavFile = "02 SovSpcPrgr";
+            //if (c.Authority == Authority.Amer) vrr.mWavFile = "01 AmSpcPrgr";
+            //else vrr.mWavFile = "02 SovSpcPrgr";
+
+            int spaceIndx = -1;
+            if (info - V_PUPPER_TECHNOLOW_START + 1 > 15)
+            {
+                AudioFile = "NewsSounds/Launch";
+                spaceIndx = 16;
+            }
+            else if (info - V_PUPPER_TECHNOLOW_START + 1 == 1)
+                spaceIndx = 0;
+            else if (info - V_PUPPER_TECHNOLOW_START + 1 == 4)
+                spaceIndx = 1;
+            else if (info - V_PUPPER_TECHNOLOW_START + 1 == 5)
+                spaceIndx = 2;
+            else if (info - V_PUPPER_TECHNOLOW_START + 1 == 8)
+                spaceIndx = 3;
+            else if (info - V_PUPPER_TECHNOLOW_START + 1 == 11)
+                spaceIndx = 4;
+
+            Video3D.V3Dinstance.AddTechNews((c.Authority == Authority.Amer ? NonCitysAnim.SpaceUSA : NonCitysAnim.SpaceUSSR), spaceIndx, GameManagerScript.GM.CurrentMonth, c, vrr.mVideoRolexPattern.mText, AudioFile, true);
         }
 
-        vrr.mWavFile = "Voices/" + vrr.mWavFile;
-        PutRolexToQueue(vrr);
+
+        //Старая система новостей
+        //vrr.mWavFile = "Voices/" + vrr.mWavFile;
+        //PutRolexToQueue(vrr);
+
     }
 
     // поиск нужного ролика
@@ -216,6 +297,9 @@ public class VideoQueue : MonoBehaviour {
     // проверяем, играется ли. если нет, показываем фоновый ролик 
     public void TickTest()
     {
+        //старые новости отключены
+        return;
+
         try
         {
             if (mHaltVideo) // немедленно прервать (фоновый) ролик

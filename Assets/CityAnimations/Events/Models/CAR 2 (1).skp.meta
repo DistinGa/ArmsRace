@@ -1,0 +1,204 @@
+fileFormatVersion: 2
+guid: db2f3c10f1e7d604ab1c13f40440796b
+timeCreated: 1494103490
+licenseType: Free
+SketchUpImporter:
+  generateBackFace: 0
+  mergeCoplanarFaces: 0
+  selectedNodes: 000000000100000002000000030000000400000005000000060000000700000008000000090000000a0000000b0000000c0000000d0000000e0000000f000000100000001100000012000000130000001400000015000000160000001700000018000000190000001a0000001b0000001c0000001d0000001e0000001f000000200000002100000022000000230000002400000025000000260000002700000028000000290000002a0000002b0000002c0000002d0000002e0000002f0000003000000031000000
+  assetHash:
+    serializedVersion: 2
+    Hash: fbb7b4c36d10e6443f4acf305bbdb133
+  longitude: -105.242139
+  latitude: 40.018309
+  northCorrection: -0
+  fileUnit: 0
+  sketchUpImportData:
+    defaultCamera:
+      position: {x: -0.12430865, y: 1.5169014, z: -3.80219}
+      lookAt: {x: 2.697454, y: 0.29559803, z: 0.7501822}
+      up: {x: 0.117127895, y: 0.9749738, z: 0.18896337}
+      fov: 35
+      aspectRatio: 0
+      orthoSize: 1
+      isPerspective: 1
+    scenes: []
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: 1989 ZIL 41052
+    100002: //RootNode
+    100004: Component#10
+    100006: Component#10 1
+    100008: Component#11
+    100010: Component#11 1
+    100012: Component#11 2
+    100014: Component#11 3
+    100016: Component#15
+    100018: Component#15 1
+    100020: Component#16
+    100022: Component#16 1
+    100024: Component#18
+    100026: Component#18 1
+    100028: Component#19
+    100030: Component#19 1
+    100032: Component#22
+    100034: Component#22 1
+    100036: Component#23
+    100038: Component#24
+    100040: Component#24 1
+    100042: Component#25
+    100044: Group 40
+    100046: one ring mkII
+    100048: one ring mkII 1
+    100050: Simple sphere 02
+    400000: 1989 ZIL 41052
+    400002: //RootNode
+    400004: Component#10
+    400006: Component#10 1
+    400008: Component#11
+    400010: Component#11 1
+    400012: Component#11 2
+    400014: Component#11 3
+    400016: Component#15
+    400018: Component#15 1
+    400020: Component#16
+    400022: Component#16 1
+    400024: Component#18
+    400026: Component#18 1
+    400028: Component#19
+    400030: Component#19 1
+    400032: Component#22
+    400034: Component#22 1
+    400036: Component#23
+    400038: Component#24
+    400040: Component#24 1
+    400042: Component#25
+    400044: Group 40
+    400046: one ring mkII
+    400048: one ring mkII 1
+    400050: Simple sphere 02
+    2300000: Component#10
+    2300002: Component#10 1
+    2300004: Component#11
+    2300006: Component#11 1
+    2300008: Component#11 2
+    2300010: Component#11 3
+    2300012: Component#15
+    2300014: Component#15 1
+    2300016: Component#16
+    2300018: Component#16 1
+    2300020: Component#18
+    2300022: Component#18 1
+    2300024: Component#19
+    2300026: Component#19 1
+    2300028: Component#22
+    2300030: Component#22 1
+    2300032: Component#23
+    2300034: Component#24
+    2300036: Component#24 1
+    2300038: Component#25
+    2300040: Group 40
+    2300042: one ring mkII
+    2300044: one ring mkII 1
+    2300046: Simple sphere 02
+    3300000: Component#10
+    3300002: Component#10 1
+    3300004: Component#11
+    3300006: Component#11 1
+    3300008: Component#11 2
+    3300010: Component#11 3
+    3300012: Component#15
+    3300014: Component#15 1
+    3300016: Component#16
+    3300018: Component#16 1
+    3300020: Component#18
+    3300022: Component#18 1
+    3300024: Component#19
+    3300026: Component#19 1
+    3300028: Component#22
+    3300030: Component#22 1
+    3300032: Component#23
+    3300034: Component#24
+    3300036: Component#24 1
+    3300038: Component#25
+    3300040: Group 40
+    3300042: one ring mkII
+    3300044: one ring mkII 1
+    3300046: Simple sphere 02
+    4300000: Mesh Component#24
+    4300002: Mesh Component#19
+    4300004: Mesh Component#10
+    4300006: Mesh Component#11
+    4300008: Mesh Component#15
+    4300010: Mesh Component#16
+    4300012: Mesh Component#18
+    4300014: Mesh Component#22
+    4300016: Mesh Component#23
+    4300018: Mesh Component#25
+    4300020: Mesh Group 40
+    4300022: Mesh Simple sphere 02
+    4300024: Mesh one ring mkII
+  materials:
+    importMaterials: 1
+    materialName: 2
+    materialSearch: 0
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleRotations: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 0.0254
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 0
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

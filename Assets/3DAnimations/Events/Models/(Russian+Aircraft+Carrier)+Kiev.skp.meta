@@ -1,0 +1,165 @@
+fileFormatVersion: 2
+guid: bb02927ca55748e469cbd112346e05cf
+timeCreated: 1494717290
+licenseType: Free
+SketchUpImporter:
+  generateBackFace: 0
+  mergeCoplanarFaces: 0
+  selectedNodes: 00000000030000000400000005000000060000000700000008000000090000000a0000000b0000000c0000000d0000000e0000000f000000100000001100000012000000130000001400000015000000160000001700000018000000190000001a0000001b0000001c0000001d0000001e0000001f0000002000000021000000
+  assetHash:
+    serializedVersion: 2
+    Hash: 7747dae2bc307c5f38afe56609f64008
+  longitude: 117.807813
+  latitude: 39.153442
+  northCorrection: 0.51016430134041
+  fileUnit: 0
+  sketchUpImportData:
+    defaultCamera:
+      position: {x: -74.08218, y: 57.01824, z: -149.47853}
+      lookAt: {x: 1651.0817, y: -332.43826, z: 1167.2068}
+      up: {x: 0.14041045, y: 0.9842767, z: 0.10716453}
+      fov: 35
+      aspectRatio: 0
+      orthoSize: 1
+      isPerspective: 1
+    scenes: []
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: Complete
+    100004: Component#12
+    100006: Component#3
+    100008: Component#3 1
+    100010: Component#4
+    100012: Component#4.1
+    100014: Component#4.2
+    100016: Component#8
+    100018: Component#8.1
+    100020: Component#8.2
+    100022: Component#8.2 1
+    100024: Component#9
+    100026: Group 10
+    100028: Group 6
+    100030: Group 8
+    100032: Radar system
+    100034: Soviet Aircraft Carrier Kiev
+    100036: Water
+    400000: //RootNode
+    400002: Complete
+    400004: Component#12
+    400006: Component#3
+    400008: Component#3 1
+    400010: Component#4
+    400012: Component#4.1
+    400014: Component#4.2
+    400016: Component#8
+    400018: Component#8.1
+    400020: Component#8.2
+    400022: Component#8.2 1
+    400024: Component#9
+    400026: Group 10
+    400028: Group 6
+    400030: Group 8
+    400032: Radar system
+    400034: Soviet Aircraft Carrier Kiev
+    400036: Water
+    2300000: Component#3
+    2300002: Component#3 1
+    2300004: Component#4.1
+    2300006: Component#4.2
+    2300008: Component#8.1
+    2300010: Component#8.2
+    2300012: Component#8.2 1
+    2300014: Group 10
+    2300016: Group 6
+    2300018: Group 8
+    2300020: Radar system
+    2300022: Soviet Aircraft Carrier Kiev
+    2300024: Water
+    3300000: Component#3
+    3300002: Component#3 1
+    3300004: Component#4.1
+    3300006: Component#4.2
+    3300008: Component#8.1
+    3300010: Component#8.2
+    3300012: Component#8.2 1
+    3300014: Group 10
+    3300016: Group 6
+    3300018: Group 8
+    3300020: Radar system
+    3300022: Soviet Aircraft Carrier Kiev
+    3300024: Water
+    4300000: Mesh Soviet Aircraft Carrier Kiev
+    4300002: Mesh Group 6
+    4300004: Mesh Group 8
+    4300006: Mesh Component#4.1
+    4300008: Mesh Component#4.2
+    4300010: Mesh Component#8.1
+    4300012: Mesh Component#8.2
+    4300014: Mesh Component#3
+    4300016: Mesh Radar system
+    4300018: Mesh Water
+  materials:
+    importMaterials: 1
+    materialName: 2
+    materialSearch: 0
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleRotations: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 0.0254
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 0
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

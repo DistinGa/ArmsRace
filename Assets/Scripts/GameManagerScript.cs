@@ -102,6 +102,10 @@ public class GameManagerScript : MonoBehaviour
     [Space(10)]
     public Armageddon DLC_Armageddon;
 
+    public CountryScript CurrentCountry
+    {
+        get { return Country; }
+    }
 
     public int CurrentSpeed
     {
@@ -271,9 +275,9 @@ public class GameManagerScript : MonoBehaviour
     private void SnapToCountry()
     {
         //Заполнение значений в нижнем меню
-        DownMenu.Find("Flag").GetComponent<Image>().sprite = Country.Authority == Authority.Soviet ? Country.FlagS : Country.FlagNs;
-        DownMenu.Find("Score").GetComponent<Text>().text = Country.Score + " score";
-        DownMenu.Find("Sign").GetComponent<Image>().enabled = (Country.Authority != Authority.Neutral);
+        DownMenu.FindChild("Flag").GetComponent<Image>().sprite = Country.Authority == Authority.Soviet ? Country.FlagS : Country.FlagNs;
+        DownMenu.FindChild("Score").GetComponent<Text>().text = Country.Score + " score";
+        DownMenu.FindChild("Sign").GetComponent<Image>().enabled = (Country.Authority != Authority.Neutral);
         string CountryState = "";
         switch (Country.Authority)
         {
@@ -282,120 +286,124 @@ public class GameManagerScript : MonoBehaviour
                 break;
             case Authority.Amer:
                 CountryState = "AMERICAN";
-                DownMenu.Find("Sign").GetComponent<Image>().sprite = SignUSA;
+                DownMenu.FindChild("Sign").GetComponent<Image>().sprite = SignUSA;
                 break;
             case Authority.Soviet:
                 CountryState = "SOVIET";
-                DownMenu.Find("Sign").GetComponent<Image>().sprite = SignSU;
+                DownMenu.FindChild("Sign").GetComponent<Image>().sprite = SignSU;
                 break;
         }
-        DownMenu.Find("CountryState").GetComponent<Text>().text = Country.Name;// + ": GOVERNMENT - PRO " + CountryState;
-        DownMenu.Find("Page1/Support").GetComponent<Text>().text = Country.Support.ToString("g3");
-        DownMenu.Find("Page1/Riots").GetComponent<Text>().text = (100 - Country.Support).ToString("g3");
-        DownMenu.Find("Page1/Budget").GetComponent<Text>().text = Player.Budget.ToString("f0");
-        DownMenu.Find("Page1/InfAmer").GetComponent<Text>().text = Country.AmInf.ToString("f0");
-        DownMenu.Find("Page1/InfNeutral").GetComponent<Text>().text = Country.NInf.ToString("f0");
-        DownMenu.Find("Page1/InfSoviet").GetComponent<Text>().text = Country.SovInf.ToString("f0");
+        DownMenu.FindChild("CountryState").GetComponent<Text>().text = Country.Name;// + ": GOVERNMENT - PRO " + CountryState;
+        DownMenu.FindChild("Page1/Support").GetComponent<Text>().text = Country.Support.ToString("g3");
+        DownMenu.FindChild("Page1/Riots").GetComponent<Text>().text = (100 - Country.Support).ToString("g3");
+        DownMenu.FindChild("Page1/Budget").GetComponent<Text>().text = Player.Budget.ToString("f0");
+        DownMenu.FindChild("Page1/InfAmer").GetComponent<Text>().text = Country.AmInf.ToString("f0");
+        DownMenu.FindChild("Page1/InfNeutral").GetComponent<Text>().text = Country.NInf.ToString("f0");
+        DownMenu.FindChild("Page1/InfSoviet").GetComponent<Text>().text = Country.SovInf.ToString("f0");
         //пулы
         GameManagerScript GM = GameManagerScript.GM;
-        DownMenu.Find("Page1/DipPool").GetComponent<Text>().text = GM.Player.DiplomatPool.ToString();
-        DownMenu.Find("Page1/MilPool").GetComponent<Text>().text = GM.Player.MilitaryPool.ToString();
-        DownMenu.Find("Page1/SpyPool").GetComponent<Text>().text = GM.Player.SpyPool.ToString();
+        DownMenu.FindChild("Page1/DipPool").GetComponent<Text>().text = GM.Player.DiplomatPool.ToString();
+        DownMenu.FindChild("Page1/MilPool").GetComponent<Text>().text = GM.Player.MilitaryPool.ToString();
+        DownMenu.FindChild("Page1/SpyPool").GetComponent<Text>().text = GM.Player.SpyPool.ToString();
         //особенности территории
-        DownMenu.Find("Page2/Air2").GetComponent<Text>().text = Country.Air.ToString();
-        DownMenu.Find("Page2/Gnd2").GetComponent<Text>().text = Country.Ground.ToString();
-        DownMenu.Find("Page2/Sea2").GetComponent<Text>().text = Country.Sea.ToString();
-        DownMenu.Find("Air1").GetComponent<Text>().text = Country.Air.ToString();
-        DownMenu.Find("Gnd1").GetComponent<Text>().text = Country.Ground.ToString();
-        DownMenu.Find("Sea1").GetComponent<Text>().text = Country.Sea.ToString();
+        DownMenu.FindChild("Page2/Air2").GetComponent<Text>().text = Country.Air.ToString();
+        DownMenu.FindChild("Page2/Gnd2").GetComponent<Text>().text = Country.Ground.ToString();
+        DownMenu.FindChild("Page2/Sea2").GetComponent<Text>().text = Country.Sea.ToString();
+        DownMenu.FindChild("Air1").GetComponent<Text>().text = Country.Air.ToString();
+        DownMenu.FindChild("Gnd1").GetComponent<Text>().text = Country.Ground.ToString();
+        DownMenu.FindChild("Sea1").GetComponent<Text>().text = Country.Sea.ToString();
         //firepower
         PlayerScript usaPlayer = GetPlayerByAuthority(Authority.Amer);
         PlayerScript suPlayer = GetPlayerByAuthority(Authority.Soviet);
-        DownMenu.Find("Page2/USAAirFP").GetComponent<Text>().text = "(" + Country.Air.ToString() + ") " + (Country.Air * usaPlayer.FirePower(OutlayField.air)).ToString();
-        DownMenu.Find("Page2/USAGndFP").GetComponent<Text>().text = "(" + Country.Ground.ToString() + ") " + (Country.Ground * usaPlayer.FirePower(OutlayField.ground)).ToString();
-        DownMenu.Find("Page2/USASeaFP").GetComponent<Text>().text = "(" + Country.Sea.ToString() + ") " + (Country.Sea * usaPlayer.FirePower(OutlayField.sea)).ToString();
-        DownMenu.Find("Page2/SUAirFP").GetComponent<Text>().text = "(" + Country.Air.ToString() + ") " + (Country.Air * suPlayer.FirePower(OutlayField.air)).ToString();
-        DownMenu.Find("Page2/SUGndFP").GetComponent<Text>().text = "(" + Country.Ground.ToString() + ") " + (Country.Ground * suPlayer.FirePower(OutlayField.ground)).ToString();
-        DownMenu.Find("Page2/SUSeaFP").GetComponent<Text>().text = "(" + Country.Sea.ToString() + ") " + (Country.Sea * suPlayer.FirePower(OutlayField.sea)).ToString();
+        DownMenu.FindChild("Page2/USAAirFP").GetComponent<Text>().text = "(" + Country.Air.ToString() + ") " + (Country.Air * usaPlayer.FirePower(OutlayField.air)).ToString();
+        DownMenu.FindChild("Page2/USAGndFP").GetComponent<Text>().text = "(" + Country.Ground.ToString() + ") " + (Country.Ground * usaPlayer.FirePower(OutlayField.ground)).ToString();
+        DownMenu.FindChild("Page2/USASeaFP").GetComponent<Text>().text = "(" + Country.Sea.ToString() + ") " + (Country.Sea * usaPlayer.FirePower(OutlayField.sea)).ToString();
+        DownMenu.FindChild("Page2/SUAirFP").GetComponent<Text>().text = "(" + Country.Air.ToString() + ") " + (Country.Air * suPlayer.FirePower(OutlayField.air)).ToString();
+        DownMenu.FindChild("Page2/SUGndFP").GetComponent<Text>().text = "(" + Country.Ground.ToString() + ") " + (Country.Ground * suPlayer.FirePower(OutlayField.ground)).ToString();
+        DownMenu.FindChild("Page2/SUSeaFP").GetComponent<Text>().text = "(" + Country.Sea.ToString() + ") " + (Country.Sea * suPlayer.FirePower(OutlayField.sea)).ToString();
 
         int usaFP = Country.Air * usaPlayer.FirePower(OutlayField.air) + Country.Ground * usaPlayer.FirePower(OutlayField.ground) + Country.Sea * usaPlayer.FirePower(OutlayField.sea);
         int suFP = Country.Air * suPlayer.FirePower(OutlayField.air) + Country.Ground * suPlayer.FirePower(OutlayField.ground) + Country.Sea * suPlayer.FirePower(OutlayField.sea);
-        DownMenu.Find("Page2/USA_FP").GetComponent<Text>().text = usaFP.ToString();
-        DownMenu.Find("Page2/SU_FP").GetComponent<Text>().text = suFP.ToString();
+        DownMenu.FindChild("Page2/USA_FP").GetComponent<Text>().text = usaFP.ToString();
+        DownMenu.FindChild("Page2/SU_FP").GetComponent<Text>().text = suFP.ToString();
 
         //проценты на победу
-        DownMenu.Find("Page2/USA%").GetComponent<Text>().text = Mathf.RoundToInt(100f * usaFP / (usaFP + suFP)).ToString();
-        DownMenu.Find("Page2/SU%").GetComponent<Text>().text = (100 - Mathf.RoundToInt(100f * usaFP / (usaFP + suFP))).ToString();
+        DownMenu.FindChild("Page2/USA%").GetComponent<Text>().text = Mathf.RoundToInt(100f * usaFP / (usaFP + suFP)).ToString();
+        DownMenu.FindChild("Page2/SU%").GetComponent<Text>().text = (100 - Mathf.RoundToInt(100f * usaFP / (usaFP + suFP))).ToString();
 
-        DownMenu.Find("Page1/SpyLeft").GetComponent<Image>().fillAmount = Country.CIA * 0.2f;
-        DownMenu.Find("Page1/SpyRight").GetComponent<Image>().fillAmount = Country.KGB * 0.2f;
+        DownMenu.FindChild("Page1/SpyLeft").GetComponent<Image>().fillAmount = Country.CIA * 0.2f;
+        DownMenu.FindChild("Page1/SpyRight").GetComponent<Image>().fillAmount = Country.KGB * 0.2f;
 
         ShowMilitary();
 
         //Доступность кнопок
         //Влияние
-        DownMenu.Find("Page1/AddInfButton").GetComponent<Button>().interactable = Country.CanAddInf(Player.Authority);
+        DownMenu.FindChild("Page1/AddInfButton").GetComponent<Button>().interactable = Country.CanAddInf(Player.Authority);
         //Войска
-        DownMenu.Find("Page1/AddMilButton").GetComponent<Button>().interactable = Country.CanAddMil(Player.Authority);
+        DownMenu.FindChild("Page1/AddMilButton").GetComponent<Button>().interactable = Country.CanAddMil(Player.Authority);
         //Шпионы
-        DownMenu.Find("Page1/AddSpyButton").GetComponent<Button>().interactable = Country.CanAddSpy(Player.Authority);
+        DownMenu.FindChild("Page1/AddSpyButton").GetComponent<Button>().interactable = Country.CanAddSpy(Player.Authority);
         //Организация парада
-        DownMenu.Find("SupParadeButton").GetComponent<Button>().interactable = Country.CanOrgParade(Player.Authority);
+        DownMenu.FindChild("SupParadeButton").GetComponent<Button>().interactable = Country.CanOrgParade(Player.Authority);
         //Организация восстания
-        DownMenu.Find("SupRiotButton").GetComponent<Button>().interactable = Country.CanOrgMeeting(Player.Authority);
+        DownMenu.FindChild("SupRiotButton").GetComponent<Button>().interactable = Country.CanOrgMeeting(Player.Authority);
         //Смена правительства
-        DownMenu.Find("NewGovButton").GetComponent<Button>().interactable = Country.CanChangeGov(Player.Authority);
+        DownMenu.FindChild("NewGovButton").GetComponent<Button>().interactable = Country.CanChangeGov(Player.Authority);
+
+        //Включение 3Д анимаций
+        if (video3D.Video3D.V3Dinstance != null)
+            video3D.Video3D.V3Dinstance.ShowDefaultAnim(Country);
     }
 
     public void ShowMilitary()
     {
-        DownMenu.Find("Page1/MilitaryLeft").GetComponent<Image>().fillAmount = 0;
-        DownMenu.Find("Page1/MilitaryLeft_n").GetComponent<Image>().fillAmount = 0;
-        DownMenu.Find("Page1/MilitaryRight_n").GetComponent<Image>().fillAmount = 0;
-        DownMenu.Find("Page1/MilitaryRight").GetComponent<Image>().fillAmount = 0;
+        DownMenu.FindChild("Page1/MilitaryLeft").GetComponent<Image>().fillAmount = 0;
+        DownMenu.FindChild("Page1/MilitaryLeft_n").GetComponent<Image>().fillAmount = 0;
+        DownMenu.FindChild("Page1/MilitaryRight_n").GetComponent<Image>().fillAmount = 0;
+        DownMenu.FindChild("Page1/MilitaryRight").GetComponent<Image>().fillAmount = 0;
 
         switch (Country.Authority)
         {
             case Authority.Neutral:
                 if (Country.SovInf > Country.AmInf)
                 {
-                    DownMenu.Find("Page1/MilitaryRight_n").GetComponent<Image>().fillAmount = Country.GovForce * 0.1f;
+                    DownMenu.FindChild("Page1/MilitaryRight_n").GetComponent<Image>().fillAmount = Country.GovForce * 0.1f;
                     //Силы оппозиции видны если есть шпионы либо если оппозиция - своя (в данном случае - американская).
                     if (Player.Authority == Authority.Amer || Country.KGB > 0)
-                        DownMenu.Find("Page1/MilitaryLeft").GetComponent<Image>().fillAmount = Country.OppForce * 0.1f;
+                        DownMenu.FindChild("Page1/MilitaryLeft").GetComponent<Image>().fillAmount = Country.OppForce * 0.1f;
                 }
                 else
                 {
-                    DownMenu.Find("Page1/MilitaryLeft_n").GetComponent<Image>().fillAmount = Country.GovForce * 0.1f;
+                    DownMenu.FindChild("Page1/MilitaryLeft_n").GetComponent<Image>().fillAmount = Country.GovForce * 0.1f;
                     //Силы оппозиции видны если есть шпионы либо если оппозиция - своя (в данном случае - советсткая).
                     if (Player.Authority == Authority.Soviet || Country.CIA > 0)
-                        DownMenu.Find("Page1/MilitaryRight").GetComponent<Image>().fillAmount = Country.OppForce * 0.1f;
+                        DownMenu.FindChild("Page1/MilitaryRight").GetComponent<Image>().fillAmount = Country.OppForce * 0.1f;
                 }
                 break;
             case Authority.Amer:
-                DownMenu.Find("Page1/MilitaryLeft").GetComponent<Image>().fillAmount = Country.GovForce * 0.1f;
+                DownMenu.FindChild("Page1/MilitaryLeft").GetComponent<Image>().fillAmount = Country.GovForce * 0.1f;
                 if (Player.Authority == Authority.Amer)
                 {
                     //Если нет шпионов, то силы противника не видны
                     if (Country.CIA > 0)
-                        DownMenu.Find("Page1/MilitaryRight").GetComponent<Image>().fillAmount = Country.OppForce * 0.1f;
+                        DownMenu.FindChild("Page1/MilitaryRight").GetComponent<Image>().fillAmount = Country.OppForce * 0.1f;
                 }
                 else
                 {
-                    DownMenu.Find("Page1/MilitaryRight").GetComponent<Image>().fillAmount = Country.OppForce * 0.1f;
+                    DownMenu.FindChild("Page1/MilitaryRight").GetComponent<Image>().fillAmount = Country.OppForce * 0.1f;
                 }
                 break;
             case Authority.Soviet:
-                DownMenu.Find("Page1/MilitaryRight").GetComponent<Image>().fillAmount = Country.GovForce * 0.1f;
+                DownMenu.FindChild("Page1/MilitaryRight").GetComponent<Image>().fillAmount = Country.GovForce * 0.1f;
                 if (Player.Authority == Authority.Soviet)
                 {
                     //Если нет шпионов, то силы противника не видны
                     if (Country.KGB > 0)
-                        DownMenu.Find("Page1/MilitaryLeft").GetComponent<Image>().fillAmount = Country.OppForce * 0.1f;
+                        DownMenu.FindChild("Page1/MilitaryLeft").GetComponent<Image>().fillAmount = Country.OppForce * 0.1f;
                 }
                 else
                 {
-                    DownMenu.Find("Page1/MilitaryLeft").GetComponent<Image>().fillAmount = Country.OppForce * 0.1f;
+                    DownMenu.FindChild("Page1/MilitaryLeft").GetComponent<Image>().fillAmount = Country.OppForce * 0.1f;
                 }
                 break;
         }
@@ -925,10 +933,10 @@ public class GameManagerScript : MonoBehaviour
 #if DEBUG
         //UpMenu.Find("testLeaderNameUSA").GetComponent<Text>().text = amerPlayer.PlayerLeader.GetLeaderName(amerPlayer);
         //UpMenu.Find("testLeaderTypeUSA").GetComponent<Text>().text = amerPlayer.PlayerLeader.GetLeaderTypeName();
-        UpMenu.Find("testResourcesUSA").GetComponent<Text>().text = string.Format("M:{0} S:{1} D:{2}", amerPlayer.MilitaryPool.ToString(), amerPlayer.SpyPool.ToString(), amerPlayer.DiplomatPool.ToString());
+        //UpMenu.Find("testResourcesUSA").GetComponent<Text>().text = string.Format("M:{0} S:{1} D:{2}", amerPlayer.MilitaryPool.ToString(), amerPlayer.SpyPool.ToString(), amerPlayer.DiplomatPool.ToString());
         //UpMenu.Find("testLeaderTypeUSSR").GetComponent<Text>().text = sovPlayer.PlayerLeader.GetLeaderTypeName();
         //UpMenu.Find("testLeaderNameUSSR").GetComponent<Text>().text = sovPlayer.PlayerLeader.GetLeaderName(sovPlayer);
-        UpMenu.Find("testResourcesUSSR").GetComponent<Text>().text = string.Format("M:{0} S:{1} D:{2}", sovPlayer.MilitaryPool.ToString(), sovPlayer.SpyPool.ToString(), sovPlayer.DiplomatPool.ToString());
+        //UpMenu.Find("testResourcesUSSR").GetComponent<Text>().text = string.Format("M:{0} S:{1} D:{2}", sovPlayer.MilitaryPool.ToString(), sovPlayer.SpyPool.ToString(), sovPlayer.DiplomatPool.ToString());
         //UpMenu.Find("testInfUSSR").GetComponent<Text>().text = string.Format("Sov Inf: {0}", ussrInf.ToString());
         //UpMenu.Find("testInfUSA").GetComponent<Text>().text = string.Format("Amer Inf: {0}", usaInf.ToString());
 #endif

@@ -1,0 +1,118 @@
+fileFormatVersion: 2
+guid: 765b17c0aaf188247810ecc42298caa5
+timeCreated: 1481943411
+licenseType: Free
+SketchUpImporter:
+  generateBackFace: 0
+  mergeCoplanarFaces: 0
+  selectedNodes: 00000000010000000400000005000000060000000700000008000000090000000a0000000b0000000c0000000d000000
+  assetHash:
+    serializedVersion: 2
+    Hash: e748519d1705e9279001a5dc9393ee45
+  longitude: 116.39116864485375
+  latitude: 39.91218471169212
+  northCorrection: -0
+  fileUnit: 0
+  sketchUpImportData:
+    defaultCamera:
+      position: {x: 104.00383, y: 116.28028, z: -160.4798}
+      lookAt: {x: -10.360641, y: -26.370941, z: 37.23471}
+      up: {x: -0.26523292, y: 0.8481716, z: 0.4585374}
+      fov: 35
+      aspectRatio: 0
+      orthoSize: 1
+      isPerspective: 1
+    scenes: []
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: Google Earth Snapshot
+    100002: SimpleSphere02
+    100004: SimpleSphere02 1
+    100006: SimpleSphere02 2
+    100008: SimpleSphere02 3
+    100010: //RootNode
+    400000: Google Earth Snapshot
+    400002: SimpleSphere02
+    400004: SimpleSphere02 1
+    400006: SimpleSphere02 2
+    400008: SimpleSphere02 3
+    400010: //RootNode
+    2300000: Google Earth Snapshot
+    2300002: SimpleSphere02
+    2300004: SimpleSphere02 1
+    2300006: SimpleSphere02 2
+    2300008: SimpleSphere02 3
+    2300010: //RootNode
+    3300000: Google Earth Snapshot
+    3300002: SimpleSphere02
+    3300004: SimpleSphere02 1
+    3300006: SimpleSphere02 2
+    3300008: SimpleSphere02 3
+    3300010: //RootNode
+    4300000: Mesh WM
+    4300002: Mesh Google Earth Snapshot
+    4300004: Mesh SimpleSphere02
+  materials:
+    importMaterials: 1
+    materialName: 2
+    materialSearch: 0
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 0.0254
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 0
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

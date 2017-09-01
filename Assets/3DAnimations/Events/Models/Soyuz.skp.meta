@@ -1,0 +1,617 @@
+fileFormatVersion: 2
+guid: 8bef10097d1a47a40a6baf71ec64ffb0
+timeCreated: 1488773851
+licenseType: Free
+SketchUpImporter:
+  generateBackFace: 0
+  mergeCoplanarFaces: 0
+  selectedNodes: 00000000010000000400000005000000060000000700000008000000090000000a0000000b0000000c0000000d0000000e0000000f000000100000001100000012000000130000001400000015000000160000001700000018000000190000001a0000001b0000001c0000001d0000001e0000001f000000200000002100000022000000230000002400000025000000260000002700000028000000290000002a0000002b0000002c0000002d0000002e0000002f000000300000003100000032000000330000003400000035000000360000003700000038000000390000003a0000003b0000003c0000003d0000003e0000003f000000400000004100000042000000430000004400000045000000460000004700000048000000490000004a0000004b0000004c0000004d0000004e0000004f000000500000005100000052000000530000005400000055000000560000005700000058000000590000005a0000005b0000005c0000005d0000005e0000005f000000600000006100000062000000630000006400000065000000660000006700000068000000690000006a0000006b0000006c0000006d0000006e0000006f000000700000007100000072000000730000007400000075000000760000007700000078000000790000007a0000007b0000007c0000007d0000007e0000007f000000800000008100000082000000830000008400000085000000860000008700000088000000890000008a0000008b0000008c0000008d0000008e0000008f000000900000009100000092000000930000009400000095000000960000009700000098000000990000009a0000009b0000009c0000009d0000009e0000009f000000a0000000a1000000a2000000a3000000a4000000a5000000a6000000a7000000a8000000a9000000aa000000ab000000ac000000ad000000ae000000af000000b0000000b1000000b2000000b3000000b4000000b5000000b6000000b7000000b8000000b9000000ba000000bb000000bc000000bd000000be000000bf000000c0000000c1000000c2000000c3000000c4000000c5000000c6000000c7000000c8000000c9000000ca000000cb000000cc000000cd000000ce000000cf000000d0000000d1000000d2000000d3000000d4000000d5000000d6000000d7000000d8000000d9000000da000000db000000dc000000dd000000de000000df000000e0000000e1000000e2000000e3000000e4000000e5000000e6000000e7000000e8000000e9000000ea000000eb000000ec000000ed000000ee000000ef000000f0000000f1000000f2000000f3000000f4000000f5000000
+  assetHash:
+    serializedVersion: 2
+    Hash: 013935bfc9a6d657bb2540f2fb984cec
+  longitude: 63.32099869820745
+  latitude: 45.62834911101072
+  northCorrection: -0
+  fileUnit: 0
+  sketchUpImportData:
+    defaultCamera:
+      position: {x: 62.70624, y: 63.167385, z: -15.205431}
+      lookAt: {x: 49.307602, y: 51.677395, z: -11.863142}
+      up: {x: -0.6205863, y: 0.7687054, z: 0.15480514}
+      fov: 35
+      aspectRatio: 0
+      orthoSize: 1
+      isPerspective: 1
+    scenes: []
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: Google Earth Snapshot
+    100002: Group 10
+    100004: Group 101
+    100006: Group 103
+    100008: Group 105
+    100010: Group 107
+    100012: Group 109
+    100014: Group 11
+    100016: Group 110
+    100018: Group 112
+    100020: Group 116
+    100022: Group 117
+    100024: Group 119
+    100026: Group 121
+    100028: Group 123
+    100030: Group 125
+    100032: Group 129
+    100034: Group 13
+    100036: Group 131
+    100038: Group 135
+    100040: Group 137
+    100042: Group 141
+    100044: Group 142
+    100046: Group 144
+    100048: Group 145
+    100050: Group 147
+    100052: Group 149
+    100054: Group 15
+    100056: Group 151
+    100058: Group 153
+    100060: Group 155
+    100062: Group 157
+    100064: Group 158
+    100066: Group 160
+    100068: Group 162
+    100070: Group 164
+    100072: Group 166
+    100074: Group 168
+    100076: Group 17
+    100078: Group 170
+    100080: Group 172
+    100082: Group 174
+    100084: Group 176
+    100086: Group 177
+    100088: Group 179
+    100090: Group 180
+    100092: Group 182
+    100094: Group 184
+    100096: Group 186
+    100098: Group 188
+    100100: Group 19
+    100102: Group 190
+    100104: Group 192
+    100106: Group 193
+    100108: Group 195
+    100110: Group 197
+    100112: Group 199
+    100114: Group 201
+    100116: Group 203
+    100118: Group 205
+    100120: Group 207
+    100122: Group 209
+    100124: Group 21
+    100126: Group 211
+    100128: Group 212
+    100130: Group 214
+    100132: Group 215
+    100134: Group 217
+    100136: Group 219
+    100138: Group 221
+    100140: Group 223
+    100142: Group 225
+    100144: Group 227
+    100146: Group 228
+    100148: Group 23
+    100150: Group 230
+    100152: Group 232
+    100154: Group 234
+    100156: Group 236
+    100158: Group 238
+    100160: Group 24
+    100162: Group 240
+    100164: Group 242
+    100166: Group 244
+    100168: Group 26
+    100170: Group 28
+    100172: Group 30
+    100174: Group 32
+    100176: Group 34
+    100178: Group 36
+    100180: Group 38
+    100182: Group 40
+    100184: Group 42
+    100186: Group 43
+    100188: Group 45
+    100190: Group 46
+    100192: Group 48
+    100194: Group 50
+    100196: Group 51
+    100198: Group 53
+    100200: Group 55
+    100202: Group 57
+    100204: Group 59
+    100206: Group 61
+    100208: Group 63
+    100210: Group 65
+    100212: Group 67
+    100214: Group 69
+    100216: Group 7
+    100218: Group 71
+    100220: Group 73
+    100222: Group 75
+    100224: Group 77
+    100226: Group 79
+    100228: Group 8
+    100230: Group 81
+    100232: Group 83
+    100234: Group 85
+    100236: Group 87
+    100238: Group 89
+    100240: Group 91
+    100242: Group 93
+    100244: Group 95
+    100246: Group 97
+    100248: Group 99
+    100250: Prancha
+    100252: Prancha 1
+    100254: Prancha 2
+    100256: Prancha 3
+    100258: ske9
+    100260: //RootNode
+    400000: Google Earth Snapshot
+    400002: Group 10
+    400004: Group 101
+    400006: Group 103
+    400008: Group 105
+    400010: Group 107
+    400012: Group 109
+    400014: Group 11
+    400016: Group 110
+    400018: Group 112
+    400020: Group 116
+    400022: Group 117
+    400024: Group 119
+    400026: Group 121
+    400028: Group 123
+    400030: Group 125
+    400032: Group 129
+    400034: Group 13
+    400036: Group 131
+    400038: Group 135
+    400040: Group 137
+    400042: Group 141
+    400044: Group 142
+    400046: Group 144
+    400048: Group 145
+    400050: Group 147
+    400052: Group 149
+    400054: Group 15
+    400056: Group 151
+    400058: Group 153
+    400060: Group 155
+    400062: Group 157
+    400064: Group 158
+    400066: Group 160
+    400068: Group 162
+    400070: Group 164
+    400072: Group 166
+    400074: Group 168
+    400076: Group 17
+    400078: Group 170
+    400080: Group 172
+    400082: Group 174
+    400084: Group 176
+    400086: Group 177
+    400088: Group 179
+    400090: Group 180
+    400092: Group 182
+    400094: Group 184
+    400096: Group 186
+    400098: Group 188
+    400100: Group 19
+    400102: Group 190
+    400104: Group 192
+    400106: Group 193
+    400108: Group 195
+    400110: Group 197
+    400112: Group 199
+    400114: Group 201
+    400116: Group 203
+    400118: Group 205
+    400120: Group 207
+    400122: Group 209
+    400124: Group 21
+    400126: Group 211
+    400128: Group 212
+    400130: Group 214
+    400132: Group 215
+    400134: Group 217
+    400136: Group 219
+    400138: Group 221
+    400140: Group 223
+    400142: Group 225
+    400144: Group 227
+    400146: Group 228
+    400148: Group 23
+    400150: Group 230
+    400152: Group 232
+    400154: Group 234
+    400156: Group 236
+    400158: Group 238
+    400160: Group 24
+    400162: Group 240
+    400164: Group 242
+    400166: Group 244
+    400168: Group 26
+    400170: Group 28
+    400172: Group 30
+    400174: Group 32
+    400176: Group 34
+    400178: Group 36
+    400180: Group 38
+    400182: Group 40
+    400184: Group 42
+    400186: Group 43
+    400188: Group 45
+    400190: Group 46
+    400192: Group 48
+    400194: Group 50
+    400196: Group 51
+    400198: Group 53
+    400200: Group 55
+    400202: Group 57
+    400204: Group 59
+    400206: Group 61
+    400208: Group 63
+    400210: Group 65
+    400212: Group 67
+    400214: Group 69
+    400216: Group 7
+    400218: Group 71
+    400220: Group 73
+    400222: Group 75
+    400224: Group 77
+    400226: Group 79
+    400228: Group 8
+    400230: Group 81
+    400232: Group 83
+    400234: Group 85
+    400236: Group 87
+    400238: Group 89
+    400240: Group 91
+    400242: Group 93
+    400244: Group 95
+    400246: Group 97
+    400248: Group 99
+    400250: Prancha
+    400252: Prancha 1
+    400254: Prancha 2
+    400256: Prancha 3
+    400258: ske9
+    400260: //RootNode
+    2300000: Google Earth Snapshot
+    2300002: Group 101
+    2300004: Group 103
+    2300006: Group 105
+    2300008: Group 107
+    2300010: Group 11
+    2300012: Group 110
+    2300014: Group 112
+    2300016: Group 117
+    2300018: Group 119
+    2300020: Group 121
+    2300022: Group 123
+    2300024: Group 125
+    2300026: Group 129
+    2300028: Group 13
+    2300030: Group 131
+    2300032: Group 135
+    2300034: Group 137
+    2300036: Group 142
+    2300038: Group 145
+    2300040: Group 147
+    2300042: Group 149
+    2300044: Group 15
+    2300046: Group 151
+    2300048: Group 153
+    2300050: Group 155
+    2300052: Group 158
+    2300054: Group 160
+    2300056: Group 162
+    2300058: Group 164
+    2300060: Group 166
+    2300062: Group 168
+    2300064: Group 17
+    2300066: Group 170
+    2300068: Group 172
+    2300070: Group 174
+    2300072: Group 177
+    2300074: Group 180
+    2300076: Group 182
+    2300078: Group 184
+    2300080: Group 186
+    2300082: Group 188
+    2300084: Group 19
+    2300086: Group 190
+    2300088: Group 193
+    2300090: Group 195
+    2300092: Group 197
+    2300094: Group 199
+    2300096: Group 201
+    2300098: Group 203
+    2300100: Group 205
+    2300102: Group 207
+    2300104: Group 209
+    2300106: Group 21
+    2300108: Group 212
+    2300110: Group 215
+    2300112: Group 217
+    2300114: Group 219
+    2300116: Group 221
+    2300118: Group 223
+    2300120: Group 225
+    2300122: Group 228
+    2300124: Group 230
+    2300126: Group 232
+    2300128: Group 234
+    2300130: Group 236
+    2300132: Group 238
+    2300134: Group 24
+    2300136: Group 240
+    2300138: Group 242
+    2300140: Group 244
+    2300142: Group 26
+    2300144: Group 28
+    2300146: Group 30
+    2300148: Group 32
+    2300150: Group 34
+    2300152: Group 36
+    2300154: Group 38
+    2300156: Group 40
+    2300158: Group 43
+    2300160: Group 46
+    2300162: Group 48
+    2300164: Group 51
+    2300166: Group 53
+    2300168: Group 55
+    2300170: Group 57
+    2300172: Group 59
+    2300174: Group 61
+    2300176: Group 63
+    2300178: Group 65
+    2300180: Group 67
+    2300182: Group 69
+    2300184: Group 71
+    2300186: Group 73
+    2300188: Group 75
+    2300190: Group 77
+    2300192: Group 79
+    2300194: Group 8
+    2300196: Group 81
+    2300198: Group 83
+    2300200: Group 85
+    2300202: Group 87
+    2300204: Group 89
+    2300206: Group 91
+    2300208: Group 93
+    2300210: Group 95
+    2300212: Group 97
+    2300214: Group 99
+    2300216: Prancha
+    2300218: Prancha 1
+    2300220: Prancha 2
+    2300222: Prancha 3
+    2300224: //RootNode
+    3300000: Google Earth Snapshot
+    3300002: Group 101
+    3300004: Group 103
+    3300006: Group 105
+    3300008: Group 107
+    3300010: Group 11
+    3300012: Group 110
+    3300014: Group 112
+    3300016: Group 117
+    3300018: Group 119
+    3300020: Group 121
+    3300022: Group 123
+    3300024: Group 125
+    3300026: Group 129
+    3300028: Group 13
+    3300030: Group 131
+    3300032: Group 135
+    3300034: Group 137
+    3300036: Group 142
+    3300038: Group 145
+    3300040: Group 147
+    3300042: Group 149
+    3300044: Group 15
+    3300046: Group 151
+    3300048: Group 153
+    3300050: Group 155
+    3300052: Group 158
+    3300054: Group 160
+    3300056: Group 162
+    3300058: Group 164
+    3300060: Group 166
+    3300062: Group 168
+    3300064: Group 17
+    3300066: Group 170
+    3300068: Group 172
+    3300070: Group 174
+    3300072: Group 177
+    3300074: Group 180
+    3300076: Group 182
+    3300078: Group 184
+    3300080: Group 186
+    3300082: Group 188
+    3300084: Group 19
+    3300086: Group 190
+    3300088: Group 193
+    3300090: Group 195
+    3300092: Group 197
+    3300094: Group 199
+    3300096: Group 201
+    3300098: Group 203
+    3300100: Group 205
+    3300102: Group 207
+    3300104: Group 209
+    3300106: Group 21
+    3300108: Group 212
+    3300110: Group 215
+    3300112: Group 217
+    3300114: Group 219
+    3300116: Group 221
+    3300118: Group 223
+    3300120: Group 225
+    3300122: Group 228
+    3300124: Group 230
+    3300126: Group 232
+    3300128: Group 234
+    3300130: Group 236
+    3300132: Group 238
+    3300134: Group 24
+    3300136: Group 240
+    3300138: Group 242
+    3300140: Group 244
+    3300142: Group 26
+    3300144: Group 28
+    3300146: Group 30
+    3300148: Group 32
+    3300150: Group 34
+    3300152: Group 36
+    3300154: Group 38
+    3300156: Group 40
+    3300158: Group 43
+    3300160: Group 46
+    3300162: Group 48
+    3300164: Group 51
+    3300166: Group 53
+    3300168: Group 55
+    3300170: Group 57
+    3300172: Group 59
+    3300174: Group 61
+    3300176: Group 63
+    3300178: Group 65
+    3300180: Group 67
+    3300182: Group 69
+    3300184: Group 71
+    3300186: Group 73
+    3300188: Group 75
+    3300190: Group 77
+    3300192: Group 79
+    3300194: Group 8
+    3300196: Group 81
+    3300198: Group 83
+    3300200: Group 85
+    3300202: Group 87
+    3300204: Group 89
+    3300206: Group 91
+    3300208: Group 93
+    3300210: Group 95
+    3300212: Group 97
+    3300214: Group 99
+    3300216: Prancha
+    3300218: Prancha 1
+    3300220: Prancha 2
+    3300222: Prancha 3
+    3300224: //RootNode
+    4300000: Mesh Soyuz
+    4300002: Mesh Google Earth Snapshot
+    4300004: Mesh Group 8
+    4300006: Mesh Group 11
+    4300008: Mesh Group 13
+    4300010: Mesh Group 15
+    4300012: Mesh Group 17
+    4300014: Mesh Group 19
+    4300016: Mesh Group 21
+    4300018: Mesh Group 24
+    4300020: Mesh Group 26
+    4300022: Mesh Group 28
+    4300024: Mesh Group 30
+    4300026: Mesh Group 32
+    4300028: Mesh Group 34
+    4300030: Mesh Group 36
+    4300032: Mesh Group 38
+    4300034: Mesh Group 40
+    4300036: Mesh Group 43
+    4300038: Mesh Group 46
+    4300040: Mesh Group 48
+    4300042: Mesh Group 51
+    4300044: Mesh Group 53
+    4300046: Mesh Group 59
+    4300048: Mesh Group 73
+    4300050: Mesh Group 75
+    4300052: Mesh Group 77
+    4300054: Mesh Group 79
+    4300056: Mesh Group 81
+    4300058: Mesh Group 101
+    4300060: Mesh Group 103
+    4300062: Mesh Group 105
+    4300064: Mesh Group 110
+    4300066: Mesh Group 112
+    4300068: Mesh Prancha
+    4300070: Mesh Group 117
+    4300072: Mesh Group 119
+    4300074: Mesh Group 121
+  materials:
+    importMaterials: 1
+    materialName: 2
+    materialSearch: 0
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleRotations: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 0.0254
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 0
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

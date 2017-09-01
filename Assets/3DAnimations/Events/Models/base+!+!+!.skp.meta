@@ -1,0 +1,1312 @@
+fileFormatVersion: 2
+guid: f59c0a779cc182941ade31b325c5b016
+timeCreated: 1492287634
+licenseType: Free
+SketchUpImporter:
+  generateBackFace: 0
+  mergeCoplanarFaces: 0
+  selectedNodes: 00000000010000000400000005000000060000000700000008000000090000000a0000000b0000000c0000000d0000000e0000000f000000100000001100000012000000130000001400000015000000160000001700000018000000190000001a0000001b0000001c0000001d0000001e0000001f000000200000002100000022000000230000002400000025000000260000002700000028000000290000002a0000002b0000002c0000002d0000002e0000002f000000300000003100000032000000330000003400000035000000360000003700000038000000390000003a0000003b0000003c0000003d0000003e0000003f000000400000004100000042000000430000004400000045000000460000004700000048000000490000004a0000004b0000004c0000004d0000004e0000004f000000500000005100000052000000530000005400000055000000560000005700000058000000590000005a0000005b0000005c0000005d0000005e0000005f000000600000006100000062000000630000006400000065000000660000006700000068000000690000006a0000006b0000006c0000006d0000006e0000006f000000700000007100000072000000730000007400000075000000760000007700000078000000790000007a0000007b0000007c0000007d0000007e0000007f000000800000008100000082000000830000008400000085000000860000008700000088000000890000008a0000008b0000008c0000008d0000008e0000008f000000900000009100000092000000930000009400000095000000960000009700000098000000990000009a0000009b0000009c0000009d0000009e0000009f000000a0000000a1000000a2000000a3000000a4000000a5000000a6000000a7000000a8000000a9000000aa000000ab000000ac000000ad000000ae000000af000000b0000000b1000000b2000000b3000000b4000000b5000000b6000000b7000000b8000000b9000000ba000000bb000000bc000000bd000000be000000bf000000c0000000c1000000c2000000c3000000c4000000c5000000c6000000c7000000c8000000c9000000ca000000cb000000cc000000cd000000ce000000cf000000d0000000d1000000d2000000d3000000d4000000d5000000d6000000d7000000d8000000d9000000da000000db000000dc000000dd000000de000000df000000e0000000e1000000e2000000e3000000e4000000e5000000e6000000e7000000e8000000e9000000ea000000eb000000ec000000ed000000ee000000ef000000f0000000f1000000f2000000f3000000f4000000f5000000f6000000f7000000f8000000f9000000fa000000fb000000fc000000fd000000fe000000ff000000000100000101000002010000030100000401000005010000060100000701000008010000090100000a0100000b0100000c0100000d0100000e0100000f010000100100001101000012010000130100001401000015010000160100001701000018010000190100001a0100001b0100001c0100001d0100001e0100001f010000200100002101000022010000230100002401000025010000260100002701000028010000290100002a0100002b0100002c0100002d0100002e0100002f010000300100003101000032010000330100003401000035010000360100003701000038010000390100003a0100003b0100003c0100003d0100003e0100003f010000400100004101000042010000430100004401000045010000460100004701000048010000490100004a0100004b0100004c0100004d0100004e0100004f010000500100005101000052010000530100005401000055010000560100005701000058010000590100005a0100005b0100005c0100005d0100005e0100005f010000600100006101000062010000630100006401000065010000660100006701000068010000690100006a0100006b0100006c0100006d0100006e0100006f010000700100007101000072010000730100007401000075010000760100007701000078010000790100007a0100007b0100007c0100007d0100007e0100007f010000800100008101000082010000830100008401000085010000860100008701000088010000890100008a0100008b0100008c0100008d0100008e0100008f010000900100009101000092010000930100009401000095010000960100009701000098010000990100009a0100009b0100009c0100009d0100009e0100009f010000a0010000a1010000a2010000a3010000a4010000a5010000a6010000a7010000a8010000a9010000aa010000ab010000ac010000ad010000ae010000af010000b0010000b1010000b2010000b3010000b4010000b5010000b6010000b7010000b8010000b9010000ba010000bb010000bc010000bd010000be010000bf010000c0010000c1010000c2010000c3010000c4010000c5010000c6010000c7010000c8010000c9010000ca010000cb010000cc010000cd010000ce010000cf010000d0010000d1010000d2010000d3010000d4010000d5010000d6010000d7010000d8010000d9010000da010000db010000dc010000dd010000de010000df010000e0010000e1010000e2010000e3010000e4010000e5010000e6010000e7010000e8010000e9010000ea010000eb010000ec010000ed010000ee010000ef010000f0010000f1010000f2010000f3010000f4010000f5010000f6010000f7010000f8010000f9010000fa010000fb010000fc010000fd010000fe010000ff010000000200000102000002020000030200000402000005020000060200000702000008020000090200000a0200000b0200000c0200000d0200000e0200000f020000100200001102000012020000130200001402000015020000160200001702000018020000190200001a0200001b0200001c0200001d0200001e0200001f020000200200002102000022020000230200002402000025020000260200002702000028020000290200002a0200002b0200002c0200002d0200002e0200002f020000300200003102000032020000330200003402000035020000360200003702000038020000390200003a0200003b0200003c0200003d0200003e0200003f020000400200004102000042020000430200004402000045020000460200004702000048020000490200004a0200004b0200004c0200004d0200004e0200004f0200005002000051020000520200005302000054020000550200005602000057020000
+  assetHash:
+    serializedVersion: 2
+    Hash: 9365b6cd68400307f2dd65f375de8ced
+  longitude: 2.333
+  latitude: 48.867
+  northCorrection: -0
+  fileUnit: 0
+  sketchUpImportData:
+    defaultCamera:
+      position: {x: -374.4624, y: 480.82248, z: -127.91224}
+      lookAt: {x: 200.71353, y: -45.11853, z: -418.13553}
+      up: {x: 0.56459135, y: 0.7746474, z: -0.2848825}
+      fov: 35
+      aspectRatio: 0
+      orthoSize: 1
+      isPerspective: 1
+    scenes: []
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: 11420420 Blechschraube DIN 7981 C 3.9x6.5
+    100002: 11420420 Blechschraube DIN 7981 C 3.9x6.5 1
+    100004: 11420420 Blechschraube DIN 7981 C 3.9x6.5 10
+    100006: 11420420 Blechschraube DIN 7981 C 3.9x6.5 11
+    100008: 11420420 Blechschraube DIN 7981 C 3.9x6.5 12
+    100010: 11420420 Blechschraube DIN 7981 C 3.9x6.5 13
+    100012: 11420420 Blechschraube DIN 7981 C 3.9x6.5 14
+    100014: 11420420 Blechschraube DIN 7981 C 3.9x6.5 15
+    100016: 11420420 Blechschraube DIN 7981 C 3.9x6.5 2
+    100018: 11420420 Blechschraube DIN 7981 C 3.9x6.5 3
+    100020: 11420420 Blechschraube DIN 7981 C 3.9x6.5 4
+    100022: 11420420 Blechschraube DIN 7981 C 3.9x6.5 5
+    100024: 11420420 Blechschraube DIN 7981 C 3.9x6.5 6
+    100026: 11420420 Blechschraube DIN 7981 C 3.9x6.5 7
+    100028: 11420420 Blechschraube DIN 7981 C 3.9x6.5 8
+    100030: 11420420 Blechschraube DIN 7981 C 3.9x6.5 9
+    100032: 11420420_Cross_recessed_pan_head_tapping_screws_DIN_7981_C_3#2
+    100034: 11420420_Cross_recessed_pan_head_tapping_screws_DIN_7981_C_3#2 1
+    100036: 11420420_Cross_recessed_pan_head_tapping_screws_DIN_7981_C_3#2 10
+    100038: 11420420_Cross_recessed_pan_head_tapping_screws_DIN_7981_C_3#2 11
+    100040: 11420420_Cross_recessed_pan_head_tapping_screws_DIN_7981_C_3#2 12
+    100042: 11420420_Cross_recessed_pan_head_tapping_screws_DIN_7981_C_3#2 13
+    100044: 11420420_Cross_recessed_pan_head_tapping_screws_DIN_7981_C_3#2 14
+    100046: 11420420_Cross_recessed_pan_head_tapping_screws_DIN_7981_C_3#2 15
+    100048: 11420420_Cross_recessed_pan_head_tapping_screws_DIN_7981_C_3#2 2
+    100050: 11420420_Cross_recessed_pan_head_tapping_screws_DIN_7981_C_3#2 3
+    100052: 11420420_Cross_recessed_pan_head_tapping_screws_DIN_7981_C_3#2 4
+    100054: 11420420_Cross_recessed_pan_head_tapping_screws_DIN_7981_C_3#2 5
+    100056: 11420420_Cross_recessed_pan_head_tapping_screws_DIN_7981_C_3#2 6
+    100058: 11420420_Cross_recessed_pan_head_tapping_screws_DIN_7981_C_3#2 7
+    100060: 11420420_Cross_recessed_pan_head_tapping_screws_DIN_7981_C_3#2 8
+    100062: 11420420_Cross_recessed_pan_head_tapping_screws_DIN_7981_C_3#2 9
+    100064: //RootNode
+    100066: Component#3
+    100068: Component#3 1
+    100070: Component#3 10
+    100072: Component#3 11
+    100074: Component#3 12
+    100076: Component#3 13
+    100078: Component#3 14
+    100080: Component#3 15
+    100082: Component#3 2
+    100084: Component#3 3
+    100086: Component#3 4
+    100088: Component#3 5
+    100090: Component#3 6
+    100092: Component#3 7
+    100094: Component#3 8
+    100096: Component#3 9
+    100098: Component#4
+    100100: Component#4 1
+    100102: Component#4 10
+    100104: Component#4 11
+    100106: Component#4 12
+    100108: Component#4 13
+    100110: Component#4 14
+    100112: Component#4 15
+    100114: Component#4 16
+    100116: Component#4 17
+    100118: Component#4 18
+    100120: Component#4 19
+    100122: Component#4 2
+    100124: Component#4 20
+    100126: Component#4 21
+    100128: Component#4 22
+    100130: Component#4 23
+    100132: Component#4 24
+    100134: Component#4 25
+    100136: Component#4 26
+    100138: Component#4 27
+    100140: Component#4 28
+    100142: Component#4 29
+    100144: Component#4 3
+    100146: Component#4 30
+    100148: Component#4 31
+    100150: Component#4 32
+    100152: Component#4 33
+    100154: Component#4 34
+    100156: Component#4 35
+    100158: Component#4 36
+    100160: Component#4 37
+    100162: Component#4 38
+    100164: Component#4 39
+    100166: Component#4 4
+    100168: Component#4 40
+    100170: Component#4 41
+    100172: Component#4 42
+    100174: Component#4 43
+    100176: Component#4 44
+    100178: Component#4 45
+    100180: Component#4 46
+    100182: Component#4 47
+    100184: Component#4 5
+    100186: Component#4 6
+    100188: Component#4 7
+    100190: Component#4 8
+    100192: Component#4 9
+    100194: Component#5
+    100196: Component#5 1
+    100198: Component#5 2
+    100200: Component#5 3
+    100202: Component#5 4
+    100204: Component#5 5
+    100206: Component#5 6
+    100208: Component#5 7
+    100210: Component#6
+    100212: Component#6 1
+    100214: Composant#3
+    100216: Composant#3 1
+    100218: Composant#3 2
+    100220: Composant#3 3
+    100222: Group 10
+    100224: Group 101
+    100226: Group 103
+    100228: Group 105
+    100230: Group 107
+    100232: Group 109
+    100234: Group 111
+    100236: Group 113
+    100238: Group 115
+    100240: Group 117
+    100242: Group 119
+    100244: Group 12
+    100246: Group 121
+    100248: Group 123
+    100250: Group 125
+    100252: Group 127
+    100254: Group 129
+    100256: Group 131
+    100258: Group 133
+    100260: Group 135
+    100262: Group 137
+    100264: Group 139
+    100266: Group 14
+    100268: Group 141
+    100270: Group 149
+    100272: Group 159
+    100274: Group 16
+    100276: Group 161
+    100278: Group 163
+    100280: Group 165
+    100282: Group 168
+    100284: Group 170
+    100286: Group 172
+    100288: Group 174
+    100290: Group 176
+    100292: Group 178
+    100294: Group 18
+    100296: Group 180
+    100298: Group 182
+    100300: Group 184
+    100302: Group 186
+    100304: Group 188
+    100306: Group 190
+    100308: Group 192
+    100310: Group 194
+    100312: Group 196
+    100314: Group 198
+    100316: Group 20
+    100318: Group 200
+    100320: Group 202
+    100322: Group 204
+    100324: Group 206
+    100326: Group 208
+    100328: Group 210
+    100330: Group 212
+    100332: Group 214
+    100334: Group 216
+    100336: Group 218
+    100338: Group 22
+    100340: Group 220
+    100342: Group 222
+    100344: Group 224
+    100346: Group 226
+    100348: Group 228
+    100350: Group 230
+    100352: Group 232
+    100354: Group 234
+    100356: Group 24
+    100358: Group 242
+    100360: Group 252
+    100362: Group 254
+    100364: Group 258
+    100366: Group 26
+    100368: Group 260
+    100370: Group 263
+    100372: Group 265
+    100374: Group 267
+    100376: Group 269
+    100378: Group 271
+    100380: Group 273
+    100382: Group 275
+    100384: Group 277
+    100386: Group 279
+    100388: Group 28
+    100390: Group 281
+    100392: Group 283
+    100394: Group 285
+    100396: Group 287
+    100398: Group 289
+    100400: Group 291
+    100402: Group 293
+    100404: Group 295
+    100406: Group 297
+    100408: Group 299
+    100410: Group 30
+    100412: Group 301
+    100414: Group 303
+    100416: Group 305
+    100418: Group 307
+    100420: Group 309
+    100422: Group 311
+    100424: Group 313
+    100426: Group 315
+    100428: Group 317
+    100430: Group 319
+    100432: Group 32
+    100434: Group 321
+    100436: Group 323
+    100438: Group 325
+    100440: Group 327
+    100442: Group 329
+    100444: Group 337
+    100446: Group 34
+    100448: Group 347
+    100450: Group 349
+    100452: Group 351
+    100454: Group 353
+    100456: Group 356
+    100458: Group 358
+    100460: Group 36
+    100462: Group 360
+    100464: Group 362
+    100466: Group 364
+    100468: Group 366
+    100470: Group 368
+    100472: Group 370
+    100474: Group 372
+    100476: Group 374
+    100478: Group 376
+    100480: Group 378
+    100482: Group 38
+    100484: Group 380
+    100486: Group 382
+    100488: Group 384
+    100490: Group 386
+    100492: Group 388
+    100494: Group 390
+    100496: Group 392
+    100498: Group 394
+    100500: Group 396
+    100502: Group 398
+    100504: Group 4
+    100506: Group 40
+    100508: Group 400
+    100510: Group 402
+    100512: Group 404
+    100514: Group 406
+    100516: Group 408
+    100518: Group 410
+    100520: Group 412
+    100522: Group 414
+    100524: Group 416
+    100526: Group 418
+    100528: Group 42
+    100530: Group 420
+    100532: Group 422
+    100534: Group 430
+    100536: Group 44
+    100538: Group 440
+    100540: Group 442
+    100542: Group 46
+    100544: Group 48
+    100546: Group 50
+    100548: Group 52
+    100550: Group 54
+    100552: Group 56
+    100554: Group 58
+    100556: Group 6
+    100558: Group 60
+    100560: Group 62
+    100562: Group 64
+    100564: Group 66
+    100566: Group 70
+    100568: Group 72
+    100570: Group 75
+    100572: Group 77
+    100574: Group 79
+    100576: Group 8
+    100578: Group 81
+    100580: Group 83
+    100582: Group 85
+    100584: Group 87
+    100586: Group 89
+    100588: Group 91
+    100590: Group 93
+    100592: Group 95
+    100594: Group 97
+    100596: Group 99
+    100598: "La Barri\xE8re Automatique\xAE l'originale"
+    100600: "La Barri\xE8re Automatique\xAE l'originale 1"
+    100602: "La Barri\xE8re Automatique\xAE l'originale 2"
+    100604: "La Barri\xE8re Automatique\xAE l'originale 3"
+    100606: Ladder Extending
+    100608: Ladder Extending 1
+    100610: Ladder Extending 2
+    100612: Ladder Extending 3
+    100614: ladder_section
+    100616: ladder_section 1
+    100618: ladder_section 2
+    100620: ladder_section 3
+    100622: ladder_section 4
+    100624: ladder_section 5
+    100626: ladder_section 6
+    100628: ladder_section 7
+    400000: 11420420 Blechschraube DIN 7981 C 3.9x6.5
+    400002: 11420420 Blechschraube DIN 7981 C 3.9x6.5 1
+    400004: 11420420 Blechschraube DIN 7981 C 3.9x6.5 10
+    400006: 11420420 Blechschraube DIN 7981 C 3.9x6.5 11
+    400008: 11420420 Blechschraube DIN 7981 C 3.9x6.5 12
+    400010: 11420420 Blechschraube DIN 7981 C 3.9x6.5 13
+    400012: 11420420 Blechschraube DIN 7981 C 3.9x6.5 14
+    400014: 11420420 Blechschraube DIN 7981 C 3.9x6.5 15
+    400016: 11420420 Blechschraube DIN 7981 C 3.9x6.5 2
+    400018: 11420420 Blechschraube DIN 7981 C 3.9x6.5 3
+    400020: 11420420 Blechschraube DIN 7981 C 3.9x6.5 4
+    400022: 11420420 Blechschraube DIN 7981 C 3.9x6.5 5
+    400024: 11420420 Blechschraube DIN 7981 C 3.9x6.5 6
+    400026: 11420420 Blechschraube DIN 7981 C 3.9x6.5 7
+    400028: 11420420 Blechschraube DIN 7981 C 3.9x6.5 8
+    400030: 11420420 Blechschraube DIN 7981 C 3.9x6.5 9
+    400032: 11420420_Cross_recessed_pan_head_tapping_screws_DIN_7981_C_3#2
+    400034: 11420420_Cross_recessed_pan_head_tapping_screws_DIN_7981_C_3#2 1
+    400036: 11420420_Cross_recessed_pan_head_tapping_screws_DIN_7981_C_3#2 10
+    400038: 11420420_Cross_recessed_pan_head_tapping_screws_DIN_7981_C_3#2 11
+    400040: 11420420_Cross_recessed_pan_head_tapping_screws_DIN_7981_C_3#2 12
+    400042: 11420420_Cross_recessed_pan_head_tapping_screws_DIN_7981_C_3#2 13
+    400044: 11420420_Cross_recessed_pan_head_tapping_screws_DIN_7981_C_3#2 14
+    400046: 11420420_Cross_recessed_pan_head_tapping_screws_DIN_7981_C_3#2 15
+    400048: 11420420_Cross_recessed_pan_head_tapping_screws_DIN_7981_C_3#2 2
+    400050: 11420420_Cross_recessed_pan_head_tapping_screws_DIN_7981_C_3#2 3
+    400052: 11420420_Cross_recessed_pan_head_tapping_screws_DIN_7981_C_3#2 4
+    400054: 11420420_Cross_recessed_pan_head_tapping_screws_DIN_7981_C_3#2 5
+    400056: 11420420_Cross_recessed_pan_head_tapping_screws_DIN_7981_C_3#2 6
+    400058: 11420420_Cross_recessed_pan_head_tapping_screws_DIN_7981_C_3#2 7
+    400060: 11420420_Cross_recessed_pan_head_tapping_screws_DIN_7981_C_3#2 8
+    400062: 11420420_Cross_recessed_pan_head_tapping_screws_DIN_7981_C_3#2 9
+    400064: //RootNode
+    400066: Component#3
+    400068: Component#3 1
+    400070: Component#3 10
+    400072: Component#3 11
+    400074: Component#3 12
+    400076: Component#3 13
+    400078: Component#3 14
+    400080: Component#3 15
+    400082: Component#3 2
+    400084: Component#3 3
+    400086: Component#3 4
+    400088: Component#3 5
+    400090: Component#3 6
+    400092: Component#3 7
+    400094: Component#3 8
+    400096: Component#3 9
+    400098: Component#4
+    400100: Component#4 1
+    400102: Component#4 10
+    400104: Component#4 11
+    400106: Component#4 12
+    400108: Component#4 13
+    400110: Component#4 14
+    400112: Component#4 15
+    400114: Component#4 16
+    400116: Component#4 17
+    400118: Component#4 18
+    400120: Component#4 19
+    400122: Component#4 2
+    400124: Component#4 20
+    400126: Component#4 21
+    400128: Component#4 22
+    400130: Component#4 23
+    400132: Component#4 24
+    400134: Component#4 25
+    400136: Component#4 26
+    400138: Component#4 27
+    400140: Component#4 28
+    400142: Component#4 29
+    400144: Component#4 3
+    400146: Component#4 30
+    400148: Component#4 31
+    400150: Component#4 32
+    400152: Component#4 33
+    400154: Component#4 34
+    400156: Component#4 35
+    400158: Component#4 36
+    400160: Component#4 37
+    400162: Component#4 38
+    400164: Component#4 39
+    400166: Component#4 4
+    400168: Component#4 40
+    400170: Component#4 41
+    400172: Component#4 42
+    400174: Component#4 43
+    400176: Component#4 44
+    400178: Component#4 45
+    400180: Component#4 46
+    400182: Component#4 47
+    400184: Component#4 5
+    400186: Component#4 6
+    400188: Component#4 7
+    400190: Component#4 8
+    400192: Component#4 9
+    400194: Component#5
+    400196: Component#5 1
+    400198: Component#5 2
+    400200: Component#5 3
+    400202: Component#5 4
+    400204: Component#5 5
+    400206: Component#5 6
+    400208: Component#5 7
+    400210: Component#6
+    400212: Component#6 1
+    400214: Composant#3
+    400216: Composant#3 1
+    400218: Composant#3 2
+    400220: Composant#3 3
+    400222: Group 10
+    400224: Group 101
+    400226: Group 103
+    400228: Group 105
+    400230: Group 107
+    400232: Group 109
+    400234: Group 111
+    400236: Group 113
+    400238: Group 115
+    400240: Group 117
+    400242: Group 119
+    400244: Group 12
+    400246: Group 121
+    400248: Group 123
+    400250: Group 125
+    400252: Group 127
+    400254: Group 129
+    400256: Group 131
+    400258: Group 133
+    400260: Group 135
+    400262: Group 137
+    400264: Group 139
+    400266: Group 14
+    400268: Group 141
+    400270: Group 149
+    400272: Group 159
+    400274: Group 16
+    400276: Group 161
+    400278: Group 163
+    400280: Group 165
+    400282: Group 168
+    400284: Group 170
+    400286: Group 172
+    400288: Group 174
+    400290: Group 176
+    400292: Group 178
+    400294: Group 18
+    400296: Group 180
+    400298: Group 182
+    400300: Group 184
+    400302: Group 186
+    400304: Group 188
+    400306: Group 190
+    400308: Group 192
+    400310: Group 194
+    400312: Group 196
+    400314: Group 198
+    400316: Group 20
+    400318: Group 200
+    400320: Group 202
+    400322: Group 204
+    400324: Group 206
+    400326: Group 208
+    400328: Group 210
+    400330: Group 212
+    400332: Group 214
+    400334: Group 216
+    400336: Group 218
+    400338: Group 22
+    400340: Group 220
+    400342: Group 222
+    400344: Group 224
+    400346: Group 226
+    400348: Group 228
+    400350: Group 230
+    400352: Group 232
+    400354: Group 234
+    400356: Group 24
+    400358: Group 242
+    400360: Group 252
+    400362: Group 254
+    400364: Group 258
+    400366: Group 26
+    400368: Group 260
+    400370: Group 263
+    400372: Group 265
+    400374: Group 267
+    400376: Group 269
+    400378: Group 271
+    400380: Group 273
+    400382: Group 275
+    400384: Group 277
+    400386: Group 279
+    400388: Group 28
+    400390: Group 281
+    400392: Group 283
+    400394: Group 285
+    400396: Group 287
+    400398: Group 289
+    400400: Group 291
+    400402: Group 293
+    400404: Group 295
+    400406: Group 297
+    400408: Group 299
+    400410: Group 30
+    400412: Group 301
+    400414: Group 303
+    400416: Group 305
+    400418: Group 307
+    400420: Group 309
+    400422: Group 311
+    400424: Group 313
+    400426: Group 315
+    400428: Group 317
+    400430: Group 319
+    400432: Group 32
+    400434: Group 321
+    400436: Group 323
+    400438: Group 325
+    400440: Group 327
+    400442: Group 329
+    400444: Group 337
+    400446: Group 34
+    400448: Group 347
+    400450: Group 349
+    400452: Group 351
+    400454: Group 353
+    400456: Group 356
+    400458: Group 358
+    400460: Group 36
+    400462: Group 360
+    400464: Group 362
+    400466: Group 364
+    400468: Group 366
+    400470: Group 368
+    400472: Group 370
+    400474: Group 372
+    400476: Group 374
+    400478: Group 376
+    400480: Group 378
+    400482: Group 38
+    400484: Group 380
+    400486: Group 382
+    400488: Group 384
+    400490: Group 386
+    400492: Group 388
+    400494: Group 390
+    400496: Group 392
+    400498: Group 394
+    400500: Group 396
+    400502: Group 398
+    400504: Group 4
+    400506: Group 40
+    400508: Group 400
+    400510: Group 402
+    400512: Group 404
+    400514: Group 406
+    400516: Group 408
+    400518: Group 410
+    400520: Group 412
+    400522: Group 414
+    400524: Group 416
+    400526: Group 418
+    400528: Group 42
+    400530: Group 420
+    400532: Group 422
+    400534: Group 430
+    400536: Group 44
+    400538: Group 440
+    400540: Group 442
+    400542: Group 46
+    400544: Group 48
+    400546: Group 50
+    400548: Group 52
+    400550: Group 54
+    400552: Group 56
+    400554: Group 58
+    400556: Group 6
+    400558: Group 60
+    400560: Group 62
+    400562: Group 64
+    400564: Group 66
+    400566: Group 70
+    400568: Group 72
+    400570: Group 75
+    400572: Group 77
+    400574: Group 79
+    400576: Group 8
+    400578: Group 81
+    400580: Group 83
+    400582: Group 85
+    400584: Group 87
+    400586: Group 89
+    400588: Group 91
+    400590: Group 93
+    400592: Group 95
+    400594: Group 97
+    400596: Group 99
+    400598: "La Barri\xE8re Automatique\xAE l'originale"
+    400600: "La Barri\xE8re Automatique\xAE l'originale 1"
+    400602: "La Barri\xE8re Automatique\xAE l'originale 2"
+    400604: "La Barri\xE8re Automatique\xAE l'originale 3"
+    400606: Ladder Extending
+    400608: Ladder Extending 1
+    400610: Ladder Extending 2
+    400612: Ladder Extending 3
+    400614: ladder_section
+    400616: ladder_section 1
+    400618: ladder_section 2
+    400620: ladder_section 3
+    400622: ladder_section 4
+    400624: ladder_section 5
+    400626: ladder_section 6
+    400628: ladder_section 7
+    2300000: 11420420 Blechschraube DIN 7981 C 3.9x6.5
+    2300002: 11420420 Blechschraube DIN 7981 C 3.9x6.5 1
+    2300004: 11420420 Blechschraube DIN 7981 C 3.9x6.5 10
+    2300006: 11420420 Blechschraube DIN 7981 C 3.9x6.5 11
+    2300008: 11420420 Blechschraube DIN 7981 C 3.9x6.5 12
+    2300010: 11420420 Blechschraube DIN 7981 C 3.9x6.5 13
+    2300012: 11420420 Blechschraube DIN 7981 C 3.9x6.5 14
+    2300014: 11420420 Blechschraube DIN 7981 C 3.9x6.5 15
+    2300016: 11420420 Blechschraube DIN 7981 C 3.9x6.5 2
+    2300018: 11420420 Blechschraube DIN 7981 C 3.9x6.5 3
+    2300020: 11420420 Blechschraube DIN 7981 C 3.9x6.5 4
+    2300022: 11420420 Blechschraube DIN 7981 C 3.9x6.5 5
+    2300024: 11420420 Blechschraube DIN 7981 C 3.9x6.5 6
+    2300026: 11420420 Blechschraube DIN 7981 C 3.9x6.5 7
+    2300028: 11420420 Blechschraube DIN 7981 C 3.9x6.5 8
+    2300030: 11420420 Blechschraube DIN 7981 C 3.9x6.5 9
+    2300032: //RootNode
+    2300034: Component#3
+    2300036: Component#3 1
+    2300038: Component#3 10
+    2300040: Component#3 11
+    2300042: Component#3 12
+    2300044: Component#3 13
+    2300046: Component#3 14
+    2300048: Component#3 15
+    2300050: Component#3 2
+    2300052: Component#3 3
+    2300054: Component#3 4
+    2300056: Component#3 5
+    2300058: Component#3 6
+    2300060: Component#3 7
+    2300062: Component#3 8
+    2300064: Component#3 9
+    2300066: Component#4
+    2300068: Component#4 1
+    2300070: Component#4 10
+    2300072: Component#4 11
+    2300074: Component#4 12
+    2300076: Component#4 13
+    2300078: Component#4 14
+    2300080: Component#4 15
+    2300082: Component#4 16
+    2300084: Component#4 17
+    2300086: Component#4 18
+    2300088: Component#4 19
+    2300090: Component#4 2
+    2300092: Component#4 20
+    2300094: Component#4 21
+    2300096: Component#4 22
+    2300098: Component#4 23
+    2300100: Component#4 24
+    2300102: Component#4 25
+    2300104: Component#4 26
+    2300106: Component#4 27
+    2300108: Component#4 28
+    2300110: Component#4 29
+    2300112: Component#4 3
+    2300114: Component#4 30
+    2300116: Component#4 31
+    2300118: Component#4 32
+    2300120: Component#4 33
+    2300122: Component#4 34
+    2300124: Component#4 35
+    2300126: Component#4 36
+    2300128: Component#4 37
+    2300130: Component#4 38
+    2300132: Component#4 39
+    2300134: Component#4 4
+    2300136: Component#4 40
+    2300138: Component#4 41
+    2300140: Component#4 42
+    2300142: Component#4 43
+    2300144: Component#4 44
+    2300146: Component#4 45
+    2300148: Component#4 46
+    2300150: Component#4 47
+    2300152: Component#4 5
+    2300154: Component#4 6
+    2300156: Component#4 7
+    2300158: Component#4 8
+    2300160: Component#4 9
+    2300162: Component#5
+    2300164: Component#5 1
+    2300166: Component#5 2
+    2300168: Component#5 3
+    2300170: Component#5 4
+    2300172: Component#5 5
+    2300174: Component#5 6
+    2300176: Component#5 7
+    2300178: Component#6
+    2300180: Component#6 1
+    2300182: Composant#3
+    2300184: Composant#3 1
+    2300186: Composant#3 2
+    2300188: Composant#3 3
+    2300190: Group 10
+    2300192: Group 101
+    2300194: Group 103
+    2300196: Group 105
+    2300198: Group 107
+    2300200: Group 109
+    2300202: Group 111
+    2300204: Group 113
+    2300206: Group 115
+    2300208: Group 117
+    2300210: Group 119
+    2300212: Group 12
+    2300214: Group 121
+    2300216: Group 123
+    2300218: Group 125
+    2300220: Group 127
+    2300222: Group 129
+    2300224: Group 131
+    2300226: Group 133
+    2300228: Group 135
+    2300230: Group 137
+    2300232: Group 139
+    2300234: Group 14
+    2300236: Group 141
+    2300238: Group 149
+    2300240: Group 159
+    2300242: Group 16
+    2300244: Group 161
+    2300246: Group 163
+    2300248: Group 165
+    2300250: Group 168
+    2300252: Group 170
+    2300254: Group 172
+    2300256: Group 174
+    2300258: Group 176
+    2300260: Group 178
+    2300262: Group 18
+    2300264: Group 180
+    2300266: Group 182
+    2300268: Group 184
+    2300270: Group 186
+    2300272: Group 188
+    2300274: Group 190
+    2300276: Group 192
+    2300278: Group 194
+    2300280: Group 196
+    2300282: Group 198
+    2300284: Group 20
+    2300286: Group 200
+    2300288: Group 202
+    2300290: Group 204
+    2300292: Group 206
+    2300294: Group 208
+    2300296: Group 210
+    2300298: Group 212
+    2300300: Group 214
+    2300302: Group 216
+    2300304: Group 218
+    2300306: Group 22
+    2300308: Group 220
+    2300310: Group 222
+    2300312: Group 224
+    2300314: Group 226
+    2300316: Group 228
+    2300318: Group 230
+    2300320: Group 232
+    2300322: Group 234
+    2300324: Group 24
+    2300326: Group 242
+    2300328: Group 252
+    2300330: Group 254
+    2300332: Group 258
+    2300334: Group 26
+    2300336: Group 260
+    2300338: Group 263
+    2300340: Group 265
+    2300342: Group 267
+    2300344: Group 269
+    2300346: Group 271
+    2300348: Group 273
+    2300350: Group 275
+    2300352: Group 277
+    2300354: Group 279
+    2300356: Group 28
+    2300358: Group 281
+    2300360: Group 283
+    2300362: Group 285
+    2300364: Group 287
+    2300366: Group 289
+    2300368: Group 291
+    2300370: Group 293
+    2300372: Group 295
+    2300374: Group 297
+    2300376: Group 299
+    2300378: Group 30
+    2300380: Group 301
+    2300382: Group 303
+    2300384: Group 305
+    2300386: Group 307
+    2300388: Group 309
+    2300390: Group 311
+    2300392: Group 313
+    2300394: Group 315
+    2300396: Group 317
+    2300398: Group 319
+    2300400: Group 32
+    2300402: Group 321
+    2300404: Group 323
+    2300406: Group 325
+    2300408: Group 327
+    2300410: Group 329
+    2300412: Group 337
+    2300414: Group 34
+    2300416: Group 347
+    2300418: Group 349
+    2300420: Group 351
+    2300422: Group 353
+    2300424: Group 356
+    2300426: Group 358
+    2300428: Group 36
+    2300430: Group 360
+    2300432: Group 362
+    2300434: Group 364
+    2300436: Group 366
+    2300438: Group 368
+    2300440: Group 370
+    2300442: Group 372
+    2300444: Group 374
+    2300446: Group 376
+    2300448: Group 378
+    2300450: Group 38
+    2300452: Group 380
+    2300454: Group 382
+    2300456: Group 384
+    2300458: Group 386
+    2300460: Group 388
+    2300462: Group 390
+    2300464: Group 392
+    2300466: Group 394
+    2300468: Group 396
+    2300470: Group 398
+    2300472: Group 4
+    2300474: Group 40
+    2300476: Group 400
+    2300478: Group 402
+    2300480: Group 404
+    2300482: Group 406
+    2300484: Group 408
+    2300486: Group 410
+    2300488: Group 412
+    2300490: Group 414
+    2300492: Group 416
+    2300494: Group 418
+    2300496: Group 42
+    2300498: Group 420
+    2300500: Group 422
+    2300502: Group 430
+    2300504: Group 44
+    2300506: Group 440
+    2300508: Group 442
+    2300510: Group 46
+    2300512: Group 48
+    2300514: Group 50
+    2300516: Group 52
+    2300518: Group 54
+    2300520: Group 56
+    2300522: Group 58
+    2300524: Group 6
+    2300526: Group 60
+    2300528: Group 62
+    2300530: Group 64
+    2300532: Group 66
+    2300534: Group 70
+    2300536: Group 72
+    2300538: Group 75
+    2300540: Group 77
+    2300542: Group 79
+    2300544: Group 8
+    2300546: Group 81
+    2300548: Group 83
+    2300550: Group 85
+    2300552: Group 87
+    2300554: Group 89
+    2300556: Group 91
+    2300558: Group 93
+    2300560: Group 95
+    2300562: Group 97
+    2300564: Group 99
+    3300000: 11420420 Blechschraube DIN 7981 C 3.9x6.5
+    3300002: 11420420 Blechschraube DIN 7981 C 3.9x6.5 1
+    3300004: 11420420 Blechschraube DIN 7981 C 3.9x6.5 10
+    3300006: 11420420 Blechschraube DIN 7981 C 3.9x6.5 11
+    3300008: 11420420 Blechschraube DIN 7981 C 3.9x6.5 12
+    3300010: 11420420 Blechschraube DIN 7981 C 3.9x6.5 13
+    3300012: 11420420 Blechschraube DIN 7981 C 3.9x6.5 14
+    3300014: 11420420 Blechschraube DIN 7981 C 3.9x6.5 15
+    3300016: 11420420 Blechschraube DIN 7981 C 3.9x6.5 2
+    3300018: 11420420 Blechschraube DIN 7981 C 3.9x6.5 3
+    3300020: 11420420 Blechschraube DIN 7981 C 3.9x6.5 4
+    3300022: 11420420 Blechschraube DIN 7981 C 3.9x6.5 5
+    3300024: 11420420 Blechschraube DIN 7981 C 3.9x6.5 6
+    3300026: 11420420 Blechschraube DIN 7981 C 3.9x6.5 7
+    3300028: 11420420 Blechschraube DIN 7981 C 3.9x6.5 8
+    3300030: 11420420 Blechschraube DIN 7981 C 3.9x6.5 9
+    3300032: //RootNode
+    3300034: Component#3
+    3300036: Component#3 1
+    3300038: Component#3 10
+    3300040: Component#3 11
+    3300042: Component#3 12
+    3300044: Component#3 13
+    3300046: Component#3 14
+    3300048: Component#3 15
+    3300050: Component#3 2
+    3300052: Component#3 3
+    3300054: Component#3 4
+    3300056: Component#3 5
+    3300058: Component#3 6
+    3300060: Component#3 7
+    3300062: Component#3 8
+    3300064: Component#3 9
+    3300066: Component#4
+    3300068: Component#4 1
+    3300070: Component#4 10
+    3300072: Component#4 11
+    3300074: Component#4 12
+    3300076: Component#4 13
+    3300078: Component#4 14
+    3300080: Component#4 15
+    3300082: Component#4 16
+    3300084: Component#4 17
+    3300086: Component#4 18
+    3300088: Component#4 19
+    3300090: Component#4 2
+    3300092: Component#4 20
+    3300094: Component#4 21
+    3300096: Component#4 22
+    3300098: Component#4 23
+    3300100: Component#4 24
+    3300102: Component#4 25
+    3300104: Component#4 26
+    3300106: Component#4 27
+    3300108: Component#4 28
+    3300110: Component#4 29
+    3300112: Component#4 3
+    3300114: Component#4 30
+    3300116: Component#4 31
+    3300118: Component#4 32
+    3300120: Component#4 33
+    3300122: Component#4 34
+    3300124: Component#4 35
+    3300126: Component#4 36
+    3300128: Component#4 37
+    3300130: Component#4 38
+    3300132: Component#4 39
+    3300134: Component#4 4
+    3300136: Component#4 40
+    3300138: Component#4 41
+    3300140: Component#4 42
+    3300142: Component#4 43
+    3300144: Component#4 44
+    3300146: Component#4 45
+    3300148: Component#4 46
+    3300150: Component#4 47
+    3300152: Component#4 5
+    3300154: Component#4 6
+    3300156: Component#4 7
+    3300158: Component#4 8
+    3300160: Component#4 9
+    3300162: Component#5
+    3300164: Component#5 1
+    3300166: Component#5 2
+    3300168: Component#5 3
+    3300170: Component#5 4
+    3300172: Component#5 5
+    3300174: Component#5 6
+    3300176: Component#5 7
+    3300178: Component#6
+    3300180: Component#6 1
+    3300182: Composant#3
+    3300184: Composant#3 1
+    3300186: Composant#3 2
+    3300188: Composant#3 3
+    3300190: Group 10
+    3300192: Group 101
+    3300194: Group 103
+    3300196: Group 105
+    3300198: Group 107
+    3300200: Group 109
+    3300202: Group 111
+    3300204: Group 113
+    3300206: Group 115
+    3300208: Group 117
+    3300210: Group 119
+    3300212: Group 12
+    3300214: Group 121
+    3300216: Group 123
+    3300218: Group 125
+    3300220: Group 127
+    3300222: Group 129
+    3300224: Group 131
+    3300226: Group 133
+    3300228: Group 135
+    3300230: Group 137
+    3300232: Group 139
+    3300234: Group 14
+    3300236: Group 141
+    3300238: Group 149
+    3300240: Group 159
+    3300242: Group 16
+    3300244: Group 161
+    3300246: Group 163
+    3300248: Group 165
+    3300250: Group 168
+    3300252: Group 170
+    3300254: Group 172
+    3300256: Group 174
+    3300258: Group 176
+    3300260: Group 178
+    3300262: Group 18
+    3300264: Group 180
+    3300266: Group 182
+    3300268: Group 184
+    3300270: Group 186
+    3300272: Group 188
+    3300274: Group 190
+    3300276: Group 192
+    3300278: Group 194
+    3300280: Group 196
+    3300282: Group 198
+    3300284: Group 20
+    3300286: Group 200
+    3300288: Group 202
+    3300290: Group 204
+    3300292: Group 206
+    3300294: Group 208
+    3300296: Group 210
+    3300298: Group 212
+    3300300: Group 214
+    3300302: Group 216
+    3300304: Group 218
+    3300306: Group 22
+    3300308: Group 220
+    3300310: Group 222
+    3300312: Group 224
+    3300314: Group 226
+    3300316: Group 228
+    3300318: Group 230
+    3300320: Group 232
+    3300322: Group 234
+    3300324: Group 24
+    3300326: Group 242
+    3300328: Group 252
+    3300330: Group 254
+    3300332: Group 258
+    3300334: Group 26
+    3300336: Group 260
+    3300338: Group 263
+    3300340: Group 265
+    3300342: Group 267
+    3300344: Group 269
+    3300346: Group 271
+    3300348: Group 273
+    3300350: Group 275
+    3300352: Group 277
+    3300354: Group 279
+    3300356: Group 28
+    3300358: Group 281
+    3300360: Group 283
+    3300362: Group 285
+    3300364: Group 287
+    3300366: Group 289
+    3300368: Group 291
+    3300370: Group 293
+    3300372: Group 295
+    3300374: Group 297
+    3300376: Group 299
+    3300378: Group 30
+    3300380: Group 301
+    3300382: Group 303
+    3300384: Group 305
+    3300386: Group 307
+    3300388: Group 309
+    3300390: Group 311
+    3300392: Group 313
+    3300394: Group 315
+    3300396: Group 317
+    3300398: Group 319
+    3300400: Group 32
+    3300402: Group 321
+    3300404: Group 323
+    3300406: Group 325
+    3300408: Group 327
+    3300410: Group 329
+    3300412: Group 337
+    3300414: Group 34
+    3300416: Group 347
+    3300418: Group 349
+    3300420: Group 351
+    3300422: Group 353
+    3300424: Group 356
+    3300426: Group 358
+    3300428: Group 36
+    3300430: Group 360
+    3300432: Group 362
+    3300434: Group 364
+    3300436: Group 366
+    3300438: Group 368
+    3300440: Group 370
+    3300442: Group 372
+    3300444: Group 374
+    3300446: Group 376
+    3300448: Group 378
+    3300450: Group 38
+    3300452: Group 380
+    3300454: Group 382
+    3300456: Group 384
+    3300458: Group 386
+    3300460: Group 388
+    3300462: Group 390
+    3300464: Group 392
+    3300466: Group 394
+    3300468: Group 396
+    3300470: Group 398
+    3300472: Group 4
+    3300474: Group 40
+    3300476: Group 400
+    3300478: Group 402
+    3300480: Group 404
+    3300482: Group 406
+    3300484: Group 408
+    3300486: Group 410
+    3300488: Group 412
+    3300490: Group 414
+    3300492: Group 416
+    3300494: Group 418
+    3300496: Group 42
+    3300498: Group 420
+    3300500: Group 422
+    3300502: Group 430
+    3300504: Group 44
+    3300506: Group 440
+    3300508: Group 442
+    3300510: Group 46
+    3300512: Group 48
+    3300514: Group 50
+    3300516: Group 52
+    3300518: Group 54
+    3300520: Group 56
+    3300522: Group 58
+    3300524: Group 6
+    3300526: Group 60
+    3300528: Group 62
+    3300530: Group 64
+    3300532: Group 66
+    3300534: Group 70
+    3300536: Group 72
+    3300538: Group 75
+    3300540: Group 77
+    3300542: Group 79
+    3300544: Group 8
+    3300546: Group 81
+    3300548: Group 83
+    3300550: Group 85
+    3300552: Group 87
+    3300554: Group 89
+    3300556: Group 91
+    3300558: Group 93
+    3300560: Group 95
+    3300562: Group 97
+    3300564: Group 99
+    4300000: Mesh base+!+!+!
+    4300002: Mesh Group 4
+    4300004: Mesh Group 6
+    4300006: Mesh Group 10
+    4300008: Mesh Group 12
+    4300010: Mesh Group 22
+    4300012: Mesh Group 30
+    4300014: Mesh Component#6
+    4300016: Mesh Group 70
+    4300018: Mesh Group 72
+    4300020: Mesh Group 75
+    4300022: Mesh Group 77
+    4300024: Mesh Group 79
+    4300026: Mesh Group 83
+    4300028: Mesh Group 85
+    4300030: Mesh Group 129
+    4300032: Mesh Group 131
+    4300034: Mesh Group 141
+    4300036: Mesh 11420420 Blechschraube DIN 7981 C 3.9x6.5
+    4300038: Mesh Composant#3
+    4300040: Mesh Group 159
+    4300042: Mesh Group 161
+    4300044: Mesh Component#5
+    4300046: Mesh Component#4
+    4300048: Mesh Component#3
+  materials:
+    importMaterials: 1
+    materialName: 2
+    materialSearch: 0
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleRotations: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 0.0254
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 0
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

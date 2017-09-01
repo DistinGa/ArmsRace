@@ -1,0 +1,288 @@
+fileFormatVersion: 2
+guid: 05b7b4b757d2d8442aa42453c7438eb8
+timeCreated: 1490064583
+licenseType: Free
+SketchUpImporter:
+  generateBackFace: 0
+  mergeCoplanarFaces: 0
+  selectedNodes: 000000000100000002000000030000000400000005000000060000000700000008000000090000000a0000000b0000000c0000000d0000000e0000000f000000100000001100000012000000130000001400000015000000160000001700000018000000190000001a0000001b0000001c0000001d0000001e0000001f000000200000002100000022000000230000002400000025000000260000002700000028000000290000002a0000002b0000002c0000002d0000002e0000002f000000300000003100000032000000330000003400000035000000360000003700000038000000390000003a0000003b0000003c0000003d0000003e0000003f000000400000004100000042000000430000004400000045000000460000004700000048000000490000004a0000004b0000004c0000004d0000004e0000004f000000500000005100000052000000530000005400000055000000560000005700000058000000590000005a0000005b0000005c000000
+  assetHash:
+    serializedVersion: 2
+    Hash: 151e5fb809da599750332834b7efc920
+  longitude: -74.07002116394216
+  latitude: 40.62902366595007
+  northCorrection: -0
+  fileUnit: 0
+  sketchUpImportData:
+    defaultCamera:
+      position: {x: 60.633717, y: 38.400307, z: 78.990425}
+      lookAt: {x: -220.95668, y: -13.616615, z: -129.64685}
+      up: {x: -0.11796474, y: 0.9891638, z: -0.087402984}
+      fov: 35
+      aspectRatio: 0
+      orthoSize: 1
+      isPerspective: 1
+    scenes: []
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: All lamps
+    100002: All lamps 1
+    100004: CV-19 USS Hancock Flight deck
+    100006: //RootNode
+    100008: Forward Aircraft Elevator
+    100010: Hull
+    100012: Island Superstructure
+    100014: Lamp
+    100016: Lamp 1
+    100018: Lamp 10
+    100020: Lamp 11
+    100022: Lamp 12
+    100024: Lamp 13
+    100026: Lamp 14
+    100028: Lamp 15
+    100030: Lamp 16
+    100032: Lamp 17
+    100034: Lamp 18
+    100036: Lamp 19
+    100038: Lamp 2
+    100040: Lamp 20
+    100042: Lamp 21
+    100044: Lamp 22
+    100046: Lamp 23
+    100048: Lamp 24
+    100050: Lamp 25
+    100052: Lamp 26
+    100054: Lamp 27
+    100056: Lamp 28
+    100058: Lamp 29
+    100060: Lamp 3
+    100062: Lamp 30
+    100064: Lamp 31
+    100066: Lamp 4
+    100068: Lamp 5
+    100070: Lamp 6
+    100072: Lamp 7
+    100074: Lamp 8
+    100076: Lamp 9
+    100078: Lamp Rack
+    100080: Lamp Rack 1
+    100082: Middle Aircraft Elevator#1
+    100084: Rack
+    100086: Rack 1
+    100088: Radar
+    100090: Radar 2
+    100092: Radar 2 1
+    100094: Radar 3
+    100096: Stern Aircraft Elevator
+    400000: All lamps
+    400002: All lamps 1
+    400004: CV-19 USS Hancock Flight deck
+    400006: //RootNode
+    400008: Forward Aircraft Elevator
+    400010: Hull
+    400012: Island Superstructure
+    400014: Lamp
+    400016: Lamp 1
+    400018: Lamp 10
+    400020: Lamp 11
+    400022: Lamp 12
+    400024: Lamp 13
+    400026: Lamp 14
+    400028: Lamp 15
+    400030: Lamp 16
+    400032: Lamp 17
+    400034: Lamp 18
+    400036: Lamp 19
+    400038: Lamp 2
+    400040: Lamp 20
+    400042: Lamp 21
+    400044: Lamp 22
+    400046: Lamp 23
+    400048: Lamp 24
+    400050: Lamp 25
+    400052: Lamp 26
+    400054: Lamp 27
+    400056: Lamp 28
+    400058: Lamp 29
+    400060: Lamp 3
+    400062: Lamp 30
+    400064: Lamp 31
+    400066: Lamp 4
+    400068: Lamp 5
+    400070: Lamp 6
+    400072: Lamp 7
+    400074: Lamp 8
+    400076: Lamp 9
+    400078: Lamp Rack
+    400080: Lamp Rack 1
+    400082: Middle Aircraft Elevator#1
+    400084: Rack
+    400086: Rack 1
+    400088: Radar
+    400090: Radar 2
+    400092: Radar 2 1
+    400094: Radar 3
+    400096: Stern Aircraft Elevator
+    2300000: CV-19 USS Hancock Flight deck
+    2300002: Forward Aircraft Elevator
+    2300004: Hull
+    2300006: Island Superstructure
+    2300008: Lamp
+    2300010: Lamp 1
+    2300012: Lamp 10
+    2300014: Lamp 11
+    2300016: Lamp 12
+    2300018: Lamp 13
+    2300020: Lamp 14
+    2300022: Lamp 15
+    2300024: Lamp 16
+    2300026: Lamp 17
+    2300028: Lamp 18
+    2300030: Lamp 19
+    2300032: Lamp 2
+    2300034: Lamp 20
+    2300036: Lamp 21
+    2300038: Lamp 22
+    2300040: Lamp 23
+    2300042: Lamp 24
+    2300044: Lamp 25
+    2300046: Lamp 26
+    2300048: Lamp 27
+    2300050: Lamp 28
+    2300052: Lamp 29
+    2300054: Lamp 3
+    2300056: Lamp 30
+    2300058: Lamp 31
+    2300060: Lamp 4
+    2300062: Lamp 5
+    2300064: Lamp 6
+    2300066: Lamp 7
+    2300068: Lamp 8
+    2300070: Lamp 9
+    2300072: Middle Aircraft Elevator#1
+    2300074: Rack
+    2300076: Rack 1
+    2300078: Radar
+    2300080: Radar 2
+    2300082: Radar 2 1
+    2300084: Radar 3
+    2300086: Stern Aircraft Elevator
+    3300000: CV-19 USS Hancock Flight deck
+    3300002: Forward Aircraft Elevator
+    3300004: Hull
+    3300006: Island Superstructure
+    3300008: Lamp
+    3300010: Lamp 1
+    3300012: Lamp 10
+    3300014: Lamp 11
+    3300016: Lamp 12
+    3300018: Lamp 13
+    3300020: Lamp 14
+    3300022: Lamp 15
+    3300024: Lamp 16
+    3300026: Lamp 17
+    3300028: Lamp 18
+    3300030: Lamp 19
+    3300032: Lamp 2
+    3300034: Lamp 20
+    3300036: Lamp 21
+    3300038: Lamp 22
+    3300040: Lamp 23
+    3300042: Lamp 24
+    3300044: Lamp 25
+    3300046: Lamp 26
+    3300048: Lamp 27
+    3300050: Lamp 28
+    3300052: Lamp 29
+    3300054: Lamp 3
+    3300056: Lamp 30
+    3300058: Lamp 31
+    3300060: Lamp 4
+    3300062: Lamp 5
+    3300064: Lamp 6
+    3300066: Lamp 7
+    3300068: Lamp 8
+    3300070: Lamp 9
+    3300072: Middle Aircraft Elevator#1
+    3300074: Rack
+    3300076: Rack 1
+    3300078: Radar
+    3300080: Radar 2
+    3300082: Radar 2 1
+    3300084: Radar 3
+    3300086: Stern Aircraft Elevator
+    4300000: Mesh Island Superstructure
+    4300002: Mesh Radar 3
+    4300004: Mesh Radar 2
+    4300006: Mesh Lamp
+    4300008: Mesh Rack
+    4300010: Mesh Radar
+    4300012: Mesh Hull
+    4300014: Mesh CV-19 USS Hancock Flight deck
+    4300016: Mesh Forward Aircraft Elevator
+    4300018: Mesh Middle Aircraft Elevator#1
+    4300020: Mesh Stern Aircraft Elevator
+  materials:
+    importMaterials: 1
+    materialName: 2
+    materialSearch: 0
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleRotations: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 0.0254
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 0
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

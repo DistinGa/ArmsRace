@@ -61,11 +61,11 @@ class SteamManager : MonoBehaviour {
             // remove steam_appid.txt from the game depot. eg: "(AppId_t)480" or "new AppId_t(480)".
             // See the Valve documentation for more information: https://partner.steamgames.com/documentation/drm#FAQ
 
-            //if (SteamAPI.RestartAppIfNecessary((AppId_t)AppID))
-            //{
-            //    Application.Quit();
-            //    return;
-            //}
+            if (SteamAPI.RestartAppIfNecessary((AppId_t)AppID))
+            {
+                Application.Quit();
+                return;
+            }
         }
 		catch (System.DllNotFoundException e) { // We catch this exception here, as it will be the first occurence of it.
 			Debug.LogError("[Steamworks.NET] Could not load [lib]steam_api.dll/so/dylib. It's likely not in the correct location. Refer to the README for more details.\n" + e, this);

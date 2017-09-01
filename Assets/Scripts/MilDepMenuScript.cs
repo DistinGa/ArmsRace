@@ -53,7 +53,7 @@ public class MilDepMenuScript : MonoBehaviour
         transform.Find("Panel/Raw1/ToggleGroup/Toggle0").GetComponent<Toggle>().isOn = true;
         transform.Find("Panel/Raw2/ToggleGroup/Toggle0").GetComponent<Toggle>().isOn = true;
         transform.Find("Panel/Raw3/ToggleGroup/Toggle0").GetComponent<Toggle>().isOn = true;
-        if (SettingsScript.Settings)
+        if (SettingsScript.Settings.ArmageddonAvailable)
         {
             transform.Find("Panel/Raw4/ToggleGroup/Toggle0").GetComponent<Toggle>().isOn = true;
         }
@@ -69,7 +69,7 @@ public class MilDepMenuScript : MonoBehaviour
         PaintTechButtons(OutlayField.air);
         PaintTechButtons(OutlayField.ground);
         PaintTechButtons(OutlayField.sea);
-        if (SettingsScript.Settings)
+        if (SettingsScript.Settings.ArmageddonAvailable)
             PaintTechButtons(OutlayField.rocket);
     }
 

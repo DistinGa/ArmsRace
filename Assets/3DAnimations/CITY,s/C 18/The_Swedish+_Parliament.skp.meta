@@ -1,0 +1,153 @@
+fileFormatVersion: 2
+guid: 4c94f593ba0e9bd4bab6c9f484c40e8b
+timeCreated: 1482638332
+licenseType: Free
+SketchUpImporter:
+  generateBackFace: 0
+  mergeCoplanarFaces: 0
+  selectedNodes: 00000000010000000200000005000000060000000700000008000000
+  assetHash:
+    serializedVersion: 2
+    Hash: 5faf40df0c1be08cfe4e0c20e1e6d2d6
+  longitude: 18.06805678892107
+  latitude: 59.32755055974677
+  northCorrection: -0
+  fileUnit: 0
+  sketchUpImportData:
+    defaultCamera:
+      position: {x: -17.393826, y: 116.95162, z: -141.20369}
+      lookAt: {x: 7.9965034, y: -54.79596, z: 77.14232}
+      up: {x: 0.07111483, y: 0.7879977, z: 0.61155725}
+      fov: 35
+      aspectRatio: 0
+      orthoSize: 1
+      isPerspective: 1
+    scenes:
+    - camera:
+        position: {x: -17.393826, y: 116.95162, z: -141.20369}
+        lookAt: {x: 7.9965034, y: -54.79596, z: 77.14232}
+        up: {x: 0.07111483, y: 0.7879977, z: 0.61155725}
+        fov: 35
+        aspectRatio: 0
+        orthoSize: 1
+        isPerspective: 1
+      name: '#1'
+    - camera:
+        position: {x: 143.93393, y: 46.684334, z: -41.173706}
+        lookAt: {x: -108.07798, y: -30.669222, z: 50.058395}
+        up: {x: -0.26073632, y: 0.96078455, z: 0.09439047}
+        fov: 35
+        aspectRatio: 0
+        orthoSize: 1
+        isPerspective: 1
+      name: '#2'
+    - camera:
+        position: {x: 76.101295, y: 55.941143, z: 47.71075}
+        lookAt: {x: -109.53972, y: -91.52811, z: -99.28283}
+        up: {x: -0.41445214, y: 0.8488427, z: -0.32816997}
+        fov: 35
+        aspectRatio: 0
+        orthoSize: 1
+        isPerspective: 1
+      name: '#3'
+    - camera:
+        position: {x: -182.88205, y: 31.728624, z: 67.07626}
+        lookAt: {x: 79.87748, y: -10.814197, z: -16.376831}
+        up: {x: 0.14535202, y: 0.9883024, z: -0.046164177}
+        fov: 35
+        aspectRatio: 0
+        orthoSize: 1
+        isPerspective: 1
+      name: '#4'
+    - camera:
+        position: {x: -105.77631, y: 35.874775, z: -7.322934}
+        lookAt: {x: 133.48555, y: -85.44375, z: -83.824234}
+        up: {x: 0.41424146, y: 0.90047836, z: -0.13244906}
+        fov: 35
+        aspectRatio: 0
+        orthoSize: 1
+        isPerspective: 1
+      name: '#5'
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: Google Earth Terrain
+    100002: Group 5
+    100004: Group 7
+    100006: //RootNode
+    400000: Google Earth Terrain
+    400002: Group 5
+    400004: Group 7
+    400006: //RootNode
+    2300000: Google Earth Terrain
+    2300002: Group 5
+    2300004: Group 7
+    3300000: Google Earth Terrain
+    3300002: Group 5
+    3300004: Group 7
+    4300000: Mesh Google Earth Terrain
+    4300002: Mesh Group 5
+    4300004: Mesh Group 7
+  materials:
+    importMaterials: 1
+    materialName: 2
+    materialSearch: 0
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 0.0254
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 0
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

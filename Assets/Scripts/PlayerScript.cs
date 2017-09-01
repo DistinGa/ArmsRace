@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+using video3D;
 
 public class PlayerScript : MonoBehaviour
 {
@@ -631,10 +632,63 @@ public class UniOutlay
         PlayerScript player = GameManagerScript.GM.GetPlayerByAuthority(authority);
 
         int curTech = player.GetCurMilTech(field);      //изучаемая в данный момент технология
-        int tCount = player.MilAirTechStatus.Length;    //костыль, чтобы не плодить константу
+        int tCount = player.MilAirTechStatus.Length;    //костыль, вместо константы
 
         if (curTech > 0)
         {
+            //3D news
+            string AudioFile = "";
+            string NewsText = "";
+            switch (field)
+            {
+                case OutlayField.air:
+                    if (curTech == 5 || curTech == 10)
+                        AudioFile = "NewsSounds/" + "heli";
+                    else
+                        AudioFile = "NewsSounds/" + "jet";
+
+                    if (authority == Authority.Soviet)
+                        NewsText = "New superior military unit is designed and produced in Soviet Union";
+                    else
+                        NewsText = "New superior military unit is designed and produced in US";
+
+                    break;
+                case OutlayField.ground:
+                    AudioFile = "NewsSounds/" + "mashine";
+
+                    if (authority == Authority.Soviet)
+                        NewsText = "New superior military unit is designed and produced in Soviet Union";
+                    else
+                        NewsText = "New superior military unit is designed and produced in US";
+
+                    break;
+                case OutlayField.sea:
+                    if (curTech == 1 || curTech == 3 || curTech == 5 || curTech == 7 || curTech == 8 || curTech == 10)
+                        AudioFile = "NewsSounds/" + "ship";
+                    else
+                        AudioFile = "NewsSounds/" + "sub";
+
+                    if (authority == Authority.Soviet)
+                        NewsText = "New superior military unit is designed and produced in Soviet Union";
+                    else
+                        NewsText = "New superior military unit is designed and produced in US";
+
+                    break;
+                case OutlayField.rocket:
+                    if (authority == Authority.Amer)
+                        NewsText = "US conducts successful test of new nuclear weapon.";
+                    else
+                        NewsText = "Soviet Union conducts successful test of new nuclear weapon.";
+                    break;
+                default:
+                    break;
+            }
+
+            if(field == OutlayField.air || field == OutlayField.ground || field == OutlayField.sea)
+                Video3D.V3Dinstance.AddTechNews((authority == Authority.Amer? NonCitysAnim.MilitaryUSA: NonCitysAnim.MilitaryUSSR), -1, GameManagerScript.GM.CurrentMonth, player.MyCountry, NewsText, AudioFile, true);
+            if(field == OutlayField.rocket)
+                Video3D.V3Dinstance.AddTechNews((authority == Authority.Amer ? NonCitysAnim.NukeUSA : NonCitysAnim.NukeUSSR), -1, GameManagerScript.GM.CurrentMonth, player.MyCountry, NewsText, AudioFile, true);
+
             budget -= cost;
             player.SetMilTechStatus(field, curTech);
             //если не последняя технология, берём стоимость следующей

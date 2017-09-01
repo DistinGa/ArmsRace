@@ -1,0 +1,255 @@
+fileFormatVersion: 2
+guid: 23d558aa7facb8344a5de16422fb5517
+timeCreated: 1484425623
+licenseType: Free
+SketchUpImporter:
+  generateBackFace: 0
+  mergeCoplanarFaces: 0
+  selectedNodes: 00000000010000000400000005000000060000000700000008000000090000000a0000000b0000000c0000000d0000000e0000000f000000100000001100000012000000130000001400000015000000160000001700000018000000190000001a0000001b0000001c0000001d0000001e0000001f000000200000002100000022000000230000002400000025000000260000002700000028000000290000002a0000002b0000002c0000002d0000002e0000002f000000300000003100000032000000330000003400000035000000360000003700000038000000390000003a0000003b0000003c0000003d0000003e0000003f000000400000004100000042000000430000004400000045000000460000004700000048000000490000004a0000004b0000004c0000004d0000004e0000004f0000005000000051000000
+  assetHash:
+    serializedVersion: 2
+    Hash: febd5384dff677cbc1d2a5f2c7261f0f
+  longitude: -118.14341577539595
+  latitude: 34.147603325186616
+  northCorrection: 359.3579733055016
+  fileUnit: 0
+  sketchUpImportData:
+    defaultCamera:
+      position: {x: 110.96902, y: 38.62344, z: -86.81289}
+      lookAt: {x: -8.217337, y: 10.8738575, z: 3.1215668}
+      up: {x: -0.41916066, y: 0.8603394, z: -0.29003534}
+      fov: 35
+      aspectRatio: 0
+      orthoSize: 1
+      isPerspective: 1
+    scenes: []
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: Google Earth Snapshot
+    100002: //RootNode
+    100004: skeE8BB
+    100006: skeE8BB 1
+    100008: skeE8BB 10
+    100010: skeE8BB 11
+    100012: skeE8BB 12
+    100014: skeE8BB 13
+    100016: skeE8BB 14
+    100018: skeE8BB 15
+    100020: skeE8BB 16
+    100022: skeE8BB 17
+    100024: skeE8BB 18
+    100026: skeE8BB 19
+    100028: skeE8BB 2
+    100030: skeE8BB 20
+    100032: skeE8BB 21
+    100034: skeE8BB 22
+    100036: skeE8BB 23
+    100038: skeE8BB 24
+    100040: skeE8BB 25
+    100042: skeE8BB 26
+    100044: skeE8BB 27
+    100046: skeE8BB 28
+    100048: skeE8BB 29
+    100050: skeE8BB 3
+    100052: skeE8BB 30
+    100054: skeE8BB 31
+    100056: skeE8BB 32
+    100058: skeE8BB 33
+    100060: skeE8BB 34
+    100062: skeE8BB 35
+    100064: skeE8BB 4
+    100066: skeE8BB 5
+    100068: skeE8BB 6
+    100070: skeE8BB 7
+    100072: skeE8BB 8
+    100074: skeE8BB 9
+    100076: United States flag on pole
+    100078: United States flag on pole 1
+    400000: Google Earth Snapshot
+    400002: //RootNode
+    400004: skeE8BB
+    400006: skeE8BB 1
+    400008: skeE8BB 10
+    400010: skeE8BB 11
+    400012: skeE8BB 12
+    400014: skeE8BB 13
+    400016: skeE8BB 14
+    400018: skeE8BB 15
+    400020: skeE8BB 16
+    400022: skeE8BB 17
+    400024: skeE8BB 18
+    400026: skeE8BB 19
+    400028: skeE8BB 2
+    400030: skeE8BB 20
+    400032: skeE8BB 21
+    400034: skeE8BB 22
+    400036: skeE8BB 23
+    400038: skeE8BB 24
+    400040: skeE8BB 25
+    400042: skeE8BB 26
+    400044: skeE8BB 27
+    400046: skeE8BB 28
+    400048: skeE8BB 29
+    400050: skeE8BB 3
+    400052: skeE8BB 30
+    400054: skeE8BB 31
+    400056: skeE8BB 32
+    400058: skeE8BB 33
+    400060: skeE8BB 34
+    400062: skeE8BB 35
+    400064: skeE8BB 4
+    400066: skeE8BB 5
+    400068: skeE8BB 6
+    400070: skeE8BB 7
+    400072: skeE8BB 8
+    400074: skeE8BB 9
+    400076: United States flag on pole
+    400078: United States flag on pole 1
+    2300000: Google Earth Snapshot
+    2300002: //RootNode
+    2300004: skeE8BB
+    2300006: skeE8BB 1
+    2300008: skeE8BB 10
+    2300010: skeE8BB 11
+    2300012: skeE8BB 12
+    2300014: skeE8BB 13
+    2300016: skeE8BB 14
+    2300018: skeE8BB 15
+    2300020: skeE8BB 16
+    2300022: skeE8BB 17
+    2300024: skeE8BB 18
+    2300026: skeE8BB 19
+    2300028: skeE8BB 2
+    2300030: skeE8BB 20
+    2300032: skeE8BB 21
+    2300034: skeE8BB 22
+    2300036: skeE8BB 23
+    2300038: skeE8BB 24
+    2300040: skeE8BB 25
+    2300042: skeE8BB 26
+    2300044: skeE8BB 27
+    2300046: skeE8BB 28
+    2300048: skeE8BB 29
+    2300050: skeE8BB 3
+    2300052: skeE8BB 30
+    2300054: skeE8BB 31
+    2300056: skeE8BB 32
+    2300058: skeE8BB 33
+    2300060: skeE8BB 34
+    2300062: skeE8BB 35
+    2300064: skeE8BB 4
+    2300066: skeE8BB 5
+    2300068: skeE8BB 6
+    2300070: skeE8BB 7
+    2300072: skeE8BB 8
+    2300074: skeE8BB 9
+    2300076: United States flag on pole
+    2300078: United States flag on pole 1
+    3300000: Google Earth Snapshot
+    3300002: //RootNode
+    3300004: skeE8BB
+    3300006: skeE8BB 1
+    3300008: skeE8BB 10
+    3300010: skeE8BB 11
+    3300012: skeE8BB 12
+    3300014: skeE8BB 13
+    3300016: skeE8BB 14
+    3300018: skeE8BB 15
+    3300020: skeE8BB 16
+    3300022: skeE8BB 17
+    3300024: skeE8BB 18
+    3300026: skeE8BB 19
+    3300028: skeE8BB 2
+    3300030: skeE8BB 20
+    3300032: skeE8BB 21
+    3300034: skeE8BB 22
+    3300036: skeE8BB 23
+    3300038: skeE8BB 24
+    3300040: skeE8BB 25
+    3300042: skeE8BB 26
+    3300044: skeE8BB 27
+    3300046: skeE8BB 28
+    3300048: skeE8BB 29
+    3300050: skeE8BB 3
+    3300052: skeE8BB 30
+    3300054: skeE8BB 31
+    3300056: skeE8BB 32
+    3300058: skeE8BB 33
+    3300060: skeE8BB 34
+    3300062: skeE8BB 35
+    3300064: skeE8BB 4
+    3300066: skeE8BB 5
+    3300068: skeE8BB 6
+    3300070: skeE8BB 7
+    3300072: skeE8BB 8
+    3300074: skeE8BB 9
+    3300076: United States flag on pole
+    3300078: United States flag on pole 1
+    4300000: Mesh hob
+    4300002: Mesh Google Earth Snapshot
+    4300004: Mesh skeE8BB
+    4300006: Mesh United States flag on pole
+  materials:
+    importMaterials: 1
+    materialName: 2
+    materialSearch: 0
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 0.0254
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 0
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

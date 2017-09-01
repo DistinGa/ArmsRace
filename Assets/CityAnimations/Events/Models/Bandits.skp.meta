@@ -1,0 +1,397 @@
+fileFormatVersion: 2
+guid: 179270a55ea84c540a103c0c0f554a78
+timeCreated: 1494103036
+licenseType: Free
+SketchUpImporter:
+  generateBackFace: 0
+  mergeCoplanarFaces: 0
+  selectedNodes: 000000000100000002000000030000000400000005000000060000000700000008000000090000000a0000000b0000000c0000000d0000000e0000000f000000100000001100000012000000130000001400000015000000160000001700000018000000190000001a0000001b0000001c0000001d0000001e0000001f000000200000002100000022000000230000002400000025000000260000002700000028000000290000002a0000002b0000002c0000002d0000002e0000002f000000300000003100000032000000330000003400000035000000360000003700000038000000390000003a0000003b0000003c0000003d0000003e0000003f000000400000004100000042000000430000004400000045000000460000004700000048000000490000004a0000004b0000004c0000004d0000004e0000004f000000500000005100000052000000530000005400000055000000560000005700000058000000590000005a0000005b0000005c0000005d0000005e0000005f000000600000006100000062000000630000006400000065000000660000006700000068000000690000006a0000006b0000006c0000006d0000006e0000006f000000700000007100000072000000730000007400000075000000760000007700000078000000790000007a0000007b0000007c0000007d0000007e0000007f00000080000000
+  assetHash:
+    serializedVersion: 2
+    Hash: d4612e57e85fab47d92e1fcef150dd22
+  longitude: 2.333
+  latitude: 48.867
+  northCorrection: -0
+  fileUnit: 0
+  sketchUpImportData:
+    defaultCamera:
+      position: {x: 14.075708, y: 3.4884188, z: -16.521208}
+      lookAt: {x: 3.8671093, y: -0.08825722, z: -1.2095431}
+      up: {x: -0.10583448, y: 0.9816318, z: 0.15873893}
+      fov: 35
+      aspectRatio: 0
+      orthoSize: 1
+      isPerspective: 1
+    scenes: []
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: Component
+    100004: Component 1
+    100006: Component 2
+    100008: Component1
+    100010: Component1 1
+    100012: Component1 2
+    100014: Component1 3
+    100016: Component1 4
+    100018: Component1 5
+    100020: Component10
+    100022: Component11
+    100024: Component12
+    100026: Component13
+    100028: Component14
+    100030: Component15
+    100032: Component16
+    100034: Component17
+    100036: Component18
+    100038: Component19
+    100040: Component2
+    100042: Component2 1
+    100044: Component2 2
+    100046: Component2 3
+    100048: Component2 4
+    100050: Component2 5
+    100052: Component20
+    100054: Component21
+    100056: Component22
+    100058: Component23
+    100060: Component24
+    100062: Component24 1
+    100064: Component24 1_MeshPart0
+    100066: Component24 1_MeshPart1
+    100068: Component24 2
+    100070: Component24 2_MeshPart0
+    100072: Component24 2_MeshPart1
+    100074: Component24_MeshPart0
+    100076: Component24_MeshPart1
+    100078: Component25
+    100080: Component25 1
+    100082: Component25 2
+    100084: Component26
+    100086: Component26 1
+    100088: Component26 2
+    100090: Component27
+    100092: Component28
+    100094: Component29
+    100096: Component29 1
+    100098: Component3
+    100100: Component3 1
+    100102: Component3 2
+    100104: Component3 3
+    100106: Component3 4
+    100108: Component3 5
+    100110: Component30
+    100112: Component30 1
+    100114: Component31
+    100116: Component31 1
+    100118: Component31 2
+    100120: Component4
+    100122: Component5
+    100124: Component5 1
+    100126: Component5 2
+    100128: Component5 3
+    100130: Component6
+    100132: Component6 1
+    100134: Component7
+    100136: Component7 1
+    100138: Component7 2
+    100140: Component8
+    100142: Component9
+    100144: skp5649
+    400000: //RootNode
+    400002: Component
+    400004: Component 1
+    400006: Component 2
+    400008: Component1
+    400010: Component1 1
+    400012: Component1 2
+    400014: Component1 3
+    400016: Component1 4
+    400018: Component1 5
+    400020: Component10
+    400022: Component11
+    400024: Component12
+    400026: Component13
+    400028: Component14
+    400030: Component15
+    400032: Component16
+    400034: Component17
+    400036: Component18
+    400038: Component19
+    400040: Component2
+    400042: Component2 1
+    400044: Component2 2
+    400046: Component2 3
+    400048: Component2 4
+    400050: Component2 5
+    400052: Component20
+    400054: Component21
+    400056: Component22
+    400058: Component23
+    400060: Component24
+    400062: Component24 1
+    400064: Component24 1_MeshPart0
+    400066: Component24 1_MeshPart1
+    400068: Component24 2
+    400070: Component24 2_MeshPart0
+    400072: Component24 2_MeshPart1
+    400074: Component24_MeshPart0
+    400076: Component24_MeshPart1
+    400078: Component25
+    400080: Component25 1
+    400082: Component25 2
+    400084: Component26
+    400086: Component26 1
+    400088: Component26 2
+    400090: Component27
+    400092: Component28
+    400094: Component29
+    400096: Component29 1
+    400098: Component3
+    400100: Component3 1
+    400102: Component3 2
+    400104: Component3 3
+    400106: Component3 4
+    400108: Component3 5
+    400110: Component30
+    400112: Component30 1
+    400114: Component31
+    400116: Component31 1
+    400118: Component31 2
+    400120: Component4
+    400122: Component5
+    400124: Component5 1
+    400126: Component5 2
+    400128: Component5 3
+    400130: Component6
+    400132: Component6 1
+    400134: Component7
+    400136: Component7 1
+    400138: Component7 2
+    400140: Component8
+    400142: Component9
+    400144: skp5649
+    2300000: Component
+    2300002: Component 1
+    2300004: Component 2
+    2300006: Component1
+    2300008: Component1 1
+    2300010: Component1 2
+    2300012: Component1 3
+    2300014: Component1 4
+    2300016: Component1 5
+    2300018: Component11
+    2300020: Component12
+    2300022: Component13
+    2300024: Component14
+    2300026: Component15
+    2300028: Component16
+    2300030: Component17
+    2300032: Component19
+    2300034: Component2
+    2300036: Component2 1
+    2300038: Component2 2
+    2300040: Component2 3
+    2300042: Component2 4
+    2300044: Component2 5
+    2300046: Component20
+    2300048: Component21
+    2300050: Component22
+    2300052: Component23
+    2300054: Component24 1_MeshPart0
+    2300056: Component24 1_MeshPart1
+    2300058: Component24 2_MeshPart0
+    2300060: Component24 2_MeshPart1
+    2300062: Component24_MeshPart0
+    2300064: Component24_MeshPart1
+    2300066: Component25
+    2300068: Component25 1
+    2300070: Component25 2
+    2300072: Component26
+    2300074: Component26 1
+    2300076: Component26 2
+    2300078: Component27
+    2300080: Component28
+    2300082: Component29
+    2300084: Component29 1
+    2300086: Component3
+    2300088: Component3 1
+    2300090: Component3 2
+    2300092: Component3 3
+    2300094: Component3 4
+    2300096: Component3 5
+    2300098: Component30
+    2300100: Component30 1
+    2300102: Component31
+    2300104: Component31 1
+    2300106: Component31 2
+    2300108: Component4
+    2300110: Component5
+    2300112: Component5 1
+    2300114: Component5 2
+    2300116: Component5 3
+    2300118: Component6
+    2300120: Component6 1
+    2300122: Component7
+    2300124: Component7 1
+    2300126: Component7 2
+    2300128: skp5649
+    3300000: Component
+    3300002: Component 1
+    3300004: Component 2
+    3300006: Component1
+    3300008: Component1 1
+    3300010: Component1 2
+    3300012: Component1 3
+    3300014: Component1 4
+    3300016: Component1 5
+    3300018: Component11
+    3300020: Component12
+    3300022: Component13
+    3300024: Component14
+    3300026: Component15
+    3300028: Component16
+    3300030: Component17
+    3300032: Component19
+    3300034: Component2
+    3300036: Component2 1
+    3300038: Component2 2
+    3300040: Component2 3
+    3300042: Component2 4
+    3300044: Component2 5
+    3300046: Component20
+    3300048: Component21
+    3300050: Component22
+    3300052: Component23
+    3300054: Component24 1_MeshPart0
+    3300056: Component24 1_MeshPart1
+    3300058: Component24 2_MeshPart0
+    3300060: Component24 2_MeshPart1
+    3300062: Component24_MeshPart0
+    3300064: Component24_MeshPart1
+    3300066: Component25
+    3300068: Component25 1
+    3300070: Component25 2
+    3300072: Component26
+    3300074: Component26 1
+    3300076: Component26 2
+    3300078: Component27
+    3300080: Component28
+    3300082: Component29
+    3300084: Component29 1
+    3300086: Component3
+    3300088: Component3 1
+    3300090: Component3 2
+    3300092: Component3 3
+    3300094: Component3 4
+    3300096: Component3 5
+    3300098: Component30
+    3300100: Component30 1
+    3300102: Component31
+    3300104: Component31 1
+    3300106: Component31 2
+    3300108: Component4
+    3300110: Component5
+    3300112: Component5 1
+    3300114: Component5 2
+    3300116: Component5 3
+    3300118: Component6
+    3300120: Component6 1
+    3300122: Component7
+    3300124: Component7 1
+    3300126: Component7 2
+    3300128: skp5649
+    4300000: Mesh skp5649
+    4300002: Mesh Component
+    4300004: Mesh Component1
+    4300006: Mesh Component2
+    4300008: Mesh Component3
+    4300010: Mesh Component4
+    4300012: Mesh Component5
+    4300014: Mesh Component6
+    4300016: Mesh Component7
+    4300018: Mesh Component11
+    4300020: Mesh Component12
+    4300022: Mesh Component13
+    4300024: Mesh Component14
+    4300026: Mesh Component15
+    4300028: Mesh Component16
+    4300030: Mesh Component17
+    4300032: Mesh Component19
+    4300034: Mesh Component20
+    4300036: Mesh Component21
+    4300038: Mesh Component22
+    4300040: Mesh Component23
+    4300042: Mesh Component24_MeshPart0
+    4300044: Mesh Component24_MeshPart1
+    4300046: Mesh Component25
+    4300048: Mesh Component26
+    4300050: Mesh Component27
+    4300052: Mesh Component28
+    4300054: Mesh Component29
+    4300056: Mesh Component30
+    4300058: Mesh Component31
+  materials:
+    importMaterials: 1
+    materialName: 2
+    materialSearch: 0
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleRotations: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 0.0254
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 0
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

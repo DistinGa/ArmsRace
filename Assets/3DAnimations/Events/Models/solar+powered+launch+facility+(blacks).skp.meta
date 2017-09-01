@@ -1,0 +1,116 @@
+fileFormatVersion: 2
+guid: ad8739c6e64dc944189b7256a002a0bd
+timeCreated: 1488775023
+licenseType: Free
+SketchUpImporter:
+  generateBackFace: 0
+  mergeCoplanarFaces: 0
+  selectedNodes: 00000000010000000200000003000000040000000500000006000000070000000800000009000000
+  assetHash:
+    serializedVersion: 2
+    Hash: 5fc8f62135a31e5b9f7165c5473c7dd1
+  longitude: -105.283
+  latitude: 40.017
+  northCorrection: -0
+  fileUnit: 0
+  sketchUpImportData:
+    defaultCamera:
+      position: {x: -1222.8887, y: 1350.6979, z: -286.4475}
+      lookAt: {x: -118.71993, y: 291.83047, z: 55.865658}
+      up: {x: 0.6451512, y: 0.73741204, z: 0.20000906}
+      fov: 35
+      aspectRatio: 0
+      orthoSize: 1
+      isPerspective: 1
+    scenes: []
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: 2D Man Sang
+    100002: ISRE
+    100004: ISRE#1
+    100006: ROCKET ASSEMBLY
+    100008: //RootNode
+    400000: 2D Man Sang
+    400002: ISRE
+    400004: ISRE#1
+    400006: ROCKET ASSEMBLY
+    400008: //RootNode
+    2300000: 2D Man Sang
+    2300002: ISRE
+    2300004: ISRE#1
+    2300006: ROCKET ASSEMBLY
+    2300008: //RootNode
+    3300000: 2D Man Sang
+    3300002: ISRE
+    3300004: ISRE#1
+    3300006: ROCKET ASSEMBLY
+    3300008: //RootNode
+    4300000: Mesh solar+powered+launch+facility+(blacks)
+    4300002: Mesh ISRE
+    4300004: Mesh ISRE#1
+    4300006: Mesh ROCKET ASSEMBLY
+    4300008: Mesh 2D Man Sang
+  materials:
+    importMaterials: 1
+    materialName: 2
+    materialSearch: 0
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleRotations: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 0.0254
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 0
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -1,0 +1,842 @@
+fileFormatVersion: 2
+guid: 5e9d802b1a5d42d4cac22aeebad2a258
+timeCreated: 1490061682
+licenseType: Free
+SketchUpImporter:
+  generateBackFace: 0
+  mergeCoplanarFaces: 0
+  selectedNodes: 000000000100000002000000030000000400000005000000060000000700000008000000090000000a0000000b0000000c0000000d0000000e0000000f000000100000001100000012000000130000001400000015000000160000001700000018000000190000001a0000001b0000001c0000001d0000001e0000001f000000200000002100000022000000230000002400000025000000260000002700000028000000290000002a0000002b0000002c0000002d0000002e0000002f000000300000003100000032000000330000003400000035000000360000003700000038000000390000003a0000003b0000003c0000003d0000003e0000003f000000400000004100000042000000430000004400000045000000460000004700000048000000490000004a0000004b0000004c0000004d0000004e0000004f000000500000005100000052000000530000005400000055000000560000005700000058000000590000005a0000005b0000005c0000005d0000005e0000005f000000600000006100000062000000630000006400000065000000660000006700000068000000690000006a0000006b0000006c0000006d0000006e0000006f000000700000007100000072000000730000007400000075000000760000007700000078000000790000007a0000007b0000007c0000007d0000007e0000007f000000800000008100000082000000830000008400000085000000860000008700000088000000890000008a0000008b0000008c0000008d0000008e0000008f000000900000009100000092000000930000009400000095000000960000009700000098000000990000009a0000009b0000009c0000009d0000009e0000009f000000a0000000a1000000a2000000a3000000a4000000a5000000a6000000a7000000a8000000a9000000aa000000ab000000ac000000ad000000ae000000af000000b0000000b1000000b2000000b3000000b4000000b5000000b6000000b7000000b8000000b9000000ba000000bb000000bc000000bd000000be000000bf000000c0000000c1000000c2000000c3000000c4000000c5000000c6000000c7000000c8000000c9000000ca000000cb000000cc000000cd000000ce000000cf000000d0000000d1000000d2000000d3000000d4000000d5000000d6000000d7000000d8000000d9000000da000000db000000dc000000dd000000de000000df000000e0000000e1000000e2000000e3000000e4000000e5000000e6000000e7000000e8000000e9000000ea000000eb000000ec000000ed000000ee000000ef000000f0000000f1000000f2000000f3000000f4000000f5000000f6000000f7000000f8000000f9000000fa000000fb000000fc000000fd000000fe000000ff000000000100000101000002010000030100000401000005010000060100000701000008010000090100000a0100000b0100000c0100000d0100000e0100000f010000100100001101000012010000130100001401000015010000160100001701000018010000190100001a0100001b0100001c0100001d0100001e0100001f010000200100002101000022010000230100002401000025010000260100002701000028010000290100002a0100002b0100002c0100002d0100002e0100002f010000300100003101000032010000330100003401000035010000360100003701000038010000390100003a0100003b0100003c0100003d0100003e0100003f010000400100004101000042010000430100004401000045010000460100004701000048010000490100004a0100004b0100004c0100004d0100004e0100004f010000500100005101000052010000530100005401000055010000560100005701000058010000590100005a0100005b0100005c0100005d0100005e010000
+  assetHash:
+    serializedVersion: 2
+    Hash: efdd218a617081af11663fc2dde82842
+  longitude: 121.00857779193429
+  latitude: 14.521596496372814
+  northCorrection: -0
+  fileUnit: 0
+  sketchUpImportData:
+    defaultCamera:
+      position: {x: 687.13226, y: 443.52298, z: 12.774481}
+      lookAt: {x: -85.912445, y: -251.81493, z: 662.3016}
+      up: {x: -0.43424425, y: 0.8235951, z: 0.3648604}
+      fov: 35
+      aspectRatio: 0
+      orthoSize: 1
+      isPerspective: 1
+    scenes: []
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: 02AIR11-BD
+    100002: 02AIR11-BD 1
+    100004: 02AIR11-BD 2
+    100006: 02AIR11-EN
+    100008: 02AIR11-EN 1
+    100010: 02AIR11-EN 2
+    100012: 02AIR11-GE
+    100014: 02AIR11-GE 1
+    100016: 02AIR11-GE 2
+    100018: 02AIR11-GL
+    100020: 02AIR11-GL 1
+    100022: 02AIR11-GL 2
+    100024: 02AIR11-MA
+    100026: 02AIR11-MA 1
+    100028: 02AIR11-MA 2
+    100030: 02AIR11-PR
+    100032: 02AIR11-PR 1
+    100034: 02AIR11-PR 2
+    100036: 02AIR11-TI
+    100038: 02AIR11-TI 1
+    100040: 02AIR11-TI 2
+    100042: 15#1
+    100044: 30
+    100046: //RootNode
+    100048: Beech King 200
+    100050: Beech King 200 1
+    100052: Cessna  C-172 R
+    100054: Cessna  C-172 R 1
+    100056: Cessna  C-172 R 2
+    100058: Component#10
+    100060: Component#10 1
+    100062: Component#10 2
+    100064: Component#10 3
+    100066: Component#11
+    100068: Component#12
+    100070: Component#12 1
+    100072: Component#16
+    100074: Component#16 1
+    100076: Component#16 2
+    100078: Component#16 3
+    100080: Component#17
+    100082: Component#17 1
+    100084: Component#17 2
+    100086: Component#17 3
+    100088: Component#2
+    100090: Component#2 1
+    100092: Component#2 2
+    100094: Component#2 3
+    100096: Component#2 4
+    100098: Component#2 5
+    100100: Component#2 6
+    100102: Component#2 7
+    100104: Component#2 8
+    100106: Component#2 9
+    100108: Component#3
+    100110: Component#3 1
+    100112: Component#33
+    100114: Component#33 1
+    100116: Component#34
+    100118: Component#35
+    100120: Component#35 1
+    100122: Component#36
+    100124: Component#36 1
+    100126: Component#36 2
+    100128: Component#36 3
+    100130: Component#4
+    100132: Component#4 1
+    100134: Component#4 2
+    100136: Component#4 3
+    100138: Component#46
+    100140: Component#48
+    100142: Component#49
+    100144: Component#49 1
+    100146: Component#5
+    100148: Component#51
+    100150: Component#51 1
+    100152: Component#52
+    100154: Component#52 1
+    100156: Component#52 2
+    100158: Component#52 3
+    100160: Component#57
+    100162: Component#8
+    100164: Component#9
+    100166: Group 100
+    100168: Group 11
+    100170: Group 110
+    100172: Group 114
+    100174: Group 116
+    100176: Group 120
+    100178: Group 122
+    100180: Group 126
+    100182: Group 128
+    100184: Group 180
+    100186: Group 184
+    100188: Group 186
+    100190: Group 188
+    100192: Group 190
+    100194: Group 21
+    100196: Group 210
+    100198: Group 221
+    100200: Group 232
+    100202: Group 244
+    100204: Group 246
+    100206: Group 25
+    100208: Group 250
+    100210: Group 252
+    100212: Group 256
+    100214: Group 258
+    100216: Group 260
+    100218: Group 27
+    100220: Group 275
+    100222: Group 286
+    100224: Group 297
+    100226: Group 309
+    100228: Group 31
+    100230: Group 311
+    100232: Group 315
+    100234: Group 317
+    100236: Group 321
+    100238: Group 323
+    100240: Group 325
+    100242: Group 33
+    100244: Group 37
+    100246: Group 47
+    100248: Group 51
+    100250: Group 53
+    100252: Group 57
+    100254: Group 59
+    100256: Group 63
+    100258: Group 65
+    100260: Group 7
+    100262: Group 70
+    100264: Group 74
+    100266: Group 84
+    100268: Group 88
+    100270: Group 90
+    100272: Group 94
+    100274: Group 96
+    100276: Group#77
+    100278: Group#77 1
+    100280: Group#77 10
+    100282: Group#77 11
+    100284: Group#77 12
+    100286: Group#77 13
+    100288: Group#77 14
+    100290: Group#77 15
+    100292: Group#77 2
+    100294: Group#77 3
+    100296: Group#77 4
+    100298: Group#77 5
+    100300: Group#77 6
+    100302: Group#77 7
+    100304: Group#77 8
+    100306: Group#77 9
+    100308: Group#81
+    100310: Group#81 1
+    100312: Group#81 2
+    100314: Group#81 3
+    100316: Necelle#1
+    100318: Necelle#1 1
+    100320: Necelle#2
+    100322: Necelle#2 1
+    100324: Pacific Southwest Airlines (PSA) Douglas DC-4-1009
+    100326: Prop#1
+    100328: Prop#1 1
+    100330: Prop#1 10
+    100332: Prop#1 11
+    100334: Prop#1 2
+    100336: Prop#1 3
+    100338: Prop#1 4
+    100340: Prop#1 5
+    100342: Prop#1 6
+    100344: Prop#1 7
+    100346: Prop#1 8
+    100348: Prop#1 9
+    100350: Prop_#2
+    100352: Prop_#2 1
+    100354: Prop_#2 2
+    100356: Prop_#2 3
+    100358: Sang
+    100360: ske3C
+    100362: ske3C 1
+    100364: skeE687#1
+    400000: 02AIR11-BD
+    400002: 02AIR11-BD 1
+    400004: 02AIR11-BD 2
+    400006: 02AIR11-EN
+    400008: 02AIR11-EN 1
+    400010: 02AIR11-EN 2
+    400012: 02AIR11-GE
+    400014: 02AIR11-GE 1
+    400016: 02AIR11-GE 2
+    400018: 02AIR11-GL
+    400020: 02AIR11-GL 1
+    400022: 02AIR11-GL 2
+    400024: 02AIR11-MA
+    400026: 02AIR11-MA 1
+    400028: 02AIR11-MA 2
+    400030: 02AIR11-PR
+    400032: 02AIR11-PR 1
+    400034: 02AIR11-PR 2
+    400036: 02AIR11-TI
+    400038: 02AIR11-TI 1
+    400040: 02AIR11-TI 2
+    400042: 15#1
+    400044: 30
+    400046: //RootNode
+    400048: Beech King 200
+    400050: Beech King 200 1
+    400052: Cessna  C-172 R
+    400054: Cessna  C-172 R 1
+    400056: Cessna  C-172 R 2
+    400058: Component#10
+    400060: Component#10 1
+    400062: Component#10 2
+    400064: Component#10 3
+    400066: Component#11
+    400068: Component#12
+    400070: Component#12 1
+    400072: Component#16
+    400074: Component#16 1
+    400076: Component#16 2
+    400078: Component#16 3
+    400080: Component#17
+    400082: Component#17 1
+    400084: Component#17 2
+    400086: Component#17 3
+    400088: Component#2
+    400090: Component#2 1
+    400092: Component#2 2
+    400094: Component#2 3
+    400096: Component#2 4
+    400098: Component#2 5
+    400100: Component#2 6
+    400102: Component#2 7
+    400104: Component#2 8
+    400106: Component#2 9
+    400108: Component#3
+    400110: Component#3 1
+    400112: Component#33
+    400114: Component#33 1
+    400116: Component#34
+    400118: Component#35
+    400120: Component#35 1
+    400122: Component#36
+    400124: Component#36 1
+    400126: Component#36 2
+    400128: Component#36 3
+    400130: Component#4
+    400132: Component#4 1
+    400134: Component#4 2
+    400136: Component#4 3
+    400138: Component#46
+    400140: Component#48
+    400142: Component#49
+    400144: Component#49 1
+    400146: Component#5
+    400148: Component#51
+    400150: Component#51 1
+    400152: Component#52
+    400154: Component#52 1
+    400156: Component#52 2
+    400158: Component#52 3
+    400160: Component#57
+    400162: Component#8
+    400164: Component#9
+    400166: Group 100
+    400168: Group 11
+    400170: Group 110
+    400172: Group 114
+    400174: Group 116
+    400176: Group 120
+    400178: Group 122
+    400180: Group 126
+    400182: Group 128
+    400184: Group 180
+    400186: Group 184
+    400188: Group 186
+    400190: Group 188
+    400192: Group 190
+    400194: Group 21
+    400196: Group 210
+    400198: Group 221
+    400200: Group 232
+    400202: Group 244
+    400204: Group 246
+    400206: Group 25
+    400208: Group 250
+    400210: Group 252
+    400212: Group 256
+    400214: Group 258
+    400216: Group 260
+    400218: Group 27
+    400220: Group 275
+    400222: Group 286
+    400224: Group 297
+    400226: Group 309
+    400228: Group 31
+    400230: Group 311
+    400232: Group 315
+    400234: Group 317
+    400236: Group 321
+    400238: Group 323
+    400240: Group 325
+    400242: Group 33
+    400244: Group 37
+    400246: Group 47
+    400248: Group 51
+    400250: Group 53
+    400252: Group 57
+    400254: Group 59
+    400256: Group 63
+    400258: Group 65
+    400260: Group 7
+    400262: Group 70
+    400264: Group 74
+    400266: Group 84
+    400268: Group 88
+    400270: Group 90
+    400272: Group 94
+    400274: Group 96
+    400276: Group#77
+    400278: Group#77 1
+    400280: Group#77 10
+    400282: Group#77 11
+    400284: Group#77 12
+    400286: Group#77 13
+    400288: Group#77 14
+    400290: Group#77 15
+    400292: Group#77 2
+    400294: Group#77 3
+    400296: Group#77 4
+    400298: Group#77 5
+    400300: Group#77 6
+    400302: Group#77 7
+    400304: Group#77 8
+    400306: Group#77 9
+    400308: Group#81
+    400310: Group#81 1
+    400312: Group#81 2
+    400314: Group#81 3
+    400316: Necelle#1
+    400318: Necelle#1 1
+    400320: Necelle#2
+    400322: Necelle#2 1
+    400324: Pacific Southwest Airlines (PSA) Douglas DC-4-1009
+    400326: Prop#1
+    400328: Prop#1 1
+    400330: Prop#1 10
+    400332: Prop#1 11
+    400334: Prop#1 2
+    400336: Prop#1 3
+    400338: Prop#1 4
+    400340: Prop#1 5
+    400342: Prop#1 6
+    400344: Prop#1 7
+    400346: Prop#1 8
+    400348: Prop#1 9
+    400350: Prop_#2
+    400352: Prop_#2 1
+    400354: Prop_#2 2
+    400356: Prop_#2 3
+    400358: Sang
+    400360: ske3C
+    400362: ske3C 1
+    400364: skeE687#1
+    2300000: 02AIR11-BD
+    2300002: 02AIR11-BD 1
+    2300004: 02AIR11-BD 2
+    2300006: 02AIR11-EN
+    2300008: 02AIR11-EN 1
+    2300010: 02AIR11-EN 2
+    2300012: 02AIR11-GE
+    2300014: 02AIR11-GE 1
+    2300016: 02AIR11-GE 2
+    2300018: 02AIR11-GL
+    2300020: 02AIR11-GL 1
+    2300022: 02AIR11-GL 2
+    2300024: 02AIR11-MA
+    2300026: 02AIR11-MA 1
+    2300028: 02AIR11-MA 2
+    2300030: 02AIR11-PR
+    2300032: 02AIR11-PR 1
+    2300034: 02AIR11-PR 2
+    2300036: 02AIR11-TI
+    2300038: 02AIR11-TI 1
+    2300040: 02AIR11-TI 2
+    2300042: 30
+    2300044: //RootNode
+    2300046: Component#10
+    2300048: Component#10 1
+    2300050: Component#10 2
+    2300052: Component#10 3
+    2300054: Component#11
+    2300056: Component#12
+    2300058: Component#12 1
+    2300060: Component#16
+    2300062: Component#16 1
+    2300064: Component#16 2
+    2300066: Component#16 3
+    2300068: Component#17
+    2300070: Component#17 1
+    2300072: Component#17 2
+    2300074: Component#17 3
+    2300076: Component#2
+    2300078: Component#2 1
+    2300080: Component#2 2
+    2300082: Component#2 3
+    2300084: Component#2 4
+    2300086: Component#2 5
+    2300088: Component#2 6
+    2300090: Component#2 7
+    2300092: Component#2 8
+    2300094: Component#2 9
+    2300096: Component#3
+    2300098: Component#3 1
+    2300100: Component#33
+    2300102: Component#33 1
+    2300104: Component#35
+    2300106: Component#35 1
+    2300108: Component#36
+    2300110: Component#36 1
+    2300112: Component#36 2
+    2300114: Component#36 3
+    2300116: Component#4
+    2300118: Component#4 1
+    2300120: Component#4 2
+    2300122: Component#4 3
+    2300124: Component#46
+    2300126: Component#48
+    2300128: Component#49
+    2300130: Component#49 1
+    2300132: Component#51
+    2300134: Component#51 1
+    2300136: Component#52
+    2300138: Component#52 1
+    2300140: Component#52 2
+    2300142: Component#52 3
+    2300144: Component#57
+    2300146: Component#9
+    2300148: Group 100
+    2300150: Group 11
+    2300152: Group 110
+    2300154: Group 114
+    2300156: Group 116
+    2300158: Group 120
+    2300160: Group 122
+    2300162: Group 126
+    2300164: Group 128
+    2300166: Group 180
+    2300168: Group 184
+    2300170: Group 186
+    2300172: Group 188
+    2300174: Group 190
+    2300176: Group 21
+    2300178: Group 210
+    2300180: Group 221
+    2300182: Group 232
+    2300184: Group 244
+    2300186: Group 246
+    2300188: Group 25
+    2300190: Group 250
+    2300192: Group 252
+    2300194: Group 256
+    2300196: Group 258
+    2300198: Group 260
+    2300200: Group 27
+    2300202: Group 275
+    2300204: Group 286
+    2300206: Group 297
+    2300208: Group 309
+    2300210: Group 31
+    2300212: Group 311
+    2300214: Group 315
+    2300216: Group 317
+    2300218: Group 321
+    2300220: Group 323
+    2300222: Group 325
+    2300224: Group 33
+    2300226: Group 37
+    2300228: Group 47
+    2300230: Group 51
+    2300232: Group 53
+    2300234: Group 57
+    2300236: Group 59
+    2300238: Group 63
+    2300240: Group 65
+    2300242: Group 7
+    2300244: Group 70
+    2300246: Group 74
+    2300248: Group 84
+    2300250: Group 88
+    2300252: Group 90
+    2300254: Group 94
+    2300256: Group 96
+    2300258: Group#77
+    2300260: Group#77 1
+    2300262: Group#77 10
+    2300264: Group#77 11
+    2300266: Group#77 12
+    2300268: Group#77 13
+    2300270: Group#77 14
+    2300272: Group#77 15
+    2300274: Group#77 2
+    2300276: Group#77 3
+    2300278: Group#77 4
+    2300280: Group#77 5
+    2300282: Group#77 6
+    2300284: Group#77 7
+    2300286: Group#77 8
+    2300288: Group#77 9
+    2300290: Group#81
+    2300292: Group#81 1
+    2300294: Group#81 2
+    2300296: Group#81 3
+    2300298: Necelle#1
+    2300300: Necelle#1 1
+    2300302: Necelle#2
+    2300304: Necelle#2 1
+    2300306: Prop#1
+    2300308: Prop#1 1
+    2300310: Prop#1 10
+    2300312: Prop#1 11
+    2300314: Prop#1 2
+    2300316: Prop#1 3
+    2300318: Prop#1 4
+    2300320: Prop#1 5
+    2300322: Prop#1 6
+    2300324: Prop#1 7
+    2300326: Prop#1 8
+    2300328: Prop#1 9
+    2300330: Sang
+    2300332: ske3C
+    2300334: ske3C 1
+    3300000: 02AIR11-BD
+    3300002: 02AIR11-BD 1
+    3300004: 02AIR11-BD 2
+    3300006: 02AIR11-EN
+    3300008: 02AIR11-EN 1
+    3300010: 02AIR11-EN 2
+    3300012: 02AIR11-GE
+    3300014: 02AIR11-GE 1
+    3300016: 02AIR11-GE 2
+    3300018: 02AIR11-GL
+    3300020: 02AIR11-GL 1
+    3300022: 02AIR11-GL 2
+    3300024: 02AIR11-MA
+    3300026: 02AIR11-MA 1
+    3300028: 02AIR11-MA 2
+    3300030: 02AIR11-PR
+    3300032: 02AIR11-PR 1
+    3300034: 02AIR11-PR 2
+    3300036: 02AIR11-TI
+    3300038: 02AIR11-TI 1
+    3300040: 02AIR11-TI 2
+    3300042: 30
+    3300044: //RootNode
+    3300046: Component#10
+    3300048: Component#10 1
+    3300050: Component#10 2
+    3300052: Component#10 3
+    3300054: Component#11
+    3300056: Component#12
+    3300058: Component#12 1
+    3300060: Component#16
+    3300062: Component#16 1
+    3300064: Component#16 2
+    3300066: Component#16 3
+    3300068: Component#17
+    3300070: Component#17 1
+    3300072: Component#17 2
+    3300074: Component#17 3
+    3300076: Component#2
+    3300078: Component#2 1
+    3300080: Component#2 2
+    3300082: Component#2 3
+    3300084: Component#2 4
+    3300086: Component#2 5
+    3300088: Component#2 6
+    3300090: Component#2 7
+    3300092: Component#2 8
+    3300094: Component#2 9
+    3300096: Component#3
+    3300098: Component#3 1
+    3300100: Component#33
+    3300102: Component#33 1
+    3300104: Component#35
+    3300106: Component#35 1
+    3300108: Component#36
+    3300110: Component#36 1
+    3300112: Component#36 2
+    3300114: Component#36 3
+    3300116: Component#4
+    3300118: Component#4 1
+    3300120: Component#4 2
+    3300122: Component#4 3
+    3300124: Component#46
+    3300126: Component#48
+    3300128: Component#49
+    3300130: Component#49 1
+    3300132: Component#51
+    3300134: Component#51 1
+    3300136: Component#52
+    3300138: Component#52 1
+    3300140: Component#52 2
+    3300142: Component#52 3
+    3300144: Component#57
+    3300146: Component#9
+    3300148: Group 100
+    3300150: Group 11
+    3300152: Group 110
+    3300154: Group 114
+    3300156: Group 116
+    3300158: Group 120
+    3300160: Group 122
+    3300162: Group 126
+    3300164: Group 128
+    3300166: Group 180
+    3300168: Group 184
+    3300170: Group 186
+    3300172: Group 188
+    3300174: Group 190
+    3300176: Group 21
+    3300178: Group 210
+    3300180: Group 221
+    3300182: Group 232
+    3300184: Group 244
+    3300186: Group 246
+    3300188: Group 25
+    3300190: Group 250
+    3300192: Group 252
+    3300194: Group 256
+    3300196: Group 258
+    3300198: Group 260
+    3300200: Group 27
+    3300202: Group 275
+    3300204: Group 286
+    3300206: Group 297
+    3300208: Group 309
+    3300210: Group 31
+    3300212: Group 311
+    3300214: Group 315
+    3300216: Group 317
+    3300218: Group 321
+    3300220: Group 323
+    3300222: Group 325
+    3300224: Group 33
+    3300226: Group 37
+    3300228: Group 47
+    3300230: Group 51
+    3300232: Group 53
+    3300234: Group 57
+    3300236: Group 59
+    3300238: Group 63
+    3300240: Group 65
+    3300242: Group 7
+    3300244: Group 70
+    3300246: Group 74
+    3300248: Group 84
+    3300250: Group 88
+    3300252: Group 90
+    3300254: Group 94
+    3300256: Group 96
+    3300258: Group#77
+    3300260: Group#77 1
+    3300262: Group#77 10
+    3300264: Group#77 11
+    3300266: Group#77 12
+    3300268: Group#77 13
+    3300270: Group#77 14
+    3300272: Group#77 15
+    3300274: Group#77 2
+    3300276: Group#77 3
+    3300278: Group#77 4
+    3300280: Group#77 5
+    3300282: Group#77 6
+    3300284: Group#77 7
+    3300286: Group#77 8
+    3300288: Group#77 9
+    3300290: Group#81
+    3300292: Group#81 1
+    3300294: Group#81 2
+    3300296: Group#81 3
+    3300298: Necelle#1
+    3300300: Necelle#1 1
+    3300302: Necelle#2
+    3300304: Necelle#2 1
+    3300306: Prop#1
+    3300308: Prop#1 1
+    3300310: Prop#1 10
+    3300312: Prop#1 11
+    3300314: Prop#1 2
+    3300316: Prop#1 3
+    3300318: Prop#1 4
+    3300320: Prop#1 5
+    3300322: Prop#1 6
+    3300324: Prop#1 7
+    3300326: Prop#1 8
+    3300328: Prop#1 9
+    3300330: Sang
+    3300332: ske3C
+    3300334: ske3C 1
+    4300000: Mesh AutoSave_AutoSave_Airport
+    4300002: Mesh Sang
+    4300004: Mesh ske3C
+    4300006: Mesh Group 7
+    4300008: Mesh Group#81
+    4300010: Mesh Group 11
+    4300012: Mesh Group#77
+    4300014: Mesh Group 21
+    4300016: Mesh Component#2
+    4300018: Mesh Group 25
+    4300020: Mesh Group 27
+    4300022: Mesh 30
+    4300024: Mesh 02AIR11-EN
+    4300026: Mesh 02AIR11-GE
+    4300028: Mesh 02AIR11-GL
+    4300030: Mesh 02AIR11-BD
+    4300032: Mesh 02AIR11-PR
+    4300034: Mesh 02AIR11-TI
+    4300036: Mesh 02AIR11-MA
+    4300038: Mesh Group 180
+    4300040: Mesh Component#57
+    4300042: Mesh Group 184
+    4300044: Mesh Group 186
+    4300046: Mesh Group 190
+    4300048: Mesh Component#12
+    4300050: Mesh Component#33
+    4300052: Mesh Component#33
+    4300054: Mesh Component#52
+    4300056: Mesh Component#51
+    4300058: Mesh Component#49
+    4300060: Mesh Component#10
+    4300062: Mesh Group 210
+    4300064: Mesh Prop#1
+    4300066: Mesh Necelle#2
+    4300068: Mesh Group 232
+    4300070: Mesh Component#3
+    4300072: Mesh Component#16
+    4300074: Mesh Component#17
+    4300076: Mesh Component#11
+    4300078: Mesh Necelle#1
+    4300080: Mesh Group 244
+    4300082: Mesh Group 246
+    4300084: Mesh Component#4
+    4300086: Mesh Group 250
+    4300088: Mesh Component#35
+    4300090: Mesh Component#36
+    4300092: Mesh Component#46
+    4300094: Mesh Component#9
+    4300096: Mesh Component#48
+  materials:
+    importMaterials: 1
+    materialName: 2
+    materialSearch: 0
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleRotations: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 0.0254
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 0
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
