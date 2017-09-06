@@ -579,18 +579,18 @@ public class GameManagerScript : MonoBehaviour
         SoundManager.SM.PlaySound("sound/cuop");
         VQueue.AddRolex(VQueue.LocalType(Country.Authority), VideoQueue.V_PRIO_NULL, revolution ? VideoQueue.V_PUPPER_WAR : VideoQueue.V_PUPPER_PEACE, Country);
 
-        ////Steam achievments
-        ////Ачивка за дипломатическую смену власти (в любой стране)
-        //if (Country.Authority == Player.Authority && !revolution && CurrentMonth < 120) //до 1960 года
-        //    SteamManager.UnLockAchievment("Coup a country diplomatically");
+        //Steam achievments
+        //Ачивка за дипломатическую смену власти (в любой стране)
+        if (Country.Authority == Player.Authority && !revolution && CurrentMonth < 120) //до 1960 года
+            SteamManager.UnLockAchievment("Coup a country diplomatically");
 
         //Если в главной стране правительство сменилось, тогда победа нокаутом
         if (Player.MyCountry == Country || Player.OppCountry == Country)
         {
-            ////Steam achievments
-            ////Ачивка связанная с переворотом в стране противника (мирным или вооруженным)
-            //if (Player.OppCountry.Authority == Player.Authority && CurrentMonth < 504) //до 1992 года
-            //    SteamManager.UnLockAchievment("Coup your main enemy");
+            //Steam achievments
+            //Ачивка связанная с переворотом в стране противника (мирным или вооруженным)
+            if (Player.OppCountry.Authority == Player.Authority && CurrentMonth < 504) //до 1992 года
+                SteamManager.UnLockAchievment("Coup your main enemy");
 
             StopGame();
         }
@@ -716,9 +716,9 @@ public class GameManagerScript : MonoBehaviour
         {
             SceneName = "WinScreen";
 
-            ////Steam achievments
-            ////Ачивка за первую победу
-            //SteamManager.UnLockAchievment("Win the game");
+            //Steam achievments
+            //Ачивка за первую победу
+            SteamManager.UnLockAchievment("Win the game");
         }
         else
             SceneName = "LostScreen";
@@ -754,9 +754,9 @@ public class GameManagerScript : MonoBehaviour
                     if(Player.OppCountry.Authority == Player.Authority && SettingsScript.Settings.AIPower == 2)
                         {
                         SavedSettings.Mission3SU = true;
-                        ////Steam achievments
-                        ////Ачивка за выполнение вссех миссий за СССР
-                        //SteamManager.UnLockAchievment("Soviet glory");
+                        //Steam achievments
+                        //Ачивка за выполнение вссех миссий за СССР
+                        SteamManager.UnLockAchievment("Soviet glory");
                     }
                 }
             }
@@ -789,9 +789,9 @@ public class GameManagerScript : MonoBehaviour
                     if (Player.OppCountry.Authority == Player.Authority && SettingsScript.Settings.AIPower == 2)
                     {
                         SavedSettings.Mission3USA = true;
-                        ////Steam achievments
-                        ////Ачивка за выполнение вссех миссий за США
-                        //SteamManager.UnLockAchievment("American dream");
+                        //Steam achievments
+                        //Ачивка за выполнение вссех миссий за США
+                        SteamManager.UnLockAchievment("American dream");
                     }
                 }
             }

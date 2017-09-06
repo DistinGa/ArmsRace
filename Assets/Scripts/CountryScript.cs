@@ -512,20 +512,20 @@ public class CountryScript : MonoBehaviour
 
         SetAuthority(); //Смена цвета границ
 
-        ////Steam achievments
-        //GameManagerScript GM = GameManagerScript.GM;
+        //Steam achievments
+        GameManagerScript GM = GameManagerScript.GM;
 
-        //if ((Name == "East Germany" || Name == "West Germany") && GM.CurrentMonth < 480) //до 1990 года
-        //{
-        //    if(GM.FindCountryById(12).Authority == GM.Player.Authority && GM.FindCountryById(24).Authority == GM.Player.Authority)
-        //        SteamManager.UnLockAchievment("German reunification");
-        //}
+        if ((Name == "East Germany" || Name == "West Germany") && GM.CurrentMonth < 480) //до 1990 года
+        {
+            if (GM.FindCountryById(12).Authority == GM.Player.Authority && GM.FindCountryById(24).Authority == GM.Player.Authority)
+                SteamManager.UnLockAchievment("German reunification");
+        }
 
-        //if ((Name == "South Korea" || Name == "North Korea") && GM.CurrentMonth < 60) // до 1965 года
-        //{
-        //    if (GM.FindCountryById(53).Authority == GM.Player.Authority && GM.FindCountryById(54).Authority == GM.Player.Authority)
-        //        SteamManager.UnLockAchievment("Korean reunification");
-        //}
+        if ((Name == "South Korea" || Name == "North Korea") && GM.CurrentMonth < 60) // до 1965 года
+        {
+            if (GM.FindCountryById(53).Authority == GM.Player.Authority && GM.FindCountryById(54).Authority == GM.Player.Authority)
+                SteamManager.UnLockAchievment("Korean reunification");
+        }
     }
 
     //Обработка начала месяца

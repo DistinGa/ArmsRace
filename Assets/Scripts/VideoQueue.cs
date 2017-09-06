@@ -96,6 +96,8 @@ public class VideoQueue : MonoBehaviour {
 
         if (info < V_PUPPER_EVENT_START) // обычные события
         {
+            bool priorQue = false;
+
             switch (info)
             {
                 case V_PUPPER_MIL_ADDED:
@@ -111,6 +113,7 @@ public class VideoQueue : MonoBehaviour {
                     break;
 
                 case V_PUPPER_PEACE:
+                    priorQue = true;
                     if (type == V_TYPE_USA)
                         //vrr.mWavFile = "05 NewDemGov";
                         animType = CitysAnim.DemBlue;
@@ -121,6 +124,7 @@ public class VideoQueue : MonoBehaviour {
                     break;
 
                 case V_PUPPER_WAR:
+                    priorQue = true;
                     if (type == V_TYPE_USA)
                         //vrr.mWavFile = "07 NewDemGovInstalled";
                         animType = CitysAnim.DemBlue;
@@ -159,6 +163,7 @@ public class VideoQueue : MonoBehaviour {
 
                 case V_PUPPER_RIOTS:
                     //vrr.mWavFile = "15 RiotOnTheStreets"; break;
+                    priorQue = true;
                     if (type == V_TYPE_USA)
                         animType = CitysAnim.StrikeBlue;
                     else
@@ -174,7 +179,8 @@ public class VideoQueue : MonoBehaviour {
                     break;
 
             }
-            Video3D.V3Dinstance.AddNews(c.CapitalScene, c.GetAnimObject(animType), GameManagerScript.GM.CurrentMonth, c, vrr.mVideoRolexPattern.mText, AudioFile, vrr.mVideoRolexPattern.mSubtype == V_PRIO_PRESSING);
+            //Video3D.V3Dinstance.AddNews(c.CapitalScene, c.GetAnimObject(animType), GameManagerScript.GM.CurrentMonth, c, vrr.mVideoRolexPattern.mText, AudioFile, vrr.mVideoRolexPattern.mSubtype == V_PRIO_PRESSING);
+            Video3D.V3Dinstance.AddNews(c.CapitalScene, c.GetAnimObject(animType), GM.CurrentMonth, c, vrr.mVideoRolexPattern.mText, AudioFile, priorQue);
         }
         else
 
@@ -207,7 +213,7 @@ public class VideoQueue : MonoBehaviour {
                     //vrr.mWavFile = "24 DemocrMovmnt"; break;
                     animType = CitysAnim.MoveBlue; break;
             }
-            Video3D.V3Dinstance.AddNews(c.CapitalScene, c.GetAnimObject(animType), GameManagerScript.GM.CurrentMonth, c, vrr.mVideoRolexPattern.mText, AudioFile, true);
+            Video3D.V3Dinstance.AddNews(c.CapitalScene, c.GetAnimObject(animType), GM.CurrentMonth, c, vrr.mVideoRolexPattern.mText, AudioFile, true);
         }
 
         else // для космотехнологий -- сказать речь за сторону

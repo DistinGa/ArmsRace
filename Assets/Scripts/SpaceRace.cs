@@ -280,16 +280,16 @@ public class SpaceRace : MonoBehaviour
             else
                 GM.AddInfluenceInCountries(Authority.Neutral, Player.Authority, InfAmount); //Во всех нейтральных странах
 
-            ////Steam achievments
-            //if (GM.Player == Player)
-            //{
-            //if (TechInd == 19 && GM.CurrentMonth < 144) //до 1962 года
-            //    SteamManager.UnLockAchievment("Man in Space");
-            //    if (TechInd == 25 && GM.CurrentMonth < 240) //до 1970 года
-            //        SteamManager.UnLockAchievment("Land on the Moon");
-            //    if (TechInd == 39 && GM.CurrentMonth < 444) //до 1987 года
-            //        SteamManager.UnLockAchievment("Space Station");
-            //}
+            //Steam achievments
+            if (GM.Player == Player)
+            {
+                if (TechInd == 19 && GM.CurrentMonth < 144) //до 1962 года
+                    SteamManager.UnLockAchievment("Man in Space");
+                if (TechInd == 25 && GM.CurrentMonth < 240) //до 1970 года
+                    SteamManager.UnLockAchievment("Land on the Moon");
+                if (TechInd == 39 && GM.CurrentMonth < 444) //до 1987 года
+                    SteamManager.UnLockAchievment("Space Station");
+            }
 
             // показать видео
             GM.VQueue.AddRolex(VideoQueue.V_TYPE_GLOB, VideoQueue.V_PRIO_NULL,
