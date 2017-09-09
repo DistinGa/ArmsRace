@@ -24,15 +24,14 @@ public class SpeedMenuScript : MonoBehaviour
 
     void OnEnable()
     {
-        for (int i = 0; i < ToggleArray.Length - 1; i++)
-        {
+        for (int i = 0; i < ToggleArray.Length; i++)
             ToggleArray[i].isOn = false;
-        }
 
         if (GM.IsPaused)
             ToggleArray[4].isOn = true;
+        else if (GM.IsTurnBased)
+            ToggleArray[0].isOn = true;
         else
-        {
             switch (GM.CurrentSpeed)
             {
                 case 0:
@@ -45,7 +44,6 @@ public class SpeedMenuScript : MonoBehaviour
                     ToggleArray[3].isOn = true;
                     break;
             }
-        }
     }
 
     public void ChangeSpeed(int toggleIndx)
@@ -56,17 +54,21 @@ public class SpeedMenuScript : MonoBehaviour
         switch (toggleIndx)
         {
             case 0:
+                GM.IsTurnBased = true;
                 GM.SetPause(0);
                 break;
             case 1:
+                GM.IsTurnBased = false;
                 GM.SetPause(0);
                 GM.CurrentSpeed = 0;
                 break;
             case 2:
+                GM.IsTurnBased = false;
                 GM.SetPause(0);
                 GM.CurrentSpeed = 1;
                 break;
             case 3:
+                GM.IsTurnBased = false;
                 GM.SetPause(0);
                 GM.CurrentSpeed = 2;
                 break;

@@ -15,6 +15,8 @@ public class StartMenuScript : MonoBehaviour
     public Slider MusicVolume;
     public Toggle Sound;
     public Slider SoundVolume;
+    public Toggle RTS;
+    public Toggle TB;
     [Space(10)]
     public Toggle Easy;
     public Toggle Medium;
@@ -65,6 +67,9 @@ public class StartMenuScript : MonoBehaviour
         GameObject.Find("ToggleUSSR").GetComponent<Toggle>().isOn = true;
         GameObject.Find("Historic").GetComponent<Toggle>().isOn = true;
         GameObject.Find("Leader1").GetComponent<Toggle>().isOn = true;
+
+        RTS.isOn = !SettingsScript.Settings.mTurnBaseOn;
+        TB.isOn = SettingsScript.Settings.mTurnBaseOn;
 
         Music.isOn = SettingsScript.Settings.mMusicOn;
         Sound.isOn = SettingsScript.Settings.mSoundOn;

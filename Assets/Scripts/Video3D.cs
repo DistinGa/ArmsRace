@@ -33,7 +33,10 @@ namespace video3D
         [SerializeField]
         GameObject SovRocket, AmRocket;
 
-
+        public bool NewsListIsEmpty
+        {
+            get { return PriorList.Count == 0; }
+        }
 
         void Awake()
         {

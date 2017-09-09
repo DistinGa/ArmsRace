@@ -10,6 +10,7 @@ public static class SavedSettings {
     static bool voice;
     static bool mission1USA, mission2USA, mission3USA;
     static bool mission1SU, mission2SU, mission3SU;
+    static bool turnBaseEnable;
 
     public static float MusicVolume
     {
@@ -47,6 +48,26 @@ public static class SavedSettings {
         set
         {
             PlayerPrefs.SetFloat("SoundVolume", value);
+            PlayerPrefs.Save();
+        }
+    }
+
+    public static bool TurnBaseEnable
+    {
+        get
+        {
+            if (PlayerPrefs.HasKey("TurnBaseEnable"))
+                return PlayerPrefs.GetInt("TurnBaseEnable") == 1 ? true : false;
+            else
+            {
+                turnBaseEnable = false;
+                return turnBaseEnable;
+            }
+        }
+
+        set
+        {
+            PlayerPrefs.SetInt("TurnBaseEnabled", value ? 1 : 0);
             PlayerPrefs.Save();
         }
     }

@@ -38,6 +38,7 @@ public class GameManagerScript : MonoBehaviour
     float TickCount;        //время одного тика
     public bool IsPaused;  //игра на паузе
     public bool delayedStop = false;   //игра фактически закончена, но сцена пока не выгружается, например из-за анимации
+    bool turnBased;  //игра в пошаговом режиме
 
     [Space(10)]
     [Tooltip("время (сек) между итерациями")]
@@ -99,6 +100,9 @@ public class GameManagerScript : MonoBehaviour
     //Ссылка на ScriptableObject с настройками бонусов лидеров
     public SOLP LeaderPrefs;
     public GameObject CountryLabelPrefab;
+    [SerializeField]
+    RectTransform MakeTurnButton;
+
     [Space(10)]
     public Armageddon DLC_Armageddon;
 
@@ -114,6 +118,16 @@ public class GameManagerScript : MonoBehaviour
         {
             curSpeedIndex = Mathf.Clamp(value, 0, GameSpeedPrefs.Length - 1);
             Tick = GameSpeedPrefs[curSpeedIndex];
+        }
+    }
+
+    public bool IsTurnBased
+    {
+        get { return turnBased; }
+        set
+        {
+            turnBased = value;
+            MakeTurnButton.gameObject.SetActive(value);
         }
     }
 
@@ -148,6 +162,7 @@ public class GameManagerScript : MonoBehaviour
         Player.History2.Add(START_BUDGET);
         Player.History.Add(5);
 
+        IsTurnBased = SettingsScript.Settings.mTurnBaseOn;
     }
 
     void Update()
@@ -173,35 +188,43 @@ public class GameManagerScript : MonoBehaviour
 
         }
 
-        if (IsPaused || delayedStop)
+        if (turnBased)
+            MakeTurnButton.GetComponent<Button>().interactable = video3D.Video3D.V3Dinstance.NewsListIsEmpty;
+
+        if (IsPaused || delayedStop || turnBased)
             return;
 
         TickCount -= Time.deltaTime;
         if (TickCount <= 0)
         {
-            TickCount = Tick;
-
-            //Проверяем на конец игры по времени
-            if (mMonthCount > MAX_MONTHS_NUM)
-            {
-                StopGame();
-                return;
-            }
-
-            NextMonth();
-
-            // прошел год?
-            if (mMonthCount % 12 == 0 && mMonthCount > 0)
-                NewYear();
-
-            //Обновление информации в верхнем меню
-            ShowHighWinInfo();
-
-            //Проверяем конец игры по доминации
-            PlayerScript winPlayer = DLC_Armageddon.GetWinner(SettingsScript.Settings.AIPower);
-            //Обновление информации в нижнем меню
-            SnapToCountry();
+            NextTick();
         }
+    }
+
+    public void NextTick()
+    {
+        TickCount = Tick;
+
+        //Проверяем на конец игры по времени
+        if (mMonthCount > MAX_MONTHS_NUM)
+        {
+            StopGame();
+            return;
+        }
+
+        NextMonth();
+
+        // прошел год?
+        if (mMonthCount % 12 == 0 && mMonthCount > 0)
+            NewYear();
+
+        //Обновление информации в верхнем меню
+        ShowHighWinInfo();
+
+        //Проверяем конец игры по доминации
+        PlayerScript winPlayer = DLC_Armageddon.GetWinner(SettingsScript.Settings.AIPower);
+        //Обновление информации в нижнем меню
+        SnapToCountry();
     }
 
     public int GetSpyCost(PlayerScript pl)

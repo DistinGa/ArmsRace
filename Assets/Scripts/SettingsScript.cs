@@ -11,6 +11,7 @@ public class SettingsScript : MonoBehaviour
     public bool mVoiceOn { get; set; }   //вкл/выкл голосовых сообщений
     public float mMusicVol { get; set; }
     public float mSoundVol { get; set; }
+    public bool mTurnBaseOn { get; set; }
 
     public int AIPower { get; set; }
     public Authority playerSelected { get; set; }
@@ -49,6 +50,7 @@ public class SettingsScript : MonoBehaviour
         SavedSettings.MusicEnable = mMusicOn;
         SavedSettings.SoundEnable = mSoundOn;
         SavedSettings.Voice = mVoiceOn;
+        SavedSettings.TurnBaseEnable = mTurnBaseOn;
 
         SavedSettings.SoundVolume = mMusicVol;
         SavedSettings.MusicVolume = mSoundVol;
@@ -62,6 +64,7 @@ public class SettingsScript : MonoBehaviour
         mMusicOn = SavedSettings.MusicEnable;
         mSoundOn = SavedSettings.SoundEnable;
         mVoiceOn = SavedSettings.Voice;
+        mTurnBaseOn = SavedSettings.TurnBaseEnable;
 
         mMusicVol = SavedSettings.SoundVolume;
         mSoundVol = SavedSettings.MusicVolume;
