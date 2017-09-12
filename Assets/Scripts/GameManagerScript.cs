@@ -174,6 +174,13 @@ public class GameManagerScript : MonoBehaviour
             SettingsScript.Settings.NeedLoad = false;
         }
 
+        //первый update - особый
+        if (mMonthCount == -1)
+        {
+            NextTick();
+            return;
+        }
+
         //регулирование скорости игры: "+" - увеличение, "-" - уменьшение.
         if (Input.GetKeyUp(KeyCode.KeypadPlus) || Input.GetKeyUp(KeyCode.Equals) || Input.GetKeyUp(KeyCode.UpArrow))
             ChangeSpeed(1);

@@ -67,7 +67,7 @@ public static class SavedSettings {
 
         set
         {
-            PlayerPrefs.SetInt("TurnBaseEnabled", value ? 1 : 0);
+            PlayerPrefs.SetInt("TurnBaseEnable", value ? 1 : 0);
             PlayerPrefs.Save();
         }
     }
