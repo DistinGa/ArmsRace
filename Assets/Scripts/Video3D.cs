@@ -10,6 +10,7 @@ namespace video3D
     {
         public static Video3D V3Dinstance;
 
+        float curVideoPeriod;
         Image VideoPanel;
         List<NewsBlock> CommonList = new List<NewsBlock>();
         List<NewsBlock> PriorList = new List<NewsBlock>();
@@ -35,7 +36,7 @@ namespace video3D
 
         public bool NewsListIsEmpty
         {
-            get { return PriorList.Count == 0; }
+            get { return PriorList.Count == 0 && !CurrentNewsBlock.Prior; }
         }
 
         void Awake()
@@ -58,24 +59,39 @@ namespace video3D
             AS.volume = SettingsScript.Settings.mSoundVol;
         }
 
+        void Update()
+        {
+            if (curVideoPeriod < 0 && (CurrentNewsBlock == null || CurrentNewsBlock.SetMonth > 0 || PriorList.Count > 0 || CommonList.Count > 0))
+            {
+                curVideoPeriod = 0.5f;
+                FadeOut();
+            }
+            else
+                curVideoPeriod -= Time.deltaTime;
+        }
+
         //Городские новости
         public void AddNews(GameObject VideoObject, GameObject AnimObject, int StartMonth, CountryScript Country, string NewsText, string AudioName = "", bool Prior = false)
         {
-            NewsBlock newBlk = new NewsBlock(VideoObject, AnimObject, StartMonth, Country, NewsText, AudioName);
+            NewsBlock newBlk = new NewsBlock(VideoObject, AnimObject, StartMonth, Country, NewsText, Prior, AudioName);
             if (Prior)
             {
                 if (PriorList.Find(x => x.Equals(newBlk)) == null && !CurrentNewsBlock.Equals(newBlk))
+                {
                     PriorList.Add(newBlk);
+                }
             }
             else
             {
                 if (CommonList.Find(x => x.Equals(newBlk)) == null && !CurrentNewsBlock.Equals(newBlk))
+                {
                     CommonList.Add(newBlk);
+                }
             }
 
-            //Если сейчас проигрывается "фоновая" анимация, стартуем только что вставленную.
-            if (CurrentNewsBlock.SetMonth == 0)
-                FadeOut();
+            ////Если сейчас проигрывается "фоновая" анимация, стартуем только что вставленную.
+            //if (CurrentNewsBlock.SetMonth == 0)
+            //    FadeOut();
         }
 
         //Видео для негородских новостей
@@ -118,7 +134,7 @@ namespace video3D
 
         private void FadeOut()
         {
-            if (Fader.color.a == 1)
+            if (Fader.color.a == 1 && CurrentNewsBlock.SetMonth == 0)
                 TestNewsLists();
             else
                 StartCoroutine(FadeAnimation(0.25f, true));
@@ -149,7 +165,10 @@ namespace video3D
             CurrentNewsBlock = nb;
 
             if (CurrentNewsBlock.SetMonth > 0)
-                Invoke("FadeOut", Period);
+            {
+                //Invoke("FadeOut", Period);
+                curVideoPeriod = Period;
+            }
 
             if (SettingsScript.Settings.mSoundOn && nb.AudioName != "")
             {
@@ -168,13 +187,17 @@ namespace video3D
             if (PriorList.Count > 0)
             {
                 while (PriorList[0].SetMonth > 0 && PriorList[0].SetMonth + WaitTime < cm)
+                {
                     PriorList.RemoveAt(0);
+                }
             }
 
             if (CommonList.Count > 0)
             {
                 while (CommonList[0].SetMonth > 0 && CommonList[0].SetMonth + WaitTime < cm)
+                {
                     CommonList.RemoveAt(0);
+                }
             }
 
             ////
@@ -193,7 +216,7 @@ namespace video3D
             else
             {
                 CountryScript c = GM.CurrentCountry;
-                ChangeNews(new NewsBlock(c.CapitalScene, null, 0, c, ""));
+                ChangeNews(new NewsBlock(c.CapitalScene, null, 0, c, "", false));
                 //ShowDefaultAnim(GM.CurrentCountry);
             }
         }
@@ -253,8 +276,9 @@ namespace video3D
         public CountryScript Country;
         public string NewsText;
         public string AudioName;
+        public bool Prior;
 
-        public NewsBlock(GameObject VideoObject, GameObject AnimObject, int SetMonth, CountryScript Country, string NewsText, string AudioName = "")
+        public NewsBlock(GameObject VideoObject, GameObject AnimObject, int SetMonth, CountryScript Country, string NewsText, bool Prior, string AudioName = "")
         {
             this.VideoObject = VideoObject;
             this.AnimObject = AnimObject;
@@ -262,6 +286,7 @@ namespace video3D
             this.Country = Country;
             this.NewsText = NewsText;
             this.AudioName = AudioName;
+            this.Prior = Prior;
         }
 
         public override bool Equals(object obj)
