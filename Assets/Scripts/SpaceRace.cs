@@ -285,7 +285,7 @@ public class SpaceRace : MonoBehaviour
             {
                 if (TechInd == 20 && GM.CurrentMonth < 144) //до 1962 года
                     SteamManager.UnLockAchievment("Man in Space");
-                if (TechInd == 25 && GM.CurrentMonth < 240) //до 1970 года
+                if (TechInd == 40 && GM.CurrentMonth < 240) //до 1970 года
                     SteamManager.UnLockAchievment("Land on the Moon");
                 if (TechInd == 38 && GM.CurrentMonth < 444) //до 1987 года
                     SteamManager.UnLockAchievment("Space Station");

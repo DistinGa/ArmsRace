@@ -36,7 +36,7 @@ namespace video3D
 
         public bool NewsListIsEmpty
         {
-            get { return PriorList.Count == 0 && !CurrentNewsBlock.Prior; }
+            get { return PriorList.Count == 0 && CurrentNewsBlock != null && !CurrentNewsBlock.Prior; }
         }
 
         void Awake()

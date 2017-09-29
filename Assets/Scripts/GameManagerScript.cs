@@ -174,7 +174,7 @@ public class GameManagerScript : MonoBehaviour
             SettingsScript.Settings.NeedLoad = false;
         }
 
-        //первый update - особый
+        //первый update -особый
         if (mMonthCount == -1)
         {
             NextTick();

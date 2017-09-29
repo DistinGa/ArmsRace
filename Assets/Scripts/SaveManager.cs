@@ -68,7 +68,7 @@ public static class SaveManager
             GameManagerScript.GM.curSpeedIndex = gameData.SpeedIndx;
             GameManagerScript.GM.Tick = GameManagerScript.GM.GameSpeedPrefs[gameData.SpeedIndx];
             SettingsScript.Settings.AIPower = gameData.AIPower;
-            GlobalEffects.GlobalEffectsManager.GeM.SetSavedData(gameData.GEData);
+            //GlobalEffects.GlobalEffectsManager.GeM.SetSavedData(gameData.GEData);
 
             foreach (SavedCountryData item in gameData.countryData)
             {
@@ -84,6 +84,8 @@ public static class SaveManager
 
             if (gameData.RandomEvent != null)
                 RandomEventManager.REMInstance.SetSavedData(gameData.RandomEvent);
+
+            GlobalEffects.GlobalEffectsManager.GeM.SetSavedData(gameData.GEData);
         }
     }
 }
