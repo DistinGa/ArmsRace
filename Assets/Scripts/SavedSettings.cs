@@ -290,4 +290,42 @@ public static class SavedSettings {
             PlayerPrefs.Save();
         }
     }
+
+    public static int Games
+    {
+        get
+        {
+            if (PlayerPrefs.HasKey("Games"))
+                return PlayerPrefs.GetInt("Games");
+            else
+            {
+                return 0;
+            }
+        }
+
+        set
+        {
+            PlayerPrefs.SetInt("Games", value);
+            PlayerPrefs.Save();
+        }
+    }
+
+    public static int Wins
+    {
+        get
+        {
+            if (PlayerPrefs.HasKey("Wins"))
+                return PlayerPrefs.GetInt("Wins");
+            else
+            {
+                return 0;
+            }
+        }
+
+        set
+        {
+            PlayerPrefs.SetInt("Wins", value);
+            PlayerPrefs.Save();
+        }
+    }
 }

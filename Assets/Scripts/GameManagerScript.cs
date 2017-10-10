@@ -134,6 +134,8 @@ public class GameManagerScript : MonoBehaviour
     public void Awake()
     {
         GM = this;
+        if (SettingsScript.Settings.Ironmode)
+            SavedSettings.Games++;
     }
 
     // Use this for initialization
@@ -825,6 +827,12 @@ public class GameManagerScript : MonoBehaviour
                     }
                 }
             }
+        }
+
+        if (SceneName == "WinScreen")
+        {
+            if(SettingsScript.Settings.Ironmode)
+                SavedSettings.Wins++;
         }
 
         LoadScene(SceneName);

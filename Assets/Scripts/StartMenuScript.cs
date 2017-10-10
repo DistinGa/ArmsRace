@@ -29,6 +29,10 @@ public class StartMenuScript : MonoBehaviour
     public RectTransform UssrMed;
     public RectTransform UssrHard;
     [Space(10)]
+    public Text Games;
+    public Text Wins;
+    public Text Efficiency;
+    [Space(10)]
     [SerializeField]
     Text CurSentence;
     [TextArea(2, 5)]
@@ -91,6 +95,16 @@ public class StartMenuScript : MonoBehaviour
         MusicSource.enabled = SettingsScript.Settings.mMusicOn;
 
         CurSentence.text = Sentences[Random.Range(0, Sentences.Length)];
+
+        Games.text = SavedSettings.Games.ToString();
+        Wins.text = SavedSettings.Wins.ToString();
+        if (SavedSettings.Games >= 5)
+            Efficiency.text = (100f * SavedSettings.Wins / SavedSettings.Games).ToString() + "%";
+        else
+        {
+            GameObject.Find("Label:Eff").SetActive(false);
+            Efficiency.text = "";
+        }
     }
 
     public void Exit()
@@ -168,6 +182,18 @@ public class StartMenuScript : MonoBehaviour
         System.Diagnostics.Process.Start(Application.streamingAssetsPath + "/Quick guide.pdf");
     }
 
+    public void OpenTutorial()
+    {
+        try
+        {
+            System.Diagnostics.Process.Start("https://www.youtube.com/watch?v=5T90YJiGODY");
+        }
+        catch (System.Exception)
+        {
+            //throw;
+        }
+    }
+
     public void PlaySound(AudioClip ac)
     {
         if (SettingsScript.Settings.mSoundOn)
@@ -238,6 +264,8 @@ public class StartMenuScript : MonoBehaviour
         {
             item.SetToggleActive(b);
         }
+
+        GameObject.Find("IronmodeToggle").GetComponent<Toggle>().interactable = (b && SettingsScript.Settings.AIPower > 0);
     }
 }
 

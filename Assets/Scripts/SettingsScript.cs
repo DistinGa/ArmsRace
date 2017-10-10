@@ -13,6 +13,7 @@ public class SettingsScript : MonoBehaviour
     public float mSoundVol { get; set; }
     public bool mTurnBaseOn { get; set; }
 
+    public bool Ironmode { get; set; }
     public int AIPower { get; set; }
     public Authority playerSelected { get; set; }
     public bool NeedLoad { get; set; }
