@@ -346,7 +346,7 @@ public class SpaceRace : MonoBehaviour
             else
                 dscMulty = pl.CurGndTechIndex - 1;
 
-            res -= initCost * (dscMulty * 0.02f);
+            res -= initCost * (dscMulty * 0.01f);
         }
 
         //бонус лидера

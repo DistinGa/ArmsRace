@@ -151,32 +151,25 @@ namespace GlobalEffects
         //ИИ тратит бонусные очки ГП
         public void AIBonusSpending(Authority aut)
         {
-            bool done = false;
+            //Создаем список приоритетных событий
+            GlobalEffectObject item;
+            List<GlobalEffectObject> priorList = new List<GlobalEffectObject>();
 
-            foreach (var item in GlobalEffectsList)
+            foreach (var ge in GlobalEffectsList)
             {
-                if (item.AIPrioritet)
-                {
-                    if (aut == Authority.Soviet)
-                        item.counter++;
-                    else
-                        item.counter--;
-
-                    done = true;
-                    break;
-                }
+                if (ge.AIPrioritet)
+                    priorList.Add(ge);
             }
 
-            //если не было приоритетных событий, тратит на любое ГП
-            if (!done)
-            {
-                var item = GlobalEffectsList[Random.Range(0, GlobalEffectsList.Length)];
+            if (priorList.Count > 0)
+                item = priorList[Random.Range(0, priorList.Count)];
+            else    //если не было приоритетных событий, тратит на любое ГП
+                item = GlobalEffectsList[Random.Range(0, GlobalEffectsList.Length)];
 
-                if (aut == Authority.Soviet)
-                    item.counter++;
-                else
-                    item.counter--;
-            }
+            if (aut == Authority.Soviet)
+                item.counter++;
+            else
+                item.counter--;
         }
 
         public GlobalEffectsData GetSavedData()

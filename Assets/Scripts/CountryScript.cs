@@ -439,13 +439,13 @@ public class CountryScript : MonoBehaviour
     //Проверка возможности организовать восстание
     public bool CanOrgMeeting(Authority Aut)
     {
-        return (HaveSpy(Aut) && Authority != Aut && ((Aut == Authority.Amer && DiscounterUsaMeeting == 0) || (Aut == Authority.Soviet && DiscounterRusMeeting == 0)));
+        return (GameManagerScript.GM.GetPlayerByAuthority(Aut).SpyPool > 0 && HaveSpy(Aut) && Authority != Aut && ((Aut == Authority.Amer && DiscounterUsaMeeting == 0) || (Aut == Authority.Soviet && DiscounterRusMeeting == 0)));
     }
 
     //Проверка возможности организовать парад
     public bool CanOrgParade(Authority Aut)
     {
-        return (HaveSpy(Aut) && (Authority == Aut || Authority == Authority.Neutral) && ((Aut == Authority.Amer && DiscounterUsaParade == 0) || (Aut == Authority.Soviet && DiscounterRusParade == 0)));
+        return (GameManagerScript.GM.GetPlayerByAuthority(Aut).SpyPool > 0 && HaveSpy(Aut) && (Authority == Aut || Authority == Authority.Neutral) && ((Aut == Authority.Amer && DiscounterUsaParade == 0) || (Aut == Authority.Soviet && DiscounterRusParade == 0)));
     }
 
     //Проверка возможности сменить правительство

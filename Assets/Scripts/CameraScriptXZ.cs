@@ -4,6 +4,7 @@ using UnityEngine.EventSystems;
 
 public class CameraScriptXZ : MonoBehaviour
 {
+    const int Speed = 10;   //Скорость перемещения камеры кнопками.
     public Transform Frame;
     public Camera Camera;
     public float Offset;    //Отступы по бокам для отображения атмосферы
@@ -32,6 +33,12 @@ public class CameraScriptXZ : MonoBehaviour
     {
         if (GameManagerScript.GM.delayedStop)
             return;
+
+        if (Input.GetAxis("Horizontal") + Input.GetAxis("Vertical") != float.Epsilon)
+        {
+            delta.Set(Input.GetAxis("Horizontal") * Speed / UnitsPerPixel, 0, Input.GetAxis("Vertical") * Speed / UnitsPerPixel);
+            SetNewPosition(transform.position + delta);
+        }
 
         //Vector3 mousePos = Camera.ScreenToWorldPoint(Input.mousePosition);
         Vector3 mousePos = Input.mousePosition;

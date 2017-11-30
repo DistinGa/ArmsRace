@@ -1,9 +1,11 @@
 ﻿using UnityEngine;
-using UnityEngine.SceneManagement;
+using Steamworks;
 using System.Collections;
 
 public class SettingsScript : MonoBehaviour
 {
+    readonly AppId_t ArmageddonID = (AppId_t)759170;
+
     public static SettingsScript Settings;
     public bool mVideo { get; set; } // tru-используем avi-видео, fals-используем картинки
     public bool mMusicOn { get; set; }   //вкл/выкл фоновой музыки
@@ -23,13 +25,30 @@ public class SettingsScript : MonoBehaviour
     [SerializeField]
     bool DLC_Armageddon;
 
+    public bool ArmageddonPurchased
+    {
+        get
+        {
+#if DEBUG
+            return true;
+#endif
+#if !DEBUG
+            return SteamApps.BIsDlcInstalled(ArmageddonID);
+#endif
+        }
+    }
+
     public bool ArmageddonAvailable
     {
         set { DLC_Armageddon = value; }
         get
-        {//if (SteamApps.BIsDlcInstalled((AppId_t)508430))
-            return DLC_Armageddon; }
+        {
+            if (ArmageddonPurchased)
+                return DLC_Armageddon;
+            else
+                return false;
         }
+    }
 
     public void Awake()
     {

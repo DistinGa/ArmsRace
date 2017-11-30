@@ -178,6 +178,13 @@ public class PlayerScript : MonoBehaviour
     {
         int AddProcent = Random.Range(5, 10 + 1); // с 5% до 10%
 
+        if (GameManagerScript.GM.Player == this && PoliticalPoints > 0)
+        {
+            //Если к концу года у игрока остались неизрасходованные ПП, автоматически вкладываем их в увеличение бюджета.
+            addBudgetGrowPercent += growPPercentPerPP * PoliticalPoints;
+            PoliticalPoints = 0;
+        }
+
         double add = 1 + (AddProcent + addBudgetGrowPercent) / 100.0;
 
         double newB = 0;
@@ -364,8 +371,8 @@ public class PlayerScript : MonoBehaviour
 
     public void NewYear()
     {
-        PoliticalPoints = GameManagerScript.GM.OutlayChangesPerYear;
         AnnualGrowthBudget();
+        PoliticalPoints = GameManagerScript.GM.OutlayChangesPerYear;
 
         //бонусы лидера
         spyAmount += PlayerLeader.GetAnnualFreeDipSpy();

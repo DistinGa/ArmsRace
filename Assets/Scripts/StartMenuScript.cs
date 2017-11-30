@@ -80,7 +80,13 @@ public class StartMenuScript : MonoBehaviour
         MusicVolume.value = SettingsScript.Settings.mMusicVol;
         SoundVolume.value = SettingsScript.Settings.mSoundVol;
 
-        Armageddon.isOn = SettingsScript.Settings.ArmageddonAvailable;
+        if (SettingsScript.Settings.ArmageddonPurchased)
+        {
+            Armageddon.gameObject.SetActive(true);
+            Armageddon.isOn = SettingsScript.Settings.ArmageddonAvailable;
+        }
+        else
+            Armageddon.gameObject.SetActive(false);
 
         //экран кампаний
         UsaEasy.gameObject.SetActive(!SavedSettings.Mission1USA);
