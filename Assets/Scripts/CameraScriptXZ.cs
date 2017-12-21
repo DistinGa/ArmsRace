@@ -4,7 +4,7 @@ using UnityEngine.EventSystems;
 
 public class CameraScriptXZ : MonoBehaviour
 {
-    const int Speed = 10;   //Скорость перемещения камеры кнопками.
+    const int Speed = 8;   //Скорость перемещения камеры кнопками.
     public Transform Frame;
     public Camera Camera;
     public float Offset;    //Отступы по бокам для отображения атмосферы

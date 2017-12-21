@@ -42,7 +42,12 @@ public class Armageddon : MonoBehaviour {
             res = opp;
 
         if (res != null)
-            ActivateButton(res.Authority);
+        {
+            if (res == GM.Player)
+                ActivateButton(res.Authority);
+            else
+                GM.DeferredStopGame(res);
+        }
         else
             DeactivateButtons();
 

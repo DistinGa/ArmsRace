@@ -682,6 +682,7 @@ public class UniOutlay
 
                     break;
                 case OutlayField.rocket:
+                    AudioFile = "sound/" + "nukeboom";
                     if (authority == Authority.Amer)
                         NewsText = "US conducts successful test of new nuclear weapon.";
                     else
