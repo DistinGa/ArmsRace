@@ -752,6 +752,7 @@ public class CountryScript : MonoBehaviour
         SavedCountryData res = new SavedCountryData();
 
         res.Name = name;
+        res.Score = Score;
         res.support = support;
         res.SovInf = SovInf;
         res.AmInf = AmInf;
@@ -777,6 +778,7 @@ public class CountryScript : MonoBehaviour
 
     public void SetSavedData(SavedCountryData sd)
     {
+        Score = sd.Score;
         support = sd.support;
         SovInf = sd.SovInf;
         AmInf = sd.AmInf;

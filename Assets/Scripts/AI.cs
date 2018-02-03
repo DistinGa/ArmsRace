@@ -284,6 +284,14 @@ public class AI : MonoBehaviour {
             }
         }
 
+        //////////////////////
+        //DLC
+        //////////////////////
+        if (SettingsScript.Settings.IndustrAvailable)
+        {
+            if (AIPlayer.Budget > GM.Player.Budget)
+                GM.DLC_Industrialisation.AIActions(AIPlayer);
+        }
     }
 
     //Выполнение выбранной инвестиции

@@ -5,6 +5,7 @@ using System.Collections;
 public class SettingsScript : MonoBehaviour
 {
     readonly AppId_t ArmageddonID = (AppId_t)759170;
+    readonly AppId_t IndustrID = (AppId_t)792490;
 
     public static SettingsScript Settings;
     public bool mVideo { get; set; } // tru-используем avi-видео, fals-используем картинки
@@ -23,7 +24,7 @@ public class SettingsScript : MonoBehaviour
 
     [Space(10)]
     [SerializeField]
-    bool DLC_Armageddon;
+    bool DLC_Armageddon, DLC_Industr;
 
     public bool ArmageddonPurchased
     {
@@ -45,6 +46,31 @@ public class SettingsScript : MonoBehaviour
         {
             if (ArmageddonPurchased)
                 return DLC_Armageddon;
+            else
+                return false;
+        }
+    }
+
+    public bool IndustrPurchased
+    {
+        get
+        {
+#if DEBUG
+            return true;
+#endif
+#if !DEBUG
+            return SteamApps.BIsDlcInstalled(IndustrID);
+#endif
+        }
+    }
+
+   public bool IndustrAvailable
+    {
+        set { DLC_Industr = value; }
+        get
+        {
+            if (IndustrPurchased)
+                return DLC_Industr;
             else
                 return false;
         }
@@ -76,6 +102,7 @@ public class SettingsScript : MonoBehaviour
         SavedSettings.MusicVolume = mSoundVol;
 
         SavedSettings.ArmageddonEnable = DLC_Armageddon;
+        SavedSettings.IndustrializationEnable = DLC_Industr;
     }
 
     public void LoadSettings()
@@ -90,5 +117,6 @@ public class SettingsScript : MonoBehaviour
         mSoundVol = SavedSettings.MusicVolume;
 
         DLC_Armageddon = SavedSettings.ArmageddonEnable;
+        DLC_Industr = SavedSettings.IndustrializationEnable;
     }
 }

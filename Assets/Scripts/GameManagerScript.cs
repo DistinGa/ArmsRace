@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using System.Collections;
 
 public delegate void dlgtMonthTick();
 
@@ -105,6 +106,7 @@ public class GameManagerScript : MonoBehaviour
 
     [Space(10)]
     public Armageddon DLC_Armageddon;
+    public Industrialisation DLC_Industrialisation;
 
     public CountryScript CurrentCountry
     {
@@ -642,9 +644,9 @@ public class GameManagerScript : MonoBehaviour
     public bool CheckGameResult()
     {
         //Проверка победы ядерной доминацией
-        if (DLC_Armageddon.GetWinner(SettingsScript.Settings.AIPower) == Player)
+        if (DLC_Armageddon.GetWinner(SettingsScript.Settings.AIPower, true) == Player)
             return true;
-        else if (DLC_Armageddon.GetWinner(SettingsScript.Settings.AIPower) == AI.AIPlayer)
+        else if (DLC_Armageddon.GetWinner(SettingsScript.Settings.AIPower, true) == AI.AIPlayer)
             return false;
 
         //Проверка победы нокаутом
@@ -737,6 +739,9 @@ public class GameManagerScript : MonoBehaviour
     {
         GameObject.Find("AmerPlayer").GetComponent<PlayerScript>().NewYear();
         GameObject.Find("SovPlayer").GetComponent<PlayerScript>().NewYear();
+
+        if(SettingsScript.Settings.IndustrAvailable)
+            DLC_Industrialisation.AnnualUnitsGain();
     }
 
     //Окончание игры и показ окна, говорящего об этом.
@@ -1218,6 +1223,24 @@ public class GameManagerScript : MonoBehaviour
         //переключаемся к проигравшей стране
         SnapToCountry(pl.OppCountry);
         //и показываем ядерный взрыв
+        StartCoroutine(NuclearCoroutine(pl));
+        //DLC_Armageddon.StartNukeAnim(pl.OppCountry.Capital.position);
+        //Marker.SetActive(false);
+        ////отложенное завершение игры (чтобы показать анимацию взрыва)
+        //Invoke("StopGame", 7);
+    }
+
+    public void ExtractUpMenu(float val)
+    {
+        UpMenu.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, UpMenu.rect.width + val);
+    }
+
+    IEnumerator NuclearCoroutine(PlayerScript pl)
+    {
+        //ждём завершения важных новостей
+        if(!video3D.Video3D.V3Dinstance.NewsListIsEmpty)
+            yield return new WaitForEndOfFrame();
+
         DLC_Armageddon.StartNukeAnim(pl.OppCountry.Capital.position);
         Marker.SetActive(false);
         //отложенное завершение игры (чтобы показать анимацию взрыва)

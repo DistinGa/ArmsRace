@@ -385,7 +385,12 @@ public class PlayerScript : MonoBehaviour
 
     public int TotalYearSpendings()
     {
-        return Outlays[OutlayField.air].YearSpendings() + Outlays[OutlayField.diplomat].YearSpendings() + Outlays[OutlayField.ground].YearSpendings() + Outlays[OutlayField.military].YearSpendings() + Outlays[OutlayField.rocket].YearSpendings() + Outlays[OutlayField.sea].YearSpendings() + Outlays[OutlayField.spy].YearSpendings() + Outlays[OutlayField.spaceLaunches].YearSpendings() + Outlays[OutlayField.spaceGround].YearSpendings();
+        int res = Outlays[OutlayField.air].YearSpendings() + Outlays[OutlayField.diplomat].YearSpendings() + Outlays[OutlayField.ground].YearSpendings() + Outlays[OutlayField.military].YearSpendings() + Outlays[OutlayField.rocket].YearSpendings() + Outlays[OutlayField.sea].YearSpendings() + Outlays[OutlayField.spy].YearSpendings() + Outlays[OutlayField.spaceLaunches].YearSpendings() + Outlays[OutlayField.spaceGround].YearSpendings();
+
+        if (SettingsScript.Settings.IndustrAvailable)
+            res += GameManagerScript.GM.DLC_Industrialisation.YearSpendings(this);
+
+        return res;
     }
 
     public void AddBudgetGrow()
@@ -408,6 +413,10 @@ public class PlayerScript : MonoBehaviour
         CountryScript c = MyCountry;
         c.Support -= 50f;
         crisisDiscounter = 12;
+
+        if (SettingsScript.Settings.IndustrAvailable)
+            GameManagerScript.GM.DLC_Industrialisation.DestroyCurIndustr(this);
+
         GameManagerScript.GM.VQueue.AddRolex(VideoQueue.V_TYPE_GLOB, VideoQueue.V_PRIO_PRESSING, VideoQueue.V_PUPPER_EVENT_FINANCE, c);
     }
 

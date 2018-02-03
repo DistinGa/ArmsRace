@@ -26,6 +26,7 @@ public static class SaveManager
         gameData.RandomEvent = RandomEventManager.REMInstance.GetSavedData();
         gameData.AIPower = SettingsScript.Settings.AIPower;
         gameData.GEData = GlobalEffects.GlobalEffectsManager.GeM.GetSavedData();
+        gameData.IndData = GM.DLC_Industrialisation.GetSavedData();
 
         //сериализация и запись
         string initPath = Application.streamingAssetsPath + "/Saves/";
@@ -86,6 +87,7 @@ public static class SaveManager
                 RandomEventManager.REMInstance.SetSavedData(gameData.RandomEvent);
 
             GlobalEffects.GlobalEffectsManager.GeM.SetSavedData(gameData.GEData);
+            GameManagerScript.GM.DLC_Industrialisation.SetSavedData(gameData.IndData);
         }
     }
 }
@@ -94,6 +96,7 @@ public static class SaveManager
 public struct SavedCountryData
 {
     public string Name;
+    public int Score;
 
     public float support;
     public int SovInf;
@@ -156,6 +159,13 @@ public struct GlobalEffectsData
 }
 
 [System.Serializable]
+public struct IndustrializationData
+{
+    public List<IndustryElement.SerializableInd> Industrs;
+    public IndustryElement.SerializableInd curAmerIndustr, curSovIndustr;
+}
+
+[System.Serializable]
 public class SavedGame
 {
     public int month;
@@ -165,4 +175,6 @@ public class SavedGame
     public RandomEvent RandomEvent;
     public int AIPower;
     public GlobalEffectsData GEData;
+    public IndustrializationData IndData;
 }
+

@@ -19,7 +19,7 @@ public class Armageddon : MonoBehaviour {
         NuclearUSA.gameObject.SetActive(ArmaCheck);
     }
 
-    public PlayerScript GetWinner(int AIpower)
+    public PlayerScript GetWinner(int AIpower, bool checkOnlly = false)
     {
         if (!SettingsScript.Settings.ArmageddonAvailable)
             return null;
@@ -41,7 +41,7 @@ public class Armageddon : MonoBehaviour {
         else if(opp.RelativeNuclearPower() >= AIWinPercent[AIpower] && GM.Player.Score < opp.Score)
             res = opp;
 
-        if (res != null)
+        if (res != null && !checkOnlly)
         {
             if (res == GM.Player)
                 ActivateButton(res.Authority);

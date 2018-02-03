@@ -291,6 +291,25 @@ public static class SavedSettings {
         }
     }
 
+    public static bool IndustrializationEnable
+    {
+        get
+        {
+            if (PlayerPrefs.HasKey("IndustrializationEnable"))
+                return PlayerPrefs.GetInt("IndustrializationEnable") == 1 ? true : false;
+            else
+            {
+                return false;
+            }
+        }
+
+        set
+        {
+            PlayerPrefs.SetInt("IndustrializationEnable", value ? 1 : 0);
+            PlayerPrefs.Save();
+        }
+    }
+
     public static int Games
     {
         get

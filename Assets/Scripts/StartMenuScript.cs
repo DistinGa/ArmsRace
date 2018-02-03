@@ -45,6 +45,7 @@ public class StartMenuScript : MonoBehaviour
 
     [Space(10)]
     public Toggle Armageddon;
+    public Toggle Industrialization;
 
     private AudioSource AS;
 
@@ -87,6 +88,14 @@ public class StartMenuScript : MonoBehaviour
         }
         else
             Armageddon.gameObject.SetActive(false);
+
+        if (SettingsScript.Settings.IndustrPurchased)
+        {
+            Industrialization.gameObject.SetActive(true);
+            Industrialization.isOn = SettingsScript.Settings.IndustrAvailable;
+        }
+        else
+            Industrialization.gameObject.SetActive(false);
 
         //экран кампаний
         UsaEasy.gameObject.SetActive(!SavedSettings.Mission1USA);
