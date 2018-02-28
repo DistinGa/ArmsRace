@@ -57,6 +57,7 @@ public class SOLP : ScriptableObject
     public string descriptionGEC = "+1 to global consequences changes per 10 years";
 
     //DLC
+    [Header("===DLC===")]
     [Space(10)]
     [Tooltip("Скидка на миссии ООН")]
     public float UNMissionDiscount = 0;
@@ -64,6 +65,8 @@ public class SOLP : ScriptableObject
     public float NuclearDiscount = 0;
     [Tooltip("Ежемесячная прибавка престижа")]
     public int MonthlyPrestigePlus = 0;
+    [Space(10)]
     [Tooltip("Скидка на индустриальные контракты")]
-    public float IndustryDiscount = 0;
+    public int IndustryDiscount = 0;  //на сколько уменьшаем время постройки по факту
+    public string descriptionIndustr = "Industry construction -20%";
 }

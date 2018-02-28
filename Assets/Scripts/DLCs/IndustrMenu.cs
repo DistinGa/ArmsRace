@@ -44,8 +44,8 @@ public class IndustrMenu : MonoBehaviour {
                 curIndustr.Cntr1.Score,
                 curIndustr.Cntr2.Score,
                 (curIndustr.Cntr1.Score + curIndustr.Cntr2.Score),
-                GameManagerScript.GM.DLC_Industrialisation.IndustrCount,
-                (curIndustr.Cntr1.Score + curIndustr.Cntr2.Score) * GameManagerScript.GM.DLC_Industrialisation.IndustrCount);
+                GameManagerScript.GM.DLC_Industrialisation.IndustrCount - GameManagerScript.GM.Player.PlayerLeader.GetIndustryDiscount(),
+                (curIndustr.Cntr1.Score + curIndustr.Cntr2.Score) * (GameManagerScript.GM.DLC_Industrialisation.IndustrCount - GameManagerScript.GM.Player.PlayerLeader.GetIndustryDiscount()));
 
             btnContract.gameObject.SetActive(false);
             foreach (var item in indstrTypeToggles.GetComponentsInChildren<Toggle>())
@@ -73,8 +73,9 @@ public class IndustrMenu : MonoBehaviour {
             }
             btnSelectCountry1.interactable = true;
             btnSelectCountry2.interactable = true;
-
         }
+
+        SetContractInteractable();
     }
 
     public void SelectCountry(IndstrSelectCntrPrefab listString)
@@ -100,8 +101,10 @@ public class IndustrMenu : MonoBehaviour {
             score1,
             score2,
             (score1 + score2),
-            GameManagerScript.GM.DLC_Industrialisation.IndustrCount,
-            (score1 + score2) * GameManagerScript.GM.DLC_Industrialisation.IndustrCount);
+            GameManagerScript.GM.DLC_Industrialisation.IndustrCount - GameManagerScript.GM.Player.PlayerLeader.GetIndustryDiscount(),
+            (score1 + score2) * (GameManagerScript.GM.DLC_Industrialisation.IndustrCount - GameManagerScript.GM.Player.PlayerLeader.GetIndustryDiscount()));
+
+        SetContractInteractable();
     }
 
     public void ShowScroll(int ScrollIndx)
@@ -152,29 +155,47 @@ public class IndustrMenu : MonoBehaviour {
     {
         if(val)
             indstrType = IndustryType.Diplomat;
+
+        SetContractInteractable();
     }
 
     public void SetMilitaryType(bool val)
     {
         if (val)
             indstrType = IndustryType.Military;
+
+        SetContractInteractable();
     }
 
     public void SetSpyType(bool val)
     {
         if (val)
             indstrType = IndustryType.Spy;
+
+        SetContractInteractable();
     }
 
     public void StartContract()
     {
-        if (GameManagerScript.GM.DLC_Industrialisation.StartIndustrialization(cntr1, cntr2, indstrType, GameManagerScript.GM.Player))
+        bool test = GameManagerScript.GM.DLC_Industrialisation.StartIndustrialization(cntr1, cntr2, indstrType, GameManagerScript.GM.Player);
+        if (test)
         {
-            UpdateView();
+            SoundManager.SM.PlaySound("sound/industr-sound");
         }
         else
         {
             SoundManager.SM.PlaySound("sound/ots4et");
+        }
+
+        cntr1 = null;
+        cntr2 = null;
+        indstrType = IndustryType.None;
+        UpdateView();
+
+        if (test)
+        {
+            GameManagerScript.GM.ToggleTechMenu(GameManagerScript.GM.DLC_Industrialisation.IndustrMenu.gameObject);
+            FindObjectOfType<CameraScriptXZ>().setOverMenu = false;
         }
     }
 
@@ -189,5 +210,10 @@ public class IndustrMenu : MonoBehaviour {
         newDoneContract.TypeImage.sprite = TypeImages[(int)item.IndustryType];
 
         return newDoneContract;
+    }
+
+    public void SetContractInteractable()
+    {
+       btnContract.GetComponent<Button>().interactable = (cntr1 != null && cntr2 != null && indstrType != IndustryType.None && GameManagerScript.GM.Player.PoliticalPoints > 0);
     }
 }

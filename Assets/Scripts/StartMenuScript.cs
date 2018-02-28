@@ -44,8 +44,16 @@ public class StartMenuScript : MonoBehaviour
     SOLP soLeaderProperties;
 
     [Space(10)]
-    public Toggle Armageddon;
-    public Toggle Industrialization;
+    [SerializeField]
+    Toggle tgArmageddon;
+    [SerializeField]
+    Toggle tgIndustrialization, tgPolitics, tgUN;
+
+    [Space(10)]
+    [SerializeField]
+    GameObject linkArmageddon;
+    [SerializeField]
+    GameObject linkIndustrialization, linkPolitics, linkUN;
 
     private AudioSource AS;
 
@@ -83,19 +91,27 @@ public class StartMenuScript : MonoBehaviour
 
         if (SettingsScript.Settings.ArmageddonPurchased)
         {
-            Armageddon.gameObject.SetActive(true);
-            Armageddon.isOn = SettingsScript.Settings.ArmageddonAvailable;
+            tgArmageddon.interactable = true;
+            tgArmageddon.isOn = SettingsScript.Settings.ArmageddonAvailable;
+            linkArmageddon.SetActive(false);
         }
         else
-            Armageddon.gameObject.SetActive(false);
+        {
+            tgArmageddon.interactable = false;
+            linkArmageddon.SetActive(true);
+        }
 
         if (SettingsScript.Settings.IndustrPurchased)
         {
-            Industrialization.gameObject.SetActive(true);
-            Industrialization.isOn = SettingsScript.Settings.IndustrAvailable;
+            tgIndustrialization.interactable = true;
+            tgIndustrialization.isOn = SettingsScript.Settings.IndustrAvailable;
+            linkIndustrialization.SetActive(false);
         }
         else
-            Industrialization.gameObject.SetActive(false);
+        {
+            tgIndustrialization.interactable = false;
+            linkIndustrialization.SetActive(true);
+        }
 
         //экран кампаний
         UsaEasy.gameObject.SetActive(!SavedSettings.Mission1USA);
@@ -204,9 +220,17 @@ public class StartMenuScript : MonoBehaviour
             System.Diagnostics.Process.Start("https://www.youtube.com/watch?v=5T90YJiGODY");
         }
         catch (System.Exception)
+        {}
+    }
+
+    public void OpenDLCpage(string link)
+    {
+        try
         {
-            //throw;
+            System.Diagnostics.Process.Start(link);
         }
+        catch (System.Exception)
+        {}
     }
 
     public void PlaySound(AudioClip ac)

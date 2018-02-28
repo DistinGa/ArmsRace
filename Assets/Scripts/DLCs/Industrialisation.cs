@@ -28,9 +28,12 @@ public class Industrialisation : MonoBehaviour {
             {
                 Industrs.Add(curAmerIndustr);
 
+                //Если это индустриализация игрока
                 if (GameManagerScript.GM.Player.Authority == Authority.Amer)
                 {
                     curAmerIndustr.DoneContractRow = IndustrMenu.AddDoneContract(curAmerIndustr);
+                    if (!SavedSettings.IndustrializationAchieved)
+                        SavedSettings.IndustrializationAchieved = true;
                 }
 
                 StartVideoNews(curAmerIndustr.Cntr1, curAmerIndustr.Cntr2);
@@ -45,6 +48,7 @@ public class Industrialisation : MonoBehaviour {
             {
                 Industrs.Add(curSovIndustr);
 
+                //Если это индустриализация игрока
                 if (GameManagerScript.GM.Player.Authority == Authority.Soviet)
                 {
                     curSovIndustr.DoneContractRow = IndustrMenu.AddDoneContract(curSovIndustr);
@@ -66,7 +70,9 @@ public class Industrialisation : MonoBehaviour {
 
         foreach (var item in listToDel)
         {
-            item.DelDoneContractRow();
+            if (item.Player.Authority == GameManagerScript.GM.Player.Authority)
+                item.DelDoneContractRow();
+
             Industrs.Remove(item);
         }
 
@@ -92,7 +98,7 @@ public class Industrialisation : MonoBehaviour {
     public void StartVideoNews(CountryScript country1, CountryScript country2)
     {
         string NewsText = string.Format("{0} and {1} has developed cooperative industrialization project", country1.Name, country2.Name);
-        video3D.Video3D.V3Dinstance.AddNews(country1.CapitalScene, country1.GetAnimObject(video3D.CitysAnim.Industry), GameManagerScript.GM.CurrentMonth, country1, NewsText, "", true);
+        video3D.Video3D.V3Dinstance.AddNews(country1.CapitalScene, country1.GetAnimObject(video3D.CitysAnim.Industry), GameManagerScript.GM.CurrentMonth, country1, NewsText, "sound/industr-sound", true);
     }
 
     public void AnnualUnitsGain()
@@ -185,6 +191,9 @@ public class Industrialisation : MonoBehaviour {
 
     public bool StartIndustrialization(CountryScript cntr1, CountryScript cntr2, IndustryType indstrType, PlayerScript pl)
     {
+        if (pl.PoliticalPoints <= 0)
+            return false;
+
         IndustryElement curIndstr = GetCurIndustr(pl);
         if (curIndstr != null)
             return false;   //есть недостроенная индустриализация
@@ -193,6 +202,7 @@ public class Industrialisation : MonoBehaviour {
         if (cntr1.Authority == pl.Authority && (cntr2.Authority == pl.Authority) || cntr2.Authority == Authority.Neutral)
         {
             SetCurIndustr(new IndustryElement(cntr1, cntr2, indstrType, pl));
+            pl.PoliticalPoints--;
             return true;
         }
         else
@@ -202,11 +212,16 @@ public class Industrialisation : MonoBehaviour {
 
     public int YearSpendings(PlayerScript pl)
     {
+        return MonthlySpendings(pl) * 12;
+    }
+
+    public int MonthlySpendings(PlayerScript pl)
+    {
         int res = 0;
 
         if (pl.Authority == Authority.Amer)
         {
-            if(curAmerIndustr != null)
+            if (curAmerIndustr != null)
                 res = curAmerIndustr.Cntr1.Score + curAmerIndustr.Cntr2.Score;
         }
         else
@@ -215,7 +230,7 @@ public class Industrialisation : MonoBehaviour {
                 res = curSovIndustr.Cntr1.Score + curSovIndustr.Cntr2.Score;
         }
 
-        return res * 12;
+        return res;
     }
 
     //////////////
@@ -302,7 +317,7 @@ public class IndustryElement
     CountryScript cntr1;
     CountryScript cntr2;
     IndustryType indType;
-    int cost;
+    double cost;
     PlayerScript pl;
 
     public CountryScript Cntr1
@@ -330,7 +345,7 @@ public class IndustryElement
         this.pl = pl;
         this.cntr1 = cntr1;
         this.cntr2 = cntr2;
-        this.CountDown = GameManagerScript.GM.DLC_Industrialisation.IndustrCount;
+        this.CountDown = GameManagerScript.GM.DLC_Industrialisation.IndustrCount - pl.PlayerLeader.GetIndustryDiscount();
         this.indType = indType;
         this.cost = cntr1.Score + cntr2.Score;
     }
@@ -352,13 +367,14 @@ public class IndustryElement
             {
                 cntr1.Score++;
                 cntr2.Score++;
-                return true;
+                return true;    //строили-строили и, наконец, построили
             }
         }
 
         return false;
     }
 
+    //Получение ежегодного донуса от предприятия
     public void UnitGain()
     {
         if (CountDown > 0)
@@ -380,6 +396,7 @@ public class IndustryElement
         }
     }
 
+    //Данные для сериализации
     public static SerializableInd SerSavedData(IndustryElement IndustrEl)
     {
         if (IndustrEl == null)
@@ -395,13 +412,17 @@ public class IndustryElement
         return res;
     }
 
+    //Восстановление
     public static IndustryElement DeserSavedData(SerializableInd serIndustr)
     {
         if (serIndustr == null)
             return null;
 
         GameManagerScript GM = GameManagerScript.GM;
-        return new IndustryElement(GM.FindCountryByName(serIndustr.cntr1), GM.FindCountryByName(serIndustr.cntr2), serIndustr.indType, GM.GetPlayerByAuthority(serIndustr.plAuth));
+        IndustryElement newInd =  new IndustryElement(GM.FindCountryByName(serIndustr.cntr1), GM.FindCountryByName(serIndustr.cntr2), serIndustr.indType, GM.GetPlayerByAuthority(serIndustr.plAuth));
+        newInd.CountDown = serIndustr.CountDown;
+
+        return newInd;
     }
 
     [System.Serializable]
@@ -419,5 +440,6 @@ public enum IndustryType
 {
     Diplomat,
     Military,
-    Spy
+    Spy,
+    None
 }

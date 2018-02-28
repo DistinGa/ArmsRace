@@ -615,17 +615,20 @@ public class GameManagerScript : MonoBehaviour
 
         //Steam achievments
         //Ачивка за дипломатическую смену власти (в любой стране)
+#if !DEBUG
         if (Country.Authority == Player.Authority && !revolution && CurrentMonth < 120) //до 1960 года
             SteamManager.UnLockAchievment("Coup a country diplomatically");
+#endif
 
         //Если в главной стране правительство сменилось, тогда победа нокаутом
         if (Player.MyCountry == Country || Player.OppCountry == Country)
         {
             //Steam achievments
             //Ачивка связанная с переворотом в стране противника (мирным или вооруженным)
+#if !DEBUG
             if (Player.OppCountry.Authority == Player.Authority && CurrentMonth < 504) //до 1992 года
                 SteamManager.UnLockAchievment("Coup your main enemy");
-
+#endif
             StopGame();
         }
     }
@@ -755,7 +758,9 @@ public class GameManagerScript : MonoBehaviour
 
             //Steam achievments
             //Ачивка за первую победу
+#if !DEBUG
             SteamManager.UnLockAchievment("Win the game");
+#endif
         }
         else
             SceneName = "LostScreen";
@@ -1224,10 +1229,10 @@ public class GameManagerScript : MonoBehaviour
         SnapToCountry(pl.OppCountry);
         //и показываем ядерный взрыв
         StartCoroutine(NuclearCoroutine(pl));
-        //DLC_Armageddon.StartNukeAnim(pl.OppCountry.Capital.position);
-        //Marker.SetActive(false);
-        ////отложенное завершение игры (чтобы показать анимацию взрыва)
-        //Invoke("StopGame", 7);
+
+        //Steam achievments
+        if (Player.Authority == pl.Authority && !SavedSettings.ArmageddonAchieved)
+            SavedSettings.ArmageddonAchieved = true;
     }
 
     public void ExtractUpMenu(float val)

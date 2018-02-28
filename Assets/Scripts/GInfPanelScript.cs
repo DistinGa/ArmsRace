@@ -12,6 +12,12 @@ public class GInfPanelScript : MonoBehaviour {
     public Text InfPercent;
     public Text FPBonus;
     public Text InfValue;
+    public GameObject DLC_Panel;
+
+    void Start()
+    {
+        DLC_Panel.SetActive(SettingsScript.Settings.ArmageddonAvailable || SettingsScript.Settings.UNAvailable);
+    }
 
     public void SetSuit(int i)
     {

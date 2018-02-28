@@ -6,6 +6,8 @@ public class SettingsScript : MonoBehaviour
 {
     readonly AppId_t ArmageddonID = (AppId_t)759170;
     readonly AppId_t IndustrID = (AppId_t)792490;
+    readonly AppId_t UNID = (AppId_t)794400;
+    readonly AppId_t PoliticsID = (AppId_t)794401;
 
     public static SettingsScript Settings;
     public bool mVideo { get; set; } // tru-используем avi-видео, fals-используем картинки
@@ -24,7 +26,7 @@ public class SettingsScript : MonoBehaviour
 
     [Space(10)]
     [SerializeField]
-    bool DLC_Armageddon, DLC_Industr;
+    bool DLC_Armageddon, DLC_Industr, DLC_UN, DLC_Politics;
 
     public bool ArmageddonPurchased
     {
@@ -71,6 +73,56 @@ public class SettingsScript : MonoBehaviour
         {
             if (IndustrPurchased)
                 return DLC_Industr;
+            else
+                return false;
+        }
+    }
+
+    public bool UNPurchased
+    {
+        get
+        {
+#if DEBUG
+            return true;
+#endif
+#if !DEBUG
+            return SteamApps.BIsDlcInstalled(UNID);
+#endif
+        }
+    }
+
+    public bool UNAvailable
+    {
+        set { DLC_UN = value; }
+        get
+        {
+            if (UNPurchased)
+                return DLC_UN;
+            else
+                return false;
+        }
+    }
+
+    public bool PoliticsPurchased
+    {
+        get
+        {
+#if DEBUG
+            return true;
+#endif
+#if !DEBUG
+            return SteamApps.BIsDlcInstalled(PoliticsID);
+#endif
+        }
+    }
+
+    public bool PoliticsAvailable
+    {
+        set { DLC_Politics = value; }
+        get
+        {
+            if (PoliticsPurchased)
+                return DLC_Politics;
             else
                 return false;
         }

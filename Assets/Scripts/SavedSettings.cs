@@ -12,6 +12,24 @@ public static class SavedSettings {
     static bool mission1SU, mission2SU, mission3SU;
     static bool turnBaseEnable;
 
+    //вызывается из актуального геттера
+    static bool commonBoolGet(string strPar)
+    {
+        if (PlayerPrefs.HasKey(strPar))
+            return PlayerPrefs.GetInt(strPar) == 1 ? true : false;
+        else
+        {
+            return false;
+        }
+    }
+
+    //вызывается из актуального сеттера
+    static void commonBoolSet(string strPar, bool value)
+    {
+        PlayerPrefs.SetInt(strPar, value ? 1 : 0);
+        PlayerPrefs.Save();
+    }
+
     public static float MusicVolume
     {
         get
@@ -345,6 +363,49 @@ public static class SavedSettings {
         {
             PlayerPrefs.SetInt("Wins", value);
             PlayerPrefs.Save();
+
+            //Steam achievments
+            if (Games >= 5)
+            {
+                if ((100f * Wins / Games) >= 50)
+                    SteamManager.UnLockAchievment("50% of Ironmode efficiency");
+
+                if ((100f * Wins / Games) >= 70)
+                    SteamManager.UnLockAchievment("70% of Ironmode efficiency");
+
+                if ((100f * Wins / Games) >= 90)
+                    SteamManager.UnLockAchievment("90% of Ironmode efficiency");
+            }
         }
     }
+
+
+    public static bool ArmageddonAchieved
+    {
+        get
+        {
+            return commonBoolGet("Arma");
+        }
+
+        set
+        {
+            commonBoolSet("Arma", value);
+            SteamManager.UnLockAchievment("Nuclear strike");
+        }
+    }
+
+    public static bool IndustrializationAchieved
+    {
+        get
+        {
+            return commonBoolGet("Industr");
+        }
+
+        set
+        {
+            commonBoolSet("Industr", value);
+            SteamManager.UnLockAchievment("Industrialisation");
+        }
+    }
+
 }

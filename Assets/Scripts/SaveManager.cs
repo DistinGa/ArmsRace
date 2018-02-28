@@ -178,3 +178,16 @@ public class SavedGame
     public IndustrializationData IndData;
 }
 
+//для версии 2.2
+public class SavedGame22
+{
+    public int month;
+    public int SpeedIndx;
+    public SavedCountryData[] countryData;
+    public SavedPlayerData[] playerData;
+    public RandomEvent RandomEvent;
+    public int AIPower;
+    public GlobalEffectsData GEData;
+    public IndustrializationData IndData;
+}
+

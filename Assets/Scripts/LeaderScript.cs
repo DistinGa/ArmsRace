@@ -114,6 +114,8 @@ public class LeaderScript
                     break;
                 case LeaderType.Economic:
                     res = soLeaderProperties.descriptionDipDisc + "\n" + soLeaderProperties.descriptionSpyDisc;
+                    if (SettingsScript.Settings.IndustrAvailable)
+                        res += "\n" + soLeaderProperties.descriptionIndustr;
                     break;
             }
         }
@@ -211,6 +213,23 @@ public class LeaderScript
         return res;
     }
 
+    public int GetIndustryDiscount()
+    {
+        int res = 0;
+        if (ActualLeaderType == LeaderType.Economic)
+            res = GameManagerScript.GM.LeaderPrefs.IndustryDiscount;
+
+        return res;
+    }
+
+    public float GetNuclearDiscount()
+    {
+        float res = 0;
+        if (SettingsScript.Settings.IndustrAvailable && ActualLeaderType == LeaderType.Economic)
+            res = GameManagerScript.GM.LeaderPrefs.IndustryDiscount;
+
+        return res;
+    }
 }
 
 public enum LeaderType
