@@ -23,10 +23,14 @@ public class SettingsScript : MonoBehaviour
     public Authority playerSelected { get; set; }
     public bool NeedLoad { get; set; }
     public LeaderScript PlayerLeader;
+    [Space(10)]
+    public bool news3D; //использование 3Д объектов для отображения новостей
 
     [Space(10)]
     [SerializeField]
-    bool DLC_Armageddon, DLC_Industr, DLC_UN, DLC_Politics;
+    bool DLC_Armageddon;
+    [SerializeField]
+    bool DLC_Industr, DLC_UN, DLC_Politics;
 
     public bool ArmageddonPurchased
     {

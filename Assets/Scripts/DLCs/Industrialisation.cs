@@ -98,7 +98,7 @@ public class Industrialisation : MonoBehaviour {
     public void StartVideoNews(CountryScript country1, CountryScript country2)
     {
         string NewsText = string.Format("{0} and {1} has developed cooperative industrialization project", country1.Name, country2.Name);
-        video3D.Video3D.V3Dinstance.AddNews(country1.CapitalScene, country1.GetAnimObject(video3D.CitysAnim.Industry), GameManagerScript.GM.CurrentMonth, country1, NewsText, "sound/industr-sound", true);
+        video3D.Video3D.V3Dinstance.AddCityNews(video3D.CitysAnim.Industry, GameManagerScript.GM.CurrentMonth, country1, NewsText, "sound/industr-sound", true);
     }
 
     public void AnnualUnitsGain()

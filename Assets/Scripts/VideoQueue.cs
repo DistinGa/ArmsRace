@@ -180,7 +180,7 @@ public class VideoQueue : MonoBehaviour {
 
             }
             //Video3D.V3Dinstance.AddNews(c.CapitalScene, c.GetAnimObject(animType), GameManagerScript.GM.CurrentMonth, c, vrr.mVideoRolexPattern.mText, AudioFile, vrr.mVideoRolexPattern.mSubtype == V_PRIO_PRESSING);
-            Video3D.V3Dinstance.AddNews(c.CapitalScene, c.GetAnimObject(animType), GM.CurrentMonth, c, vrr.mVideoRolexPattern.mText, AudioFile, priorQue);
+            Video3D.V3Dinstance.AddCityNews(animType, GM.CurrentMonth, c, vrr.mVideoRolexPattern.mText, AudioFile, priorQue);
         }
         else
 
@@ -213,7 +213,7 @@ public class VideoQueue : MonoBehaviour {
                     //vrr.mWavFile = "24 DemocrMovmnt"; break;
                     animType = CitysAnim.MoveBlue; break;
             }
-            Video3D.V3Dinstance.AddNews(c.CapitalScene, c.GetAnimObject(animType), GM.CurrentMonth, c, vrr.mVideoRolexPattern.mText, AudioFile, true);
+            Video3D.V3Dinstance.AddCityNews(animType, GM.CurrentMonth, c, vrr.mVideoRolexPattern.mText, AudioFile, true);
         }
 
         else // для космотехнологий -- сказать речь за сторону

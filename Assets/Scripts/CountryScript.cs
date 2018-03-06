@@ -63,24 +63,61 @@ public class CountryScript : MonoBehaviour
         //Заполнение массива анимационных объектов.
         if (CapitalScene != null)
         {
-            CitysAnimObjects.Add((int)CitysAnim.War, CapitalScene.transform.FindChild("War 1").gameObject);
-            CitysAnimObjects.Add((int)CitysAnim.InvasionUSA, CapitalScene.transform.FindChild("USA army invasion").gameObject);
-            CitysAnimObjects.Add((int)CitysAnim.InvasionUSSR, CapitalScene.transform.FindChild("USSR army invasion").gameObject);
-            CitysAnimObjects.Add((int)CitysAnim.DemRed, CapitalScene.transform.FindChild("DemRED").gameObject);
-            CitysAnimObjects.Add((int)CitysAnim.DemBlue, CapitalScene.transform.FindChild("Dem Blue").gameObject);
-            CitysAnimObjects.Add((int)CitysAnim.ParadRed, CapitalScene.transform.FindChild("Parad RED + salut").gameObject);
-            CitysAnimObjects.Add((int)CitysAnim.ParadBlue, CapitalScene.transform.FindChild("Parad BLUE + salut").gameObject);
-            CitysAnimObjects.Add((int)CitysAnim.StrikeRed, CapitalScene.transform.FindChild("Strike Red").gameObject);
-            CitysAnimObjects.Add((int)CitysAnim.StrikeBlue, CapitalScene.transform.FindChild("Strike Blie").gameObject);
-            CitysAnimObjects.Add((int)CitysAnim.Storm, CapitalScene.transform.FindChild("Storm").gameObject);
-            CitysAnimObjects.Add((int)CitysAnim.Industry, CapitalScene.transform.FindChild("Krane constraction").gameObject);
-            CitysAnimObjects.Add((int)CitysAnim.Nobel, CapitalScene.transform.FindChild("Nobel").gameObject);
-            CitysAnimObjects.Add((int)CitysAnim.PoliticalCrisis, CapitalScene.transform.FindChild("Political crisis").gameObject);
-            CitysAnimObjects.Add((int)CitysAnim.FinanceCrisis, CapitalScene.transform.FindChild("Finance crisis").gameObject);
-            CitysAnimObjects.Add((int)CitysAnim.MoveRed, CapitalScene.transform.FindChild("Parad RED").gameObject);
-            CitysAnimObjects.Add((int)CitysAnim.MoveBlue, CapitalScene.transform.FindChild("Parad BLUE").gameObject);
-            CitysAnimObjects.Add((int)CitysAnim.MoveNeutral, CapitalScene.transform.FindChild("Parad NATIONAL").gameObject);
-            CitysAnimObjects.Add((int)CitysAnim.Nuke, null);
+            if (SettingsScript.Settings.news3D)
+            {
+                LoadableObject tmpObj = CapitalScene.GetComponent<LoadableObject>();
+                if (tmpObj != null)
+                {
+                    if (!tmpObj.IsLoaded)
+                    {
+                        tmpObj.LoadObject();
+                    }
+
+                    //CitysAnimObjects.Add((int)CitysAnim.War, tmpObj.FindNewsObject("War 1"));
+                    //CitysAnimObjects.Add((int)CitysAnim.InvasionUSA, tmpObj.FindNewsObject("USA army invasion"));
+                    //CitysAnimObjects.Add((int)CitysAnim.InvasionUSSR, tmpObj.FindNewsObject("USSR army invasion"));
+                    //CitysAnimObjects.Add((int)CitysAnim.DemRed, tmpObj.FindNewsObject("DemRED"));
+                    //CitysAnimObjects.Add((int)CitysAnim.DemBlue, tmpObj.FindNewsObject("Dem Blue"));
+                    //CitysAnimObjects.Add((int)CitysAnim.ParadRed, tmpObj.FindNewsObject("Parad RED + salut"));
+                    //CitysAnimObjects.Add((int)CitysAnim.ParadBlue, tmpObj.FindNewsObject("Parad BLUE + salut"));
+                    //CitysAnimObjects.Add((int)CitysAnim.StrikeRed, tmpObj.FindNewsObject("Strike Red"));
+                    //CitysAnimObjects.Add((int)CitysAnim.StrikeBlue, tmpObj.FindNewsObject("Strike Blie"));
+                    //CitysAnimObjects.Add((int)CitysAnim.Storm, tmpObj.FindNewsObject("Storm"));
+                    //CitysAnimObjects.Add((int)CitysAnim.Industry, tmpObj.FindNewsObject("Krane constraction"));
+                    //CitysAnimObjects.Add((int)CitysAnim.Nobel, tmpObj.FindNewsObject("Nobel"));
+                    //CitysAnimObjects.Add((int)CitysAnim.PoliticalCrisis, tmpObj.FindNewsObject("Political crisis"));
+                    //CitysAnimObjects.Add((int)CitysAnim.FinanceCrisis, tmpObj.FindNewsObject("Finance crisis"));
+                    //CitysAnimObjects.Add((int)CitysAnim.MoveRed, tmpObj.FindNewsObject("Parad RED"));
+                    //CitysAnimObjects.Add((int)CitysAnim.MoveBlue, tmpObj.FindNewsObject("Parad BLUE"));
+                    //CitysAnimObjects.Add((int)CitysAnim.MoveNeutral, tmpObj.FindNewsObject("Parad NATIONAL"));
+                    //CitysAnimObjects.Add((int)CitysAnim.Nuke, null);
+                }
+                else
+                {
+                    print(CapitalScene.transform.name + ": Не назначен скрипт LoadableObject.");
+
+                    ////TODO:
+                    ////Оставлено для целей тестирования
+                    //CitysAnimObjects.Add((int)CitysAnim.War, CapitalScene.transform.FindChild("War 1").gameObject);
+                    //CitysAnimObjects.Add((int)CitysAnim.InvasionUSA, CapitalScene.transform.FindChild("USA army invasion").gameObject);
+                    //CitysAnimObjects.Add((int)CitysAnim.InvasionUSSR, CapitalScene.transform.FindChild("USSR army invasion").gameObject);
+                    //CitysAnimObjects.Add((int)CitysAnim.DemRed, CapitalScene.transform.FindChild("DemRED").gameObject);
+                    //CitysAnimObjects.Add((int)CitysAnim.DemBlue, CapitalScene.transform.FindChild("Dem Blue").gameObject);
+                    //CitysAnimObjects.Add((int)CitysAnim.ParadRed, CapitalScene.transform.FindChild("Parad RED + salut").gameObject);
+                    //CitysAnimObjects.Add((int)CitysAnim.ParadBlue, CapitalScene.transform.FindChild("Parad BLUE + salut").gameObject);
+                    //CitysAnimObjects.Add((int)CitysAnim.StrikeRed, CapitalScene.transform.FindChild("Strike Red").gameObject);
+                    //CitysAnimObjects.Add((int)CitysAnim.StrikeBlue, CapitalScene.transform.FindChild("Strike Blie").gameObject);
+                    //CitysAnimObjects.Add((int)CitysAnim.Storm, CapitalScene.transform.FindChild("Storm").gameObject);
+                    //CitysAnimObjects.Add((int)CitysAnim.Industry, CapitalScene.transform.FindChild("Krane constraction").gameObject);
+                    //CitysAnimObjects.Add((int)CitysAnim.Nobel, CapitalScene.transform.FindChild("Nobel").gameObject);
+                    //CitysAnimObjects.Add((int)CitysAnim.PoliticalCrisis, CapitalScene.transform.FindChild("Political crisis").gameObject);
+                    //CitysAnimObjects.Add((int)CitysAnim.FinanceCrisis, CapitalScene.transform.FindChild("Finance crisis").gameObject);
+                    //CitysAnimObjects.Add((int)CitysAnim.MoveRed, CapitalScene.transform.FindChild("Parad RED").gameObject);
+                    //CitysAnimObjects.Add((int)CitysAnim.MoveBlue, CapitalScene.transform.FindChild("Parad BLUE").gameObject);
+                    //CitysAnimObjects.Add((int)CitysAnim.MoveNeutral, CapitalScene.transform.FindChild("Parad NATIONAL").gameObject);
+                    //CitysAnimObjects.Add((int)CitysAnim.Nuke, null);
+                }
+            }
         }
     }
 
@@ -739,10 +776,72 @@ public class CountryScript : MonoBehaviour
 
     public GameObject GetAnimObject(video3D.CitysAnim type)
     {
-        if ((int)type >= CitysAnimObjects.Count)
-            return null;
+        //if ((int)type >= CitysAnimObjects.Count)
+        //    return null;
 
-        return CitysAnimObjects[(int)type];
+        //return CitysAnimObjects[(int)type];
+
+        LoadableObject tmpObj = CapitalScene.GetComponent<LoadableObject>();
+        GameObject res = null;
+
+        switch (type)
+        {
+            case CitysAnim.War:
+                res = tmpObj.FindNewsObject("War 1");
+                break;
+            case CitysAnim.InvasionUSA:
+                res = tmpObj.FindNewsObject("USA army invasion");
+                break;
+            case CitysAnim.InvasionUSSR:
+                res = tmpObj.FindNewsObject("USSR army invasion");
+                break;
+            case CitysAnim.DemRed:
+                res = tmpObj.FindNewsObject("DemRED");
+                break;
+            case CitysAnim.DemBlue:
+                res = tmpObj.FindNewsObject("Dem Blue");
+                break;
+            case CitysAnim.ParadRed:
+                res = tmpObj.FindNewsObject("Parad RED + salut");
+                break;
+            case CitysAnim.ParadBlue:
+                res = tmpObj.FindNewsObject("Parad BLUE + salut");
+                break;
+            case CitysAnim.StrikeRed:
+                res = tmpObj.FindNewsObject("Strike Red");
+                break;
+            case CitysAnim.StrikeBlue:
+                res = tmpObj.FindNewsObject("Strike Blie");
+                break;
+            case CitysAnim.Storm:
+                res = tmpObj.FindNewsObject("Storm");
+                break;
+            case CitysAnim.Industry:
+                res = tmpObj.FindNewsObject("Krane constraction");
+                break;
+            case CitysAnim.Nobel:
+                res = tmpObj.FindNewsObject("Nobel");
+                break;
+            case CitysAnim.PoliticalCrisis:
+                res = tmpObj.FindNewsObject("Political crisis");
+                break;
+            case CitysAnim.FinanceCrisis:
+                res = tmpObj.FindNewsObject("Finance crisis");
+                break;
+            case CitysAnim.MoveRed:
+                res = tmpObj.FindNewsObject("Parad RED");
+                break;
+            case CitysAnim.MoveBlue:
+                res = tmpObj.FindNewsObject("Parad BLUE");
+                break;
+            case CitysAnim.MoveNeutral:
+                res = tmpObj.FindNewsObject("Parad NATIONAL");
+                break;
+            default:
+                break;
+        }
+
+        return res;
     }
 
 

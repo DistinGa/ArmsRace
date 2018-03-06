@@ -27,12 +27,6 @@ namespace video3D
         [Space(10)]
         [SerializeField]
         GameObject[] animObjArray;
-        [SerializeField]
-        GameObject[] amerGroundFacilities;
-        [SerializeField]
-        GameObject[] sovGroundFacilities;
-        [SerializeField]
-        GameObject SovRocket, AmRocket;
 
         public bool NewsListIsEmpty
         {
@@ -43,6 +37,21 @@ namespace video3D
         {
             VideoPanel = GetComponent<Image>();
             V3Dinstance = this;
+
+            //Загрузка новостных объектов
+            if (SettingsScript.Settings.news3D)
+            {
+                LoadableObject tmpObj;
+                foreach (var item in animObjArray)
+                {
+                    tmpObj = item.GetComponent<LoadableObject>();
+                    if (tmpObj != null)
+                    {
+                        if (!tmpObj.IsLoaded)
+                            tmpObj.LoadObject();
+                    }
+                }
+            }
 
             NonCitysAnimObjects.Add((int)NonCitysAnim.SpaceUSA, animObjArray[(int)NonCitysAnim.SpaceUSA]);
             NonCitysAnimObjects.Add((int)NonCitysAnim.SpaceUSSR, animObjArray[(int)NonCitysAnim.SpaceUSSR]);
@@ -70,8 +79,7 @@ namespace video3D
                 curVideoPeriod -= Time.deltaTime;
         }
 
-        //Городские новости
-        public void AddNews(GameObject VideoObject, GameObject AnimObject, int StartMonth, CountryScript Country, string NewsText, string AudioName = "", bool Prior = false)
+        void AddNews(GameObject VideoObject, GameObject AnimObject, int StartMonth, CountryScript Country, string NewsText, string AudioName = "", bool Prior = false)
         {
             NewsBlock newBlk = new NewsBlock(VideoObject, AnimObject, StartMonth, Country, NewsText, Prior, AudioName);
             if (Prior)
@@ -94,34 +102,53 @@ namespace video3D
             //    FadeOut();
         }
 
+        //Городские новости
+        public void AddCityNews(CitysAnim AnimType, int StartMonth, CountryScript Country, string NewsText, string AudioName = "", bool Prior = false)
+        {
+            GameObject VideoObject = null, AnimObject = null;
+
+            if (SettingsScript.Settings.news3D)
+            {
+                VideoObject = Country.CapitalScene;
+                AnimObject = Country.GetAnimObject(AnimType);
+            }
+
+            AddNews(VideoObject, AnimObject, StartMonth, Country, NewsText, AudioName, Prior);
+        }
+
         //Видео для негородских новостей
         public void AddTechNews(NonCitysAnim VideoObjectIndex, int SpaceIndex, int StartMonth, CountryScript Country, string NewsText, string AudioName = "", bool Prior = false)
         {
             GameObject AnimObj = null;
-
-            if (SpaceIndex > -1 && SpaceIndex < amerGroundFacilities.Length)
+            if (SettingsScript.Settings.news3D)
             {
-                if (Country.Authority == Authority.Amer)
-                    for (int i = 0; i < amerGroundFacilities.Length; i++)
-                    {
-                        if (i <= SpaceIndex)
-                            amerGroundFacilities[i].SetActive(true);
-                        else
-                            amerGroundFacilities[i].SetActive(false);
-                    }
-                else
-                    for (int i = 0; i < sovGroundFacilities.Length; i++)
-                    {
-                        if (i <= SpaceIndex)
-                            sovGroundFacilities[i].SetActive(true);
-                        else
-                            sovGroundFacilities[i].SetActive(false);
-                    }
-            }
-            else if (SpaceIndex == 16)  //технология запусков, нужно активировать ракету
-                AnimObj = Country.Authority == Authority.Amer? AmRocket: SovRocket;
+                SpaceNewsPrefab spaceProgram = null;
+                if (NonCitysAnimObjects[(int)VideoObjectIndex].GetComponent<LoadableObject>().IsLoaded)
+                    spaceProgram = NonCitysAnimObjects[(int)VideoObjectIndex].GetComponent<LoadableObject>().LoadedObject.GetComponent<SpaceNewsPrefab>();
 
-            AddNews(NonCitysAnimObjects[(int)VideoObjectIndex], AnimObj, StartMonth, Country, NewsText, AudioName, Prior);
+                if (spaceProgram != null)
+                {
+                    if (SpaceIndex > -1 && SpaceIndex < spaceProgram.GroundFacilities.Length)
+                    {
+                        for (int i = 0; i < spaceProgram.GroundFacilities.Length; i++)
+                        {
+                            if (i <= SpaceIndex)
+                                spaceProgram.GroundFacilities[i].SetActive(true);
+                            else
+                                spaceProgram.GroundFacilities[i].SetActive(false);
+                        }
+                    }
+                    else if (SpaceIndex == 16)  //технология запусков, нужно активировать ракету
+                        AnimObj = spaceProgram.Rocket;
+                }
+
+                AddNews(NonCitysAnimObjects[(int)VideoObjectIndex], AnimObj, StartMonth, Country, NewsText, AudioName, Prior);
+            }
+            else
+            {
+                //Только текстовое сообщение.
+                AddNews(null, null, StartMonth, Country, NewsText, AudioName, Prior);
+            }
         }
 
         public void ShowDefaultAnim(CountryScript c)
@@ -166,7 +193,6 @@ namespace video3D
 
             if (CurrentNewsBlock.SetMonth > 0)
             {
-                //Invoke("FadeOut", Period);
                 curVideoPeriod = Period;
             }
 
