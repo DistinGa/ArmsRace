@@ -107,6 +107,7 @@ public class GameManagerScript : MonoBehaviour
     [Space(10)]
     public Armageddon DLC_Armageddon;
     public Industrialisation DLC_Industrialisation;
+    public UN DLC_UN;
 
     public CountryScript CurrentCountry
     {
@@ -293,8 +294,14 @@ public class GameManagerScript : MonoBehaviour
     //Переход к карте страны (в столицу)
     public void SnapToCountry(CountryScript c)
     {
-        CameraRig.SetNewPosition(c.Capital);
-        SnapToCountry(c.Capital.position, c);
+        if (Country != c)
+        {
+            CameraRig.SetNewPosition(c.Capital);
+            SnapToCountry(c.Capital.position, c);
+        }
+        else
+            SnapToCountry();
+
     }
 
     //Переход к карте под курсором
@@ -559,6 +566,9 @@ public class GameManagerScript : MonoBehaviour
                     c.CIA--;
                     c.AddInfluence(Authority.Amer, -2);    //обществу не нравиться когда в их стране орудуют чужие шпионы
                     c.AddState(CountryScript.States.SYM_SPY, Authority.Amer, 3);
+
+                    if (SettingsScript.Settings.UNAvailable)
+                        DLC_UN.SpyLiquidation(Authority.Soviet, c);
                 }
             }
             else //проверка разоблачения шпиона игрока за СССР
@@ -568,6 +578,9 @@ public class GameManagerScript : MonoBehaviour
                     c.KGB--;
                     c.AddInfluence(Authority.Soviet, -2);  //обществу не нравиться когда в их стране орудуют чужие шпионы
                     c.AddState(CountryScript.States.SYM_SPY, Authority.Soviet, 3);
+
+                    if (SettingsScript.Settings.UNAvailable)
+                        DLC_UN.SpyLiquidation(Authority.Amer, c);
                 }
             }
         }
@@ -698,12 +711,20 @@ public class GameManagerScript : MonoBehaviour
                 {
                     if (Country.GovForce > 0)
                     {
-                        if ((Country.Authority == Authority.Amer && usaScore > suScore) 
-                        || (Country.Authority == Authority.Soviet && usaScore < suScore) 
+                        if ((Country.Authority == Authority.Amer && usaScore > suScore)
+                        || (Country.Authority == Authority.Soviet && usaScore < suScore)
                         || (Country.Authority == Authority.Neutral && ((Country.SovInf > Country.AmInf && suScore > usaScore) || (Country.SovInf <= Country.AmInf && suScore < usaScore))))
+                        {
                             Country.OppForce--;
+                            if (SettingsScript.Settings.UNAvailable)
+                                DLC_UN.MilLiquidation(Country.GovForceAuthority, Country);  //GovForce победили
+                        }
                         else
+                        {
                             Country.GovForce--;
+                            if (SettingsScript.Settings.UNAvailable)
+                                DLC_UN.MilLiquidation(Country.OppForceAuthority, Country);  //OppForce победили
+                        }
                     }
 
                     if (Country.GovForce == 0)  //революция
@@ -731,7 +752,10 @@ public class GameManagerScript : MonoBehaviour
 
         //Случайные события
         TestRandomEvent();
-        
+
+        if (SettingsScript.Settings.UNAvailable)
+            DLC_UN.UNActionTick();
+
         //события по подписке (обновление выводимой информации)
         if (monthSubscribers != null)
             monthSubscribers();
@@ -863,12 +887,15 @@ public class GameManagerScript : MonoBehaviour
         {
             c.KGB--;
             c.AddInfluence(Authority.Soviet, -2);
-            
+            if (SettingsScript.Settings.UNAvailable)
+                DLC_UN.SpyLiquidation(Authority.Amer, c);
         }
         else
         {
             c.CIA--;
             c.AddInfluence(Authority.Amer, -2);
+            if (SettingsScript.Settings.UNAvailable)
+                DLC_UN.SpyLiquidation(Authority.Soviet, c);
         }
 
         c.AddState(CountryScript.States.SYM_SPY, Authority.Amer, 3);
@@ -930,22 +957,30 @@ public class GameManagerScript : MonoBehaviour
                 break;
         }
     }
-    
-    //Обновление информации в верхнем меню
-    public void ShowHighWinInfo()
+
+    //Преобразование поряддкового номера месяца в человеческое представление
+    public string GetCurrentDate()
     {
         string[] months = { "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" };
         int m = mMonthCount % 12;
         int y = mMonthCount / 12;
-        string CurrentDate = months[m] + " " + (1950 + y);
+        return months[m] + " " + (1950 + y);
+    }
+
+    //Обновление информации в верхнем меню
+    public void ShowHighWinInfo()
+    {
+        string CurrentDate = GetCurrentDate();
 
         PlayerScript amerPlayer = GameObject.Find("AmerPlayer").GetComponent<PlayerScript>();
         PlayerScript sovPlayer = GameObject.Find("SovPlayer").GetComponent<PlayerScript>();
+        int amerScore = amerPlayer.Score;
+        int sovScore = sovPlayer.Score;
 
         UpMenu.Find("Date").GetComponent<Text>().text = CurrentDate;
-        UpMenu.Find("USScore").GetComponent<Text>().text = amerPlayer.Score.ToString("f0");
+        UpMenu.Find("USScore").GetComponent<Text>().text = amerScore.ToString("f0");
         UpMenu.Find("USBudget").GetComponent<Text>().text = amerPlayer.Budget.ToString("f0");
-        UpMenu.Find("SovScore").GetComponent<Text>().text = sovPlayer.Score.ToString("f0");
+        UpMenu.Find("SovScore").GetComponent<Text>().text = sovScore.ToString("f0");
         UpMenu.Find("SovBudget").GetComponent<Text>().text = sovPlayer.Budget.ToString("f0");
         UpMenu.Find("AmPP").GetComponent<Text>().text = amerPlayer.PoliticalPoints.ToString("f0");
         UpMenu.Find("SovPP").GetComponent<Text>().text = sovPlayer.PoliticalPoints.ToString("f0");
@@ -974,8 +1009,7 @@ public class GameManagerScript : MonoBehaviour
 
         if (SettingsScript.Settings.ArmageddonAvailable)
         {
-            DLC_Armageddon.SetNuclearPercent(Player.Authority, Player.RelativeNuclearPower());
-            DLC_Armageddon.SetNuclearPercent(AI.AIPlayer.Authority, AI.AIPlayer.RelativeNuclearPower());
+            DLC_Armageddon.ShowNuclearPercent();
         }
 
 #if DEBUG

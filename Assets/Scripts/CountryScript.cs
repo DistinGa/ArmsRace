@@ -41,11 +41,12 @@ public class CountryScript : MonoBehaviour
     public GameObject GlobalWarAnimation;
     public GameObject CapitalScene = null;
     [SerializeField]
-    Dictionary<int, GameObject> CitysAnimObjects = new Dictionary<int, GameObject>();    //Словарь анимационных объектов в городах.
 
     [Space(10)]
     public List<StateSymbol> Symbols = new List<StateSymbol>();
     private Transform StatePanel;
+
+    Authority aggressorAuth;
 
     [HideInInspector]
     public int DiscounterUsaMeeting, DiscounterRusMeeting; //Сколько ждать до возможности следующего митинга протеста (0 - можно митинговать)
@@ -72,50 +73,10 @@ public class CountryScript : MonoBehaviour
                     {
                         tmpObj.LoadObject();
                     }
-
-                    //CitysAnimObjects.Add((int)CitysAnim.War, tmpObj.FindNewsObject("War 1"));
-                    //CitysAnimObjects.Add((int)CitysAnim.InvasionUSA, tmpObj.FindNewsObject("USA army invasion"));
-                    //CitysAnimObjects.Add((int)CitysAnim.InvasionUSSR, tmpObj.FindNewsObject("USSR army invasion"));
-                    //CitysAnimObjects.Add((int)CitysAnim.DemRed, tmpObj.FindNewsObject("DemRED"));
-                    //CitysAnimObjects.Add((int)CitysAnim.DemBlue, tmpObj.FindNewsObject("Dem Blue"));
-                    //CitysAnimObjects.Add((int)CitysAnim.ParadRed, tmpObj.FindNewsObject("Parad RED + salut"));
-                    //CitysAnimObjects.Add((int)CitysAnim.ParadBlue, tmpObj.FindNewsObject("Parad BLUE + salut"));
-                    //CitysAnimObjects.Add((int)CitysAnim.StrikeRed, tmpObj.FindNewsObject("Strike Red"));
-                    //CitysAnimObjects.Add((int)CitysAnim.StrikeBlue, tmpObj.FindNewsObject("Strike Blie"));
-                    //CitysAnimObjects.Add((int)CitysAnim.Storm, tmpObj.FindNewsObject("Storm"));
-                    //CitysAnimObjects.Add((int)CitysAnim.Industry, tmpObj.FindNewsObject("Krane constraction"));
-                    //CitysAnimObjects.Add((int)CitysAnim.Nobel, tmpObj.FindNewsObject("Nobel"));
-                    //CitysAnimObjects.Add((int)CitysAnim.PoliticalCrisis, tmpObj.FindNewsObject("Political crisis"));
-                    //CitysAnimObjects.Add((int)CitysAnim.FinanceCrisis, tmpObj.FindNewsObject("Finance crisis"));
-                    //CitysAnimObjects.Add((int)CitysAnim.MoveRed, tmpObj.FindNewsObject("Parad RED"));
-                    //CitysAnimObjects.Add((int)CitysAnim.MoveBlue, tmpObj.FindNewsObject("Parad BLUE"));
-                    //CitysAnimObjects.Add((int)CitysAnim.MoveNeutral, tmpObj.FindNewsObject("Parad NATIONAL"));
-                    //CitysAnimObjects.Add((int)CitysAnim.Nuke, null);
                 }
                 else
                 {
                     print(CapitalScene.transform.name + ": Не назначен скрипт LoadableObject.");
-
-                    ////TODO:
-                    ////Оставлено для целей тестирования
-                    //CitysAnimObjects.Add((int)CitysAnim.War, CapitalScene.transform.FindChild("War 1").gameObject);
-                    //CitysAnimObjects.Add((int)CitysAnim.InvasionUSA, CapitalScene.transform.FindChild("USA army invasion").gameObject);
-                    //CitysAnimObjects.Add((int)CitysAnim.InvasionUSSR, CapitalScene.transform.FindChild("USSR army invasion").gameObject);
-                    //CitysAnimObjects.Add((int)CitysAnim.DemRed, CapitalScene.transform.FindChild("DemRED").gameObject);
-                    //CitysAnimObjects.Add((int)CitysAnim.DemBlue, CapitalScene.transform.FindChild("Dem Blue").gameObject);
-                    //CitysAnimObjects.Add((int)CitysAnim.ParadRed, CapitalScene.transform.FindChild("Parad RED + salut").gameObject);
-                    //CitysAnimObjects.Add((int)CitysAnim.ParadBlue, CapitalScene.transform.FindChild("Parad BLUE + salut").gameObject);
-                    //CitysAnimObjects.Add((int)CitysAnim.StrikeRed, CapitalScene.transform.FindChild("Strike Red").gameObject);
-                    //CitysAnimObjects.Add((int)CitysAnim.StrikeBlue, CapitalScene.transform.FindChild("Strike Blie").gameObject);
-                    //CitysAnimObjects.Add((int)CitysAnim.Storm, CapitalScene.transform.FindChild("Storm").gameObject);
-                    //CitysAnimObjects.Add((int)CitysAnim.Industry, CapitalScene.transform.FindChild("Krane constraction").gameObject);
-                    //CitysAnimObjects.Add((int)CitysAnim.Nobel, CapitalScene.transform.FindChild("Nobel").gameObject);
-                    //CitysAnimObjects.Add((int)CitysAnim.PoliticalCrisis, CapitalScene.transform.FindChild("Political crisis").gameObject);
-                    //CitysAnimObjects.Add((int)CitysAnim.FinanceCrisis, CapitalScene.transform.FindChild("Finance crisis").gameObject);
-                    //CitysAnimObjects.Add((int)CitysAnim.MoveRed, CapitalScene.transform.FindChild("Parad RED").gameObject);
-                    //CitysAnimObjects.Add((int)CitysAnim.MoveBlue, CapitalScene.transform.FindChild("Parad BLUE").gameObject);
-                    //CitysAnimObjects.Add((int)CitysAnim.MoveNeutral, CapitalScene.transform.FindChild("Parad NATIONAL").gameObject);
-                    //CitysAnimObjects.Add((int)CitysAnim.Nuke, null);
                 }
             }
         }
@@ -197,7 +158,7 @@ public class CountryScript : MonoBehaviour
     //Добавление влияния.
     //Inf - чьё влияние добавляется.
     //Auto - true: влияние добавляется в результате случайного события или от космогонки.
-    //      false: явное добавление
+    //      false: явное добавление (за счёт дипломатов)
     public void AddInfluence(Authority Inf, int Amount, bool Auto = true)
     {
         int diplomatsDecrease = 1;
@@ -250,10 +211,10 @@ public class CountryScript : MonoBehaviour
                     diplomatsDecrease = Amount;
                     //бонус лидера
                     Amount *= pl.PlayerLeader.GetInfluenceBoost();
+                    DiscounterUsaInfl = GameManagerScript.GM.MAX_INFLU_CLICK;
                 }
 
                 AmInf += Amount;
-                DiscounterUsaInfl = GameManagerScript.GM.MAX_INFLU_CLICK;
 
                 //Распределяем "минус" по другим влияниям.
                 NInf -= Amount; //Сначала отнимаем от нейтрального влияния
@@ -280,10 +241,10 @@ public class CountryScript : MonoBehaviour
                     diplomatsDecrease = Amount;
                     //бонус лидера
                     Amount *= pl.PlayerLeader.GetInfluenceBoost();
+                    DiscounterRusInfl = GameManagerScript.GM.MAX_INFLU_CLICK;
                 }
 
                 SovInf += Amount;
-                DiscounterRusInfl = GameManagerScript.GM.MAX_INFLU_CLICK;
 
                 //Распределяем "минус" по другим влияниям.
                 NInf -= Amount; //Сначала отнимаем от нейтрального влияния
@@ -358,6 +319,7 @@ public class CountryScript : MonoBehaviour
         PlayerScript pl = GameManagerScript.GM.GetPlayerByAuthority(Inf);
 
         bool res = false;
+        int startOppForce = OppForce;
 
         if (Authority == Authority.Neutral)
         {
@@ -401,18 +363,24 @@ public class CountryScript : MonoBehaviour
         if (res)
         {
             delta = 10 - GovForce;
-            if (delta < 0)
+            if (delta < 0 && !cheat)
                 pl.MilitaryPool -= delta;   //превысили предел 10, возвращаем в пул разницу
         }
         else
         {
             delta = 10 - OppForce;
-            if (delta < 0)
+            if (delta < 0 && !cheat)
                 pl.MilitaryPool -= delta;   //превысили предел 10, возвращаем в пул разницу
         }
 
         GovForce = Mathf.Clamp(GovForce, 0, 10);
         OppForce = Mathf.Clamp(OppForce, 0, 10);
+
+        //установка агрессора, если введены (не читом) оппозиционные войска и началась война.
+        if (startOppForce == 0 && OppForce != 0 && !cheat)
+        {
+            aggressorAuth = Inf;
+        }
 
         return res;
     }
@@ -521,6 +489,8 @@ public class CountryScript : MonoBehaviour
     //Смена правительства
     public void ChangeGov(Authority NewAut)
     {
+        GameManagerScript GM = GameManagerScript.GM;
+
         Support = 50;
 
         if (Authority == Authority.Neutral && GovForce >= 8)
@@ -549,9 +519,11 @@ public class CountryScript : MonoBehaviour
 
         SetAuthority(); //Смена цвета границ
 
-        //Steam achievments
-        GameManagerScript GM = GameManagerScript.GM;
+        //Обрадотка событий DLC
+        if (SettingsScript.Settings.UNAvailable)
+            GM.DLC_UN.AllliExpansion(NewAut, this);
 
+        //Steam achievments
         if ((Name == "East Germany" || Name == "West Germany") && GM.CurrentMonth < 480) //до 1990 года
         {
             if (GM.FindCountryById(12).Authority == GM.Player.Authority && GM.FindCountryById(24).Authority == GM.Player.Authority)
@@ -720,6 +692,9 @@ public class CountryScript : MonoBehaviour
 
             //Удаление роликов о войне
             GameManagerScript.GM.VQueue.ClearVideoQueue(this, VideoQueue.V_PUPPER_REVOLUTION);
+
+            //Сброс агрессора
+            aggressorAuth = Authority.Neutral;
         }
 
         //Удаление "просроченных" состояний
@@ -776,11 +751,6 @@ public class CountryScript : MonoBehaviour
 
     public GameObject GetAnimObject(video3D.CitysAnim type)
     {
-        //if ((int)type >= CitysAnimObjects.Count)
-        //    return null;
-
-        //return CitysAnimObjects[(int)type];
-
         LoadableObject tmpObj = CapitalScene.GetComponent<LoadableObject>();
         GameObject res = null;
 
@@ -844,6 +814,64 @@ public class CountryScript : MonoBehaviour
         return res;
     }
 
+    public Authority AggressorAuth
+    {
+        get { return aggressorAuth; }
+    }
+
+    public Sprite Flag
+    {
+        get
+        {
+            if (Authority == Authority.Soviet)
+                return FlagS;
+            else
+                return FlagNs;
+        }
+    }
+
+    public Authority GovForceAuthority
+    {
+        get
+        {
+            if (Authority == Authority.Neutral)
+            {
+                if (SovInf > AmInf)
+                    return Authority.Soviet;
+                else
+                    return Authority.Amer;
+            }
+            else
+                return Authority;
+        }
+    }
+
+    public Authority OppForceAuthority
+    {
+        get
+        {
+            Authority res = Authority.Neutral;
+
+            switch (Authority)
+            {
+                case Authority.Neutral:
+                    if (SovInf > AmInf)
+                        res = Authority.Amer;
+                    else
+                        res = Authority.Soviet;
+
+                    break;
+                case Authority.Amer:
+                    res = Authority.Soviet;
+                    break;
+                case Authority.Soviet:
+                    res = Authority.Amer;
+                    break;
+            }
+
+            return res;
+        }
+    }
 
     //Сохранение/загрузка
     public SavedCountryData GetSavedData()

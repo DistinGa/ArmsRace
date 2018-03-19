@@ -27,6 +27,8 @@ namespace video3D
         [Space(10)]
         [SerializeField]
         GameObject[] animObjArray;
+        [SerializeField]
+        GameObject EmptyAnim;
 
         public bool NewsListIsEmpty
         {
@@ -66,6 +68,8 @@ namespace video3D
         void Start()
         {
             AS.volume = SettingsScript.Settings.mSoundVol;
+            if (!SettingsScript.Settings.news3D)
+                EmptyAnim.SetActive(true);
         }
 
         void Update()
@@ -81,6 +85,9 @@ namespace video3D
 
         void AddNews(GameObject VideoObject, GameObject AnimObject, int StartMonth, CountryScript Country, string NewsText, string AudioName = "", bool Prior = false)
         {
+            if (VideoObject == null)
+                VideoObject = EmptyAnim;
+
             NewsBlock newBlk = new NewsBlock(VideoObject, AnimObject, StartMonth, Country, NewsText, Prior, AudioName);
             if (Prior)
             {
@@ -105,7 +112,7 @@ namespace video3D
         //Городские новости
         public void AddCityNews(CitysAnim AnimType, int StartMonth, CountryScript Country, string NewsText, string AudioName = "", bool Prior = false)
         {
-            GameObject VideoObject = null, AnimObject = null;
+            GameObject VideoObject = EmptyAnim, AnimObject = null;
 
             if (SettingsScript.Settings.news3D)
             {
@@ -147,7 +154,7 @@ namespace video3D
             else
             {
                 //Только текстовое сообщение.
-                AddNews(null, null, StartMonth, Country, NewsText, AudioName, Prior);
+                AddNews(EmptyAnim, null, StartMonth, Country, NewsText, AudioName, Prior);
             }
         }
 
@@ -161,7 +168,8 @@ namespace video3D
 
         private void FadeOut()
         {
-            if (Fader.color.a == 1 && CurrentNewsBlock.SetMonth == 0)
+            //if (Fader.color.a == 1 && CurrentNewsBlock.SetMonth == 0 && !CurrentNewsBlock.Prior)
+            if (Fader.color.a == 1)
                 TestNewsLists();
             else
                 StartCoroutine(FadeAnimation(0.25f, true));

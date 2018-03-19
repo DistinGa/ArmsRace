@@ -8,6 +8,7 @@ namespace LeftFlagEvents
     public interface ILFEvent
     {
         GameObject GO { get;}
+        LeftFlagEventManager LFManager { get; set; }
         bool TestSelfCondition();
         void OnClickEvent();
     }
@@ -85,6 +86,47 @@ namespace LeftFlagEvents
                     listLFE.Add(tmpAE);
                 }
             }
+
+            //DLC
+            if (SettingsScript.Settings.UNAvailable)
+                GM.DLC_UN.ShowFlag();
+        }
+
+        //public void AddFlag(GameObject tmpGO, CountryScript c = null)
+        //{
+        //    if (tmpGO.GetComponent<UNCondemnAggressorFlagScript>() != null && HasCondemnFlag())    //такой флаг уже есть в списке
+        //    {
+        //        Destroy(tmpGO);
+        //        return;
+        //    }
+
+        //    tmpGO.transform.SetParent(transform.FindChild("Panel/Flags"));
+        //    tmpGO.transform.SetAsFirstSibling();
+        //    ILFEvent tmpAE = tmpGO.GetComponent<ILFEvent>();
+        //    tmpAE.LFManager = this;
+        //    listLFE.Add(tmpAE);
+        //}
+
+        public void AddFlag(GameObject prefab)
+        {
+            GameObject tmpGO = Instantiate(prefab);
+            tmpGO.transform.SetParent(transform.FindChild("Panel/Flags"));
+            tmpGO.transform.SetAsFirstSibling();
+            ILFEvent LFEvent = tmpGO.GetComponent<ILFEvent>();
+            LFEvent.LFManager = this;
+
+            listLFE.Add(LFEvent);
+        }
+
+        public void DelFlag(ILFEvent item)
+        {
+            listLFE.Remove(item);
+            Destroy(item.GO);
+        }
+
+        bool HasUNFlag()
+        {
+            return (listLFE.Where(x => (x is UNFlagScript)).Count() > 0);
         }
     }
 }

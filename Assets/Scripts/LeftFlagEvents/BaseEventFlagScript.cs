@@ -7,12 +7,26 @@ namespace LeftFlagEvents
     public class BaseEventFlagScript : MonoBehaviour, ILFEvent
     {
         private CameraScriptXZ scCamera;
+        private LeftFlagEventManager lfMan;
 
         public GameObject GO
         {
             get
             {
                 return gameObject;
+            }
+        }
+
+        public LeftFlagEventManager LFManager
+        {
+            get
+            {
+                return lfMan;
+            }
+
+            set
+            {
+                lfMan = value;
             }
         }
 

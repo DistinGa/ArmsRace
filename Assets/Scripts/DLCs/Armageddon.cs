@@ -17,6 +17,8 @@ public class Armageddon : MonoBehaviour {
         RocketPanel.SetActive(ArmaCheck);
         NuclearUSSR.gameObject.SetActive(ArmaCheck);
         NuclearUSA.gameObject.SetActive(ArmaCheck);
+        if (ArmaCheck)
+            ShowNuclearPercent();
     }
 
     public PlayerScript GetWinner(int AIpower, bool checkOnlly = false)
@@ -54,12 +56,10 @@ public class Armageddon : MonoBehaviour {
         return res;
     }
 
-    public void SetNuclearPercent(Authority aut, int percent)
+    public void ShowNuclearPercent()
     {
-        if (aut == Authority.Soviet)
-            NuclearUSSR.text = percent.ToString() + "%";
-        if (aut == Authority.Amer)
-            NuclearUSA.text = percent.ToString() + "%";
+        NuclearUSSR.text = GameManagerScript.GM.GetPlayerByAuthority(Authority.Soviet).RelativeNuclearPower().ToString() + "%";
+        NuclearUSA.text = GameManagerScript.GM.GetPlayerByAuthority(Authority.Amer).RelativeNuclearPower().ToString() + "%";
     }
 
     public void StartNukeAnim(Vector3 pos)
