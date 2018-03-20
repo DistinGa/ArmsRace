@@ -109,6 +109,7 @@ public class GameManagerScript : MonoBehaviour
     public Industrialisation DLC_Industrialisation;
     public UN DLC_UN;
 
+    #region Properties
     public CountryScript CurrentCountry
     {
         get { return Country; }
@@ -133,6 +134,12 @@ public class GameManagerScript : MonoBehaviour
             MakeTurnButton.gameObject.SetActive(value);
         }
     }
+
+    public CameraScriptXZ CamRig
+    {
+        get { return CameraRig; }
+    }
+    #endregion
 
     public void Awake()
     {

@@ -20,7 +20,7 @@ public class SettingsScript : MonoBehaviour
 
     public bool Ironmode { get; set; }
     public int AIPower { get; set; }
-    public Authority playerSelected { get; set; }
+    public Authority playerSelected;// { get; set; }
     public bool NeedLoad { get; set; }
     public LeaderScript PlayerLeader;
     [Space(10)]
@@ -159,6 +159,8 @@ public class SettingsScript : MonoBehaviour
 
         SavedSettings.ArmageddonEnable = DLC_Armageddon;
         SavedSettings.IndustrializationEnable = DLC_Industr;
+        SavedSettings.UNEnable = DLC_UN;
+        SavedSettings.PoliticsEnable = DLC_Politics;
     }
 
     public void LoadSettings()
@@ -174,5 +176,7 @@ public class SettingsScript : MonoBehaviour
 
         DLC_Armageddon = SavedSettings.ArmageddonEnable;
         DLC_Industr = SavedSettings.IndustrializationEnable;
+        DLC_UN = SavedSettings.UNEnable;
+        DLC_Politics = SavedSettings.PoliticsEnable;
     }
 }

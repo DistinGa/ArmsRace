@@ -29,7 +29,9 @@ public class UNMenu : MonoBehaviour {
     [SerializeField]
     GameObject prestiggeGainStringPrefab, UNCountrySelectionPrefab;
     [SerializeField]
-    Sprite iconExpansion, iconMil, iconSpy;
+    Image Herb;
+    [SerializeField]
+    Sprite iconExpansion, iconMil, iconSpy, HerbUSA, HerbUSSR;
 
     GameManagerScript GM
     {
@@ -40,6 +42,19 @@ public class UNMenu : MonoBehaviour {
 
             return GM_;
         }
+    }
+
+    void Start()
+    {
+        if (GM.Player.Authority == Authority.Amer)
+            Herb.sprite = HerbUSA;
+        else
+            Herb.sprite = HerbUSSR;
+
+        pnlsPrice[(int)UNActionType.CondemnAggressor].GetComponentInChildren<Text>().text = GM.DLC_UN.GetCondemnAggressorCost.ToString();
+        pnlsPrice[(int)UNActionType.Peacekeeping].GetComponentInChildren<Text>().text = GM.DLC_UN.GetPeacekeepingCost.ToString();
+        pnlsPrice[(int)UNActionType.Intervention].GetComponentInChildren<Text>().text = GM.DLC_UN.GetInterventionCost.ToString();
+        pnlsPrice[(int)UNActionType.Speech].GetComponentInChildren<Text>().text = GM.DLC_UN.GetSpeechCost.ToString();
     }
 
     void OnEnable()
@@ -66,15 +81,13 @@ public class UNMenu : MonoBehaviour {
     {
         txtPrestige.text = GM.DLC_UN.GetPrestige(GM.Player.Authority).ToString();
 
+        //Отметка доступных резолюций
         pnlsPrice[(int)UNActionType.CondemnAggressor].sprite = GM.DLC_UN.CheckCondemnCondition(GM.Player.Authority) ? sprGreenPlate: sprRedPlate;
-        pnlsPrice[(int)UNActionType.CondemnAggressor].GetComponentInChildren<Text>().text = GM.DLC_UN.GetCondemnAggressorCost.ToString();
         pnlsPrice[(int)UNActionType.Peacekeeping].sprite = GM.DLC_UN.CheckPeacemakingCondition(GM.Player.Authority) ? sprGreenPlate : sprRedPlate;
-        pnlsPrice[(int)UNActionType.Peacekeeping].GetComponentInChildren<Text>().text = GM.DLC_UN.GetPeacekeepingCost.ToString();
         pnlsPrice[(int)UNActionType.Intervention].sprite = GM.DLC_UN.CheckInterventionCondition(GM.Player.Authority) ? sprGreenPlate : sprRedPlate;
-        pnlsPrice[(int)UNActionType.Intervention].GetComponentInChildren<Text>().text = GM.DLC_UN.GetInterventionCost.ToString();
         pnlsPrice[(int)UNActionType.Speech].sprite = GM.DLC_UN.CheckSpeechCondition(GM.Player.Authority) ? sprGreenPlate : sprRedPlate;
-        pnlsPrice[(int)UNActionType.Speech].GetComponentInChildren<Text>().text = GM.DLC_UN.GetSpeechCost.ToString();
 
+        //Выделение кнопки активной резолюции
         switch (selectedType)
         {
             case UNActionType.CondemnAggressor:
@@ -96,14 +109,12 @@ public class UNMenu : MonoBehaviour {
                 break;
         }
 
+        //Иконки месячных повышений престижа
         int suprScore, suprInf, suprArma;
         GM.DLC_UN.CheckMonSupremacy(out suprScore, out suprInf, out suprArma);
         iconScore.SetActive(suprScore > 0);
         iconArm.SetActive(suprArma > 0);
         iconInf.SetActive(suprInf > 0);
-
-        //список разовых повышений престижа
-
     }
 
     public void SetCondemnAction(bool vl)
@@ -111,9 +122,26 @@ public class UNMenu : MonoBehaviour {
         if (vl)
         {
             selectedType = UNActionType.CondemnAggressor;
-            btnSubmit.interactable = GM.DLC_UN.CheckCondemnCondition(GM.Player.Authority);
-            txtResDescription.text = string.Format("-2 global influence for {0}", GM.Player.MyCountry.Name);
-            FillFlagList(new List<CountryScript>());    //Для очистки линйки флагов.
+            //btnSubmit.interactable = GM.DLC_UN.CheckCondemnCondition(GM.Player.Authority);
+            bool interact = GM.DLC_UN.CheckCondemnCondition(GM.Player.Authority);
+            if (interact)
+            {
+                interact = false;
+                foreach (CountryScript c in CountryScript.Countries())
+                {
+                    if (c.AggressorAuth != GM.Player.Authority && c.AggressorAuth != Authority.Neutral)
+                    {
+                        interact = true;
+                        break;
+                    }
+                }
+            }
+
+            btnSubmit.interactable = interact;
+            txtResDescription.text = string.Format("-1 global influence for {0}", GM.AI.AIPlayer.MyCountry.Name);
+            List<CountryScript> tmpLst = new List<CountryScript>();
+            tmpLst.Add(GM.Player.OppCountry);
+            FillFlagList(tmpLst);
         }
     }
 
@@ -144,7 +172,9 @@ public class UNMenu : MonoBehaviour {
             selectedType = UNActionType.Speech;
             btnSubmit.interactable = GM.DLC_UN.CheckSpeechCondition(GM.Player.Authority);
             txtResDescription.text = string.Format("+1 global influence for {0}", GM.Player.MyCountry.Name);
-            FillFlagList(new List<CountryScript>());    //Для очистки линйки флагов.
+            List<CountryScript> tmpLst = new List<CountryScript>();
+            tmpLst.Add(GM.Player.MyCountry);
+            FillFlagList(tmpLst);
         }
     }
 
@@ -202,7 +232,7 @@ public class UNMenu : MonoBehaviour {
                 break;
             case UN.SingleGainType.SpyLiquidation:
                 newString.transform.FindChild("Icon").GetComponent<Image>().sprite = iconSpy;
-                newString.transform.FindChild("Gain").GetComponent<Text>().text = GM.DLC_UN.SpyPrestGain.ToString();
+                newString.transform.FindChild("Gain").GetComponent<Text>().text = "+" + GM.DLC_UN.SpyPrestGain.ToString();
                 break;
         }
     }
@@ -216,6 +246,7 @@ public class UNMenu : MonoBehaviour {
 
         selectedCountry = cntrs[indx];
         scrolCountry.anchoredPosition = new Vector2(-indx * flagSize, scrolCountry.anchoredPosition.y);
+        GM.SnapToCountry(selectedCountry);
     }
 
     //Перемещение линии флагов, если right - вправо, иначе -влево.
@@ -247,7 +278,10 @@ public class UNMenu : MonoBehaviour {
 
         selectedType = UNActionType.None;
         selectedCountry = null;
-        UpdateView();
+        //UpdateView();
+        SoundManager.SM.PlaySound("sound/UN-submit");
+        GM.ToggleTechMenu(gameObject);
+        FindObjectOfType<CameraScriptXZ>().setOverMenu = false;
     }
 
     enum UNActionType

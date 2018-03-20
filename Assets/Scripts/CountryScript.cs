@@ -150,7 +150,7 @@ public class CountryScript : MonoBehaviour
 
     public void OnMouseUpAsButton()
     {
-        CameraScriptXZ cam = FindObjectOfType<CameraScriptXZ>();
+        CameraScriptXZ cam = GameManagerScript.GM.CamRig;
         if (!cam.setOverMenu)
             GameManagerScript.GM.SnapToCountry(Camera.main.ScreenToWorldPoint(Input.mousePosition), this);
     }

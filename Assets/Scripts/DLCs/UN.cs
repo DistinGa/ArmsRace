@@ -18,6 +18,7 @@ public class UN : MonoBehaviour {
     [SerializeField]
     int CondemnAggressorCost = 50, PeacekeepingCost = 50, InterventionCost = 50, SpeechCost = 50;
 
+    [SerializeField]
     int amPrestige, amMonPrestige, sovPrestige, sovMonPrestige;
     GameManagerScript GM;
 
@@ -164,16 +165,16 @@ public class UN : MonoBehaviour {
 
         foreach (CountryScript c in CountryScript.Countries())
         {
-            c.AddInfluence(aggrAuth, -2, true);
+            c.AddInfluence(aggrAuth, -1, true);
             c.AddInfluence(starterAuth, 1, true);
         }
 
         AddPrestige(starterAuth, -CondemnAggressorCost);
 
         if (starterAuth == Authority.Amer)
-            video3D.Video3D.V3Dinstance.AddTechNews(video3D.NonCitysAnim.UNOUSA, -1, GM.CurrentMonth, GM.GetPlayerByAuthority(starterAuth).MyCountry, "USA in UN condemned aggression of USSR. UN has supported this resolution ( -2 global influence for USA)", "", true);
+            video3D.Video3D.V3Dinstance.AddTechNews(video3D.NonCitysAnim.UNOUSA, -1, GM.CurrentMonth, GM.GetPlayerByAuthority(starterAuth).MyCountry, "USA in UN condemned aggression of USSR. UN has supported this resolution ( -1 global influence for USSR)", "sound/un-news", true);
         else
-            video3D.Video3D.V3Dinstance.AddTechNews(video3D.NonCitysAnim.UNOUSSR, -1, GM.CurrentMonth, GM.GetPlayerByAuthority(starterAuth).MyCountry, "USSR in UN condemned aggression of USA. UN has supported this resolution ( -2 global influence for USSR)", "", true);
+            video3D.Video3D.V3Dinstance.AddTechNews(video3D.NonCitysAnim.UNOUSSR, -1, GM.CurrentMonth, GM.GetPlayerByAuthority(starterAuth).MyCountry, "USSR in UN condemned aggression of USA. UN has supported this resolution ( -1 global influence for USA)", "sound/un-news", true);
     }
 
     //При этой опции можно остановить войну в любой стране, в которой воюет противник (скриптом опозиция и суппорт в стране выравнивается 50 на 50 ).
@@ -187,9 +188,9 @@ public class UN : MonoBehaviour {
         AddPrestige(starterAuth, -PeacekeepingCost);
 
         if (starterAuth == Authority.Amer)
-            video3D.Video3D.V3Dinstance.AddTechNews(video3D.NonCitysAnim.UNOUSA, -1, GM.CurrentMonth, c, String.Format("USA in UN proposed peacekeeping mission to {0}. UN has supported this resolution ( 50/50 for opposition and support in {0})", c.Name), "", true);
+            video3D.Video3D.V3Dinstance.AddTechNews(video3D.NonCitysAnim.UNOUSA, -1, GM.CurrentMonth, c, String.Format("USA in UN proposed peacekeeping mission to {0}. UN has supported this resolution ( 50/50 for opposition and support in {0})", c.Name), "sound/un-news", true);
         else
-            video3D.Video3D.V3Dinstance.AddTechNews(video3D.NonCitysAnim.UNOUSSR, -1, GM.CurrentMonth, c, String.Format("USSR in UN proposed peacekeeping mission to {0}. UN has supported this resolution ( 50/50 for opposition and support in {0})", c.Name), "", true);
+            video3D.Video3D.V3Dinstance.AddTechNews(video3D.NonCitysAnim.UNOUSSR, -1, GM.CurrentMonth, c, String.Format("USSR in UN proposed peacekeeping mission to {0}. UN has supported this resolution ( 50/50 for opposition and support in {0})", c.Name), "sound/un-news", true);
     }
 
     //При этой опции, наоборот, можно начать войну в любой нейтральной стране в которой свой ифлуенс меньше чем у противника ( скриптом опозиция становирся 90 и вводятся 3 милитари ( не игрока, а просто, с неба )). 
@@ -205,9 +206,9 @@ public class UN : MonoBehaviour {
         AddPrestige(starterAuth, -InterventionCost);
 
         if (starterAuth == Authority.Amer)
-            video3D.Video3D.V3Dinstance.AddTechNews(video3D.NonCitysAnim.UNOUSA, -1, GM.CurrentMonth, c, String.Format("USA in UN proposed mandate for intervention to {0}. UN has supported this resolution ( +3 military and opposition =90 in {0})", c.Name), "", true);
+            video3D.Video3D.V3Dinstance.AddTechNews(video3D.NonCitysAnim.UNOUSA, -1, GM.CurrentMonth, c, String.Format("USA in UN proposed mandate for intervention to {0}. UN has supported this resolution ( +3 military and opposition =90 in {0})", c.Name), "sound/un-news", true);
         else
-            video3D.Video3D.V3Dinstance.AddTechNews(video3D.NonCitysAnim.UNOUSSR, -1, GM.CurrentMonth, c, String.Format("USSR in UN proposed mandate for intervention to {0}. UN has supported this resolution ( +3 military and opposition =90 in {0})", c.Name), "", true);
+            video3D.Video3D.V3Dinstance.AddTechNews(video3D.NonCitysAnim.UNOUSSR, -1, GM.CurrentMonth, c, String.Format("USSR in UN proposed mandate for intervention to {0}. UN has supported this resolution ( +3 military and opposition =90 in {0})", c.Name), "sound/un-news", true);
     }
 
     //При этой опции свой глобальный инфлуенс поднимается на 1 (в других странах забирается у противника, если у противника нет, то забирается нейтральный))
@@ -231,22 +232,15 @@ public class UN : MonoBehaviour {
         AddPrestige(starterAuth, -SpeechCost);
 
         if (starterAuth == Authority.Amer)
-            video3D.Video3D.V3Dinstance.AddTechNews(video3D.NonCitysAnim.UNOUSA, -1, GM.CurrentMonth, GM.GetPlayerByAuthority(starterAuth).MyCountry, "USA representative in UN has suggested new constructive ideas for global peace and prosperity. Most of UN members applause to new initiatives of USA", "", true);
+            video3D.Video3D.V3Dinstance.AddTechNews(video3D.NonCitysAnim.UNOUSA, -1, GM.CurrentMonth, GM.GetPlayerByAuthority(starterAuth).MyCountry, "USA representative in UN has suggested new constructive ideas for global peace and prosperity. Most of UN members applause to new initiatives of USA", "sound/un-news", true);
         else
-            video3D.Video3D.V3Dinstance.AddTechNews(video3D.NonCitysAnim.UNOUSSR, -1, GM.CurrentMonth, GM.GetPlayerByAuthority(starterAuth).MyCountry, "USSR representative in UN has suggested new constructive ideas for global peace and prosperity. Most of UN members applause to new initiatives of USSR", "", true);
+            video3D.Video3D.V3Dinstance.AddTechNews(video3D.NonCitysAnim.UNOUSSR, -1, GM.CurrentMonth, GM.GetPlayerByAuthority(starterAuth).MyCountry, "USSR representative in UN has suggested new constructive ideas for global peace and prosperity. Most of UN members applause to new initiatives of USSR", "sound/un-news", true);
     }
     #endregion
 
     public void PrestigeAddMonthly(Authority auth)
     {
-        if (auth == Authority.Amer)
-        {
-            amPrestige += MonPrestigeIncValue;
-        }
-        else
-        {
-            sovPrestige += MonPrestigeIncValue;
-        }
+        AddPrestige(auth, MonPrestigeIncValue);
     }
 
     //auth - кто совершил действие
@@ -321,7 +315,7 @@ public class UN : MonoBehaviour {
         {
             foreach (CountryScript c in CountryScript.Countries())
             {
-                if (prest >= CondemnAggressorCost && c.AggressorAuth != GM.Player.Authority)
+                if (prest >= CondemnAggressorCost && c.AggressorAuth != GM.Player.Authority && c.AggressorAuth != Authority.Neutral)
                 {
                     flagActiv = true;
                     break;
@@ -357,12 +351,16 @@ public class UN : MonoBehaviour {
 
     public bool CheckCondemnCondition(Authority auth)
     {
-        foreach (CountryScript c in CountryScript.Countries())
-        {
-            if (GetPrestige(auth) >= CondemnAggressorCost && c.AggressorAuth != auth)
-                return true;
-        }
-        return false;
+        //foreach (CountryScript c in CountryScript.Countries())
+        //{
+        //    if (GetPrestige(auth) >= CondemnAggressorCost && c.AggressorAuth != auth && c.AggressorAuth != Authority.Neutral)
+        //        return true;
+        //}
+        //return false;
+        if (GetPrestige(auth) >= CondemnAggressorCost)
+            return true;
+        else
+            return false;
     }
 
     public bool CheckPeacemakingCondition(Authority auth)
@@ -449,7 +447,8 @@ public class UN : MonoBehaviour {
         {
             foreach (var c in GetPeacemakingCountries())
             {
-                if (c.Authority != GM.Player.Authority && GM.AI.AIPlayer.WinPercentForCountry(c) < 50)
+                //АИ делает это когда свой firepower ниже 50% в этой стране (может быть нейтральная и свой альянс, но не альянс противника). Это правило не работает в случае, если АИ сам является агрессором в этой войне
+                if (c.Authority != GM.Player.Authority && GM.AI.AIPlayer.WinPercentForCountry(c) < 50 && c.AggressorAuth != GM.AI.AIPlayer.Authority)
                 {
                     Peacekeeping(auth, c);
                     break;

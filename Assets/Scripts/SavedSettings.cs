@@ -328,6 +328,44 @@ public static class SavedSettings {
         }
     }
 
+    public static bool UNEnable
+    {
+        get
+        {
+            if (PlayerPrefs.HasKey("UNEnable"))
+                return PlayerPrefs.GetInt("UNEnable") == 1 ? true : false;
+            else
+            {
+                return false;
+            }
+        }
+
+        set
+        {
+            PlayerPrefs.SetInt("UNEnable", value ? 1 : 0);
+            PlayerPrefs.Save();
+        }
+    }
+
+    public static bool PoliticsEnable
+    {
+        get
+        {
+            if (PlayerPrefs.HasKey("PoliticsEnable"))
+                return PlayerPrefs.GetInt("PoliticsEnable") == 1 ? true : false;
+            else
+            {
+                return false;
+            }
+        }
+
+        set
+        {
+            PlayerPrefs.SetInt("PoliticsEnable", value ? 1 : 0);
+            PlayerPrefs.Save();
+        }
+    }
+
     public static int Games
     {
         get

@@ -113,6 +113,30 @@ public class StartMenuScript : MonoBehaviour
             linkIndustrialization.SetActive(true);
         }
 
+        if (SettingsScript.Settings.UNPurchased)
+        {
+            tgUN.interactable = true;
+            tgUN.isOn = SettingsScript.Settings.UNAvailable;
+            linkUN.SetActive(false);
+        }
+        else
+        {
+            tgUN.interactable = false;
+            linkUN.SetActive(true);
+        }
+
+        if (SettingsScript.Settings.PoliticsPurchased)
+        {
+            tgPolitics.interactable = true;
+            tgPolitics.isOn = SettingsScript.Settings.PoliticsAvailable;
+            linkPolitics.SetActive(false);
+        }
+        else
+        {
+            tgPolitics.interactable = false;
+            linkPolitics.SetActive(true);
+        }
+
         //экран кампаний
         UsaEasy.gameObject.SetActive(!SavedSettings.Mission1USA);
         UsaMed.gameObject.SetActive(!SavedSettings.Mission2USA);
