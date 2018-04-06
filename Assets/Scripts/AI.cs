@@ -77,23 +77,28 @@ public class AI : MonoBehaviour {
 
         if (GM.CurrentMonth % 12 == 0)  //делаем проверку каждый год
         {
-            if (GM.Player.PlayerLeader.LeaderType == LeaderType.Historic)
+            bool vote = false;
+
+            if (GM.Player.PlayerLeader.LeaderType == LeaderType.Historic && !SettingsScript.Settings.PoliticsAvailable)
             {
                 //Игрок выбрал исторический вариант - лидеры ИИ сменяютя в заданном историческом порядке
                 if (GM.CurrentMonth > (85 - 50) * 12)
                 {
                     AIPlayer.PlayerLeader.LeaderID = 4;
                     AIPlayer.PlayerLeader.LeaderType = LeaderType.Diplomatic;
+                    vote = true;
                 }
                 else if (GM.CurrentMonth >= (70 - 50) * 12)
                 {
                     AIPlayer.PlayerLeader.LeaderID = 3;
                     AIPlayer.PlayerLeader.LeaderType = LeaderType.Diplomatic;
+                    vote = true;
                 }
                 else if (GM.CurrentMonth >= (60 - 50) * 12)
                 {
                     AIPlayer.PlayerLeader.LeaderID = 2;
                     AIPlayer.PlayerLeader.LeaderType = LeaderType.Economic;
+                    vote = true;
                 }
             }
             else if (GM.CurrentMonth % 120 == 0)
@@ -108,7 +113,15 @@ public class AI : MonoBehaviour {
 
                 while (oldType == (int)AIPlayer.PlayerLeader.LeaderType)
                     AIPlayer.PlayerLeader.LeaderType = (LeaderType)Random.Range(1, 4);  //(1-3) 0 - historical
+
+                vote = true;
             }
+
+            if (SettingsScript.Settings.PoliticsAvailable && vote)
+            {
+                GM.DLC_Polit.AIVotings(AIPlayer);
+            }
+
         }
 
         List<CountryScript> countries = CountryScript.Countries();

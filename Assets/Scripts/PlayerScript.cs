@@ -332,6 +332,10 @@ public class PlayerScript : MonoBehaviour
         //бонус от других влияний (глобальные последствия)
         fp += +fpBonus;
 
+        //бонус от DLC_Politics
+        if (SettingsScript.Settings.PoliticsAvailable)
+            fp += GameManagerScript.GM.DLC_Polit.GetFPBonus(this);
+
         return fp;
     }
 
@@ -367,6 +371,9 @@ public class PlayerScript : MonoBehaviour
         {
             item.Value.MakeOutlet();
         }
+
+        if (SettingsScript.Settings.PoliticsAvailable)
+            GM.DLC_Polit.ApplyMonthBonuses(this);
     }
 
     public void NewYear()
@@ -381,6 +388,9 @@ public class PlayerScript : MonoBehaviour
         militaryAmount += PlayerLeader.GetAnnualFreeMil();
         if(GameManagerScript.GM.CurrentMonth % 120 == 0)
             TYGEDiscounter = PlayerLeader.GetTenYearsGlobalEffectsChange();
+
+        if (SettingsScript.Settings.PoliticsAvailable)
+            GameManagerScript.GM.DLC_Polit.ApplyAnnualBonuses(this);
     }
 
     public int TotalYearSpendings()

@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class IndustrMenu : MonoBehaviour {
+    bool initPause;
     [SerializeField]
     Text State1, State2, Info, Score1, Score2;
     [SerializeField]
@@ -24,11 +25,19 @@ public class IndustrMenu : MonoBehaviour {
     CountryScript cntr1, cntr2;
     IndustryType indstrType = IndustryType.Diplomat;
 
-    void OnEnable() {
+    void OnEnable()
+    {
+        initPause = GameManagerScript.GM.IsPaused;
+        GameManagerScript.GM.IsPaused = true;
         Scroll1.gameObject.SetActive(false);
         Scroll2.gameObject.SetActive(false);
         
         UpdateView();
+    }
+
+    void OnDisable()
+    {
+        GameManagerScript.GM.IsPaused = initPause;
     }
 
     public void UpdateView()

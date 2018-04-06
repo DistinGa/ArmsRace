@@ -10,6 +10,11 @@ public static class SaveManager
         GameManagerScript GM = GameManagerScript.GM;
         SavedGame gameData = new SavedGame();
 
+        gameData.ArmaAvailable = SettingsScript.Settings.ArmageddonAvailable;
+        gameData.IndustrAvailable = SettingsScript.Settings.IndustrAvailable;
+        gameData.UNAvailable = SettingsScript.Settings.UNAvailable;
+        gameData.PolitAvailable = SettingsScript.Settings.PoliticsAvailable;
+
         CountryScript[] csArray = CountryScript.Countries().ToArray();
         gameData.countryData = new SavedCountryData[csArray.Length];
         for (int i = 0; i < csArray.Length; i++)
@@ -69,7 +74,6 @@ public static class SaveManager
             GameManagerScript.GM.curSpeedIndex = gameData.SpeedIndx;
             GameManagerScript.GM.Tick = GameManagerScript.GM.GameSpeedPrefs[gameData.SpeedIndx];
             SettingsScript.Settings.AIPower = gameData.AIPower;
-            //GlobalEffects.GlobalEffectsManager.GeM.SetSavedData(gameData.GEData);
 
             foreach (SavedCountryData item in gameData.countryData)
             {
@@ -168,19 +172,7 @@ public struct IndustrializationData
 [System.Serializable]
 public class SavedGame
 {
-    public int month;
-    public int SpeedIndx;
-    public SavedCountryData[] countryData;
-    public SavedPlayerData[] playerData;
-    public RandomEvent RandomEvent;
-    public int AIPower;
-    public GlobalEffectsData GEData;
-    public IndustrializationData IndData;
-}
-
-//для версии 2.2
-public class SavedGame22
-{
+    public bool ArmaAvailable, IndustrAvailable, UNAvailable, PolitAvailable;
     public int month;
     public int SpeedIndx;
     public SavedCountryData[] countryData;

@@ -25,6 +25,7 @@ public class SettingsScript : MonoBehaviour
     public LeaderScript PlayerLeader;
     [Space(10)]
     public bool news3D; //использование 3Д объектов для отображения новостей
+    public bool loadDLCFlags;
 
     [Space(10)]
     [SerializeField]
@@ -174,9 +175,12 @@ public class SettingsScript : MonoBehaviour
         mMusicVol = SavedSettings.SoundVolume;
         mSoundVol = SavedSettings.MusicVolume;
 
-        DLC_Armageddon = SavedSettings.ArmageddonEnable;
-        DLC_Industr = SavedSettings.IndustrializationEnable;
-        DLC_UN = SavedSettings.UNEnable;
-        DLC_Politics = SavedSettings.PoliticsEnable;
+        if (loadDLCFlags)
+        {
+            DLC_Armageddon = SavedSettings.ArmageddonEnable;
+            DLC_Industr = SavedSettings.IndustrializationEnable;
+            DLC_UN = SavedSettings.UNEnable;
+            DLC_Politics = SavedSettings.PoliticsEnable;
+        }
     }
 }

@@ -2,6 +2,7 @@
 using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace GlobalEffects
 {
@@ -24,11 +25,11 @@ namespace GlobalEffects
 
         void Start()
         {
-            GameManagerScript.GM.SubscribeMonth(MonthTick);
+            //GameManagerScript.GM.SubscribeMonth(MonthTick);
             changeGE(0);    //при нулевом месяце не вызывается делегат
         }
 
-        void MonthTick()
+        public void MonthTick()
         {
             GameManagerScript GM = GameManagerScript.GM;
 
@@ -145,6 +146,22 @@ namespace GlobalEffects
                     item.counter--; //usa
                 else
                     item.counter++; //ussr
+            }
+        }
+
+        public void Stagnation(Authority auth, int EventsQnt, int Amount)
+        {
+            if (auth == Authority.Soviet)
+                Amount *= -1;   //Отрицательное воздействие на счётчик последствий
+
+            List<GlobalEffectObject> tmpList = GlobalEffectsList.ToList();
+            int indx;
+
+            for (int i = 0; i < EventsQnt; i++)
+            {
+                indx = Random.Range(0, tmpList.Count);
+                tmpList[indx].counter += Amount;
+                tmpList.RemoveAt(indx);
             }
         }
 

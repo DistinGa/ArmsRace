@@ -166,7 +166,7 @@ public class UN : MonoBehaviour {
         foreach (CountryScript c in CountryScript.Countries())
         {
             c.AddInfluence(aggrAuth, -1, true);
-            c.AddInfluence(starterAuth, 1, true);
+            //c.AddInfluence(starterAuth, 1, true); //Сейчас, когда поменяли на 1, то нужно этот 1 отдовать нейтральной стороне.
         }
 
         AddPrestige(starterAuth, -CondemnAggressorCost);
@@ -441,7 +441,16 @@ public class UN : MonoBehaviour {
             Speech(auth);
 
         if (CheckCondemnCondition(auth))
-            CondemnAggressor(auth, GM.Player.Authority);
+        {
+            foreach (CountryScript c in CountryScript.Countries())
+            {
+                if (c.AggressorAuth == GM.Player.Authority)
+                {
+                    CondemnAggressor(auth, GM.Player.Authority);
+                    break;
+                }
+            }
+        }
 
         if (CheckPeacemakingCondition(auth))
         {

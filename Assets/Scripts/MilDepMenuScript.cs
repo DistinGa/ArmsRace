@@ -98,6 +98,10 @@ public class MilDepMenuScript : MonoBehaviour
         //бонус типа лидера (пиджак)
         res -= res * pl.PlayerLeader.GetMilTechDiscount();
 
+        //бонус DLC Politics
+        if (SettingsScript.Settings.PoliticsAvailable)
+            res -= res * GameManagerScript.GM.DLC_Polit.GetMilTechDiscount(pl);
+
         return Mathf.RoundToInt(res);
     }
 

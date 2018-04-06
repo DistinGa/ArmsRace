@@ -108,6 +108,7 @@ public class GameManagerScript : MonoBehaviour
     public Armageddon DLC_Armageddon;
     public Industrialisation DLC_Industrialisation;
     public UN DLC_UN;
+    public DLC_Politics.Politics DLC_Polit;
 
     #region Properties
     public CountryScript CurrentCountry
@@ -275,16 +276,21 @@ public class GameManagerScript : MonoBehaviour
 
     public void ToggleTechMenu(GameObject Menu)
     {
+        if (DLC_Polit.PolitMenu.gameObject.activeSelf && DLC_Polit.PolitMenu.ActiveMode)
+            return; //Идут выборы, меню не убираем до их окончания.
+
         //Если меню активно - выключаем.
         if (Menu.activeSelf)
             Menu.SetActive(false);
         else
         //Если меню не активно - включаем его и выключаем другие меню.
         {
+            //Сначала выключаем все меню, потом включаем нужное. Чтобы не нарушалась работа меню устанавливающих режим паузы на время своей работы.
             foreach (var item in Menus)
-            {
+                item.SetActive(false);
+
+            foreach (var item in Menus)
                 item.SetActive(item == Menu);
-            }
         }
     }
 
@@ -511,13 +517,16 @@ public class GameManagerScript : MonoBehaviour
     //parade: true - парад, false - восстание
     public bool CallMeeting(CountryScript c, PlayerScript p, bool parade)
     {
-        if (p.SpyPool > 0)
-            p.SpyPool--;
-        else
-            return false;
+        if(!(SettingsScript.Settings.PoliticsAvailable && GM.DLC_Polit.FreeParadRiot(p)))
+        {
+            if (p.SpyPool > 0)
+                p.SpyPool--;
+            else
+                return false;
 
-        //if (!PayCost(p, parade? PARADE_COST: RIOT_COST))
-        //    return false; //Не хватило денег
+            //if (!PayCost(p, parade? PARADE_COST: RIOT_COST))
+            //    return false; //Не хватило денег
+        }
 
         if (p.Authority == Authority.Amer)
         {
@@ -691,7 +700,16 @@ public class GameManagerScript : MonoBehaviour
     void NextMonth()
     {
         mMonthCount++;
-        if (mMonthCount == 0) return;   //первый месяц не считаем
+        if (CurrentMonth == 0)
+        {
+            if (SettingsScript.Settings.PoliticsAvailable)
+            {
+                DLC_Polit.StartVotings(Player);
+                DLC_Polit.AIVotings(AI.AIPlayer);
+            }
+
+            return;   //первый месяц не обсчитываем
+        }
 
         GameObject Countries = GameObject.Find("Countries");
         CountryScript Country;
@@ -757,6 +775,8 @@ public class GameManagerScript : MonoBehaviour
 
         Player.NewMonth();
 
+        GlobalEffects.GlobalEffectsManager.GeM.MonthTick();
+
         //Случайные события
         TestRandomEvent();
 
@@ -766,6 +786,9 @@ public class GameManagerScript : MonoBehaviour
         //события по подписке (обновление выводимой информации)
         if (monthSubscribers != null)
             monthSubscribers();
+
+        if (SettingsScript.Settings.PoliticsAvailable && CurrentMonth % 120 == 0)
+            DLC_Polit.StartVotings(Player);
     }
 
     //Ежегодное обновление информации

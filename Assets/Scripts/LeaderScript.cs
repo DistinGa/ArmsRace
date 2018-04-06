@@ -80,7 +80,7 @@ public class LeaderScript
     }
 
     //var = 1 - левый список (имя), 2 - правый (пиджак)
-    public string GetBonuses(int var, SOLP soLeaderProperties)
+    public static string GetBonusesStatic(int var, SOLP soLeaderProperties, int LeaderID, LeaderType LeaderType)
     {
         string res = "";
 
@@ -104,7 +104,7 @@ public class LeaderScript
         }
         else
         {
-            switch (ActualLeaderType)
+            switch (LeaderType)
             {
                 case LeaderType.Militaristic:
                     res = soLeaderProperties.descriptionMilDisc + "\n" + soLeaderProperties.descriptionFMil;
@@ -121,6 +121,11 @@ public class LeaderScript
         }
 
         return res;
+    }
+
+    public string GetBonuses(int var, SOLP soLeaderProperties)
+    {
+        return GetBonusesStatic(var, soLeaderProperties, LeaderID, LeaderType);
     }
 
     public int GetFPBonus()
