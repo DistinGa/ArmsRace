@@ -209,6 +209,11 @@ public class UN : MonoBehaviour {
             video3D.Video3D.V3Dinstance.AddTechNews(video3D.NonCitysAnim.UNOUSA, -1, GM.CurrentMonth, c, String.Format("USA in UN proposed mandate for intervention to {0}. UN has supported this resolution ( +3 military and opposition =90 in {0})", c.Name), "sound/un-news", true);
         else
             video3D.Video3D.V3Dinstance.AddTechNews(video3D.NonCitysAnim.UNOUSSR, -1, GM.CurrentMonth, c, String.Format("USSR in UN proposed mandate for intervention to {0}. UN has supported this resolution ( +3 military and opposition =90 in {0})", c.Name), "sound/un-news", true);
+
+        //Steam achievment
+#if !DEBUG
+       SteamManager.UnLockAchievment("United Nations");
+#endif
     }
 
     //При этой опции свой глобальный инфлуенс поднимается на 1 (в других странах забирается у противника, если у противника нет, то забирается нейтральный))
@@ -236,7 +241,7 @@ public class UN : MonoBehaviour {
         else
             video3D.Video3D.V3Dinstance.AddTechNews(video3D.NonCitysAnim.UNOUSSR, -1, GM.CurrentMonth, GM.GetPlayerByAuthority(starterAuth).MyCountry, "USSR representative in UN has suggested new constructive ideas for global peace and prosperity. Most of UN members applause to new initiatives of USSR", "sound/un-news", true);
     }
-    #endregion
+#endregion
 
     public void PrestigeAddMonthly(Authority auth)
     {
@@ -417,7 +422,7 @@ public class UN : MonoBehaviour {
     //Сдвигает все строки вниз. Новую добавляет наверх.
     void AddPrestGain(CountryScript c, int month, SingleGainType tp)
     {
-        for (int i = arPrestGains.GetLength(0) - 2; i > 0; i--)
+        for (int i = arPrestGains.GetLength(0) - 2; i >= 0; i--)
         {
             arPrestGains[i + 1, 0] = arPrestGains[i, 0];
             arPrestGains[i + 1, 1] = arPrestGains[i, 1];
@@ -426,9 +431,9 @@ public class UN : MonoBehaviour {
         //страна
         arPrestGains[0, 0] = c.transform.GetSiblingIndex() + 1;
         //тип события
-        arPrestGains[0, 0] = (int)tp;
+        arPrestGains[0, 1] = (int)tp;
         //месяц, когда произошло
-        arPrestGains[0, 0] = month;
+        arPrestGains[0, 2] = month;
 
         UNMenu.AddPrestGainString(c, month, tp);
     }
@@ -476,6 +481,39 @@ public class UN : MonoBehaviour {
                 }
             }
         }
+    }
+
+    public UNData GetSavedData()
+    {
+        UNData res = new UNData();
+
+        res.amPrestige = amPrestige;
+        res.sovPrestige = sovPrestige;
+        res.arPrestGains = arPrestGains;
+        res.Agressors = new Dictionary<string, Authority>();
+        foreach (CountryScript c in CountryScript.Countries())
+        {
+            res.Agressors.Add(c.Name, c.AggressorAuth);
+        }
+
+        return res;
+    }
+
+    public void SetSavedData(UNData sData)
+    {
+        amPrestige = sData.amPrestige;
+        sovPrestige = sData.sovPrestige;
+        for (int i = sData.arPrestGains.GetLength(0)-1; i >= 0 ; i--)
+        {
+            if(sData.arPrestGains[i, 2] > 0)    //Нулевой месяц не обсчитывается => не может быть в нём событий, значит это пустой элемент
+                AddPrestGain(GM.FindCountryById(sData.arPrestGains[i, 0]), sData.arPrestGains[i, 2], (SingleGainType)sData.arPrestGains[i, 1]);
+        }
+        foreach (var item in sData.Agressors)
+        {
+            GM.FindCountryByName(item.Key).AggressorAuth = item.Value;
+        }
+        UNPrestigeUSA.text = amPrestige.ToString();
+        UNPrestigeUSSR.text = sovPrestige.ToString();
     }
 
     public enum SingleGainType

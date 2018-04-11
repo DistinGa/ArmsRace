@@ -524,6 +524,7 @@ public class CountryScript : MonoBehaviour
             GM.DLC_UN.AllliExpansion(NewAut, this);
 
         //Steam achievments
+#if !DEBUG
         if ((Name == "East Germany" || Name == "West Germany") && GM.CurrentMonth < 480) //до 1990 года
         {
             if (GM.FindCountryById(12).Authority == GM.Player.Authority && GM.FindCountryById(24).Authority == GM.Player.Authority)
@@ -535,6 +536,7 @@ public class CountryScript : MonoBehaviour
             if (GM.FindCountryById(53).Authority == GM.Player.Authority && GM.FindCountryById(54).Authority == GM.Player.Authority)
                 SteamManager.UnLockAchievment("Korean reunification");
         }
+#endif
     }
 
     //Обработка начала месяца
@@ -817,6 +819,7 @@ public class CountryScript : MonoBehaviour
     public Authority AggressorAuth
     {
         get { return aggressorAuth; }
+        set { aggressorAuth = value; }
     }
 
     public Sprite Flag

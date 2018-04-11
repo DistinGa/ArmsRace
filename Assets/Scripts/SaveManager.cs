@@ -5,11 +5,14 @@ using System.IO;
 
 public static class SaveManager
 {
+    const string ver = "2.4";
+
     public static void SaveGame(string fName = "save")
     {
         GameManagerScript GM = GameManagerScript.GM;
         SavedGame gameData = new SavedGame();
 
+        gameData.ver = ver;
         gameData.ArmaAvailable = SettingsScript.Settings.ArmageddonAvailable;
         gameData.IndustrAvailable = SettingsScript.Settings.IndustrAvailable;
         gameData.UNAvailable = SettingsScript.Settings.UNAvailable;
@@ -32,6 +35,8 @@ public static class SaveManager
         gameData.AIPower = SettingsScript.Settings.AIPower;
         gameData.GEData = GlobalEffects.GlobalEffectsManager.GeM.GetSavedData();
         gameData.IndData = GM.DLC_Industrialisation.GetSavedData();
+        gameData.UNData = GM.DLC_UN.GetSavedData();
+        gameData.PolitData = GM.DLC_Polit.GetSavedData();
 
         //сериализация и запись
         string initPath = Application.streamingAssetsPath + "/Saves/";
@@ -59,6 +64,7 @@ public static class SaveManager
         string filePath;
         BinaryFormatter bf = new BinaryFormatter();
         FileStream stream;
+        GameManagerScript GM = GameManagerScript.GM;
         SavedGame gameData = new SavedGame();
 
         //загрузка данных, десериализация
@@ -69,10 +75,18 @@ public static class SaveManager
             gameData = (SavedGame)bf.Deserialize(stream);
             stream.Close();
 
+            if (gameData.ver != ver)
+                return;
+
             //установка значений объектов
-            GameManagerScript.GM.CurrentMonth = gameData.month;
-            GameManagerScript.GM.curSpeedIndex = gameData.SpeedIndx;
-            GameManagerScript.GM.Tick = GameManagerScript.GM.GameSpeedPrefs[gameData.SpeedIndx];
+            SettingsScript.Settings.ArmageddonAvailable = gameData.ArmaAvailable;
+            SettingsScript.Settings.IndustrAvailable = gameData.IndustrAvailable;
+            SettingsScript.Settings.UNAvailable = gameData.UNAvailable;
+            SettingsScript.Settings.PoliticsAvailable = gameData.PolitAvailable;
+
+            GM.CurrentMonth = gameData.month;
+            GM.curSpeedIndex = gameData.SpeedIndx;
+            GM.Tick = GM.GameSpeedPrefs[gameData.SpeedIndx];
             SettingsScript.Settings.AIPower = gameData.AIPower;
 
             foreach (SavedCountryData item in gameData.countryData)
@@ -83,7 +97,7 @@ public static class SaveManager
 
             foreach (SavedPlayerData item in gameData.playerData)
             {
-                PlayerScript player = GameManagerScript.GM.GetPlayerByAuthority(item.aut).GetComponent<PlayerScript>();
+                PlayerScript player = GM.GetPlayerByAuthority(item.aut).GetComponent<PlayerScript>();
                 player.SetSavedData(item);
             }
 
@@ -91,7 +105,12 @@ public static class SaveManager
                 RandomEventManager.REMInstance.SetSavedData(gameData.RandomEvent);
 
             GlobalEffects.GlobalEffectsManager.GeM.SetSavedData(gameData.GEData);
-            GameManagerScript.GM.DLC_Industrialisation.SetSavedData(gameData.IndData);
+            GM.DLC_Industrialisation.SetSavedData(gameData.IndData);
+            if(gameData.UNAvailable)
+                GM.DLC_UN.SetSavedData(gameData.UNData);
+
+            if (gameData.PolitAvailable)
+                GM.DLC_Polit.SetSavedData(gameData.PolitData);
         }
     }
 }
@@ -156,6 +175,21 @@ public struct SavedPlayerData
 }
 
 [System.Serializable]
+public struct PolitData
+{
+    public int SlotsOpened;
+    public int[] USMinisterIndxs, SovMinisterIndxs;
+}
+
+[System.Serializable]
+public struct UNData
+{
+    public Dictionary<string, Authority> Agressors;
+    public int amPrestige, sovPrestige;
+    public int[,] arPrestGains;
+}
+
+[System.Serializable]
 public struct GlobalEffectsData
 {
     public int curDecade;
@@ -172,6 +206,7 @@ public struct IndustrializationData
 [System.Serializable]
 public class SavedGame
 {
+    public string ver;
     public bool ArmaAvailable, IndustrAvailable, UNAvailable, PolitAvailable;
     public int month;
     public int SpeedIndx;
@@ -181,5 +216,7 @@ public class SavedGame
     public int AIPower;
     public GlobalEffectsData GEData;
     public IndustrializationData IndData;
+    public UNData UNData;
+    public PolitData PolitData;
 }
 

@@ -313,7 +313,6 @@ namespace DLC_Politics
             ApplyImmediateBonuses(pl);
         }
 
-
         public void OpenSlot(Authority auth)
         {
             if (openedSlots == 3)
@@ -322,6 +321,36 @@ namespace DLC_Politics
             openedSlots++;
             //Влияние на глобальные последствия
             GlobalEffects.GlobalEffectsManager.GeM.Stagnation(auth, 1, 1);
+#if !DEBUG
+            if (openedSlots == 3)
+                SteamManager.UnLockAchievment("Politics");
+#endif
+        }
+
+        public PolitData GetSavedData()
+        {
+            PolitData res = new PolitData();
+            res.USMinisterIndxs = new int[3];
+            res.SovMinisterIndxs = new int[3];
+
+            res.SlotsOpened = OpenedSlots;
+            for (int i = 0; i < 3; i++)
+            {
+                res.USMinisterIndxs[i] = USMinisters.FindIndex(m => m.Desc == curUSMinisters[i].Desc);
+                res.SovMinisterIndxs[i] = SovMinisters.FindIndex(m => m.Desc == curSovMinisters[i].Desc);
+            }
+
+            return res;
+        }
+
+        public void SetSavedData(PolitData PolitData)
+        {
+            openedSlots = PolitData.SlotsOpened;
+            for (int i = 0; i < 3; i++)
+            {
+                curUSMinisters[i] = USMinisters[PolitData.USMinisterIndxs[i]];
+                curSovMinisters[i] = SovMinisters[PolitData.SovMinisterIndxs[i]];
+            }
         }
     }
 

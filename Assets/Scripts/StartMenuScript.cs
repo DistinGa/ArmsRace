@@ -48,6 +48,8 @@ public class StartMenuScript : MonoBehaviour
     Toggle tgArmageddon;
     [SerializeField]
     Toggle tgIndustrialization, tgPolitics, tgUN;
+    [SerializeField]
+    ToggleGroup tggDifficulties;
 
     [Space(10)]
     [SerializeField]
@@ -210,25 +212,41 @@ public class StartMenuScript : MonoBehaviour
         SetAILevel(Amer);
     }
 
+    public void SetDifficult(int d)
+    {
+        if (tggDifficulties.transform.GetChild(d).GetComponent<Toggle>().isOn)
+        {
+            SettingsScript.Settings.AIPower = d;
+            GameObject.Find("IronmodeToggle").GetComponent<Toggle>().interactable = (d > 0);
+            if (d == 0)
+            {
+                GameObject.Find("IronmodeToggle").GetComponent<Toggle>().isOn = false;
+            }
+        }
+    }
+
     public void SetAILevel(bool Amer)
     {
-        Easy.interactable = true;
+        if (!SettingsScript.Settings.NeedLoad)
+        {
+            Easy.interactable = true;
 
-        if (Amer)
-        {
-            Easy.isOn = !SavedSettings.Mission1USA;
-            Medium.interactable = SavedSettings.Mission1USA;
-            Medium.isOn = (SavedSettings.Mission1USA && !SavedSettings.Mission2USA);
-            Hard.interactable = SavedSettings.Mission2USA;
-            Hard.isOn = SavedSettings.Mission2USA;
-        }
-        else
-        {
-            Easy.isOn = !SavedSettings.Mission1SU;
-            Medium.interactable = SavedSettings.Mission1SU;
-            Medium.isOn = (SavedSettings.Mission1SU && !SavedSettings.Mission2SU);
-            Hard.interactable = SavedSettings.Mission2SU;
-            Hard.isOn = SavedSettings.Mission2SU;
+            if (Amer)
+            {
+                Easy.isOn = !SavedSettings.Mission1USA;
+                Medium.interactable = SavedSettings.Mission1USA;
+                Medium.isOn = (SavedSettings.Mission1USA && !SavedSettings.Mission2USA);
+                Hard.interactable = SavedSettings.Mission2USA;
+                Hard.isOn = SavedSettings.Mission2USA;
+            }
+            else
+            {
+                Easy.isOn = !SavedSettings.Mission1SU;
+                Medium.interactable = SavedSettings.Mission1SU;
+                Medium.isOn = (SavedSettings.Mission1SU && !SavedSettings.Mission2SU);
+                Hard.interactable = SavedSettings.Mission2SU;
+                Hard.isOn = SavedSettings.Mission2SU;
+            }
         }
     }
 
@@ -321,6 +339,7 @@ public class StartMenuScript : MonoBehaviour
         GameObject.Find("BonusRight").GetComponent<Text>().text = SettingsScript.Settings.PlayerLeader.GetBonuses(2, soLeaderProperties);
     }
 
+    //b = true, если начинаем новую игру, false - загрузка сохранения
     public void SetTogglesActive(bool b)
     {
         foreach (var item in FindObjectsOfType<MarkToggle>())
@@ -329,6 +348,23 @@ public class StartMenuScript : MonoBehaviour
         }
 
         GameObject.Find("IronmodeToggle").GetComponent<Toggle>().interactable = (b && SettingsScript.Settings.AIPower > 0);
+
+        if (b)
+        {
+            tggDifficulties.allowSwitchOff = false;
+            SetAILevel(SettingsScript.Settings.playerSelected == Authority.Amer);
+        }
+        else
+        {
+            Easy.interactable = false;
+            Medium.interactable = false;
+            Hard.interactable = false;
+
+            tggDifficulties.allowSwitchOff = true;
+            Easy.isOn = false;
+            Medium.isOn = false;
+            Hard.isOn = false;
+        }
     }
 }
 

@@ -134,12 +134,12 @@ public class SpaceRace : MonoBehaviour
         Price.text = "$" + GetTechCost(ind, GM.Player).ToString();
 
         //Технологии из нижнего ряда добавляют влияние только в союзных странах, технологии из вертикальных веток - во всех странах.
-        if (ind < 16)
+        if (ind < 16 || ind == 41)
         {
             //Нижний ряд
             InfluencePlate.sprite = sprLocInf;
             //Если технология не открыта оппонентом, показываем прибавку влияния при первом открытии
-            if (!GM.GetOpponentTo(GM.Player).GetTechStatus(ind))
+            if (ind < TechCount && !GM.GetOpponentTo(GM.Player).GetTechStatus(ind))
                 txtInf.text = "+" + Techs[ind].mLocalInfl_1.ToString() + "%";
             else
                 txtInf.text = "+" + Techs[ind].mLocalInfl.ToString() + "%";
@@ -149,7 +149,7 @@ public class SpaceRace : MonoBehaviour
             //Вертикальные ветки технологий
             InfluencePlate.sprite = sprGlobInf;
             //Если технология не открыта оппонентом, показываем прибавку влияния при первом открытии
-            if (!GM.GetOpponentTo(GM.Player).GetTechStatus(ind))
+            if (ind < TechCount && !GM.GetOpponentTo(GM.Player).GetTechStatus(ind))
                 txtInf.text = "+" + Techs[ind].mGlobalInfl_1.ToString() + "%";
             else
                 txtInf.text = "+" + Techs[ind].mGlobalInfl.ToString() + "%";
@@ -281,6 +281,7 @@ public class SpaceRace : MonoBehaviour
                 GM.AddInfluenceInCountries(Authority.Neutral, Player.Authority, InfAmount); //Во всех нейтральных странах
 
             //Steam achievments
+#if !DEBUG
             if (GM.Player == Player)
             {
                 if (TechInd == 20 && GM.CurrentMonth < 144) //до 1962 года
@@ -290,6 +291,7 @@ public class SpaceRace : MonoBehaviour
                 if (TechInd == 38 && GM.CurrentMonth < 444) //до 1987 года
                     SteamManager.UnLockAchievment("Space Station");
             }
+#endif
 
             // показать видео
             GM.VQueue.AddRolex(VideoQueue.V_TYPE_GLOB, VideoQueue.V_PRIO_NULL,
@@ -337,22 +339,22 @@ public class SpaceRace : MonoBehaviour
         int dscMulty = 0;
         float res = initCost;
 
-        if (indx > GndTechCount)
-        {
-            //технологии запусков
-            //учитываем скидки от изученных наземных технологий
-            if (pl.CurGndTechIndex == -1)   //изучили все наземные технологии
-                dscMulty = GndTechCount;
-            else
-                dscMulty = pl.CurGndTechIndex - 1;
+            if (indx > GndTechCount)
+            {
+                //технологии запусков
+                //учитываем скидки от изученных наземных технологий
+                if (pl.CurGndTechIndex == -1)   //изучили все наземные технологии
+                    dscMulty = GndTechCount;
+                else
+                    dscMulty = pl.CurGndTechIndex - 1;
 
-            res -= initCost * (dscMulty * 0.01f);
-        }
+                res -= initCost * (dscMulty * 0.01f);
+            }
 
-        //бонус лидера
-        res -= initCost * pl.PlayerLeader.GetSpaceDiscount();
-        //прочие бонусы (от глобальных последствий, например)
-        res -= initCost * (pl.SpaceDiscount / 100f);
+            //бонус лидера
+            res -= initCost * pl.PlayerLeader.GetSpaceDiscount();
+            //прочие бонусы (от глобальных последствий, например)
+            res -= initCost * (pl.SpaceDiscount / 100f);
 
         return Mathf.RoundToInt(res);
     }

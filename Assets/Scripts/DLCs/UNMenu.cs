@@ -219,7 +219,7 @@ public class UNMenu : MonoBehaviour {
         newString.transform.SetParent(prestGainList);
         newString.transform.SetAsFirstSibling();
         newString.transform.FindChild("Flag").GetComponent<Image>().sprite = c.Flag;
-        newString.transform.FindChild("Date").GetComponent<Text>().text = GM.GetCurrentDate();
+        newString.transform.FindChild("Date").GetComponent<Text>().text = GM.GetDateString(month);
         switch (tp)
         {
             case UN.SingleGainType.AlliExpansion:

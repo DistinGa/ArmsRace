@@ -87,6 +87,7 @@ namespace DLC_Politics
         {
             txtBonuses.text = "";
             goStagnation.SetActive(false);
+            btnVote.SetActive(false);
 
             if (selMinisters[0] != null && selMinisters[1] != null && selMinisters[2] != null &&
                 selMinisters[0].LeaderInd == selMinisters[1].LeaderInd && selMinisters[1].LeaderInd == selMinisters[2].LeaderInd)
@@ -117,7 +118,6 @@ namespace DLC_Politics
             }
             else
             {
-                btnVote.SetActive(false);
                 imgHead.color = new Color(1, 1, 1, 0);
                 imgSuit.color = new Color(1, 1, 1, 0);
             }

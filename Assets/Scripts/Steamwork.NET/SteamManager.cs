@@ -148,7 +148,12 @@ class SteamManager : MonoBehaviour {
             return;
         }
 
-        SteamUserStats.SetAchievement(achName);
-        SteamUserStats.StoreStats();
+        bool f;
+        SteamUserStats.GetAchievement(achName, out f);
+        if (!f)
+        {
+            SteamUserStats.SetAchievement(achName);
+            SteamUserStats.StoreStats();
+        }
     }
 }

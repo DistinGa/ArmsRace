@@ -403,6 +403,7 @@ public static class SavedSettings {
             PlayerPrefs.Save();
 
             //Steam achievments
+#if !DEBUG
             if (Games >= 5)
             {
                 if ((100f * Wins / Games) >= 50)
@@ -414,6 +415,7 @@ public static class SavedSettings {
                 if ((100f * Wins / Games) >= 90)
                     SteamManager.UnLockAchievment("90% of Ironmode efficiency");
             }
+#endif
         }
     }
 
@@ -428,7 +430,9 @@ public static class SavedSettings {
         set
         {
             commonBoolSet("Arma", value);
+#if !DEBUG
             SteamManager.UnLockAchievment("Nuclear strike");
+#endif
         }
     }
 
@@ -442,7 +446,9 @@ public static class SavedSettings {
         set
         {
             commonBoolSet("Industr", value);
+#if !DEBUG
             SteamManager.UnLockAchievment("Industrialisation");
+#endif
         }
     }
 

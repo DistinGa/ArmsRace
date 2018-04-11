@@ -600,8 +600,8 @@ public class UniOutlay
     {
         PlayerScript player = GameManagerScript.GM.GetPlayerByAuthority(authority);
 
-        if ((field == OutlayField.spaceGround && player.CurGndTechIndex == -1) || (field == OutlayField.spaceLaunches && player.CurLnchTechIndex == -1))
-            return; //все технологии в линии изучены, не надо ни производить инвестиции, ни проверять доступность технологий
+        //if ((field == OutlayField.spaceGround && player.CurGndTechIndex == -1) || (field == OutlayField.spaceLaunches && player.CurLnchTechIndex == -1))
+        //    return; //все технологии в линии изучены, не надо ни производить инвестиции, ни проверять доступность технологий
 
         budget += outlay;
         player.Budget -= outlay;
@@ -743,27 +743,47 @@ public class UniOutlay
         //Наземные технологии
         if (field == OutlayField.spaceGround)
         {
-            cost = GameManagerScript.GM.SRInstance.LaunchTech(player, player.CurGndTechIndex);
+            if (player.CurGndTechIndex == -1)
+            {
+                //Все технологии в линии изучены, дальше деньги идут на повышение влияния.
+                GameManagerScript.GM.AddInfluenceInCountries(player.Authority, player.Authority, GameManagerScript.GM.SRInstance.GetTechno(41).mLocalInfl);
+            }
+            else
+            {
+                cost = GameManagerScript.GM.SRInstance.LaunchTech(player, player.CurGndTechIndex);
+                if (player.CurGndTechIndex == -1)
+                    cost = GameManagerScript.GM.SRInstance.GetTechCost(41, player); //и больше не будет меняться
+            }
         }
         //Технологии запусков
         if (field == OutlayField.spaceLaunches)
         {
-            cost = GameManagerScript.GM.SRInstance.LaunchTech(player, player.CurLnchTechIndex);
+            if (player.CurLnchTechIndex == -1)
+            {
+                //Все технологии в линии изучены, дальше деньги идут на повышение влияния.
+                GameManagerScript.GM.AddInfluenceInCountries(player.Authority, player.Authority, GameManagerScript.GM.SRInstance.GetTechno(42).mGlobalInfl);
+            }
+            else
+            {
+                cost = GameManagerScript.GM.SRInstance.LaunchTech(player, player.CurLnchTechIndex);
+                if (player.CurLnchTechIndex == -1)
+                    cost = GameManagerScript.GM.SRInstance.GetTechCost(42, player); //и больше не будет меняться
+            }
         }
 
         if(cost == 0)
             outlay = 0;
 
-        //Если изучили все технологии в линии, прекращаем инвестиции.
-        if ((field == OutlayField.spaceGround && player.CurGndTechIndex == -1) || (field == OutlayField.spaceLaunches && player.CurLnchTechIndex == -1))
-        {
-            outlay = 0;
-            if (budget > 0)
-            {
-                player.Budget += budget;
-                budget = 0;
-            }
-        }
+        ////Если изучили все технологии в линии, прекращаем инвестиции.
+        //if ((field == OutlayField.spaceGround && player.CurGndTechIndex == -1) || (field == OutlayField.spaceLaunches && player.CurLnchTechIndex == -1))
+        //{
+        //    outlay = 0;
+        //    if (budget > 0)
+        //    {
+        //        player.Budget += budget;
+        //        budget = 0;
+        //    }
+        //}
     }
 
     //Прогноз годовых трат с учётом истории уже потраченного в текущем году.

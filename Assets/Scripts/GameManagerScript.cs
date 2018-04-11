@@ -14,6 +14,7 @@ public class GameManagerScript : MonoBehaviour
 
     private Camera MainCamera;
     private CameraScriptXZ CameraRig;
+    private bool isloaded = false;
 
     private RectTransform DownMenu;
     private RectTransform UpMenu;
@@ -185,6 +186,7 @@ public class GameManagerScript : MonoBehaviour
         {
             Load();
             SettingsScript.Settings.NeedLoad = false;
+            isloaded = true;
         }
 
         //первый update -особый
@@ -702,7 +704,7 @@ public class GameManagerScript : MonoBehaviour
         mMonthCount++;
         if (CurrentMonth == 0)
         {
-            if (SettingsScript.Settings.PoliticsAvailable)
+            if (SettingsScript.Settings.PoliticsAvailable && !isloaded)
             {
                 DLC_Polit.StartVotings(Player);
                 DLC_Polit.AIVotings(AI.AIPlayer);
@@ -852,7 +854,9 @@ public class GameManagerScript : MonoBehaviour
                         SavedSettings.Mission3SU = true;
                         //Steam achievments
                         //Ачивка за выполнение вссех миссий за СССР
+#if !DEBUG
                         SteamManager.UnLockAchievment("Soviet glory");
+#endif
                     }
                 }
             }
@@ -887,7 +891,9 @@ public class GameManagerScript : MonoBehaviour
                         SavedSettings.Mission3USA = true;
                         //Steam achievments
                         //Ачивка за выполнение вссех миссий за США
+#if !DEBUG
                         SteamManager.UnLockAchievment("American dream");
+#endif
                     }
                 }
             }
@@ -989,12 +995,17 @@ public class GameManagerScript : MonoBehaviour
     }
 
     //Преобразование поряддкового номера месяца в человеческое представление
-    public string GetCurrentDate()
+    public string GetDateString(int mon)
     {
         string[] months = { "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" };
-        int m = mMonthCount % 12;
-        int y = mMonthCount / 12;
+        int m = mon % 12;
+        int y = mon / 12;
         return months[m] + " " + (1950 + y);
+    }
+
+    public string GetCurrentDate()
+    {
+        return GetDateString(mMonthCount);
     }
 
     //Обновление информации в верхнем меню

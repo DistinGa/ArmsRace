@@ -157,7 +157,7 @@ namespace GlobalEffects
             List<GlobalEffectObject> tmpList = GlobalEffectsList.ToList();
             int indx;
 
-            for (int i = 0; i < EventsQnt; i++)
+            for (int i = 0; i < Mathf.Min(EventsQnt, tmpList.Count); i++)
             {
                 indx = Random.Range(0, tmpList.Count);
                 tmpList[indx].counter += Amount;
@@ -170,18 +170,13 @@ namespace GlobalEffects
         {
             //Создаем список приоритетных событий
             GlobalEffectObject item;
-            List<GlobalEffectObject> priorList = new List<GlobalEffectObject>();
-
-            foreach (var ge in GlobalEffectsList)
-            {
-                if (ge.AIPrioritet)
-                    priorList.Add(ge);
-            }
+            List<GlobalEffectObject> priorList = GlobalEffectsList.Where(x => !x.GEDone && x.AIPrioritet).ToList();
+            List<GlobalEffectObject> commonList = GlobalEffectsList.Where(x => !x.GEDone).ToList();
 
             if (priorList.Count > 0)
                 item = priorList[Random.Range(0, priorList.Count)];
             else    //если не было приоритетных событий, тратит на любое ГП
-                item = GlobalEffectsList[Random.Range(0, GlobalEffectsList.Length)];
+                item = commonList[Random.Range(0, commonList.Count)];
 
             if (aut == Authority.Soviet)
                 item.counter++;
