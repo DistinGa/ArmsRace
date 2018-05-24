@@ -5,7 +5,7 @@ using System.IO;
 
 public static class SaveManager
 {
-    const string ver = "2.4";
+    const string ver = "2.5";
 
     public static void SaveGame(string fName = "save")
     {
@@ -34,9 +34,13 @@ public static class SaveManager
         gameData.RandomEvent = RandomEventManager.REMInstance.GetSavedData();
         gameData.AIPower = SettingsScript.Settings.AIPower;
         gameData.GEData = GlobalEffects.GlobalEffectsManager.GeM.GetSavedData();
-        gameData.IndData = GM.DLC_Industrialisation.GetSavedData();
-        gameData.UNData = GM.DLC_UN.GetSavedData();
-        gameData.PolitData = GM.DLC_Polit.GetSavedData();
+
+        if(gameData.IndustrAvailable)
+            gameData.IndData = GM.DLC_Industrialisation.GetSavedData();
+        if(gameData.UNAvailable)
+            gameData.UNData = GM.DLC_UN.GetSavedData();
+        if(gameData.PolitAvailable)
+            gameData.PolitData = GM.DLC_Polit.GetSavedData();
 
         //сериализация и запись
         string initPath = Application.streamingAssetsPath + "/Saves/";
@@ -105,11 +109,14 @@ public static class SaveManager
                 RandomEventManager.REMInstance.SetSavedData(gameData.RandomEvent);
 
             GlobalEffects.GlobalEffectsManager.GeM.SetSavedData(gameData.GEData);
-            GM.DLC_Industrialisation.SetSavedData(gameData.IndData);
+
+            if(gameData.IndustrAvailable)
+                GM.DLC_Industrialisation.SetSavedData(gameData.IndData);
+
             if(gameData.UNAvailable)
                 GM.DLC_UN.SetSavedData(gameData.UNData);
 
-            if (gameData.PolitAvailable)
+            if(gameData.PolitAvailable)
                 GM.DLC_Polit.SetSavedData(gameData.PolitData);
         }
     }

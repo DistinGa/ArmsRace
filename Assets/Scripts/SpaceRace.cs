@@ -139,7 +139,8 @@ public class SpaceRace : MonoBehaviour
             //Нижний ряд
             InfluencePlate.sprite = sprLocInf;
             //Если технология не открыта оппонентом, показываем прибавку влияния при первом открытии
-            if (ind < TechCount && !GM.GetOpponentTo(GM.Player).GetTechStatus(ind))
+            //if (ind < TechCount && !GM.GetOpponentTo(GM.Player).GetTechStatus(ind))   //при тратах на влияние показывается только обычная прибавка (первенство не учитывается)
+            if (!GM.GetOpponentTo(GM.Player).GetTechStatus(ind))
                 txtInf.text = "+" + Techs[ind].mLocalInfl_1.ToString() + "%";
             else
                 txtInf.text = "+" + Techs[ind].mLocalInfl.ToString() + "%";
@@ -149,7 +150,8 @@ public class SpaceRace : MonoBehaviour
             //Вертикальные ветки технологий
             InfluencePlate.sprite = sprGlobInf;
             //Если технология не открыта оппонентом, показываем прибавку влияния при первом открытии
-            if (ind < TechCount && !GM.GetOpponentTo(GM.Player).GetTechStatus(ind))
+            //if (ind < TechCount && !GM.GetOpponentTo(GM.Player).GetTechStatus(ind))   //при тратах на влияние показывается только обычная прибавка (первенство не учитывается)
+            if (!GM.GetOpponentTo(GM.Player).GetTechStatus(ind))
                 txtInf.text = "+" + Techs[ind].mGlobalInfl_1.ToString() + "%";
             else
                 txtInf.text = "+" + Techs[ind].mGlobalInfl.ToString() + "%";
@@ -247,7 +249,7 @@ public class SpaceRace : MonoBehaviour
             else if (Player.GetTechStatus(39) && Player.GetTechStatus(40))
             {
                 //изучены все технологии
-                Player.CurLnchTechIndex = -1;
+                Player.CurLnchTechIndex = 42;
             }
             else //Во всех остальных случаях изучаем следующую технологию. Если это 33-я, то ждём благоприятных условий.
             {
@@ -265,7 +267,8 @@ public class SpaceRace : MonoBehaviour
         }
 
         int nextCost = 0;
-        if (TechInd != Player.CurLnchTechIndex && TechInd != 0) //если они равны, значит не было переключения на новую технологию (внимание на технологии запусков, наземные технологии переключаются просто линейно)
+        if ((TechInd != Player.CurLnchTechIndex && TechInd != 0) //если они равны, значит не было переключения на новую технологию (внимание на технологии запусков, наземные технологии переключаются просто линейно)
+            || TechInd >= TechCount)    //изучены все технологии какой-либо линии
         {
             int InfAmount = 0;
             //Если игрок первый, кто открывает данную технологию, бонус к влиянию повышенный
@@ -275,7 +278,7 @@ public class SpaceRace : MonoBehaviour
                 InfAmount = Mathf.Max(Techs[TechInd].mLocalInfl_1, Techs[TechInd].mGlobalInfl_1);
 
             //Увеличение влияния в странах
-            if (TechInd < 16)
+            if (TechInd < 16 || TechInd == 41)
                 GM.AddInfluenceInCountries(Player.Authority, Player.Authority, InfAmount);  //увеличение в союзных странах
             else
                 GM.AddInfluenceInCountries(Authority.Neutral, Player.Authority, InfAmount); //Во всех нейтральных странах
@@ -294,24 +297,24 @@ public class SpaceRace : MonoBehaviour
 #endif
 
             // показать видео
-            GM.VQueue.AddRolex(VideoQueue.V_TYPE_GLOB, VideoQueue.V_PRIO_NULL,
-                                             VideoQueue.V_PUPPER_TECHNOLOW_START + TechInd - 1,
-                                             Player.MyCountry);
-
-            if (TechInd <= GndTechCount)
+            if (TechInd < 41)
             {
-                if (Player.GetTechStatus(GndTechCount))    //была изучена последняя технология в линии
-                {
-                    nextCost = 0;
-                    Player.CurGndTechIndex = -1;    //сигнал о том, что все технологии в линии изучены
-                }
-                else
-                    nextCost = GetTechCost(Player.CurGndTechIndex, Player);
+                GM.VQueue.AddRolex(VideoQueue.V_TYPE_GLOB, VideoQueue.V_PRIO_NULL,
+                                                 VideoQueue.V_PUPPER_TECHNOLOW_START + TechInd - 1,
+                                                 Player.MyCountry);
             }
 
-            if (TechInd > GndTechCount && TechInd < TechCount)
+            if (TechInd <= GndTechCount || TechInd == 41)
             {
-                if (Player.CurLnchTechIndex <= 0)
+                if (Player.GetTechStatus(GndTechCount))    //была изучена последняя технология в линии
+                    Player.CurGndTechIndex = 41;    //Деньги вкладываем в увеличение влияния
+
+                nextCost = GetTechCost(Player.CurGndTechIndex, Player);
+            }
+
+            if (TechInd > GndTechCount && TechInd != 41)
+            {
+                if (Player.CurLnchTechIndex == 0)   //Ожидание изучения нужной технологии
                     nextCost = 0;
                 else
                     nextCost = GetTechCost(Player.CurLnchTechIndex, Player);
@@ -335,15 +338,18 @@ public class SpaceRace : MonoBehaviour
     //стоимость изучения технологии
     public int GetTechCost(int indx, PlayerScript pl)
     {
+        if (indx < 0 || indx >= Techs.Length)
+            return 0;
+
         int initCost = Techs[indx].mCost;
         int dscMulty = 0;
         float res = initCost;
 
-            if (indx > GndTechCount)
+            if (indx > GndTechCount && indx != 41)
             {
                 //технологии запусков
                 //учитываем скидки от изученных наземных технологий
-                if (pl.CurGndTechIndex == -1)   //изучили все наземные технологии
+                if (pl.CurGndTechIndex == -1 || pl.CurGndTechIndex == 41)   //изучили все наземные технологии
                     dscMulty = GndTechCount;
                 else
                     dscMulty = pl.CurGndTechIndex - 1;

@@ -4,7 +4,7 @@ using video3D;
 
 public class PlayerScript : MonoBehaviour
 {
-    public const int spaceTechCount = 41, milTechCount = 11;
+    public const int spaceTechCount = 43, milTechCount = 11;
     public double Budget;
     public Authority Authority;
     public CountryScript MyCountry;
@@ -208,11 +208,17 @@ public class PlayerScript : MonoBehaviour
     //
     public void SetTechStatus(int idx)
     {
+        if (idx < 0 || idx >= TechStatus.Length)
+            return;
+
         TechStatus[idx] = true;
     }
 
     public bool GetTechStatus(int idx)
     {
+        if (idx < 0 || idx >= TechStatus.Length)
+            return false;
+
         return TechStatus[idx];
     }
 
@@ -751,8 +757,9 @@ public class UniOutlay
             else
             {
                 cost = GameManagerScript.GM.SRInstance.LaunchTech(player, player.CurGndTechIndex);
-                if (player.CurGndTechIndex == -1)
-                    cost = GameManagerScript.GM.SRInstance.GetTechCost(41, player); //и больше не будет меняться
+                //Правильное изменение цены происходит в LaunchTech()
+                //if (player.CurGndTechIndex == -1)
+                //    cost = GameManagerScript.GM.SRInstance.GetTechCost(41, player); //и больше не будет меняться
             }
         }
         //Технологии запусков
@@ -766,8 +773,9 @@ public class UniOutlay
             else
             {
                 cost = GameManagerScript.GM.SRInstance.LaunchTech(player, player.CurLnchTechIndex);
-                if (player.CurLnchTechIndex == -1)
-                    cost = GameManagerScript.GM.SRInstance.GetTechCost(42, player); //и больше не будет меняться
+                //Правильное изменение цены происходит в LaunchTech()
+                //if (player.CurLnchTechIndex == -1)
+                //    cost = GameManagerScript.GM.SRInstance.GetTechCost(42, player); //и больше не будет меняться
             }
         }
 

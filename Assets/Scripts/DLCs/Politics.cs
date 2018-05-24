@@ -73,7 +73,7 @@ namespace DLC_Politics
 
             foreach (PolMinister item in curMinisters(pl.Authority))
             {
-                if (item.BonusType == BonusType.GEPoint)
+                if (item.BonusType == BonusType.GEPoint && pl == GM.Player) //Для игрока этот бонус применяем сразу после выборов, т.к. годовое применение бонусов произойдёт раньше, чем игрок успеет проголосовать
                 {
                     //+1 global consequences point per 5 years (добавляется 1 в начале сразу после выборов и еще +1 через 5 лет)
                     pl.TYGEDiscounter++;
@@ -86,7 +86,7 @@ namespace DLC_Politics
                     pl.MyCountry.Score += 2;
                 }
 
-                if (item.BonusType == BonusType.YearInfToFoe)
+                if (item.BonusType == BonusType.YearInfToFoe && pl == GM.Player)   //Для игрока этот бонус применяем сразу после выборов, т.к. годовое применение бонусов произойдёт раньше, чем игрок успеет проголосовать
                 {
                     //- 1 influence to foe once per two years ( каждые 2 года -1 influence во все страны альянса противника )
                     //Это первый год (год выборов)
@@ -124,7 +124,7 @@ namespace DLC_Politics
                 {
                     case BonusType.GEPoint:
                         //+1 global consequences point per 5 years (добавляется 1 в начале сразу после выборов и еще +1 через 5 лет)
-                        if (GM.CurrentMonth % 120 == 60)  //1 раз через 5 лет
+                        if (GM.CurrentMonth % 60 == 0)  //1 раз через 5 лет
                             pl.TYGEDiscounter ++;
                         break;
                     case BonusType.YearInfToFoe:
