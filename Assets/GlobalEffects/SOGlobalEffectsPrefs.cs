@@ -266,9 +266,13 @@ namespace GlobalEffects
                 case GETypes.MilitaryAddToPool:
                     GameManagerScript.GM.GetPlayerByAuthority(AllianceAction).MilitaryPool += Amount;
                     break;
+                //смена альянса
                 case GETypes.ChangeGovernment:
-                    if(Country.Authority != AllianceAction)
-                        GameManagerScript.GM.ChangeGovernment(Country, AllianceAction, false, false);
+                    if (Field == GEFields.SingleCountry && (!IfInAllianceOnly || (Country.Authority == AllianceCondition)))
+                    {
+                        if (Country.Authority != AllianceAction)
+                            GameManagerScript.GM.ChangeGovernment(Country, AllianceAction, false, false);
+                    }
                     break;
                 case GETypes.FirePowerAddition:
                     GameManagerScript.GM.GetPlayerByAuthority(AllianceAction).fpBonus += Amount;

@@ -5,7 +5,7 @@ using System.IO;
 
 public static class SaveManager
 {
-    const string ver = "2.5";
+    const string ver = "2.6";
 
     public static void SaveGame(string fName = "save")
     {
